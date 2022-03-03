@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'DataModel.dart';
 
 SharedPreferences? prefs;
@@ -58,9 +56,6 @@ class _MyHomePageState extends State<MyHomePage> {
     "Golf courses",
     "My Scores"
   ];
-//  File? _photo;
-  final ImagePicker _picker = ImagePicker();
-
   @override
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
