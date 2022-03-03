@@ -80,28 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0
-              ? RegisterBody()
-              : _currentPageIndex == 1
-                  ? GroupBody()
-                  : _currentPageIndex == 2
-                      ? ActivityBody()
-                      : _currentPageIndex == 3
-                          ? GolfCourseBody()
-                          : _currentPageIndex == 4
-                              ? MyScoreBody()
-                              : null),
+          child: _currentPageIndex == 0 ? RegisterBody()
+              : _currentPageIndex == 1  ? GroupBody()
+              : _currentPageIndex == 2  ? ActivityBody()
+              : _currentPageIndex == 3  ? GolfCourseBody()
+              : _currentPageIndex == 4  ? MyScoreBody() : null),
       drawer: isRegistered ? golfDrawer() : null,
-/*      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentPageIndex,
-        items: widget._pages
-            .map((Page page) => BottomNavigationBarItem(
-                  icon: Icon(page.iconData),
-                  label: page.title,
-                ))
-            .toList(),
-        onTap: _openPage,
-      ),*/
     );
   }
 
@@ -118,15 +102,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   _currentPageIndex = 0;
                   Navigator.of(context).pop();
                 },
-                //ImagePicker().pickImage(source: ImageSource.gallery),
-                //switchHome("Golfer Info"),
                 child: CircleAvatar(backgroundImage: NetworkImage(_golferAvatar ?? maleGolfer))
-                //"https://desk-fd.zol-img.com.cn/t_s144x90c5/g5/M00/02/07/ChMkJlbKy5GIKHO3AAXx0E0tcL8AALIsgMfpwoABfHo739.jpg"))
                 ),
             decoration: BoxDecoration(
-                image: DecorationImage(fit: BoxFit.fill, image: NetworkImage("https://images.unsplash.com/photo-1622482594949-a2ea0c800edd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80")
-                    //("https://desk-fd.zol-img.com.cn/t_s208x130c5/g4/M00/0F/02/Cg-4zFT5Wj-IQxAKABhgu3KD_twAAWK_ANBmYUAGGDT047.jpg")
-                    )),
+                image: DecorationImage(fit: BoxFit.fill, 
+                  image: NetworkImage("https://images.unsplash.com/photo-1622482594949-a2ea0c800edd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80")
+                )),
             onDetailsPressed: () {
               setState(() => isUpdate = true);
               _currentPageIndex = 0;
