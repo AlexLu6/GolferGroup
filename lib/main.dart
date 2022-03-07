@@ -174,14 +174,14 @@ class _MyHomePageState extends State<MyHomePage> {
       showCursor: true,
       onChanged: (String value) => setState(() => _name = value),
       //keyboardType: TextInputType.name,
-      decoration: InputDecoration(labelText: "Name:", hintText: 'Real Name:', icon: Icon(Icons.person), border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: InputDecoration(labelText: "Name:", hintText: 'Real Name:', icon: Icon(Icons.person), border: OutlineInputBorder(borderRadius: BorderRadius.circular(24.0))),
     );
 
     final golferPhone = TextFormField(
       initialValue: _phone,
       onChanged: (String value) => setState(() => _phone = value),
       keyboardType: TextInputType.phone,
-      decoration: InputDecoration(labelText: "Mobile:", hintText: 'Mobile:', icon: Icon(Icons.phone), border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: InputDecoration(labelText: "Mobile:", hintText: 'Mobile:', icon: Icon(Icons.phone), border: OutlineInputBorder(borderRadius: BorderRadius.circular(24.0))),
     );
     final golferSex = Row(children: <Widget>[
       Flexible(
