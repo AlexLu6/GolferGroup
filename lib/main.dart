@@ -97,9 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void doBodyAdd(int index) {
-
-  }
   Drawer golfDrawer() {
     return Drawer(
       child: ListView(
@@ -378,4 +375,22 @@ class _MyHomePageState extends State<MyHomePage> {
   ListView MyScoreBody() {
     return ListView();
   }
+
+  void doBodyAdd(int index) {
+    switch (index) {
+      case 3: Navigator.of(context).push(_NewGolfCoursePage());
+      break;
+    }
+  }
+}
+
+class _NewGolfCoursePage extends MaterialPageRoute<void> {
+  _NewGolfCoursePage() : super(builder:(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
+      body: Center(
+        child: Text('Name:'),
+      ),
+    );
+  });
 }
