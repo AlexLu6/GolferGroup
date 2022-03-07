@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:flutter/floating_action_button.dart';
 import 'DataModel.dart';
 
 SharedPreferences? prefs;
@@ -363,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Image.network(golfCourses.elementAt(index)["photo"]as String), 
         trailing: Icon(Icons.keyboard_arrow_right)), separatorBuilder: (context, index) => Divider(), 
     );
-    ListView(
+    return ListView(
       children: <Widget> [
         listView,
       ],
@@ -372,7 +373,6 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       )
     );
-    return listView;
   }
 
   ListView MyScoreBody() {
