@@ -361,7 +361,17 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)), 
         subtitle: Text(((golfCourses.elementAt(index)["zones"] as List<Map>).length * 9).toString() + ' Holes'), 
         leading: Image.network(golfCourses.elementAt(index)["photo"]as String), 
-        trailing: Icon(Icons.keyboard_arrow_right)), separatorBuilder: (context, index) => Divider());
+        trailing: Icon(Icons.keyboard_arrow_right)), separatorBuilder: (context, index) => Divider(), 
+    );
+    ListView(
+      children: <Widget> [
+        listView,
+      ],
+      floatingActionButton: FloatingActionButton(
+        OnPress: () => {},
+        child: const Icon(Icons.add),
+      )
+    );
     return listView;
   }
 
