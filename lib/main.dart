@@ -386,7 +386,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
       appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
       body: Builder(
         builder: (BuildContext context) => Center (
-        child: Row (children: <Widget> [
+        child: Column (children: <Widget> [
           TextFormField(
             showCursor: true,
             onChanged: (String value) => _courseName = value,
