@@ -88,12 +88,12 @@ class _MyHomePageState extends State<MyHomePage> {
               : _currentPageIndex == 3  ? GolfCourseBody()
               : _currentPageIndex == 4  ? MyScoreBody() : null),
       drawer: isRegistered ? golfDrawer() : null,
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4) ? FloatingActionButton(
         //mini: false,
         onPressed: () => doBodyAdd(_currentPageIndex),
         child: const Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      ) : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 
