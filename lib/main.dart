@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter/floating_action_button.dart';
 import 'DataModel.dart';
 
 SharedPreferences? prefs;
@@ -89,9 +88,18 @@ class _MyHomePageState extends State<MyHomePage> {
               : _currentPageIndex == 3  ? GolfCourseBody()
               : _currentPageIndex == 4  ? MyScoreBody() : null),
       drawer: isRegistered ? golfDrawer() : null,
+      floatingActionButton: FloatingActionButton(
+        //mini: false,
+        onPressed: () => doBodyAdd(_currentPageIndex),
+        child: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
 
+  void doBodyAdd(int index) {
+
+  }
   Drawer golfDrawer() {
     return Drawer(
       child: ListView(
@@ -364,15 +372,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Image.network(golfCourses.elementAt(index)["photo"]as String), 
         trailing: Icon(Icons.keyboard_arrow_right)), separatorBuilder: (context, index) => Divider(), 
     );
-    return ListView(
-      children: <Widget> [
-        listView,
-      ],
-      floatingActionButton: FloatingActionButton(
-        OnPress: () => {},
-        child: const Icon(Icons.add),
-      )
-    );
+    return listView;
   }
 
   ListView MyScoreBody() {
