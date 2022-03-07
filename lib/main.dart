@@ -391,7 +391,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
             showCursor: true,
             onChanged: (String value) => _courseName = value,
           //keyboardType: TextInputType.name,
-            decoration: InputDecoration(labelText: "Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
+            decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
           )
         )
       )
