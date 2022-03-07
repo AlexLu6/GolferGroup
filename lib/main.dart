@@ -167,6 +167,9 @@ class _MyHomePageState extends State<MyHomePage> {
       tag: 'golfer',
       child: CircleAvatar(backgroundImage: NetworkImage(_golferAvatar ?? maleGolfer), radius: 140),
     );
+    final logo2 = Image.file(path:
+      
+    );
     final golferName = TextFormField(
       initialValue: _name,
       showCursor: true,
