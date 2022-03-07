@@ -381,20 +381,26 @@ class _MyHomePageState extends State<MyHomePage> {
 class _NewGolfCoursePage extends MaterialPageRoute<void> {
   
   _NewGolfCoursePage() : super(builder:(BuildContext context) {
-    String _courseName ;
+    String _courseName, _region;
     return Scaffold(
       appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
       body: Builder(
         builder: (BuildContext context) => Center (
-        child: 
+        child: Column (children: <Widget> [
           TextFormField(
             showCursor: true,
             onChanged: (String value) => _courseName = value,
           //keyboardType: TextInputType.name,
             decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
-          )
-        )
-      )
+          ),
+          TextFormField(
+            showCursor: true,
+            onChanged: (String value) => _region = value,
+          //keyboardType: TextInputType.name,
+            decoration: InputDecoration(labelText: "Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+          ),
+        ])
+      ))
     );
   });
 
