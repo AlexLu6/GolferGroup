@@ -372,19 +372,30 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void doBodyAdd(int index) {
     switch (index) {
-      case 3: Navigator.of(context).push(_NewGolfCoursePage());
+      case 3: Navigator.push(context, _NewGolfCoursePage());
       break;
     }
   }
 }
 
 class _NewGolfCoursePage extends MaterialPageRoute<void> {
+  
   _NewGolfCoursePage() : super(builder:(BuildContext context) {
+    String _courseName ;
     return Scaffold(
       appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
-      body: Center(
-        child: Text('Name:'),
-      ),
+      body: Builder(
+        builder: (BuildContext context) => Center (
+        child: 
+          TextFormField(
+            showCursor: true,
+            onChanged: (String value) => _courseName = value,
+          //keyboardType: TextInputType.name,
+            decoration: InputDecoration(labelText: "Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
+          )
+        )
+      )
     );
   });
+
 }
