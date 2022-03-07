@@ -25,12 +25,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Page {
-  final String title;
-  final IconData body;
-  Page(this.title, this.body);
-}
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
 
@@ -180,14 +174,14 @@ class _MyHomePageState extends State<MyHomePage> {
       showCursor: true,
       onChanged: (String value) => setState(() => _name = value),
       //keyboardType: TextInputType.name,
-      decoration: InputDecoration(labelText: "Name:", hintText: 'Real Name:', border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      decoration: InputDecoration(labelText: "Name:", hintText: 'Real Name:', icon: Icon(Icons.person), border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
     final golferPhone = TextFormField(
       initialValue: _phone,
       onChanged: (String value) => setState(() => _phone = value),
-      //keyboardType: TextInputType.phone,
-      decoration: InputDecoration(labelText: "Mobile:", hintText: 'Mobile:', border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+      keyboardType: TextInputType.phone,
+      decoration: InputDecoration(labelText: "Mobile:", hintText: 'Mobile:', icon: Icon(Icons.phone), border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
     final golferSex = Row(children: <Widget>[
       Flexible(
