@@ -37,10 +37,10 @@ enum gendre { Male, Female }
 final String maleGolfer = 'https://images.unsplash.com/photo-1494249120761-ea1225b46c05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=713&q=80';
 final String femaleGolfer = 'https://images.unsplash.com/photo-1622819219010-7721328f050b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=415&q=80';
 String? _golferAvatar;
+int _golferID = 0;
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentPageIndex = 0;
-  int _golferID = 0;
   String _name = '', _phone = '';
   gendre _sex = gendre.Male;
   double _handicap = 18;
@@ -379,7 +379,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class _NewGroupPage extends MaterialPageRoute<void> {
   _NewGroupPage()
       : super(builder: (BuildContext context) {
-          String _groupName, _region, _remarks;
+          String _groupName='', _region='', _remarks='';
           return Scaffold(
               appBar: AppBar(title: Text('Create New Golf Group'), elevation: 1.0),
               body: Builder(
@@ -408,7 +408,18 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                         const SizedBox(height: 24.0),
                         RaisedButton(
                           child: Text('Create'),
-                          onPressed: null
+                          onPressed: () {
+                            if (_groupName != '' && _region != '')
+                              golferGroup.add({
+                                "name": _groupName,
+                                "region": _region,
+                                "remarks": _remarks,
+                                "managers": [_golferID],
+                                "members": [_golferID],
+                                "gid": DateTime.now().millisecondsSinceEpoch
+                              });
+                            print(golferGroup);
+                          }
                         )
                       ]
                     ))));
