@@ -389,13 +389,13 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           showCursor: true,
                           onChanged: (String value) => _groupName = value,
                           //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
+                          decoration: InputDecoration(labelText: "Group Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
                         ),
                         TextFormField(
                           showCursor: true,
                           onChanged: (String value) => _region = value,
                           //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                          decoration: InputDecoration(labelText: "Activity Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
                         ),
                         ]
                       ))));
