@@ -404,6 +404,10 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           //keyboardType: TextInputType.name,
                           maxLines: 5,
                           decoration: InputDecoration(labelText: "Remarks:", border: OutlineInputBorder()),
+                        ), 
+                        RaisedButton(
+                          child: Text('Create'),
+                          onPressed: null
                         )
                       ]
                     ))));
