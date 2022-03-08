@@ -402,7 +402,7 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           onChanged: (String value) => _remarks = value,
                           //keyboardType: TextInputType.name,
                           maxLines: 3,
-                          decoration: InputDecoration(labelText: "Remarks:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                          decoration: InputDecoration(labelText: "Remarks:", border: OutlineInputBorder()),
                         )
                       ]
                     ))));
