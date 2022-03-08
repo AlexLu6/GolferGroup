@@ -400,7 +400,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                         ),
-                        Flexible(child: Editable(borderColor: Colors.black,
+                        Flexible(child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize:16),
                           columns: [
                             {"title" : "Hole#", 'index': 1, 'key': 'hole'},
                             {"title" : "Out", 'index': 2, 'key': 'z1'},
