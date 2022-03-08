@@ -397,6 +397,7 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Activity Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
                         ),
+                        const SizedBox(height: 24.0),
                         TextFormField(
                           showCursor: true,
                           onChanged: (String value) => _remarks = value,
