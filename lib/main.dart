@@ -409,7 +409,7 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                         RaisedButton(
                           child: Text('Create'),
                           onPressed: () {
-                            if (_groupName != '' && _region != '')
+                            if (_groupName != '' && _region != '') {
                               golferGroup.add({
                                 "name": _groupName,
                                 "region": _region,
@@ -418,8 +418,8 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                                 "members": [_golferID],
                                 "gid": DateTime.now().millisecondsSinceEpoch
                               });
-                            print(golferGroup);
-                            Navigator.of(context).pop();
+                              Navigator.of(context).pop(true);
+                            }
                           }
                         )
                       ]
