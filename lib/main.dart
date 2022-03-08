@@ -419,6 +419,7 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                                 "gid": DateTime.now().millisecondsSinceEpoch
                               });
                             print(golferGroup);
+                            Navigator.of(context).pop();
                           }
                         )
                       ]
