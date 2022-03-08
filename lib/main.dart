@@ -1,6 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
+//import 'package:place_picker/place_picker.dart';
 import 'DataModel.dart';
 
 SharedPreferences? prefs;
@@ -410,5 +413,10 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
       ))
     );
   });
-
+/* void showPlacePicker() async {
+    LocationResult result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
+      PlacePicker("AIzaSyD26EyAImrDoOMn3o6FgmSQjlttxjqmS7U")
+    ));
+    print(result);
+  }*/
 }
