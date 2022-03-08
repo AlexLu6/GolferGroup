@@ -379,12 +379,12 @@ class _MyHomePageState extends State<MyHomePage> {
 class _NewGroupPage extends MaterialPageRoute<void> {
   _NewGroupPage()
       : super(builder: (BuildContext context) {
-          String _groupName, _region;
+          String _groupName, _region, _remarks;
           return Scaffold(
               appBar: AppBar(title: Text('Create New Golf Group'), elevation: 1.0),
               body: Builder(
                   builder: (BuildContext context) => Center(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                         TextFormField(
                           showCursor: true,
                           onChanged: (String value) => _groupName = value,
@@ -397,8 +397,15 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Activity Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
                         ),
-                        ]
-                      ))));
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _remarks = value,
+                          //keyboardType: TextInputType.name,
+                          maxLines: 3,
+                          decoration: InputDecoration(labelText: "Remarks:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                        )
+                      ]
+                    ))));
         });
 }
 
@@ -410,7 +417,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
               appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
               body: Builder(
                   builder: (BuildContext context) => Center(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
+                      children: <Widget>[
                         TextFormField(
                           showCursor: true,
                           onChanged: (String value) => _courseName = value,
@@ -448,7 +456,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
                             {'hole': 9, 'z1': '', 'z2': ''},
                           ]
                         ))
-                      ]))));
+                      ]
+                    ))));
         });
 /* void showPlacePicker() async {
     LocationResult result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
