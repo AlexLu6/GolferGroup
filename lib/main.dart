@@ -403,19 +403,19 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
                         Flexible(child: Editable(borderColor: Colors.black,
                           columns: [
                             {"title" : "Hole#", 'index': 1, 'key': 'hole'},
-                            {"title" : "Out", 'index': 2, 'key': 'out'},
-                            {"title" : "Int", 'index': 3, 'key': 'in'},
+                            {"title" : "Out", 'index': 2, 'key': 'z1'},
+                            {"title" : "Int", 'index': 3, 'key': 'z2'},
                           ],
                           rows: [
-                            {'hole': 1, 'out': ''},
-                            {'hole': 2},
-                            {'hole': 3},
-                            {'hole': 4},
-                            {'hole': 5},
-                            {'hole': 6},
-                            {'hole': 7},
-                            {'hole': 8},
-                            {'hole': 9},
+                            {'hole': 1, 'z1': '', 'z2': ''},
+                            {'hole': 2, 'z1': '', 'z2': ''},
+                            {'hole': 3, 'z1': '', 'z2': ''},
+                            {'hole': 4, 'z1': '', 'z2': ''},
+                            {'hole': 5, 'z1': '', 'z2': ''},
+                            {'hole': 6, 'z1': '', 'z2': ''},
+                            {'hole': 7, 'z1': '', 'z2': ''},
+                            {'hole': 8, 'z1': '', 'z2': ''},
+                            {'hole': 9, 'z1': '', 'z2': ''},
                           ]
                         ))
                       ]))));
