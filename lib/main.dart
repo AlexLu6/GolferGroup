@@ -368,6 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (index) {
       case 1:
       Navigator.push(context, _NewGroupPage());
+      setState(() {});
       break;
       case 3:
         Navigator.push(context, _NewGolfCoursePage());
