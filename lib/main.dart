@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
-//import 'package:place_picker/place_picker.dart';
+import 'package:editable/editable.dart';
 import 'DataModel.dart';
 
 SharedPreferences? prefs;
@@ -400,6 +400,24 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                         ),
+                        Editable(borderColor: Colors.black,
+                          columns: [
+                            {"title" : "Hole#", 'index': 1, 'key': 'hole'},
+                            {"title" : "Out", 'index': 2, 'key': 'out'},
+                            {"title" : "Int", 'index': 3, 'key': 'in'},
+                          ],
+                          rows: [
+                            {'hole': 1},
+                            {'hole': 2},
+                            {'hole': 3},
+                            {'hole': 4},
+                            {'hole': 5},
+                            {'hole': 6},
+                            {'hole': 7},
+                            {'hole': 8},
+                            {'hole': 9},
+                          ]
+                        )
                       ]))));
         });
 /* void showPlacePicker() async {
