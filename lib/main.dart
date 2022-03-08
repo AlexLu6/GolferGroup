@@ -400,7 +400,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                         ),
-                        Editable(borderColor: Colors.black,
+                        Flexible(child: Editable(borderColor: Colors.black,
                           columns: [
                             {"title" : "Hole#", 'index': 1, 'key': 'hole'},
                             {"title" : "Out", 'index': 2, 'key': 'out'},
@@ -417,7 +417,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
                             {'hole': 8},
                             {'hole': 9},
                           ]
-                        )
+                        ))
                       ]))));
         });
 /* void showPlacePicker() async {
