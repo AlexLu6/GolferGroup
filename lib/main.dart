@@ -389,7 +389,7 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           showCursor: true,
                           onChanged: (String value) => _groupName = value,
                           //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Group Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
+                          decoration: InputDecoration(labelText: "Group Name:", icon: Icon(Icons.group), border: UnderlineInputBorder()),
                         ),
                         TextFormField(
                           showCursor: true,
