@@ -367,9 +367,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void doBodyAdd(int index) {
     switch (index) {
       case 1:
-      Navigator.push(context, _NewGroupPage());
-      setState(() {});
-      break;
+        Navigator.push(context, _NewGroupPage());
+        setState(() => _currentPageIndex = 1);
+        break;
       case 3:
         Navigator.push(context, _NewGolfCoursePage());
         break;
