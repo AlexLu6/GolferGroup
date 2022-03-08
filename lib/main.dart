@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
@@ -80,17 +78,25 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0 ? RegisterBody()
-              : _currentPageIndex == 1  ? GroupBody()
-              : _currentPageIndex == 2  ? ActivityBody()
-              : _currentPageIndex == 3  ? GolfCourseBody()
-              : _currentPageIndex == 4  ? MyScoreBody() : null),
+          child: _currentPageIndex == 0
+              ? RegisterBody()
+              : _currentPageIndex == 1
+                  ? GroupBody()
+                  : _currentPageIndex == 2
+                      ? ActivityBody()
+                      : _currentPageIndex == 3
+                          ? GolfCourseBody()
+                          : _currentPageIndex == 4
+                              ? MyScoreBody()
+                              : null),
       drawer: isRegistered ? golfDrawer() : null,
-      floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4) ? FloatingActionButton(
-        //mini: false,
-        onPressed: () => doBodyAdd(_currentPageIndex),
-        child: const Icon(Icons.add),
-      ) : null,
+      floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4)
+          ? FloatingActionButton(
+              //mini: false,
+              onPressed: () => doBodyAdd(_currentPageIndex),
+              child: const Icon(Icons.add),
+            )
+          : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
@@ -108,12 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   _currentPageIndex = 0;
                   Navigator.of(context).pop();
                 },
-                child: CircleAvatar(backgroundImage: NetworkImage(_golferAvatar ?? maleGolfer))
-                ),
-            decoration: BoxDecoration(
-                image: DecorationImage(fit: BoxFit.fill, 
-                  image: NetworkImage("https://images.unsplash.com/photo-1622482594949-a2ea0c800edd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80")
-                )),
+                child: CircleAvatar(backgroundImage: NetworkImage(_golferAvatar ?? maleGolfer))),
+            decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.fill, image: NetworkImage("https://images.unsplash.com/photo-1622482594949-a2ea0c800edd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"))),
             onDetailsPressed: () {
               setState(() => isUpdate = true);
               _currentPageIndex = 0;
@@ -172,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: CircleAvatar(backgroundImage: NetworkImage(_golferAvatar ?? maleGolfer), radius: 140),
     );
 //    final logo2 = Image.file(path:
-      
+
     final golferName = TextFormField(
       initialValue: _name,
       showCursor: true,
@@ -294,33 +296,31 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<bool?> showApplyDialog(bool applying) {
     return showDialog<bool>(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text("Hint"),
-          content: Text(applying ? 'You have applied already, wait for it.' : 'You should apply the group first'),
-          actions: <Widget>[
-            FlatButton(child: Text(applying ? "OK" : "Apply"), onPressed: () => Navigator.of(context).pop(!applying)),
-            FlatButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
-          ],
-        );
-      }
-    );
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Hint"),
+            content: Text(applying ? 'You have applied already, wait for it.' : 'You should apply the group first'),
+            actions: <Widget>[
+              FlatButton(child: Text(applying ? "OK" : "Apply"), onPressed: () => Navigator.of(context).pop(!applying)),
+              FlatButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
+            ],
+          );
+        });
   }
 
   ListView GroupBody() {
     var listView = ListView.separated(
       itemCount: golferGroup.length,
       itemBuilder: (context, index) => ListTile(
-        title: Text(golferGroup.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)), 
-        subtitle: Text('Region: ' + golferGroup.elementAt(index)["region"].toString() + 
-            "\nManager: " + golferNames(golferGroup.elementAt(index)["managers"] as List<int>)! + 
-            "\nmembers: " + (golferGroup.elementAt(index)["members"] as List<int>).length.toString()), 
-        leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
+        title: Text(golferGroup.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)),
+        subtitle: Text('Region: ' + golferGroup.elementAt(index)["region"].toString() + "\nManager: " + golferNames(golferGroup.elementAt(index)["managers"] as List<int>)! + "\nmembers: " + (golferGroup.elementAt(index)["members"] as List<int>).length.toString()),
+        leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"),
+        /*Icon(Icons.group), */
         trailing: Icon(Icons.keyboard_arrow_right),
-        onTap:() async {
+        onTap: () async {
           if (isMember(golferGroup.elementAt(index)["gid"] as int, _golferID)) {
-          // show group activities
+            // show group activities
             print("show group activities");
           } else {
             int gid = golferGroup.elementAt(index)["gid"] as int;
@@ -336,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           }
         },
-        ),
+      ),
       separatorBuilder: (context, index) => Divider(),
     );
     return listView;
@@ -345,14 +345,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ListView ActivityBody() {
     var listView = ListView.separated(
       itemCount: golferActivities.length,
-      itemBuilder: (context, index) => ListTile(
-        title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)), 
-        subtitle: Text("Tee off: " + golferActivities.elementAt(index)["tee off"].toString() + 
-            '\nMax: ' + golferActivities.elementAt(index)["max"].toString() + 
-            '\tNow: ' + (golferActivities.elementAt(index)["golfers"] as List<Map>).length.toString() +
-            "\tFee: " + golferActivities.elementAt(index)["fee"].toString()), 
-        leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!),
-        trailing: Icon(Icons.keyboard_arrow_right)),
+      itemBuilder: (context, index) => ListTile(title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)), subtitle: Text("Tee off: " + golferActivities.elementAt(index)["tee off"].toString() + '\nMax: ' + golferActivities.elementAt(index)["max"].toString() + '\tNow: ' + (golferActivities.elementAt(index)["golfers"] as List<Map>).length.toString() + "\tFee: " + golferActivities.elementAt(index)["fee"].toString()), leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), trailing: Icon(Icons.keyboard_arrow_right)),
       separatorBuilder: (context, index) => Divider(),
     );
     return listView;
@@ -360,12 +353,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ListView GolfCourseBody() {
     var listView = ListView.separated(
-      itemCount: golfCourses.length, 
-      itemBuilder: (context, index) => ListTile(
-        title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)), 
-        subtitle: Text(((golfCourses.elementAt(index)["zones"] as List<Map>).length * 9).toString() + ' Holes'), 
-        leading: Image.network(golfCourses.elementAt(index)["photo"]as String), 
-        trailing: Icon(Icons.keyboard_arrow_right)), separatorBuilder: (context, index) => Divider(), 
+      itemCount: golfCourses.length,
+      itemBuilder: (context, index) => ListTile(title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)), subtitle: Text(((golfCourses.elementAt(index)["zones"] as List<Map>).length * 9).toString() + ' Holes'), leading: Image.network(golfCourses.elementAt(index)["photo"] as String), trailing: Icon(Icons.keyboard_arrow_right)),
+      separatorBuilder: (context, index) => Divider(),
     );
     return listView;
   }
@@ -376,43 +366,42 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void doBodyAdd(int index) {
     switch (index) {
-      case 3: Navigator.push(context, _NewGolfCoursePage());
-      break;
+      case 3:
+        Navigator.push(context, _NewGolfCoursePage());
+        break;
     }
   }
 }
 
 class _NewGolfCoursePage extends MaterialPageRoute<void> {
-  
-  _NewGolfCoursePage() : super(builder:(BuildContext context) {
-    String _courseName, _region, _photoURL;
-    return Scaffold(
-      appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
-      body: Builder(
-        builder: (BuildContext context) => Center (
-        child: Column (crossAxisAlignment:CrossAxisAlignment.center, children: <Widget> [
-          TextFormField(
-            showCursor: true,
-            onChanged: (String value) => _courseName = value,
-          //keyboardType: TextInputType.name,
-            decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
-          ),
-          TextFormField(
-            showCursor: true,
-            onChanged: (String value) => _region = value,
-          //keyboardType: TextInputType.name,
-            decoration: InputDecoration(labelText: "Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
-          ),
-          TextFormField(
-            showCursor: true,
-            onChanged: (String value) => _photoURL = value,
-          //keyboardType: TextInputType.name,
-            decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
-          ),
-        ])
-      ))
-    );
-  });
+  _NewGolfCoursePage()
+      : super(builder: (BuildContext context) {
+          String _courseName, _region, _photoURL;
+          return Scaffold(
+              appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
+              body: Builder(
+                  builder: (BuildContext context) => Center(
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _courseName = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
+                        ),
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _region = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                        ),
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _photoURL = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
+                        ),
+                      ]))));
+        });
 /* void showPlacePicker() async {
     LocationResult result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
       PlacePicker("AIzaSyD26EyAImrDoOMn3o6FgmSQjlttxjqmS7U")
