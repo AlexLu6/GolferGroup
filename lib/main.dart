@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
     "My Scores"
   ];
   final ImagePicker _picker = ImagePicker();
+
   @override
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
