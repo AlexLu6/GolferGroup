@@ -366,11 +366,40 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void doBodyAdd(int index) {
     switch (index) {
+      case 1:
+      Navigator.push(context, _NewGroupPage());
+      break;
       case 3:
         Navigator.push(context, _NewGolfCoursePage());
         break;
     }
   }
+}
+
+class _NewGroupPage extends MaterialPageRoute<void> {
+  _NewGroupPage()
+      : super(builder: (BuildContext context) {
+          String _groupName, _region;
+          return Scaffold(
+              appBar: AppBar(title: Text('Create New Golf Group'), elevation: 1.0),
+              body: Builder(
+                  builder: (BuildContext context) => Center(
+                          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _groupName = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
+                        ),
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _region = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                        ),
+                        ]
+                      ))));
+        });
 }
 
 class _NewGolfCoursePage extends MaterialPageRoute<void> {
