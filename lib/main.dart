@@ -407,7 +407,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<void> {
                             {"title" : "Int", 'index': 3, 'key': 'in'},
                           ],
                           rows: [
-                            {'hole': 1},
+                            {'hole': 1, 'out': ''},
                             {'hole': 2},
                             {'hole': 3},
                             {'hole': 4},
