@@ -405,6 +405,7 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           maxLines: 5,
                           decoration: InputDecoration(labelText: "Remarks:", border: OutlineInputBorder()),
                         ), 
+                        const SizedBox(height: 24.0),
                         RaisedButton(
                           child: Text('Create'),
                           onPressed: null
