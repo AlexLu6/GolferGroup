@@ -456,6 +456,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
                       )),
+                    const SizedBox(width: 5)
                   ]))
                 ])
             )
