@@ -442,6 +442,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
             builder: (BuildContext context) => Center(
               child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
                 children: <Widget>[
+                  const SizedBox(height: 24.0),
                   Flexible(child: Row(children: <Widget>[
                     RaisedButton(
                       child: Text("Golf Course:"),
@@ -449,12 +450,12 @@ class _NewActivityPage extends MaterialPageRoute<void> {
 
                       }
                     ),
-/*                    TextFormField(
+                    Flexible(child: TextFormField(
                           showCursor: true,
                           onChanged: (String value) => _courseName = value,
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
-                        ),*/
+                      )),
                   ]))
                 ])
             )
