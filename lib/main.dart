@@ -503,8 +503,8 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           initialValue:  DateTime.now().toString(),
                           showCursor: true,
                           onChanged: (String value) => _selectedDate = DateTime.parse(value),
-                          //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
+                          keyboardType: TextInputType.datetime,
+                          decoration: InputDecoration(labelText: "Date:", border:OutlineInputBorder()),
                       )),
                     const SizedBox(width: 5)
                   ])),
