@@ -459,7 +459,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                 children: <Widget>[
                   const SizedBox(height: 24.0),
                   Flexible(child: Row(children: <Widget>[
-                    RaisedButton(
+                    ElevatedButton(
                       child: Text("Golf Course:"),
                       onPressed: () { 
                         showMaterialScrollPicker<NameID> (
@@ -469,6 +469,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           selectedItem: _selectedCourse,
                           //onChanged: (value) => _courseName = value.toString(),
                         );
+                        print(_selectedCourse);
                       }
                     ),
                     const SizedBox(width: 5),
