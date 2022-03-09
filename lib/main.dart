@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:editable/editable.dart';
+import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'DataModel.dart';
 
 SharedPreferences? prefs;
@@ -370,6 +371,9 @@ class _MyHomePageState extends State<MyHomePage> {
         Navigator.push(context, _NewGroupPage());
         setState(() => _currentPageIndex = 2);
         break;
+      case 2:
+        Navigator.push(context, _NewActivityPage(false));
+        break;
       case 3:
         Navigator.push(context, _NewGolfCoursePage());
         break;
@@ -426,6 +430,37 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                       ]
                     ))));
         });
+}
+
+class _NewActivityPage extends MaterialPageRoute<void> {
+  
+  _NewActivityPage(bool isGroup) : super(builder: (BuildContext context) {
+    String _courseName='';
+    return Scaffold(
+        appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
+        body: Builder(
+            builder: (BuildContext context) => Center(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
+                children: <Widget>[
+                  Flexible(child: Row(children: <Widget>[
+                    RaisedButton(
+                      child: Text("Golf Course:"),
+                      onPressed: () {
+
+                      }
+                    ),
+                    TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _courseName = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
+                        ),
+                  ]))
+                ])
+            )
+        )
+      );
+  });
 }
 
 class _NewGolfCoursePage extends MaterialPageRoute<void> {
