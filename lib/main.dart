@@ -500,9 +500,9 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                     ),
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
-                          initialValue:  _selectedCourse.toString(),
+                          initialValue:  DateTime.now().toString(),
                           showCursor: true,
-                          onChanged: (String value) => _courseName = value,
+                          onChanged: (String value) => _selectedDate = DateTime.parse(value),
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
                       )),
