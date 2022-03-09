@@ -481,7 +481,9 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
                       )),
                     const SizedBox(width: 5)
-                  ]))
+                  ])),
+                  const SizedBox(height: 16),
+                  Text('Tee off time:'),
                 ])
             )
         )
