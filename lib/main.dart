@@ -432,10 +432,24 @@ class _NewGroupPage extends MaterialPageRoute<void> {
         });
 }
 
+class NameID {
+  const NameID(this.name, this.ID);
+  final String name;
+  final int ID;
+  @override
+  String toString() => name;
+}
+
 class _NewActivityPage extends MaterialPageRoute<void> {
-  
+    
   _NewActivityPage(bool isGroup) : super(builder: (BuildContext context) {
     String _courseName='';
+    List<NameID> coursesItems = [];
+    var _selectedCourse = NameID('', 0);
+
+    for (var e in golfCourses)
+      coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
+
     return Scaffold(
         appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
         body: Builder(
@@ -446,12 +460,17 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                   Flexible(child: Row(children: <Widget>[
                     RaisedButton(
                       child: Text("Golf Course:"),
-                      onPressed: () {
-
-                      }
+                      onPressed: () => showMaterialScrollPicker<NameID> (
+                        context: context,
+                        title: 'Select a course',
+                        items: coursesItems,
+                        selectedItem: _selectedCourse,
+                        onChanged: (value) => _courseName = value.toString(),
+                      )
                     ),
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
+                          initialValue:  _courseName,
                           showCursor: true,
                           onChanged: (String value) => _courseName = value,
                           //keyboardType: TextInputType.name,
