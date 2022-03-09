@@ -467,14 +467,14 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           title: 'Select a course',
                           items: coursesItems,
                           selectedItem: _selectedCourse,
-                          //onChanged: (value) => _courseName = value.toString(),
+                          onChanged: (value) => _selectedCourse = value,
                         );
                         print(_selectedCourse);
                       }
                     ),
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
-                          initialValue:  _courseName,
+                          initialValue:  _selectedCourse.toString(),
                           showCursor: true,
                           onChanged: (String value) => _courseName = value,
                           //keyboardType: TextInputType.name,
