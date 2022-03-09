@@ -368,10 +368,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void doBodyAdd(int index) {
     switch (index) {
       case 1:
-        Navigator.push(context, _NewGroupPage()).then((isAdd) {if (isAdd?? false) setState(() => index =1);});
+        Navigator.push(context, _NewGroupPage()).then((ret)) {if (ret?? false) setState(() => index = 1);});
         break;
       case 2:
-        Navigator.push(context, _NewActivityPage(false));
+        Navigator.push(context, _NewActivityPage(false)).then((ret)) {if (ret?? false) setState(() => index = 2);});
         break;
       case 3:
         Navigator.push(context, _NewGolfCoursePage());
@@ -440,7 +440,7 @@ class NameID {
   int toID() => ID;
 }
 
-class _NewActivityPage extends MaterialPageRoute<void> {
+class _NewActivityPage extends MaterialPageRoute<bool> {
     
   _NewActivityPage(bool isGroup) : super(builder: (BuildContext context) {
     String _courseName='';
