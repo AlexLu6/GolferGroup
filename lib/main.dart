@@ -466,6 +466,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           context: context,
                           title: 'Select a course',
                           items: coursesItems,
+                          showDivider: false,
                           selectedItem: _selectedCourse,
                           onChanged: (value) => _selectedCourse = value,
                         ).then((selection) => _selectedCourse = selection);
