@@ -367,7 +367,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void doBodyAdd(int index) {
     switch (index) {
       case 1:
-        Navigator.push(context, _NewGroupPage()).then((ret) {if (ret?? false) setState(() => index = 1);});
+        Navigator.push(context, newGroupPage(_golferID)).then((ret) {if (ret?? false) setState(() => index = 1);});
         break;
       case 2:
         Navigator.push(context, newActivityPage(false)).then((ret) {if (ret?? false) setState(() => index = 2);});
@@ -377,56 +377,5 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
     }
   }
-}
-
-class _NewGroupPage extends MaterialPageRoute<bool> {
-  _NewGroupPage()
-      : super(builder: (BuildContext context) {
-          String _groupName='', _region='', _remarks='';
-          return Scaffold(
-              appBar: AppBar(title: Text('Create New Golf Group'), elevation: 1.0),
-              body: Builder(
-                  builder: (BuildContext context) => Center(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
-                        TextFormField(
-                          showCursor: true,
-                          onChanged: (String value) => _groupName = value,
-                          //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Group Name:", icon: Icon(Icons.group), border: UnderlineInputBorder()),
-                        ),
-                        TextFormField(
-                          showCursor: true,
-                          onChanged: (String value) => _region = value,
-                          //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Activity Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
-                        ),
-                        const SizedBox(height: 24.0),
-                        TextFormField(
-                          showCursor: true,
-                          onChanged: (String value) => _remarks = value,
-                          //keyboardType: TextInputType.name,
-                          maxLines: 5,
-                          decoration: InputDecoration(labelText: "Remarks:", border: OutlineInputBorder()),
-                        ), 
-                        const SizedBox(height: 24.0),
-                        ElevatedButton(
-                          child: Text('Create'),
-                          onPressed: () {
-                            if (_groupName != '' && _region != '') {
-                              golferGroup.add({
-                                "name": _groupName,
-                                "region": _region,
-                                "remarks": _remarks,
-                                "managers": [_golferID],
-                                "members": [_golferID],
-                                "gid": DateTime.now().millisecondsSinceEpoch
-                              });
-                              Navigator.of(context).pop(true);
-                            }
-                          }
-                        )
-                      ]
-                    ))));
-        });
 }
 

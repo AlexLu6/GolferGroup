@@ -3,6 +3,59 @@ import 'package:editable/editable.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'DataModel.dart';
 
+_NewGroupPage newGroupPage(int golferID) {return _NewGroupPage(golferID);}
+
+class _NewGroupPage extends MaterialPageRoute<bool> {
+  _NewGroupPage(int golferID)
+      : super(builder: (BuildContext context) {
+          String _groupName='', _region='', _remarks='';
+          return Scaffold(
+              appBar: AppBar(title: Text('Create New Golf Group'), elevation: 1.0),
+              body: Builder(
+                  builder: (BuildContext context) => Center(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _groupName = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Group Name:", icon: Icon(Icons.group), border: UnderlineInputBorder()),
+                        ),
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _region = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Activity Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                        ),
+                        const SizedBox(height: 24.0),
+                        TextFormField(
+                          showCursor: true,
+                          onChanged: (String value) => _remarks = value,
+                          //keyboardType: TextInputType.name,
+                          maxLines: 5,
+                          decoration: InputDecoration(labelText: "Remarks:", border: OutlineInputBorder()),
+                        ), 
+                        const SizedBox(height: 24.0),
+                        ElevatedButton(
+                          child: Text('Create'),
+                          onPressed: () {
+                            if (_groupName != '' && _region != '') {
+                              golferGroup.add({
+                                "name": _groupName,
+                                "region": _region,
+                                "remarks": _remarks,
+                                "managers": [golferID],
+                                "members": [golferID],
+                                "gid": DateTime.now().millisecondsSinceEpoch
+                              });
+                              Navigator.of(context).pop(true);
+                            }
+                          }
+                        )
+                      ]
+                    ))));
+        });
+}
+
 class NameID {
   const NameID(this.name, this.ID);
   final String name;
