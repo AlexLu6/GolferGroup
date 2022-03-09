@@ -410,7 +410,7 @@ class _NewGroupPage extends MaterialPageRoute<void> {
                           decoration: InputDecoration(labelText: "Remarks:", border: OutlineInputBorder()),
                         ), 
                         const SizedBox(height: 24.0),
-                        RaisedButton(
+                        ElevatedButton(
                           child: Text('Create'),
                           onPressed: () {
                             if (_groupName != '' && _region != '') {
