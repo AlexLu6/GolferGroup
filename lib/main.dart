@@ -502,7 +502,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                     Flexible(child: TextFormField(
                           initialValue:  DateTime.now().toString().substring(0, 16),
                           showCursor: true,
-                          onChanged: (String value) => _selectedDate = DateTime.parse(value),
+                          onSaved: (String? value) => _selectedDate = DateTime.parse(value!),
                           keyboardType: TextInputType.datetime,
                           decoration: InputDecoration(labelText: "Date:", border:OutlineInputBorder()),
                       )),
