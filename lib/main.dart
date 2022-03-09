@@ -368,7 +368,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void doBodyAdd(int index) {
     switch (index) {
       case 1:
-        Navigator.push(context, _NewGroupPage());
+        Navigator.push(context, _NewGroupPage()).then((isAdd) {if (isAdd?? false) setState(() => index =1);});
         break;
       case 2:
         Navigator.push(context, _NewActivityPage(false));
@@ -380,7 +380,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class _NewGroupPage extends MaterialPageRoute<void> {
+class _NewGroupPage extends MaterialPageRoute<bool> {
   _NewGroupPage()
       : super(builder: (BuildContext context) {
           String _groupName='', _region='', _remarks='';
