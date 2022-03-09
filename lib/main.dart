@@ -475,7 +475,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                     ),
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
-                          initialValue:  _selectedCourse.toString()?? '',
+                          initialValue:  _selectedCourse.toString(),
                           showCursor: true,
                           onChanged: (String value) => _courseName = value,
                           //keyboardType: TextInputType.name,
@@ -494,7 +494,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           selectedDate: DateTime.now(),
                           firstDate: DateTime.now(),
                           lastDate: DateTime.now().add(Duration(days: 180)),
-                          onChanged: (value) => _selectedDate = value,
+                          onChanged: (value) => setState(() => _selectedDate = value),
                         );
                       }
                     ),
