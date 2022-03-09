@@ -369,7 +369,6 @@ class _MyHomePageState extends State<MyHomePage> {
     switch (index) {
       case 1:
         Navigator.push(context, _NewGroupPage());
-        setState(() => _currentPageIndex = 2);
         break;
       case 2:
         Navigator.push(context, _NewActivityPage(false));
@@ -494,7 +493,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           selectedDate: DateTime.now(),
                           firstDate: DateTime.now(),
                           lastDate: DateTime.now().add(Duration(days: 180)),
-                          onChanged: (value) => setState(() => _selectedDate = value),
+                          onChanged: (value) => _selectedDate = value,
                         );
                       }
                     ),
