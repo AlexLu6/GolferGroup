@@ -368,10 +368,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void doBodyAdd(int index) {
     switch (index) {
       case 1:
-        Navigator.push(context, _NewGroupPage()).then((ret)) {if (ret?? false) setState(() => index = 1);});
+        Navigator.push(context, _NewGroupPage()).then((ret) {if (ret?? false) setState(() => index = 1);});
         break;
       case 2:
-        Navigator.push(context, _NewActivityPage(false)).then((ret)) {if (ret?? false) setState(() => index = 2);});
+        Navigator.push(context, _NewActivityPage(false)).then((ret) {if (ret?? false) setState(() => index = 2);});
         break;
       case 3:
         Navigator.push(context, _NewGolfCoursePage());
@@ -447,6 +447,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
     List<NameID> coursesItems = [];
     var _selectedCourse;
     DateTime _selectedDate;
+    bool _includeMe;
 
     for (var e in golfCourses)
       coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
@@ -506,6 +507,12 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           decoration: InputDecoration(labelText: "Date:", border:OutlineInputBorder()),
                       )),
                     const SizedBox(width: 5)
+                  ])),
+                  Flexible(child: Row(children: <Widget>[
+                    const SizedBox(width: 5),
+                    Checkbox(onChanged: (bool? value) => _includeMe = value!, value: false),
+                    const SizedBox(width: 5),
+                    const Text('Include myself')
                   ])),
                 ])
             )
