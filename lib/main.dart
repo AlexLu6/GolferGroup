@@ -447,7 +447,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
     List<NameID> coursesItems = [];
     var _selectedCourse;
     DateTime _selectedDate;
-    bool _includeMe;
+    bool _includeMe = false;
 
     for (var e in golfCourses)
       coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
@@ -510,7 +510,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   ])),
                   Flexible(child: Row(children: <Widget>[
                     const SizedBox(width: 5),
-                    Checkbox(onChanged: (bool? value) => _includeMe = value!, value: false),
+                    Checkbox(onChanged: (bool? value) => _includeMe = value!, value: _includeMe),
                     const SizedBox(width: 5),
                     const Text('Include myself')
                   ])),
