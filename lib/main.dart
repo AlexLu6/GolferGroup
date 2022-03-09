@@ -468,8 +468,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                           items: coursesItems,
                           selectedItem: _selectedCourse,
                           onChanged: (value) => _selectedCourse = value,
-                        ).then((selection) =>
-                        print(_selectedCourse!.toID()));
+                        ).then((selection) => _selectedCourse = selection);
                       }
                     ),
                     const SizedBox(width: 5),
