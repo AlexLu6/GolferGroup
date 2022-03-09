@@ -447,7 +447,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
     List<NameID> coursesItems = [];
     var _selectedCourse;
     DateTime _selectedDate;
-    bool _includeMe = false;
+    bool _includeMe = true;
 
     for (var e in golfCourses)
       coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
