@@ -449,12 +449,12 @@ class _NewActivityPage extends MaterialPageRoute<void> {
 
                       }
                     ),
-                    TextFormField(
+/*                    TextFormField(
                           showCursor: true,
                           onChanged: (String value) => _courseName = value,
                           //keyboardType: TextInputType.name,
                           decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
-                        ),
+                        ),*/
                   ]))
                 ])
             )
