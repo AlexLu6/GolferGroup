@@ -450,7 +450,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
 
                       }
                     ),
-                    
+                    const SizedBox(width: 5),
                     Flexible(child: TextFormField(
                           showCursor: true,
                           onChanged: (String value) => _courseName = value,
