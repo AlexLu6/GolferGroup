@@ -447,6 +447,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
     String _courseName='';
     List<NameID> coursesItems = [];
     var _selectedCourse;
+    DateTime _selectedDate;
 
     for (var e in golfCourses)
       coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
@@ -482,8 +483,31 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                       )),
                     const SizedBox(width: 5)
                   ])),
-                  const SizedBox(height: 16),
-                  Text('Tee off time:'),
+                  const SizedBox(height: 24),
+                  Flexible(child: Row(children: <Widget>[
+                    ElevatedButton(
+                      child: Text("Tee off Date:"),
+                      onPressed: () { 
+                        showMaterialDatePicker (
+                          context: context,
+                          title: 'Pick a date',
+                          selectedDate: DateTime.now(),
+                          firstDate: DateTime.now(),
+                          lastDate: DateTime.now().add(Duration(days: 180)),
+                          onChanged: (value) => _selectedDate = value,
+                        );
+                      }
+                    ),
+                    const SizedBox(width: 5),
+                    Flexible(child: TextFormField(
+                          initialValue:  _selectedCourse.toString(),
+                          showCursor: true,
+                          onChanged: (String value) => _courseName = value,
+                          //keyboardType: TextInputType.name,
+                          decoration: InputDecoration(labelText: "Course Name:", border:OutlineInputBorder()),
+                      )),
+                    const SizedBox(width: 5)
+                  ])),
                 ])
             )
         )
