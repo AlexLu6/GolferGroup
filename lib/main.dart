@@ -438,6 +438,7 @@ class NameID {
   final int ID;
   @override
   String toString() => name;
+  int toID() => ID;
 }
 
 class _NewActivityPage extends MaterialPageRoute<void> {
@@ -445,7 +446,7 @@ class _NewActivityPage extends MaterialPageRoute<void> {
   _NewActivityPage(bool isGroup) : super(builder: (BuildContext context) {
     String _courseName='';
     List<NameID> coursesItems = [];
-    var _selectedCourse = NameID('', 0);
+    var _selectedCourse;
 
     for (var e in golfCourses)
       coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
@@ -460,13 +461,16 @@ class _NewActivityPage extends MaterialPageRoute<void> {
                   Flexible(child: Row(children: <Widget>[
                     RaisedButton(
                       child: Text("Golf Course:"),
-                      onPressed: () => showMaterialScrollPicker<NameID> (
-                        context: context,
-                        title: 'Select a course',
-                        items: coursesItems,
-                        selectedItem: _selectedCourse,
-                        onChanged: (value) => setState(() => _courseName = value.toString()),
-                      )
+                      onPressed: () { 
+                        showMaterialScrollPicker<NameID> (
+                          context: context,
+                          title: 'Select a course',
+                          items: coursesItems,
+                          selectedItem: _selectedCourse,
+                          onChanged: (value) => _courseName = value.toString(),
+                        );
+                        print(_selectedCourse);
+                      }
                     ),
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
