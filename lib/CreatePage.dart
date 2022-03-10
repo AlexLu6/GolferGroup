@@ -82,7 +82,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           var _selectedCourse;
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
-          int _fee = 2500, _max = 4;
+          var _fee = 2500, _max = 4;
           var activity = isGroup ? groupActivities : golferActivities;
           var tag = isGroup ? 'gid' : 'uid';
 
