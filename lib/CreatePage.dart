@@ -209,102 +209,67 @@ _NewGolfCoursePage newGolfCoursePage() {
 }
 
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
-  _NewGolfCoursePage()
-      : super(builder: (BuildContext context) {
-          String _courseName, _region, _photoURL;
-          return Scaffold(
-              appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
-              body: Builder(
-                  builder: (BuildContext context) => Center(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
-                        TextFormField(
-                          showCursor: true,
-                          onChanged: (String value) => _courseName = value,
-                          //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
-                        ),
-                        TextFormField(
-                          showCursor: true,
-                          onChanged: (String value) => _region = value,
-                          //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
-                        ),
-                        TextFormField(
-                          showCursor: true,
-                          onChanged: (String value) => _photoURL = value,
-                          //keyboardType: TextInputType.name,
-                          decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
-                        ),
-                        Flexible(
-                            child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, tdAlignment: TextAlign.center, columns: [
-                          {
-                            "title": "Hole#",
-                            'index': 1,
-                            'key': 'hole'
-                          },
-                          {
-                            "title": "Out",
-                            'index': 2,
-                            'key': 'z1'
-                          },
-                          {
-                            "title": "Int",
-                            'index': 3,
-                            'key': 'z2'
-                          },
-                        ], rows: [
-                          {
-                            'hole': 1,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 2,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 3,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 4,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 5,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 6,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 7,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 8,
-                            'z1': '',
-                            'z2': ''
-                          },
-                          {
-                            'hole': 9,
-                            'z1': '',
-                            'z2': ''
-                          },
-                        ]))
-                      ]))));
+    _NewGolfCoursePage() : super(builder: (BuildContext context) {
+      String _courseName, _region, _photoURL;
+
+      return Scaffold(
+        appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
+        body: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {return  Center(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
+                children: <Widget>[
+                  TextFormField(
+                    showCursor: true,
+                    onChanged: (String value) => _courseName = value,
+                    //keyboardType: TextInputType.name,
+                    decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
+                  ),
+                  TextFormField(
+                    showCursor: true,
+                    onChanged: (String value) => _region = value,
+                    //keyboardType: TextInputType.name,
+                    decoration: InputDecoration(labelText: "Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                  ),
+                  TextFormField(
+                    showCursor: true,
+                    onChanged: (String value) => _photoURL = value,
+                    //keyboardType: TextInputType.name,
+                    decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
+                  ),
+                  Flexible(
+                      child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
+                        tdAlignment: TextAlign.center, 
+                        columns: [
+                          {"title": "Hole#", 'index': 1, 'key': 'hole'},
+                          {"title": "Out", 'index': 2,'key': 'z1'},
+                          {"title": "Int",'index': 3,'key': 'z2'},
+                        ], 
+                        rows: [
+                          {'hole': 1,'z1': '','z2': ''},
+                          {'hole': 2,'z1': '','z2': ''},
+                          {'hole': 3,'z1': '','z2': ''},
+                          {'hole': 4,'z1': '','z2': ''},
+                          {'hole': 5,'z1': '','z2': ''},
+                          {'hole': 6,'z1': '','z2': ''},
+                          {'hole': 7,'z1': '','z2': ''},
+                          {'hole': 8,'z1': '','z2': ''},
+                          {'hole': 9,'z1': '','z2': ''},
+                        ]
+                      ))
+                ]
+              )
+            );}
+          ));
         });
+  
+}
+      
+      
+
 /* void showPlacePicker() async {
     LocationResult result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
       PlacePicker("AIzaSyD26EyAImrDoOMn3o6FgmSQjlttxjqmS7U")
     ));
     print(result);
-  }*/
-}
+}*/
+
