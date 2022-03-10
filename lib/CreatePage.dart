@@ -87,69 +87,70 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
 
           return Scaffold(
               appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
-              body: Builder(
-                  builder: (BuildContext context) => Center(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
-                        const SizedBox(height: 24.0),
-                        Flexible(
-                            child: Row(children: <Widget>[
-                          ElevatedButton(
-                              child: Text("Golf Course:"),
-                              onPressed: () {
-                                showMaterialScrollPicker<NameID>(
-                                  context: context,
-                                  title: 'Select a course',
-                                  items: coursesItems,
-                                  showDivider: false,
-                                  selectedItem: _selectedCourse,
-                                  onChanged: (value) => _selectedCourse = value,
-                                ).then((selection) => _selectedCourse = selection);
-                              }),
-                          const SizedBox(width: 5),
-                          Flexible(
-                              child: TextFormField(
-                            initialValue: _selectedCourse.toString(),
-                            showCursor: true,
-                            onChanged: (String value) => _courseName = value,
-                            //keyboardType: TextInputType.name,
-                            decoration: InputDecoration(labelText: "Course Name:", border: OutlineInputBorder()),
-                          )),
-                          const SizedBox(width: 5)
-                        ])),
-                        const SizedBox(height: 24),
-                        Flexible(
-                            child: Row(children: <Widget>[
-                          ElevatedButton(
-                              child: Text("Tee off Date:"),
-                              onPressed: () {
-                                showMaterialDatePicker(
-                                  context: context,
-                                  title: 'Pick a date',
-                                  selectedDate: DateTime.now(),
-                                  firstDate: DateTime.now(),
-                                  lastDate: DateTime.now().add(Duration(days: 180)),
-                                  onChanged: (value) => _selectedDate = value,
-                                );
-                              }),
-                          const SizedBox(width: 5),
-                          Flexible(
-                              child: TextFormField(
-                            initialValue: DateTime.now().toString().substring(0, 16),
-                            showCursor: true,
-                            onSaved: (String? value) => _selectedDate = DateTime.parse(value!),
-                            keyboardType: TextInputType.datetime,
-                            decoration: InputDecoration(labelText: "Date:", border: OutlineInputBorder()),
-                          )),
-                          const SizedBox(width: 5)
-                        ])),
-                        Flexible(
-                            child: Row(children: <Widget>[
-                          const SizedBox(width: 5),
-                          Checkbox(onChanged: (bool? value) => _includeMe = value!, value: _includeMe),
-                          const SizedBox(width: 5),
-                          const Text('Include myself')
-                        ])),
-                      ]))));
+              body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+                return Center(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                  const SizedBox(height: 24.0),
+                  Flexible(
+                      child: Row(children: <Widget>[
+                    ElevatedButton(
+                        child: Text("Golf Course:"),
+                        onPressed: () {
+                          showMaterialScrollPicker<NameID>(
+                            context: context,
+                            title: 'Select a course',
+                            items: coursesItems,
+                            showDivider: false,
+                            selectedItem: _selectedCourse,
+                            onChanged: (value) => setState(() => _selectedCourse = value),
+                          );
+                        }),
+                    const SizedBox(width: 5),
+                    Flexible(
+                        child: TextFormField(
+                      initialValue: _selectedCourse.toString(),
+                      showCursor: true,
+                      onChanged: (String value) => setState(() => _courseName = value),
+                      //keyboardType: TextInputType.name,
+                      decoration: InputDecoration(labelText: "Course Name:", border: OutlineInputBorder()),
+                    )),
+                    const SizedBox(width: 5)
+                  ])),
+                  const SizedBox(height: 24),
+                  Flexible(
+                      child: Row(children: <Widget>[
+                    ElevatedButton(
+                        child: Text("Tee off Date:"),
+                        onPressed: () {
+                          showMaterialDatePicker(
+                            context: context,
+                            title: 'Pick a date',
+                            selectedDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime.now().add(Duration(days: 180)),
+                            onChanged: (value) => setState(() => _selectedDate = value),
+                          );
+                        }),
+                    const SizedBox(width: 5),
+                    Flexible(
+                        child: TextFormField(
+                      initialValue: DateTime.now().toString().substring(0, 16),
+                      showCursor: true,
+                      onSaved: (String? value) => _selectedDate = DateTime.parse(value!),
+                      keyboardType: TextInputType.datetime,
+                      decoration: InputDecoration(labelText: "Date:", border: OutlineInputBorder()),
+                    )),
+                    const SizedBox(width: 5)
+                  ])),
+                  Flexible(
+                      child: Row(children: <Widget>[
+                    const SizedBox(width: 5),
+                    Checkbox(value: _includeMe, onChanged: (bool? value) => setState(() => _includeMe = value!)),
+                    const SizedBox(width: 5),
+                    const Text('Include myself')
+                  ])),
+                ]));
+              }));
         });
 }
 
