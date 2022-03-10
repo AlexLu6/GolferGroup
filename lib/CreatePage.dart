@@ -80,7 +80,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           String _courseName = '';
           List<NameID> coursesItems = [];
           var _selectedCourse;
-          DateTime _selectedDate;
+          DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
 
           for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
@@ -134,7 +134,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const SizedBox(width: 5),
                     Flexible(
                         child: TextFormField(
-                      initialValue: DateTime.now().toString().substring(0, 16),
+                      initialValue: _selectedDate.toString().substring(0, 16),
                       showCursor: true,
                       onSaved: (String? value) => _selectedDate = DateTime.parse(value!),
                       keyboardType: TextInputType.datetime,
