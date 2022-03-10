@@ -156,7 +156,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       initialValue: _max.toString(),
                       showCursor: true,
                       onChanged: (String value) => setState(() => _max = (value as int)),
-                      keyboardType: TextInputType.number,
+                      //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Max:", icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5),
@@ -165,7 +165,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       initialValue: _fee.toString(),
                       showCursor: true,
                       onChanged: (String value) => setState(() => _fee = (value as int)),
-                      keyboardType: TextInputType.number,
+                      //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Fee:", icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5)
