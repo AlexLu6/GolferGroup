@@ -210,7 +210,7 @@ _NewGolfCoursePage newGolfCoursePage() {
 
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
-      String _courseName, _region, _photoURL, _zones = '2';
+      String _courseName, _region, _photoURL, _zones = 'Out, In';
 
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
