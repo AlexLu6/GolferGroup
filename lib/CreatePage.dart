@@ -82,7 +82,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           var _selectedCourse;
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
-          var _fee = '2500', _max = '4';
+          String _fee = '2500', _max = '4';
           var activity = isGroup ? groupActivities : golferActivities;
           var tag = isGroup ? 'gid' : 'uid';
 
@@ -155,7 +155,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         child: TextFormField(
                       initialValue: _max.toString(),
                       showCursor: true,
-                      onSaved: (String? value) => setState(() => _max = value!),
+                      onChanged: (String value) => setState(() => _max = value!),
                       //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Max:", icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
@@ -164,7 +164,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         child: TextFormField(
                       initialValue: _fee.toString(),
                       showCursor: true,
-                      onSaved: (String? value) => setState(() => _fee = value!),
+                      onChanged: (String value) => setState(() => _fee = value!),
                       //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Fee:", icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
