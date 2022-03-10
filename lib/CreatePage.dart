@@ -189,11 +189,11 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           "tee off": _selectedDate.toString().substring(0, 16),
                           "max": _max,
                           "fee": _fee,
-                          "golfers": 
-                            _includeMe ? [{
-                                    "uid": golferID,
-                                    "appTime": DateTime.now().toString().substring(0, 16),
-                                    "scores": []           }] : []
+                          "golfers": _includeMe ? [{
+                              "uid": golferID,
+                              "appTime": DateTime.now().toString().substring(0, 16),
+                              "scores": []           
+                            }] : [] as List<Map>
                         });
                         print(activity);
                         Navigator.of(context).pop(true);

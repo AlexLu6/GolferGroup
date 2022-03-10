@@ -345,7 +345,9 @@ class _MyHomePageState extends State<MyHomePage> {
   ListView ActivityBody() {
     var listView = ListView.separated(
       itemCount: golferActivities.length,
-      itemBuilder: (context, index) => ListTile(title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)), subtitle: Text("Tee off: " + golferActivities.elementAt(index)["tee off"].toString() + '\nMax: ' + golferActivities.elementAt(index)["max"].toString() + '\tNow: ' + (golferActivities.elementAt(index)["golfers"] as List<Map>).length.toString() + "\tFee: " + golferActivities.elementAt(index)["fee"].toString()), leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), trailing: Icon(Icons.keyboard_arrow_right)),
+      itemBuilder: (context, index) => ListTile(
+        title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)), 
+        subtitle: Text("Tee off: " + golferActivities.elementAt(index)["tee off"].toString() + '\nMax: ' + golferActivities.elementAt(index)["max"].toString() + '\tNow: ' + (golferActivities.elementAt(index)["golfers"] as List<Map>).length.toString() + "\tFee: " + golferActivities.elementAt(index)["fee"].toString()), leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), trailing: Icon(Icons.keyboard_arrow_right)),
       separatorBuilder: (context, index) => Divider(),
     );
     return listView;
@@ -354,7 +356,10 @@ class _MyHomePageState extends State<MyHomePage> {
   ListView GolfCourseBody() {
     var listView = ListView.separated(
       itemCount: golfCourses.length,
-      itemBuilder: (context, index) => ListTile(title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)), subtitle: Text(((golfCourses.elementAt(index)["zones"] as List<Map>).length * 9).toString() + ' Holes'), leading: Image.network(golfCourses.elementAt(index)["photo"] as String), trailing: Icon(Icons.keyboard_arrow_right)),
+      itemBuilder: (context, index) => ListTile(
+        title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), 
+        style: TextStyle(fontSize: 20)), 
+        subtitle: Text(((golfCourses.elementAt(index)["zones"] as List<Map>).length * 9).toString() + ' Holes'), leading: Image.network(golfCourses.elementAt(index)["photo"] as String), trailing: Icon(Icons.keyboard_arrow_right)),
       separatorBuilder: (context, index) => Divider(),
     );
     return listView;
@@ -367,20 +372,15 @@ class _MyHomePageState extends State<MyHomePage> {
   void doBodyAdd(int index) {
     switch (index) {
       case 1:
-        Navigator.push(context, newGroupPage(_golferID)).then((ret) {
-          if (ret ?? false) setState(() => index = 1);
-        });
+        Navigator.push(context, newGroupPage(_golferID)).then((ret) {if (ret?? false) setState(() => index = 1);});
         break;
       case 2:
-        Navigator.push(context, newActivityPage(false, _golferID)).then((ret) {
-          if (ret ?? false) setState(() => index = 2);
-        });
+        Navigator.push(context, newActivityPage(false, _golferID)).then((ret) {if (ret?? false) setState(() => index = 2);});
         break;
       case 3:
-        Navigator.push(context, newGolfCoursePage()).then((ret) {
-          if (ret ?? false) setState(() => index = 3);
-        });
+        Navigator.push(context, newGolfCoursePage()).then((ret) {if (ret?? false) setState(() => index = 3);});
         break;
     }
   }
 }
+
