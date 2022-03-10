@@ -342,6 +342,28 @@ class _MyHomePageState extends State<MyHomePage> {
     return listView;
   }
 
+  ListView groupActivityBody(int gID) {
+    int idx=0, eidx=0;
+    List<int> map = [];
+    for (var e in groupActivities) {
+      if (e["gid"] as int == gID) {
+        map[idx++] = eidx;
+      }
+      eidx++;
+    }
+    var listView = ListView.separated(
+      itemCount: map.length,
+      itemBuilder: (context, index) => ListTile(
+        title: Text(courseName(groupActivities.elementAt(map[index])["cid"] as int)!, style: TextStyle(fontSize: 20)), 
+        subtitle: Text("Tee off: " +groupActivities.elementAt(map[index])["tee off"].toString() + 
+            '\nMax: ' + groupActivities.elementAt(map[index])["max"].toString() + '\tNow: ' + (groupActivities.elementAt(map[index])["golfers"] as List<Map>).length.toString() + "\tFee: " + groupActivities.elementAt(map[index])["fee"].toString()), 
+            leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!), 
+            trailing: Icon(Icons.keyboard_arrow_right)),
+      separatorBuilder: (context, index) => Divider(),
+    );
+    return listView;
+  }
+
   ListView ActivityBody() {
     var listView = ListView.separated(
       itemCount: golferActivities.length,
@@ -386,4 +408,3 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 }
-
