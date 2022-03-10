@@ -121,7 +121,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   Flexible(
                       child: Row(children: <Widget>[
                     ElevatedButton(
-                        child: Text("Tee off Date:"),
+                        child: Text("Tee off:"),
                         onPressed: () {
                           showMaterialDatePicker(
                             context: context,
@@ -140,7 +140,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       showCursor: true,
                       onSaved: (String? value) => _selectedDate = DateTime.parse(value!),
                       keyboardType: TextInputType.datetime,
-                      decoration: InputDecoration(labelText: "Date:", border: OutlineInputBorder()),
+                      decoration: InputDecoration(labelText: "Date Time:", border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5)
                   ])),
