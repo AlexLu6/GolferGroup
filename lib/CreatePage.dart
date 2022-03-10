@@ -190,7 +190,13 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           "max": _max,
                           "fee": _fee,
                           "golfers": [
-                            _includeMe ? golferID : null
+                            _includeMe
+                                ? {
+                                    "uid": golferID,
+                                    "appTime": DateTime.now().toString().substring(0, 16),
+                                    "scores": []
+                                  }
+                                : null
                           ],
                         });
                         print(activity);
