@@ -408,6 +408,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 3:
         Navigator.push(context, newGolfCoursePage()).then((ret) {if (ret?? false) setState(() => index = 3);});
         break;
+      case 5:
+        Navigator.push(context, newActivityPage(true, _gID)).then((ret) {if (ret?? false) setState(() => index = 5);});
+        break;
     }
   }
 }
