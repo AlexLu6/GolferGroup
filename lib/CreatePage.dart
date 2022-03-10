@@ -141,7 +141,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       initialValue: _selectedDate.toString().substring(0, 16),
                       key: Key(_selectedDate.toString().substring(0, 16)),
                       showCursor: true,
-                      onSaved: (String? value) => _selectedDate = DateTime.parse(value!),
+                      onChanged: (String? value) => _selectedDate = DateTime.parse(value!),
                       keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(labelText: "Date Time:", border: OutlineInputBorder()),
                     )),
@@ -192,7 +192,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           "golfers": _includeMe ? [{
                               "uid": golferID,
                               "appTime": DateTime.now().toString().substring(0, 16),
-                              "scores": []           
+                              "scores": [{}]           
                             }] : [] 
                         });
                         print(activity);
