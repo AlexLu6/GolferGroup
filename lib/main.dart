@@ -50,7 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
     "Groups",
     "Activities",
     "Golf courses",
-    "My Scores"
+    "My Scores",
+    "Group Activities"
   ];
   final ImagePicker _picker = ImagePicker();
 
