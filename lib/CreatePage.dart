@@ -182,19 +182,19 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   ElevatedButton(
                       child: Text('Create'),
                       onPressed: () {
-                        if (_courseName != '') {
-                          activity.add({
-                            tag: golferID,
-                            "cid": _selectedCourse.cid,
-                            "max": _max,
-                            "fee": _fee,
-                            "golfers": [
-                              _includeMe ? golferID : null
-                            ],
-                          });
-                          print(activity);
-                          Navigator.of(context).pop(true);
-                        }
+//                        if (_courseName != '') {
+                        activity.add({
+                          tag: golferID,
+                          "cid": _selectedCourse.cid,
+                          "max": _max,
+                          "fee": _fee,
+                          "golfers": [
+                            _includeMe ? golferID : null
+                          ],
+                        });
+                        print(activity);
+                        Navigator.of(context).pop(true);
+//                        }
                       })
                 ]));
               }));
