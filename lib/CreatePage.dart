@@ -82,6 +82,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           var _selectedCourse;
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
+          int _fee = 2500, _max = 4;
 
           for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
 
@@ -141,6 +142,27 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       onSaved: (String? value) => _selectedDate = DateTime.parse(value!),
                       keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(labelText: "Date Time:", border: OutlineInputBorder()),
+                    )),
+                    const SizedBox(width: 5)
+                  ])),
+                  Flexible(
+                      child: Row(children: <Widget>[
+                    Flexible(
+                        child: TextFormField(
+                      initialValue: _max.toString(),
+                      showCursor: true,
+                      onChanged: (String value) => setState(() => _max = value as int),
+                      //keyboardType: TextInputType.name,
+                      decoration: InputDecoration(labelText: "Max:", border: OutlineInputBorder()),
+                    )),
+                    const SizedBox(width: 5),
+                    Flexible(
+                        child: TextFormField(
+                      initialValue: _fee.toString(),
+                      showCursor: true,
+                      onChanged: (String value) => setState(() => _fee = value as int),
+                      //keyboardType: TextInputType.name,
+                      decoration: InputDecoration(labelText: "Fee:", border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5)
                   ])),
