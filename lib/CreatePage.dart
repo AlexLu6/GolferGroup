@@ -192,6 +192,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                               _includeMe ? golferID : null
                             ],
                           });
+                          print(activity);
                           Navigator.of(context).pop(true);
                         }
                       })
