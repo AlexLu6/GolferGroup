@@ -246,6 +246,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   Flexible(
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
+                        thAlignment: TextAlign.center,
                         columns: [
                           {"title": "Hole#", 'index': 1, 'key': 'hole'},
                           {"title": "Out", 'index': 2,'key': 'z1'},
