@@ -40,7 +40,7 @@ String? _golferAvatar;
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentPageIndex = 0;
-  int _golferID = 0;
+  int _golferID = 0, _gID=1;
   String _name = '', _phone = '';
   gendre _sex = gendre.Male;
   double _handicap = 18;
@@ -87,7 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       : _currentPageIndex == 3
                           ? GolfCourseBody()
                           : _currentPageIndex == 4
-                              ? MyScoreBody()
+                              ? MyScoreBody() 
+                              : _currentPageIndex == 5 ? groupActivityBody(_gID) 
                               : null),
       drawer: isRegistered ? golfDrawer() : null,
       floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4)
@@ -321,7 +322,8 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: () async {
           if (isMember(golferGroup.elementAt(index)["gid"] as int, _golferID)) {
             // show group activities
-            print("show group activities");
+            _gID = golferGroup.elementAt(index)["gid"] as int;
+            setState(() => _currentPageIndex = 5);
           } else {
             int gid = golferGroup.elementAt(index)["gid"] as int;
             bool? apply = await showApplyDialog(isApplying(gid, _golferID));
