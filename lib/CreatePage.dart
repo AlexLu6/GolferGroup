@@ -155,7 +155,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         child: TextFormField(
                       initialValue: _max.toString(),
                       showCursor: true,
-                      onChanged: (String value) => setState(() => _max = (value as int)),
+                      onSaved: (String? value) => setState(() => _max = (value as int)),
                       //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Max:", icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
@@ -164,7 +164,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         child: TextFormField(
                       initialValue: _fee.toString(),
                       showCursor: true,
-                      onChanged: (String value) => setState(() => _fee = (value as int)),
+                      onSaved: (String? value) => setState(() => _fee = (value as int)),
                       //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Fee:", icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
@@ -193,7 +193,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                               "uid": golferID,
                               "appTime": DateTime.now().toString().substring(0, 16),
                               "scores": []           
-                            }] : [] as List<Map>
+                            }] : []
                         });
                         print(activity);
                         Navigator.of(context).pop(true);
