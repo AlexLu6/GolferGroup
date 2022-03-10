@@ -148,6 +148,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 24),
                   Flexible(
                       child: Row(children: <Widget>[
+                    const SizedBox(width: 5),
                     Flexible(
                         child: TextFormField(
                       initialValue: _max.toString(),
@@ -175,6 +176,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const SizedBox(width: 5),
                     const Text('Include myself')
                   ])),
+                  const SizedBox(height: 24.0),
+                  ElevatedButton(child: Text('Create'), onPressed: () {})
                 ]));
               }));
         });
