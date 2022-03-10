@@ -185,7 +185,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
 //                        if (_courseName != '') {
                         activity.add({
                           tag: golferID,
-                          "cid": _selectedCourse.cid,
+                          "cid": _selectedCourse.toID(),
+                          "tee off": _selectedDate.toString().substring(0, 16),
                           "max": _max,
                           "fee": _fee,
                           "golfers": [
