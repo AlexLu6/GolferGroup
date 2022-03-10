@@ -70,12 +70,12 @@ class NameID {
   int toID() => ID;
 }
 
-_NewActivityPage newActivityPage(bool isGroup) {
-  return _NewActivityPage(isGroup);
+_NewActivityPage newActivityPage(bool isGroup, int golferID) {
+  return _NewActivityPage(isGroup, golferID);
 }
 
 class _NewActivityPage extends MaterialPageRoute<bool> {
-  _NewActivityPage(bool isGroup)
+  _NewActivityPage(bool isGroup, int golferID)
       : super(builder: (BuildContext context) {
           String _courseName = '';
           List<NameID> coursesItems = [];
@@ -83,6 +83,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
           int _fee = 2500, _max = 4;
+          var activity = isGroup ? groupActivities : golferActivities;
+          var tag = isGroup ? 'gid' : 'uid';
 
           for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
 
@@ -177,7 +179,22 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const Text('Include myself')
                   ])),
                   const SizedBox(height: 24.0),
-                  ElevatedButton(child: Text('Create'), onPressed: () {})
+                  ElevatedButton(
+                      child: Text('Create'),
+                      onPressed: () {
+                        if (_courseName != '') {
+                          activity.add({
+                            tag: golferID,
+                            "cid": _selectedCourse.cid,
+                            "max": _max,
+                            "fee": _fee,
+                            "golfers": [
+                              _includeMe ? golferID : null
+                            ],
+                          });
+                          Navigator.of(context).pop(true);
+                        }
+                      })
                 ]));
               }));
         });
@@ -187,7 +204,7 @@ _NewGolfCoursePage newGolfCoursePage() {
   return _NewGolfCoursePage();
 }
 
-class _NewGolfCoursePage extends MaterialPageRoute<void> {
+class _NewGolfCoursePage extends MaterialPageRoute<bool> {
   _NewGolfCoursePage()
       : super(builder: (BuildContext context) {
           String _courseName, _region, _photoURL;

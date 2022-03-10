@@ -372,12 +372,14 @@ class _MyHomePageState extends State<MyHomePage> {
         });
         break;
       case 2:
-        Navigator.push(context, newActivityPage(false)).then((ret) {
+        Navigator.push(context, newActivityPage(false, _golferID)).then((ret) {
           if (ret ?? false) setState(() => index = 2);
         });
         break;
       case 3:
-        Navigator.push(context, newGolfCoursePage());
+        Navigator.push(context, newGolfCoursePage()).then((ret) {
+          if (ret ?? false) setState(() => index = 3);
+        });
         break;
     }
   }
