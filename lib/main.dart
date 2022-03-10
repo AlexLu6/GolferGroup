@@ -350,7 +350,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<int> map = [];
     for (var e in groupActivities) {
       if (e["gid"] as int == gID) {
-        map[idx++] = eidx;
+        map.add(eidx);
       }
       eidx++;
     }
