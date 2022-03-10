@@ -129,7 +129,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                             firstDate: DateTime.now(),
                             lastDate: DateTime.now().add(Duration(days: 180)),
                             //onChanged: (value) => setState(() => _selectedDate = value),
-                          ).then((value) => setState(() => _selectedDate = value!));
+                          ).then((value) => setState(() => print(_selectedDate = value!)));
                         }),
                     const SizedBox(width: 5),
                     Flexible(
