@@ -114,7 +114,7 @@ String? golferNames(List<int> uids) {
 
 var groupActivities = {
   {
-    "gid": 1,
+    "gid": 2,
     "cid": 100,
     "tee off": "2022/3/12 7:00",
     "fee": 2500,
