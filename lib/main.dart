@@ -346,7 +346,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView groupActivityBody(int gID) {
-    int idx=0, eidx=0;
+    int eidx=0;
     List<int> map = [];
     for (var e in groupActivities) {
       if (e["gid"] as int == gID) {
