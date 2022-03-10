@@ -145,6 +145,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     )),
                     const SizedBox(width: 5)
                   ])),
+                  const SizedBox(height: 24),
                   Flexible(
                       child: Row(children: <Widget>[
                     Flexible(
@@ -152,8 +153,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       initialValue: _max.toString(),
                       showCursor: true,
                       onChanged: (String value) => setState(() => _max = value as int),
-                      //keyboardType: TextInputType.name,
-                      decoration: InputDecoration(labelText: "Max:", border: OutlineInputBorder()),
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(labelText: "Max:", icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5),
                     Flexible(
@@ -161,11 +162,12 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       initialValue: _fee.toString(),
                       showCursor: true,
                       onChanged: (String value) => setState(() => _fee = value as int),
-                      //keyboardType: TextInputType.name,
-                      decoration: InputDecoration(labelText: "Fee:", border: OutlineInputBorder()),
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(labelText: "Fee:", icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5)
                   ])),
+                  const SizedBox(height: 24),
                   Flexible(
                       child: Row(children: <Widget>[
                     const SizedBox(width: 5),
