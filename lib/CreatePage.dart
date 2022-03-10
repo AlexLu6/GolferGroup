@@ -187,8 +187,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           tag: golferID,
                           "cid": _selectedCourse.toID(),
                           "tee off": _selectedDate.toString().substring(0, 16),
-                          "max": _max as int,
-                          "fee": _fee as int,
+                          "max": (_max as int),
+                          "fee": (_fee as int),
                           "golfers": _includeMe ? [{
                               "uid": golferID,
                               "appTime": DateTime.now().toString().substring(0, 16),
