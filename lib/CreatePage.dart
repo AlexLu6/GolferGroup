@@ -253,7 +253,10 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
 //                        tdPaddingLeft: 4, tdPaddingRight: 4, tdPaddingTop: 4, tdPaddingBottom: 12,
                         showSaveIcon: true,
                         saveIcon: Icons.add,
+                        saveIconColor: Colors.blue,
                         onRowSaved: (row) => print(row),
+                        showCreateButton: true,
+                        createButtonIcon: Icon(Icons.more),
                         columns: [
                           {"title": "Zone", 'index': 1, 'key': 'zoName',},
                           {"title": "1", 'index': 2,'key': 'h1'},
