@@ -292,7 +292,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                             "name": _courseName,
                             "region": _region,
                             "photo": _photoURL,
-                            "zones": _courseZones,
+                            "zones": _courseZones[0],
                           });
                           print(golfCourses);
                           Navigator.of(context).pop(true);
