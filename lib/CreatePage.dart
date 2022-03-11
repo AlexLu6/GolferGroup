@@ -237,6 +237,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                   ),
+                  SizedBox(height:10),
                   Row(children: <Widget> [
                     Text('Zones: $zoneCnt'),
                     SizedBox(width:10),
