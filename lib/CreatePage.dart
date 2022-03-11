@@ -210,8 +210,8 @@ _NewGolfCoursePage newGolfCoursePage() {
 
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
-      String _courseName, _region, _photoURL;
-      int zoneCnt = 2;
+      String _courseName = '', _region ='', _photoURL ='';
+//      int zoneCnt = 2;
 
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
@@ -237,14 +237,14 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                   ),
-                  SizedBox(height:10),
+/*                  SizedBox(height:10),
                   Row(children: <Widget> [
                     Text('Zones: $zoneCnt'),
                     SizedBox(width:10),
                     ElevatedButton(child: Icon(Icons.add), onPressed: () => setState(()=> zoneCnt = (zoneCnt < 4) ? zoneCnt +1 : zoneCnt)),
                     SizedBox(width:10),
                     ElevatedButton(child: Icon(Icons.remove), onPressed: () => setState(()=> zoneCnt = (zoneCnt > 2) ? zoneCnt -1 : zoneCnt))
-                  ]),
+                  ]),*/
                   Flexible(
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
@@ -273,10 +273,16 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                           {'hole': 9,'z1': '','z2': ''},
                         ]
                       )),
-                      const SizedBox(height: 24.0),
+                      const SizedBox(height: 16.0),
                       ElevatedButton(
                         child: Text('Create'),
                         onPressed: () {
+                          golfCourses.add({
+                            "cid": DateTime.now().millisecondsSinceEpoch,
+                            "name": _courseName,
+                            "region": _region,
+                            "photo": _photoURL,
+                          });
                         }
                       ),
                 ]
