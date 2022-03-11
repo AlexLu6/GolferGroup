@@ -155,7 +155,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         child: TextFormField(
                       initialValue: _max.toString(),
                       showCursor: true,
-                      onChanged: (String value) => setState(() => _max = value!),
+                      onChanged: (String value) => setState(() => _max = value),
                       //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Max:", icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
@@ -164,7 +164,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         child: TextFormField(
                       initialValue: _fee.toString(),
                       showCursor: true,
-                      onChanged: (String value) => setState(() => _fee = value!),
+                      onChanged: (String value) => setState(() => _fee = value),
                       //keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Fee:", icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
@@ -240,9 +240,9 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   Row(children: <Widget> [
                     Text('Zones: $zoneCnt'),
                     SizedBox(width:10),
-                    Icon(Icons.add),
+                    ElevatedButton(child: Icon(Icons.add), onPressed: () => setState(()=> zoneCnt ++)),
                     SizedBox(width:10),
-                    Icon(Icons.remove)
+                    ElevatedButton(child: Icon(Icons.remove), onPressed: () => setState(()=> zoneCnt --))
                   ]),
                   Flexible(
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
