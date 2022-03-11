@@ -256,10 +256,11 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         onRowSaved: (row) => print(row),
                         columns: [
                           {"title": "Hole#", 'index': 1, 'key': 'hole', 'editable': false},
-                          {"title": "Out", 'index': 2,'key': 'z1'},
-                          {"title": "In",'index': 3,'key': 'z2'},
+                          {"title": "Zone1", 'index': 2,'key': 'z1'},
+                          {"title": "Zone2",'index': 3,'key': 'z2'},
                         ], 
                         rows: [
+                          {'hole': '', z1: 'Out', z2: 'In'},
                           {'hole': 1,'z1': '','z2': ''},
                           {'hole': 2,'z1': '','z2': ''},
                           {'hole': 3,'z1': '','z2': ''},
