@@ -211,8 +211,17 @@ _NewGolfCoursePage newGolfCoursePage() {
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
       String _courseName = '', _region ='', _photoURL ='';
-      int zoneCnt = 2;
+      int zoneCnt = 0;
+      var _courseZones;
 
+      saveZone(var row){
+        _courseZones.add([
+          {
+            'name': row['zoName'] as String,
+            'holes': [row['h1'], row['h2'], row['h3'], row['h4'], row['h5'], row['h6'], row['h7'], row['h8'], row['h9']],
+          }
+        ]);
+      }
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
         body: StatefulBuilder(
@@ -252,7 +261,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         showSaveIcon: true,
                         saveIcon: Icons.save,
                         saveIconColor: Colors.blue,
-                        onRowSaved: (row) => print(row),
+                        onRowSaved: (row) => saveZone(row),
                         showCreateButton: true,
                         createButtonLabel: Text('Add zone'),
                         createButtonIcon: Icon(Icons.add), createButtonColor: Colors.blue,
@@ -277,6 +286,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       ElevatedButton(
                         child: Text('Create'),
                         onPressed: () {
+                          print(_courseZones); /*
                           golfCourses.add({
                             "cid": DateTime.now().millisecondsSinceEpoch,
                             "name": _courseName,
@@ -284,7 +294,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                             "photo": _photoURL,
                             "zones": [{},{}]
                           });
-                          Navigator.of(context).pop(true);
+                          Navigator.of(context).pop(true);*/
                         }
                       ),
                 ]
