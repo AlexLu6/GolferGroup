@@ -211,7 +211,7 @@ _NewGolfCoursePage newGolfCoursePage() {
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
       String _courseName, _region, _photoURL;
-      int zoneCnt = 3;
+      int zoneCnt = 4;
 
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
@@ -241,9 +241,9 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   Row(children: <Widget> [
                     Text('Zones: $zoneCnt'),
                     SizedBox(width:10),
-                    ElevatedButton(child: Icon(Icons.add), onPressed: () => setState(()=> zoneCnt ++)),
+                    ElevatedButton(child: Icon(Icons.add), onPressed: () => setState(()=> zoneCnt = (zoneCnt < 4) ? zoneCnt +1 : zoneCnt)),
                     SizedBox(width:10),
-                    ElevatedButton(child: Icon(Icons.remove), onPressed: () => setState(()=> zoneCnt --))
+                    ElevatedButton(child: Icon(Icons.remove), onPressed: () => setState(()=> zoneCnt = (zoneCnt > 2) ? zoneCnt -1 : zoneCnt))
                   ]),
                   Flexible(
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
@@ -252,13 +252,13 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         columnCount: zoneCnt + 1,
 //                        showSaveIcon: true,
 //                        saveIcon: Icons.add,
-//                        onRowSaved: (row) => print(row),
+                        onRowSaved: (row) => print(row),
                         columns: [
                           {"title": "Hole", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Zone1", 'index': 2,'key': 'z1'},
                           {"title": "Zone2",'index': 3,'key': 'z2'},
-                          (zoneCnt > 2) ? {"title": "Zone3",'index': 4,'key': 'z3'} : MapEntry.empty(),
-                          (zoneCnt > 3) ? {"title": "Zone4",'index': 5,'key': 'z4'} : MapEntry.empty(),
+                          (zoneCnt > 2) ? {"title": "Zone3",'index': 4,'key': 'z3'} : List<Map>.empty(),
+                          (zoneCnt > 3) ? {"title": "Zone4",'index': 5,'key': 'z4'} : List<Map>.empty(),
                         ], 
                         rows: [
                           {'hole': '', 'z1': 'Out', 'z2': 'In'},
