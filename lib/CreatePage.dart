@@ -237,8 +237,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                   ),
-/*                  SizedBox(height:10),
-                  Row(children: <Widget> [
+                  SizedBox(height:10),
+/*                  Row(children: <Widget> [
                     Text('Zones: $zoneCnt'),
                     SizedBox(width:10),
                     ElevatedButton(child: Icon(Icons.add), onPressed: () => setState(()=> zoneCnt = (zoneCnt < 4) ? zoneCnt +1 : zoneCnt)),
@@ -283,6 +283,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                             "region": _region,
                             "photo": _photoURL,
                           });
+                          Navigator.of(context).pop(true);
                         }
                       ),
                 ]
