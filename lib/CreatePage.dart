@@ -287,15 +287,15 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       ElevatedButton(
                         child: Text('Create'),
                         onPressed: () {
-                          print(_courseZones); /*
                           golfCourses.add({
                             "cid": DateTime.now().millisecondsSinceEpoch,
                             "name": _courseName,
                             "region": _region,
                             "photo": _photoURL,
-                            "zones": [{},{}]
+                            "zones": _courseZones,
                           });
-                          Navigator.of(context).pop(true);*/
+                          print(golfCourses);
+                          Navigator.of(context).pop(true);
                         }
                       ),
                 ]
