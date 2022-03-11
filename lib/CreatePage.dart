@@ -212,7 +212,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
       String _courseName = '', _region ='', _photoURL ='';
       int zoneCnt = 0;
-      var _courseZones;
+      var _courseZones = [];
 
       saveZone(var row){
         print(row);
