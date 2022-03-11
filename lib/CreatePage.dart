@@ -211,7 +211,7 @@ _NewGolfCoursePage newGolfCoursePage() {
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
       String _courseName, _region, _photoURL;
-      int zoneCnt = 4;
+      int zoneCnt = 2;
 
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
@@ -272,7 +272,13 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                           {'hole': 8,'z1': '','z2': ''},
                           {'hole': 9,'z1': '','z2': ''},
                         ]
-                      ))
+                      )),
+                      const SizedBox(height: 24.0),
+                      ElevatedButton(
+                        child: Text('Create'),
+                        onPressed: () {
+                        }
+                      ),
                 ]
               )
             );}
