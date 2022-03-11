@@ -210,8 +210,8 @@ _NewGolfCoursePage newGolfCoursePage() {
 
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
-      String _courseName, _region, _photoURL, _zones = 'Out, In';
-      int zoneCnt = 4;
+      String _courseName, _region, _photoURL;
+      int zoneCnt = 2;
 
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
@@ -237,16 +237,9 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                   ),
-                  TextFormField(
-                    initialValue: _zones,
-                    showCursor: true,
-                    //onChanged: (String value) => print(_zones = value),
-                    onFieldSubmitted: (String value) {
-
-                    }, 
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(labelText: "Zones:", icon: Icon(Icons.play_circle_fill), border: UnderlineInputBorder()),
-                  ),
+                  Row(children: <Widget> [
+                    Text('Zones: $zoneCnt'),
+                  ]),
                   Flexible(
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
