@@ -255,8 +255,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         saveIcon: Icons.save,
                         saveIconColor: Colors.blue,
                         onRowSaved: (row) => print(row),
-                        showCreateButton: true,
-                        createButtonIcon: Icon(Icons.add),
+                        showCreateButton: true, 
+                        createButtonIcon: Icon(Icons.add), createButtonColor: Colors.blue,
                         columns: [
                           {"title": "Zone", 'index': 1, 'key': 'zoName',},
                           {"title": "1", 'index': 2,'key': 'h1'},
