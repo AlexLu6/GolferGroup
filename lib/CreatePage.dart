@@ -251,9 +251,10 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
-                        showSaveIcon: true,
-                        saveIcon: Icons.add,
-                        onRowSaved: (row) => print(row),
+                        columnCount: 4,
+//                        showSaveIcon: true,
+//                        saveIcon: Icons.add,
+//                        onRowSaved: (row) => print(row),
                         columns: [
                           {"title": "Hole#", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Zone1", 'index': 2,'key': 'z1'},
