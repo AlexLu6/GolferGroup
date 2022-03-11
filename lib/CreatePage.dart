@@ -240,6 +240,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     initialValue: _zones,
                     showCursor: true,
                     onChanged: (String value) => print(_zones = value),
+                    onSaved: (String? value) => print(value),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: "Zones:", icon: Icon(Icons.play_circle_fill), border: UnderlineInputBorder()),
                   ),
