@@ -215,9 +215,10 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
       var _courseZones;
 
       saveZone(var row){
+        print(row);
         _courseZones.add([
           {
-            'name': row['zoName'] as String,
+            'name': row['zoName'],
             'holes': [row['h1'], row['h2'], row['h3'], row['h4'], row['h5'], row['h6'], row['h7'], row['h8'], row['h9']],
           }
         ]);
