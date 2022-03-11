@@ -253,6 +253,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         thAlignment: TextAlign.center,
                         showSaveIcon: true,
                         saveIcon: Icons.add,
+                        onRowSaved: (row) => zoneCnt++,
                         columns: [
                           {"title": "Hole#", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Out", 'index': 2,'key': 'z1'},
