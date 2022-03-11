@@ -211,6 +211,7 @@ _NewGolfCoursePage newGolfCoursePage() {
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
       String _courseName, _region, _photoURL, _zones = 'Out, In';
+      int zoneCnt = 2;
 
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
@@ -239,8 +240,11 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   TextFormField(
                     initialValue: _zones,
                     showCursor: true,
-                    onChanged: (String value) => print(_zones = value),
-                    onFieldSubmitted: (String value) => print('save :'+value),
+                    //onChanged: (String value) => print(_zones = value),
+                    onFieldSubmitted: (String value) {
+                      print('save :'+value);
+                      setState(() => zoneCnt++);
+                    }, 
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: "Zones:", icon: Icon(Icons.play_circle_fill), border: UnderlineInputBorder()),
                   ),
@@ -248,6 +252,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
+                        columnCount: zoneCnt + 1,
                         columns: [
                           {"title": "Hole#", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Out", 'index': 2,'key': 'z1'},
