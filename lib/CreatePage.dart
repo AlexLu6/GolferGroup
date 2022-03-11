@@ -260,7 +260,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                           {"title": "Zone2",'index': 3,'key': 'z2'},
                         ], 
                         rows: [
-                          {'hole': '', z1: 'Out', z2: 'In'},
+                          {'hole': '', 'z1': 'Out', 'z2': 'In'},
                           {'hole': 1,'z1': '','z2': ''},
                           {'hole': 2,'z1': '','z2': ''},
                           {'hole': 3,'z1': '','z2': ''},
