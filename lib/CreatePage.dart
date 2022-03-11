@@ -216,12 +216,12 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
 
       saveZone(var row){
         print(row);
-        _courseZones.add([
+        _courseZones.add(
           {
             'name': row['zoName'],
             'holes': [row['h1'], row['h2'], row['h3'], row['h4'], row['h5'], row['h6'], row['h7'], row['h8'], row['h9']],
           }
-        ]);
+        );
       }
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
@@ -292,7 +292,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                             "name": _courseName,
                             "region": _region,
                             "photo": _photoURL,
-                            "zones": _courseZones[0],
+                            "zones": _courseZones,
                           });
                           print(golfCourses);
                           Navigator.of(context).pop(true);
