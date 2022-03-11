@@ -250,7 +250,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
 //                        columnCount: zoneCnt + 1,
-                        tdPaddingLeft: 4, tdPaddingRight: 4, tdPaddingTop: 4, tdPaddingBottom: 4,
+//                        tdPaddingLeft: 4, tdPaddingRight: 4, tdPaddingTop: 4, tdPaddingBottom: 12,
                         showSaveIcon: true,
                         saveIcon: Icons.add,
                         onRowSaved: (row) => print(row),
