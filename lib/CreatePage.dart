@@ -239,7 +239,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   TextFormField(
                     initialValue: _zones,
                     showCursor: true,
-                    onChanged: (String value) => _zones = value,
+                    onChanged: (String value) => print(_zones = value),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: "Zones:", icon: Icon(Icons.play_circle_fill), border: UnderlineInputBorder()),
                   ),
@@ -247,7 +247,6 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
-                        showSaveIcon: true,
                         columns: [
                           {"title": "Hole#", 'index': 1, 'key': 'hole'},
                           {"title": "Out", 'index': 2,'key': 'z1'},
