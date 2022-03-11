@@ -211,7 +211,7 @@ _NewGolfCoursePage newGolfCoursePage() {
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
     _NewGolfCoursePage() : super(builder: (BuildContext context) {
       String _courseName, _region, _photoURL, _zones = 'Out, In';
-      int zoneCnt = 2;
+      int zoneCnt = 3;
 
       return Scaffold(
         appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
@@ -251,7 +251,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
-                        columnCount: 4,
+                        columnCount: zoneCnt + 1,
 //                        showSaveIcon: true,
 //                        saveIcon: Icons.add,
 //                        onRowSaved: (row) => print(row),
@@ -259,6 +259,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                           {"title": "Hole#", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Zone1", 'index': 2,'key': 'z1'},
                           {"title": "Zone2",'index': 3,'key': 'z2'},
+                          (zoneCnt > 2) ? {"title": "Zone3",'index': 4,'key': 'z3'} : null,
                         ], 
                         rows: [
                           {'hole': '', 'z1': 'Out', 'z2': 'In'},
