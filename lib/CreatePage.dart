@@ -242,8 +242,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     showCursor: true,
                     //onChanged: (String value) => print(_zones = value),
                     onFieldSubmitted: (String value) {
-                      print('save :'+value);
-                      setState(() => zoneCnt++);
+
                     }, 
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: "Zones:", icon: Icon(Icons.play_circle_fill), border: UnderlineInputBorder()),
@@ -252,7 +251,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
-                        columnCount: zoneCnt + 1,
+                        showSaveIcon: true,
+                        saveIcon: Icons.add,
                         columns: [
                           {"title": "Hole#", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Out", 'index': 2,'key': 'z1'},
