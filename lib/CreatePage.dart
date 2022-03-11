@@ -257,8 +257,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                           {"title": "Hole", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Zone1", 'index': 2,'key': 'z1'},
                           {"title": "Zone2",'index': 3,'key': 'z2'},
-                          (zoneCnt > 2) ? {"title": "Zone3",'index': 4,'key': 'z3'} : List<Map>.empty(),
-                          (zoneCnt > 3) ? {"title": "Zone4",'index': 5,'key': 'z4'} : List<Map>.empty(),
+                          (zoneCnt > 2) ? {"title": "Zone3",'index': 4,'key': 'z3'} : MapEntry.empty(),
+                          (zoneCnt > 3) ? {"title": "Zone4",'index': 5,'key': 'z4'} : MapEntry.empty(),
                         ], 
                         rows: [
                           {'hole': '', 'z1': 'Out', 'z2': 'In'},
