@@ -249,7 +249,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
                         columns: [
-                          {"title": "Hole#", 'index': 1, 'key': 'hole'},
+                          {"title": "Hole#", 'index': 1, 'key': 'hole', 'editable': false},
                           {"title": "Out", 'index': 2,'key': 'z1'},
                           {"title": "In",'index': 3,'key': 'z2'},
                         ], 
