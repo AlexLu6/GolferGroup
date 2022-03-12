@@ -323,6 +323,22 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   Text(activity['tee off'] + ' fee: ' + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Text(courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
+                  Flexible(
+                    child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
+                        tdAlignment: TextAlign.center, 
+                        thAlignment: TextAlign.center,
+                        columns: [
+                          {"title": "", 'index': 1, 'key': 'row',},
+                          {"title": "A", 'index': 2,'key': 'c1'},
+                          {"title": "B", 'index': 3,'key': 'c2'},
+                          {"title": "C", 'index': 4,'key': 'c3'},
+                          {"title": "D", 'index': 5,'key': 'c4'}
+                        ], 
+                        rows: [
+                          {'row': 1}
+                        ]
+                    )
+                  ),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     child: Text('Apply'),
