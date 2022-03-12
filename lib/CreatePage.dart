@@ -193,7 +193,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                               "uid": golferID,
                               "appTime": DateTime.now().toString().substring(0, 16),
                               "scores": []           
-                            }] : [{}]
+                            }] : []
                         });
                         print(activity);
                         Navigator.of(context).pop(true);
