@@ -295,7 +295,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                             "zones": _courseZones,
                           });
                           print(golfCourses);
-                          print((golfCourses.elementAt(3)["zones"] as List<Map>).length);
+                          print((golfCourses.elementAt(3)["zones"] as List).length);
 //                          Navigator.of(context).pop(true);
                         }
                       ),
