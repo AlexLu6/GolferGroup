@@ -306,8 +306,34 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
         });
   
 }
-      
-      
+
+_showActivityPage showActivityPage(var activity) {
+  return _showActivityPage(activity);
+}
+
+class _showActivityPage extends MaterialPageRoute<bool> {
+    _showActivityPage(var activity) : super(builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
+        body: StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {return  Center(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
+                children: <Widget>[
+                  const SizedBox(height: 16.0),
+                  Text('Tee Off: ' + activity['tee off'], style: TextStyle(fontSize: 20)),
+                  Text('Course: ' + courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
+                  const SizedBox(height: 16.0),
+                  ElevatedButton(
+                    child: Text('Apply'),
+                    onPressed: () {}
+                  )
+                ]
+              )
+            );}
+        )
+      );
+    });
+}
 
 /* void showPlacePicker() async {
     LocationResult result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
