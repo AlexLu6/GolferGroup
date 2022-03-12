@@ -294,9 +294,9 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                             "photo": _photoURL,
                             "zones": _courseZones,
                           });
-                          print(golfCourses);
-                          print((golfCourses.elementAt(3)["zones"] as List).length);
-//                          Navigator.of(context).pop(true);
+                          //print(golfCourses);
+                          //print((golfCourses.elementAt(3)["zones"] as List).length);
+                          Navigator.of(context).pop(true);
                         }
                       ),
                 ]
