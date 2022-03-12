@@ -323,7 +323,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   Text(activity['tee off'] + ' fee: ' + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Text(courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
-                  Text('Group:'),
+                  const SizedBox(height: 16.0),
                   Flexible(
                     child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
