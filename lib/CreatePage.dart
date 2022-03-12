@@ -317,7 +317,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
         appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
         body: StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {return  Container(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, 
                 children: <Widget>[
                   const SizedBox(height: 16.0),
                   Text(activity['tee off'] + ' fee: ' + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
