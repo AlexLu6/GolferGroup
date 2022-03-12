@@ -191,7 +191,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           "fee": _fee,
                           "golfers": _includeMe ? [{
                               "uid": golferID,
-                              "appTime": DateTime.now().toString().substring(0, 16),
+                              "appTime": DateTime.now().toString().substring(0, 19),
                               "scores": []           
                             }] : []
                         });
@@ -336,7 +336,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                           {"title": "C", 'index': 4,'key': 'c3', 'editable': false},
                           {"title": "D", 'index': 5,'key': 'c4', 'editable': false}
                         ], 
-                        rows: List<Map>.generate(activity['max'] as int, growable: true,
+                        rows: [{'row': 1}],
 
                         )
                     )
