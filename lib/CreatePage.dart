@@ -307,12 +307,13 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
   
 }
 
-_showActivityPage showActivityPage(var activity) {
-  return _showActivityPage(activity);
+_showActivityPage showActivityPage(var activity, int uId) {
+  return _showActivityPage(activity, uId);
 }
 
 class _showActivityPage extends MaterialPageRoute<bool> {
-    _showActivityPage(var activity) : super(builder: (BuildContext context) {
+    bool alreadyIn = false;
+    _showActivityPage(var activity, int uId) : super(builder: (BuildContext context) {
       return Scaffold(
         appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
         body: StatefulBuilder(
@@ -329,15 +330,15 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
                         columns: [
-                          {"title": "", 'index': 1, 'key': 'row', 'editable': false},
+                          {"title": "Group", 'index': 1, 'key': 'row', 'editable': false},
                           {"title": "A", 'index': 2,'key': 'c1', 'editable': false},
                           {"title": "B", 'index': 3,'key': 'c2', 'editable': false},
                           {"title": "C", 'index': 4,'key': 'c3', 'editable': false},
                           {"title": "D", 'index': 5,'key': 'c4', 'editable': false}
                         ], 
-                        rows: [
-                          {'row': 1}
-                        ]
+                        rows: List<Map>.generate(activity['max'] as int, growable: true,
+
+                        )
                     )
                   ),
                   const SizedBox(height: 16.0),
