@@ -320,8 +320,9 @@ class _showActivityPage extends MaterialPageRoute<bool> {
               child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
                 children: <Widget>[
                   const SizedBox(height: 16.0),
-                  Text('Tee Off: ' + activity['tee off'], style: TextStyle(fontSize: 20)),
-                  Text('Course: ' + courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
+                  Text(activity['tee off'] + ' fee: ' + activity['fee'], style: TextStyle(fontSize: 20)),
+                  const SizedBox(height: 16.0),
+                  Text(courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     child: Text('Apply'),
