@@ -373,7 +373,7 @@ class _MyHomePageState extends State<MyHomePage> {
       itemBuilder: (context, index) => ListTile(
         title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)), 
         subtitle: Text("Tee off: " + golferActivities.elementAt(index)["tee off"].toString() + 
-            '\nMax: ' + golferActivities.elementAt(index)["max"].toString() + '\tNow: ' + (golferActivities.elementAt(index)["golfers"] as List<Map>).length.toString() + "\tFee: " + golferActivities.elementAt(index)["fee"].toString()), 
+            '\nMax: ' + golferActivities.elementAt(index)["max"].toString() + '\tNow: ' + (golferActivities.elementAt(index)["golfers"] as List).length.toString() + "\tFee: " + golferActivities.elementAt(index)["fee"].toString()), 
             leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), 
             trailing: Icon(Icons.keyboard_arrow_right)),
       separatorBuilder: (context, index) => Divider(),
