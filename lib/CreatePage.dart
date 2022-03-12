@@ -316,7 +316,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
       return Scaffold(
         appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
         body: StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {return  Center(
+            builder: (BuildContext context, StateSetter setState) {return  Container(
               child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
                 children: <Widget>[
                   const SizedBox(height: 16.0),
