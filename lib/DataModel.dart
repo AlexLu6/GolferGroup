@@ -156,17 +156,17 @@ var golferActivities = {
     "golfers": [
       {
         "uid": 100,
-        "appTime": "2022-03-03 14:20",
+        "appTime": "2022-03-03 14:20:00",
         "scores": []
       },
       {
         "uid": 200,
-        "appTime": "2022-03-03 14:20",
+        "appTime": "2022-03-03 14:20:00",
         "scores": []
       },
       {
         "uid": 201,
-        "appTime": "2022-03-03 14:20",
+        "appTime": "2022-03-03 14:20:00",
         "scores": []
       },
     ]
