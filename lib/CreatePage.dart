@@ -315,6 +315,31 @@ class _showActivityPage extends MaterialPageRoute<bool> {
     
     _showActivityPage(var activity, int uId) : super(builder: (BuildContext context) {
       bool alreadyIn = false;
+
+      List buildRows() {
+        var rows = []; var oneRow = {};
+        int idx = 0;
+        for (var e in activity['golfers']) {
+          if (idx % 4 == 0) {
+            oneRow['row'] = idx / 4; 
+            oneRow['c1'] = golferName(e['uid']);
+          }
+          else if (idx % 4  == 1)
+            oneRow['c2'] = golferName(e['uid']);
+          else if (idx % 4  == 2)
+            oneRow['c3'] = golferName(e['uid']);
+          else if (idx % 4  == 3) {
+            oneRow['c4'] = golferName(e['uid']);  
+            rows.add(oneRow);
+            oneRow.clear();
+          }          
+          if (e['uid'] as int == uId)
+            alreadyIn = true;
+          idx++;
+        }
+        if ((idx % 4) != 0) rows.add(oneRow);
+        return rows;
+      }
       return Scaffold(
         appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
         body: StatefulBuilder(

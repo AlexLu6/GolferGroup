@@ -101,6 +101,13 @@ var golfers = {
   },
 };
 
+String? golferName(int uid) {
+    for (var e in golfers)
+      if (e["uid"] == uid) 
+        return e["name"] as String;
+    return null;
+}
+
 String? golferNames(List<int> uids) {
   var result = '';
   for (var uid in uids)
