@@ -366,7 +366,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         ], 
                         rows: buildRows(),
 
-                        )
+                      )
                     ),
                   
                   const SizedBox(height: 16.0),
