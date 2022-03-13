@@ -339,8 +339,8 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         rows: [{'row': 1}],
 
                         )
-                    )
-                  ),
+                    ),
+                  
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     child: Text('Apply'),
