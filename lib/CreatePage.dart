@@ -338,6 +338,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
           idx++;
         }
         if ((idx % 4) != 0) rows.add(oneRow);
+        print(rows);
         return rows;
       }
       return Scaffold(
