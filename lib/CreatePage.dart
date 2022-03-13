@@ -332,11 +332,10 @@ class _showActivityPage extends MaterialPageRoute<bool> {
           else if (idx % 4  == 3) {
             oneRow['c4'] = golferName(e['uid']);  
             rows.add(oneRow);
-            oneRow.clear();
           }          
           if (e['uid'] as int == uId)
             alreadyIn = true;
-          idx++; print(oneRow);
+          idx++; 
         }
         if ((idx % 4) != 0) rows.add(oneRow);
 
