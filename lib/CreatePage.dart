@@ -319,7 +319,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
       List buildRows() {
         var rows = []; var oneRow = {};
         int idx = 0;
-print('buildRow');
+
         for (var e in activity['golfers']) {
           if (idx % 4 == 0) {
             oneRow['row'] = idx / 4 + 1; 
@@ -373,7 +373,8 @@ print('buildRow');
                     child: Text(alreadyIn ? 'Cancel' : 'Apply'),
                     onPressed: () {
                       setState(() {
-                        if (alreadyIn) {}
+                        if (alreadyIn) 
+                          activity['golfers'].removeWhere((item) => item.uid == uId);
                         else 
                           activity['golfers'].add({'uid': uId, 'appTime': DateTime.now().toString().substring(0,19), 'scores': []});
                       });
