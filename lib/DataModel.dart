@@ -155,7 +155,7 @@ var golferActivities = {
     "max": 4,
     "golfers": [
       {
-        "uid": 100,
+        "uid": 103,
         "appTime": "2022-03-03 14:20:00",
         "scores": []
       },
