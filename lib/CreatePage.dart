@@ -372,7 +372,13 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     child: Text(alreadyIn ? 'Cancel' : 'Apply'),
-                    onPressed: () {}
+                    onPressed: () {
+                      setState(() {
+                        if (alreadyIn) {}
+                        else 
+                          activity['golfers'].add({'uid': uId, 'appTime': DateTime.now().toString().substring(0,19), 'scores': []});
+                      });
+                    }
                   ),
                   const SizedBox(height: 16.0),
                 ]
