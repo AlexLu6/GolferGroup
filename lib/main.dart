@@ -20,6 +20,9 @@ class MyApp extends StatelessWidget {
       title: 'Golfer Group',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Colors.blue,
+        accentColor: Colors.white,
+        visualDensity: VisualDensity.adaptivePlatformDensity
       ),
       home: MyHomePage(),
     );

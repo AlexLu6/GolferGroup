@@ -312,8 +312,9 @@ _showActivityPage showActivityPage(var activity, int uId) {
 }
 
 class _showActivityPage extends MaterialPageRoute<bool> {
-    bool alreadyIn = false;
+    
     _showActivityPage(var activity, int uId) : super(builder: (BuildContext context) {
+      bool alreadyIn = false;
       return Scaffold(
         appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
         body: StatefulBuilder(
@@ -343,9 +344,10 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                    child: Text('Apply'),
+                    child: Text(alreadyIn ? 'Cancel' : 'Apply'),
                     onPressed: () {}
-                  )
+                  ),
+                  const SizedBox(height: 16.0),
                 ]
               )
             );}
