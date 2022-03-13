@@ -319,7 +319,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
       List buildRows() {
         var rows = []; var oneRow = {};
         int idx = 0;
-
+print('buildRow');
         for (var e in activity['golfers']) {
           if (idx % 4 == 0) {
             oneRow['row'] = idx / 4 + 1; 
@@ -365,9 +365,8 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                           {"title": "D", 'index': 5,'key': 'c4', 'editable': false}
                         ], 
                         rows: buildRows(),
-
-                      )
-                    ),
+                    )
+                  ),
                   
                   const SizedBox(height: 16.0),
                   ElevatedButton(
