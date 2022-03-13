@@ -319,10 +319,10 @@ class _showActivityPage extends MaterialPageRoute<bool> {
       List buildRows() {
         var rows = []; var oneRow = {};
         int idx = 0;
-        print(activity);
+
         for (var e in activity['golfers']) {
           if (idx % 4 == 0) {
-            oneRow['row'] = idx / 4; 
+            oneRow['row'] = idx / 4 + 1; 
             oneRow['c1'] = golferName(e['uid']);
           }
           else if (idx % 4  == 1)
