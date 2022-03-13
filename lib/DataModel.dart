@@ -103,10 +103,8 @@ var golfers = {
 
 String? golferName(int uid) {
     for (var e in golfers)
-      if (e["uid"] == uid) {
-        print(e['name']);
+      if (e["uid"] == uid) 
         return e["name"] as String;
-      }
     return null;
 }
 
