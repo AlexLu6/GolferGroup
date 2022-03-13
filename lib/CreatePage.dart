@@ -374,7 +374,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                     onPressed: () {
                       setState(() {
                         if (alreadyIn) 
-                          activity['golfers'].removeWhere((item) => item.uid == uId);
+                          activity['golfers'].removeWhere((item) => item['uid'] == uId);
                         else 
                           activity['golfers'].add({'uid': uId, 'appTime': DateTime.now().toString().substring(0,19), 'scores': []});
                       });
