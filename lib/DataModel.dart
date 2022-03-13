@@ -150,23 +150,23 @@ var golferActivities = {
   {
     "uid": 1,
     "cid": 102,
-    "tee off": "2022-3-16 6:30",
+    "tee off": "2022-03-16 6:30",
     "fee": 2500,
     "max": 4,
     "golfers": [
       {
         "uid": 100,
-        "appTime": "2022-3-3 14:20",
+        "appTime": "2022-03-03 14:20",
         "scores": []
       },
       {
         "uid": 200,
-        "appTime": "2022-3-3 14:20",
+        "appTime": "2022-03-03 14:20",
         "scores": []
       },
       {
         "uid": 201,
-        "appTime": "2022-3-3 14:20",
+        "appTime": "2022-03-03 14:20",
         "scores": []
       },
     ]
