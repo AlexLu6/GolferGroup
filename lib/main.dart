@@ -363,8 +363,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(courseName(groupActivities.elementAt(map[index])["cid"] as int)!, style: TextStyle(fontSize: 20)), 
         subtitle: Text("Tee off: " +groupActivities.elementAt(map[index])["tee off"].toString() + 
             '\nMax: ' + groupActivities.elementAt(map[index])["max"].toString() + '\tNow: ' + (groupActivities.elementAt(map[index])["golfers"] as List).length.toString() + "\tFee: " + groupActivities.elementAt(map[index])["fee"].toString()), 
-            leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!), 
-            trailing: Icon(Icons.keyboard_arrow_right)),
+        leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!), 
+        trailing: Icon(Icons.keyboard_arrow_right),
+        onTap: () {
+          Navigator.push(context, showActivityPage(groupActivities.elementAt(index), _golferID));
+        }
+      ),
       separatorBuilder: (context, index) => Divider(),
     );
     return listView;
