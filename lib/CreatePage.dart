@@ -336,7 +336,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
           }          
           if (e['uid'] as int == uId)
             alreadyIn = true;
-          idx++;
+          idx++; print(idx);
         }
         if ((idx % 4) != 0) rows.add(oneRow);
 
