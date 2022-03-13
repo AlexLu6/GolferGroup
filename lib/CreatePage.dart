@@ -364,7 +364,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                           {"title": "C", 'index': 4,'key': 'c3', 'editable': false},
                           {"title": "D", 'index': 5,'key': 'c4', 'editable': false}
                         ], 
-                        rows: [{'row': 1, 'c1': '', 'c2': '', 'c3': '', 'c4': ''}],
+                        rows: buildRows(),
 
                         )
                     ),
