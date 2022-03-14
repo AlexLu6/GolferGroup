@@ -339,7 +339,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
           idx++; 
         }
         if ((idx % 4) != 0) rows.add(oneRow);
-
+print('itmes: $idx');
         return rows;
       }
       return Scaffold(
@@ -378,7 +378,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         else 
                           activity['golfers'].add({'uid': uId, 'appTime': DateTime.now().toString().substring(0,19), 'scores': []});
                       });
-                      print(activity);
+                      //print(activity);
                     }
                   ),
                   const SizedBox(height: 16.0),
