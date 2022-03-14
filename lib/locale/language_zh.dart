@@ -10,4 +10,7 @@ class LanguageZh extends Language {
   String get myScores => '成績';
   String get groupActivity => '高球群組活動';
   String get logOut => '登出';
+
+  String get name => '姓名:';
+  String get mobile => '手機:';
 }

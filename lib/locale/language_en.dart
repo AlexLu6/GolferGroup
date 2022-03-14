@@ -10,4 +10,7 @@ class LanguageEn extends Language {
   String get myScores => 'My Scores';
   String get groupActivity => 'Group Activities';
   String get logOut => 'Log Out';
+
+  String get name => 'Name:';
+  String get mobile => 'Mobile:'
 }

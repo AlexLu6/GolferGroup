@@ -200,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
       showCursor: true,
       onChanged: (String value) => setState(() => _name = value),
       //keyboardType: TextInputType.name,
-      decoration: InputDecoration(labelText: "Name:", hintText: 'Real Name:', icon: Icon(Icons.person), border: UnderlineInputBorder()),
+      decoration: InputDecoration(labelText: (Language.of(context).name, hintText: 'Real Name:', icon: Icon(Icons.person), border: UnderlineInputBorder()),
     );
 
     final golferPhone = TextFormField(

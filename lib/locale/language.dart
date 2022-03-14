@@ -12,4 +12,7 @@ abstract class Language {
   String get myScores;
   String get groupActivity;
   String get logOut;
+
+  String get name;
+  String get mobile;
 }
