@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:editable/editable.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
-import 'DataModel.dart';
+import 'dataModel.dart';
 import 'locale/language.dart';
 
 _NewGroupPage newGroupPage(int golferID) {
