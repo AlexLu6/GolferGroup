@@ -197,6 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final golferName = TextFormField(
       initialValue: _name,
+      key: Key(_name),
       showCursor: true,
       onChanged: (String value) => setState(() => _name = value),
       //keyboardType: TextInputType.name,
@@ -205,6 +206,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final golferPhone = TextFormField(
       initialValue: _phone,
+      key: Key(_phone),
       onChanged: (String value) => setState(() => _phone = value),
       keyboardType: TextInputType.phone,
       decoration: InputDecoration(labelText: Language.of(context).mobile, hintText: 'Mobile:', icon: Icon(Icons.phone), border: UnderlineInputBorder()),
