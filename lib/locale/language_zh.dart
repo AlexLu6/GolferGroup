@@ -20,7 +20,7 @@ class LanguageZh extends Language {
   String get handicap => '差點';
 
   String get fee => '球資: ';
-  String get tableGroup => '編組';
+  String get tableGroup => '組別';
   String get apply => '報名';
   String get cancel => '取消報名';
 }
