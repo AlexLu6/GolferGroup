@@ -86,11 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     List<String> appTitle = [
       Language.of(context).golferInfo,
-      "Groups",
-      "Activities",
-      "Golf courses",
-      "My Scores",
-      "Group Activities"
+      Language.of(context).groups,//"Groups",
+      Language.of(context).activities, //"Activities",
+      Language.of(context).golfCourses, //"Golf courses",
+      Language.of(context).myScores, //"My Scores",
+      Language.of(context).groupActivity //"Group Activities"
     ];
     return Scaffold(
       appBar: AppBar(

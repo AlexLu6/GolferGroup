@@ -1,7 +1,12 @@
 import 'language.dart';
 
 class LanguageEn extends Language {
-  @override
+
   String get appTitle => 'Golfer Group';
   String get golferInfo => 'Golfer Info';
+  String get groups => 'Groups';
+  String get activities => 'Activities';
+  String get golfCourses => 'Golf Courses';
+  String get myScores => 'My Scores';
+  String get groupActivity => 'Group Activities';
 }
