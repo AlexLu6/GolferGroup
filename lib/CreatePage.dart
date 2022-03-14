@@ -111,7 +111,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         }),
                     const SizedBox(width: 5),
                     Flexible(
-                      child: TextFormField(
+                        child: TextFormField(
                       initialValue: _selectedCourse.toString(),
                       key: Key(_selectedCourse.toString()),
                       showCursor: true,
@@ -190,11 +190,15 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           "tee off": _selectedDate.toString().substring(0, 16),
                           "max": _max,
                           "fee": _fee,
-                          "golfers": _includeMe ? [{
-                              "uid": golferID,
-                              "appTime": DateTime.now().toString().substring(0, 19),
-                              "scores": []           
-                            }] : []
+                          "golfers": _includeMe
+                              ? [
+                                  {
+                                    "uid": golferID,
+                                    "appTime": DateTime.now().toString().substring(0, 19),
+                                    "scores": []
+                                  }
+                                ]
+                              : []
                         });
                         print(activity);
                         Navigator.of(context).pop(true);
@@ -210,26 +214,35 @@ _NewGolfCoursePage newGolfCoursePage() {
 }
 
 class _NewGolfCoursePage extends MaterialPageRoute<bool> {
-    _NewGolfCoursePage() : super(builder: (BuildContext context) {
-      String _courseName = '', _region ='', _photoURL ='';
-      int zoneCnt = 0;
-      var _courseZones = [];
+  _NewGolfCoursePage()
+      : super(builder: (BuildContext context) {
+          String _courseName = '', _region = '', _photoURL = '';
+          int zoneCnt = 0;
+          var _courseZones = [];
 
-      saveZone(var row){
-        print(row);
-        _courseZones.add(
-          {
-            'name': row['zoName'],
-            'holes': [row['h1'], row['h2'], row['h3'], row['h4'], row['h5'], row['h6'], row['h7'], row['h8'], row['h9']],
+          saveZone(var row) {
+            print(row);
+            _courseZones.add({
+              'name': row['zoName'],
+              'holes': [
+                row['h1'],
+                row['h2'],
+                row['h3'],
+                row['h4'],
+                row['h5'],
+                row['h6'],
+                row['h7'],
+                row['h8'],
+                row['h9']
+              ],
+            });
           }
-        );
-      }
-      return Scaffold(
-        appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
-        body: StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {return  Center(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
-                children: <Widget>[
+
+          return Scaffold(
+              appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
+              body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+                return Center(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   TextFormField(
                     showCursor: true,
                     onChanged: (String value) => _courseName = value,
@@ -248,7 +261,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                   ),
-                  SizedBox(height:10),
+                  SizedBox(height: 10),
 /*                  Row(children: <Widget> [
                     Text('Zones: $zoneCnt'),
                     SizedBox(width:10),
@@ -257,55 +270,101 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     ElevatedButton(child: Icon(Icons.remove), onPressed: () => setState(()=> zoneCnt = (zoneCnt > 2) ? zoneCnt -1 : zoneCnt))
                   ]),*/
                   Flexible(
-                      child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
-                        tdAlignment: TextAlign.center, 
-                        thAlignment: TextAlign.center,
-                        showSaveIcon: true,
-                        saveIcon: Icons.save,
-                        saveIconColor: Colors.blue,
-                        onRowSaved: (row) => saveZone(row),
-                        showCreateButton: true,
-                        createButtonLabel: Text('Add zone'),
-                        createButtonIcon: Icon(Icons.add), createButtonColor: Colors.blue,
-                        columns: [
-                          {"title": "Zone", 'index': 1, 'key': 'zoName',},
-                          {"title": "1", 'index': 2,'key': 'h1'},
-                          {"title": "2", 'index': 3,'key': 'h2'},
-                          {"title": "3", 'index': 4,'key': 'h3'},
-                          {"title": "4", 'index': 5,'key': 'h4'},
-                          {"title": "5", 'index': 6,'key': 'h5'},
-                          {"title": "6", 'index': 7,'key': 'h6'},
-                          {"title": "7", 'index': 8,'key': 'h7'},
-                          {"title": "8", 'index': 9,'key': 'h8'},
-                          {"title": "9", 'index': 10,'key': 'h9'},
-                        ], 
-                        rows: [
-                          {'zoName': 'Ou', 'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '', 'h9': ''},
-                          {'zoName': 'I','h1': '','h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '', 'h9': ''},
-                        ]
-                      )),
-                      const SizedBox(height: 16.0),
-                      ElevatedButton(
-                        child: Text('Create'),
-                        onPressed: () {
-                          golfCourses.add({
-                            "cid": DateTime.now().millisecondsSinceEpoch,
-                            "name": _courseName,
-                            "region": _region,
-                            "photo": _photoURL,
-                            "zones": _courseZones,
-                          });
-                          //print(golfCourses);
-                          //print((golfCourses.elementAt(3)["zones"] as List).length);
-                          Navigator.of(context).pop(true);
-                        }
-                      ),
-                ]
-              )
-            );}
-          ));
+                      child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, tdAlignment: TextAlign.center, thAlignment: TextAlign.center, showSaveIcon: true, saveIcon: Icons.save, saveIconColor: Colors.blue, onRowSaved: (row) => saveZone(row), showCreateButton: true, createButtonLabel: Text('Add zone'), createButtonIcon: Icon(Icons.add), createButtonColor: Colors.blue, columns: [
+                    {
+                      "title": "Zone",
+                      'index': 1,
+                      'key': 'zoName',
+                    },
+                    {
+                      "title": "1",
+                      'index': 2,
+                      'key': 'h1'
+                    },
+                    {
+                      "title": "2",
+                      'index': 3,
+                      'key': 'h2'
+                    },
+                    {
+                      "title": "3",
+                      'index': 4,
+                      'key': 'h3'
+                    },
+                    {
+                      "title": "4",
+                      'index': 5,
+                      'key': 'h4'
+                    },
+                    {
+                      "title": "5",
+                      'index': 6,
+                      'key': 'h5'
+                    },
+                    {
+                      "title": "6",
+                      'index': 7,
+                      'key': 'h6'
+                    },
+                    {
+                      "title": "7",
+                      'index': 8,
+                      'key': 'h7'
+                    },
+                    {
+                      "title": "8",
+                      'index': 9,
+                      'key': 'h8'
+                    },
+                    {
+                      "title": "9",
+                      'index': 10,
+                      'key': 'h9'
+                    },
+                  ], rows: [
+                    {
+                      'zoName': 'Ou',
+                      'h1': '',
+                      'h2': '',
+                      'h3': '',
+                      'h4': '',
+                      'h5': '',
+                      'h6': '',
+                      'h7': '',
+                      'h8': '',
+                      'h9': ''
+                    },
+                    {
+                      'zoName': 'I',
+                      'h1': '',
+                      'h2': '',
+                      'h3': '',
+                      'h4': '',
+                      'h5': '',
+                      'h6': '',
+                      'h7': '',
+                      'h8': '',
+                      'h9': ''
+                    },
+                  ])),
+                  const SizedBox(height: 16.0),
+                  ElevatedButton(
+                      child: Text('Create'),
+                      onPressed: () {
+                        golfCourses.add({
+                          "cid": DateTime.now().millisecondsSinceEpoch,
+                          "name": _courseName,
+                          "region": _region,
+                          "photo": _photoURL,
+                          "zones": _courseZones,
+                        });
+                        //print(golfCourses);
+                        //print((golfCourses.elementAt(3)["zones"] as List).length);
+                        Navigator.of(context).pop(true);
+                      }),
+                ]));
+              }));
         });
-  
 }
 
 _showActivityPage showActivityPage(var activity, int uId) {
@@ -313,82 +372,120 @@ _showActivityPage showActivityPage(var activity, int uId) {
 }
 
 class _showActivityPage extends MaterialPageRoute<bool> {
-    
-    _showActivityPage(var activity, int uId) : super(builder: (BuildContext context) {
-      bool alreadyIn = false;
+  _showActivityPage(var activity, int uId)
+      : super(builder: (BuildContext context) {
+          bool alreadyIn = false;
 
-      List buildRows() {
-        var rows = []; var oneRow = {};
-        int idx = 0;
+          List buildRows() {
+            var rows = [];
+            var oneRow = {};
+            int idx = 0;
 
-        for (var e in activity['golfers']) {
-          if (idx % 4 == 0) {
-            oneRow = Map();
-            oneRow['row'] = idx / 4 + 1; 
-            oneRow['c1'] = golferName(e['uid']);
+            for (var e in activity['golfers']) {
+              if (idx % 4 == 0) {
+                if (idx == activity['max'] as int)
+                  rows.add({
+                    'row': 'Backup',
+                    'c1': '',
+                    'c2': '',
+                    'c3': '',
+                    'c4': ''
+                  });
+                oneRow = Map();
+                oneRow['row'] = idx / 4 + 1;
+                oneRow['c1'] = golferName(e['uid']);
+                oneRow['c2'] = '';
+                oneRow['c3'] = '';
+                oneRow['c4'] = '';
+              } else if (idx % 4 == 1)
+                oneRow['c2'] = golferName(e['uid']);
+              else if (idx % 4 == 2)
+                oneRow['c3'] = golferName(e['uid']);
+              else if (idx % 4 == 3) {
+                oneRow['c4'] = golferName(e['uid']);
+                rows.add(oneRow);
+              }
+              if (e['uid'] as int == uId) alreadyIn = true;
+              idx++;
+            }
+            if ((idx % 4) != 0) rows.add(oneRow);
+
+            return rows;
           }
-          else if (idx % 4  == 1)
-            oneRow['c2'] = golferName(e['uid']);
-          else if (idx % 4  == 2)
-            oneRow['c3'] = golferName(e['uid']);
-          else if (idx % 4  == 3) {
-            oneRow['c4'] = golferName(e['uid']);  
-            rows.add(oneRow);
-          }          
-          if (e['uid'] as int == uId)
-            alreadyIn = true;
-          idx++; 
-        }
-        if ((idx % 4) != 0) rows.add(oneRow);
 
-        return rows;
-      }
-      return Scaffold(
-        appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
-        body: StatefulBuilder(
-            builder: (BuildContext context, StateSetter setState) {return  Container(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
-                children: <Widget>[
+          return Scaffold(
+              appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
+              body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+                return Container(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 16.0),
                   Text(activity['tee off'] + '\t' + Language.of(context).fee + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Text(courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Flexible(
-                    child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
-                        tdAlignment: TextAlign.center, 
-                        thAlignment: TextAlign.center,
-                        columnRatio: 0.19,
-                        columns: [
-                          {"title": Language.of(context).tableGroup, 'index': 1, 'key': 'row', 'editable': false},
-                          {"title": "A", 'index': 2,'key': 'c1', 'editable': false},
-                          {"title": "B", 'index': 3,'key': 'c2', 'editable': false},
-                          {"title": "C", 'index': 4,'key': 'c3', 'editable': false},
-                          {"title": "D", 'index': 5,'key': 'c4', 'editable': false}
-                        ], 
-                        rows: buildRows(),
-                    )
-                  ),                 
+                      child: Editable(
+                    borderColor: Colors.black,
+                    tdStyle: TextStyle(fontSize: 16),
+                    trHeight: 16,
+                    tdAlignment: TextAlign.center,
+                    thAlignment: TextAlign.center,
+                    columnRatio: 0.19,
+                    columns: [
+                      {
+                        "title": Language.of(context).tableGroup,
+                        'index': 1,
+                        'key': 'row',
+                        'editable': false
+                      },
+                      {
+                        "title": "A",
+                        'index': 2,
+                        'key': 'c1',
+                        'editable': false
+                      },
+                      {
+                        "title": "B",
+                        'index': 3,
+                        'key': 'c2',
+                        'editable': false
+                      },
+                      {
+                        "title": "C",
+                        'index': 4,
+                        'key': 'c3',
+                        'editable': false
+                      },
+                      {
+                        "title": "D",
+                        'index': 5,
+                        'key': 'c4',
+                        'editable': false
+                      }
+                    ],
+                    rows: buildRows(),
+                  )),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                    child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
-                    onPressed: () {
-                      setState(() {
-                        if (alreadyIn) 
-                          activity['golfers'].removeWhere((item) => item['uid'] == uId);
-                        else 
-                          activity['golfers'].add({'uid': uId, 'appTime': DateTime.now().toString().substring(0,19), 'scores': []});
-                      });
-                      Navigator.of(context).pop(true);;
-                    }
-                  ),
+                      child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
+                      onPressed: () {
+                        setState(() {
+                          if (alreadyIn)
+                            activity['golfers'].removeWhere((item) => item['uid'] == uId);
+                          else
+                            activity['golfers'].add({
+                              'uid': uId,
+                              'appTime': DateTime.now().toString().substring(0, 19),
+                              'scores': []
+                            });
+                        });
+                        Navigator.of(context).pop(true);
+                        ;
+                      }),
                   const SizedBox(height: 16.0),
-                ]
-              )
-            );}
-        )
-      );
-    });
+                ]));
+              }));
+        });
 }
 
 /* void showPlacePicker() async {
@@ -397,4 +494,3 @@ class _showActivityPage extends MaterialPageRoute<bool> {
     ));
     print(result);
 }*/
-
