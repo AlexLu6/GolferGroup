@@ -17,4 +17,5 @@ class LanguageZh extends Language {
   String get female => '女性';
   String get register => '註冊';
   String get modify => '修改';
+  String get handicap => '差點';
 }

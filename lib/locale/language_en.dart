@@ -17,4 +17,5 @@ class LanguageEn extends Language {
   String get female => 'Female';
   String get register => 'Register';
   String get modify => 'Modify';
+  String get handicap => 'Handicap';
 }

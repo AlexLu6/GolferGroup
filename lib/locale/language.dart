@@ -19,4 +19,5 @@ abstract class Language {
   String get female;
   String get register;
   String get modify;
+  String get handicap;
 }

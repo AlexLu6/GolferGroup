@@ -305,7 +305,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SizedBox(
           height: 8.0,
         ),
-        Text(isRegistered ? "Handicap: ${_handicap}" : '', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text(isRegistered ? Language.of(context).handicap + ": ${_handicap}" : '', style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(
           height: 10.0,
         ),
