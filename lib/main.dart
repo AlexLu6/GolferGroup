@@ -200,14 +200,14 @@ class _MyHomePageState extends State<MyHomePage> {
       showCursor: true,
       onChanged: (String value) => setState(() => _name = value),
       //keyboardType: TextInputType.name,
-      decoration: InputDecoration(labelText: (Language.of(context).name, hintText: 'Real Name:', icon: Icon(Icons.person), border: UnderlineInputBorder()),
+      decoration: InputDecoration(labelText: Language.of(context).name, hintText: 'Real Name:', icon: Icon(Icons.person), border: UnderlineInputBorder()),
     );
 
     final golferPhone = TextFormField(
       initialValue: _phone,
       onChanged: (String value) => setState(() => _phone = value),
       keyboardType: TextInputType.phone,
-      decoration: InputDecoration(labelText: "Mobile:", hintText: 'Mobile:', icon: Icon(Icons.phone), border: UnderlineInputBorder()),
+      decoration: InputDecoration(labelText: Language.of(context).mobile, hintText: 'Mobile:', icon: Icon(Icons.phone), border: UnderlineInputBorder()),
     );
     final golferSex = Row(children: <Widget>[
       Flexible(
