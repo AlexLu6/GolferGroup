@@ -360,7 +360,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         thAlignment: TextAlign.center,
                         columnRatio: 0.19,
                         columns: [
-                          {"title": "Group", 'index': 1, 'key': 'row', 'editable': false},
+                          {"title": Language.of(context).tableGroup, 'index': 1, 'key': 'row', 'editable': false},
                           {"title": "A", 'index': 2,'key': 'c1', 'editable': false},
                           {"title": "B", 'index': 3,'key': 'c2', 'editable': false},
                           {"title": "C", 'index': 4,'key': 'c3', 'editable': false},
