@@ -322,6 +322,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
 
         for (var e in activity['golfers']) {
           if (idx % 4 == 0) {
+            oneRow = Map();
             oneRow['row'] = idx / 4 + 1; 
             oneRow['c1'] = golferName(e['uid']);
           }
@@ -331,7 +332,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
             oneRow['c3'] = golferName(e['uid']);
           else if (idx % 4  == 3) {
             oneRow['c4'] = golferName(e['uid']);  
-            rows.add(oneRow);rows.add(oneRow);
+            rows.add(oneRow);
           }          
           if (e['uid'] as int == uId)
             alreadyIn = true;
