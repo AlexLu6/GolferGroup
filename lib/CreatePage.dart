@@ -356,7 +356,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                     child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
                         tdAlignment: TextAlign.center, 
                         thAlignment: TextAlign.center,
-                        columnRatio: 0.18,
+                        columnRatio: 0.185,
                         columns: [
                           {"title": "Group", 'index': 1, 'key': 'row', 'editable': false},
                           {"title": "A", 'index': 2,'key': 'c1', 'editable': false},
