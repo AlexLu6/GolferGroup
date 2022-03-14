@@ -141,6 +141,16 @@ var groupActivities = {
         "uid": 201,
         "appTime": "2022/3/3 14:30",
         "scores": []
+      },
+      {
+        "uid": 200,
+        "appTime": "2022/3/3 14:30",
+        "scores": []
+      },
+      {
+        "uid": 202,
+        "appTime": "2022/3/3 14:30",
+        "scores": []
       }
     ]
   }
