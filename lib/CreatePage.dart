@@ -378,7 +378,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         else 
                           activity['golfers'].add({'uid': uId, 'appTime': DateTime.now().toString().substring(0,19), 'scores': []});
                       });
-                      //print(activity);
+                      Navigator.of(context).pop(true);;
                     }
                   ),
                   const SizedBox(height: 16.0),
