@@ -19,6 +19,7 @@ class LanguageZh extends Language {
   String get modify => '修改';
   String get handicap => '差點';
 
+  String get fee => '費用: ';
   String get tableGroup => '編組';
   String get apply => '報名';
   String get cancel => '取消報名';

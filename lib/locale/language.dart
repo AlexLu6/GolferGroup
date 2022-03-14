@@ -21,6 +21,7 @@ abstract class Language {
   String get modify;
   String get handicap;
 
+  String get fee;
   String get tableGroup;
   String get apply;
   String get cancel;

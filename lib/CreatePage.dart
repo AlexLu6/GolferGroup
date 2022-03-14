@@ -167,7 +167,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       showCursor: true,
                       onChanged: (String value) => setState(() => _fee = value),
                       //keyboardType: TextInputType.number,
-                      decoration: InputDecoration(labelText: "Fee:", icon: Icon(Icons.money), border: OutlineInputBorder()),
+                      decoration: InputDecoration(labelText: Language.of(context).fee, icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5)
                   ])),
@@ -350,7 +350,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
               child: Column(crossAxisAlignment: CrossAxisAlignment.center, 
                 children: <Widget>[
                   const SizedBox(height: 16.0),
-                  Text(activity['tee off'] + ' fee: ' + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
+                  Text(activity['tee off'] + Language.of(context).fee + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Text(courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
