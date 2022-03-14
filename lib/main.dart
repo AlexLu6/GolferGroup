@@ -63,14 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
   gendre _sex = gendre.Male;
   double _handicap = 18;
   bool isRegistered = false, isUpdate = false;
-  List<String> appTitle = [
-    "Golfer Info",
-    "Groups",
-    "Activities",
-    "Golf courses",
-    "My Scores",
-    "Group Activities"
-  ];
   final ImagePicker _picker = ImagePicker();
 
   @override
@@ -92,6 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> appTitle = [
+      Language.of(context).golferInfo,
+      "Groups",
+      "Activities",
+      "Golf courses",
+      "My Scores",
+      "Group Activities"
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Text(appTitle[_currentPageIndex]),

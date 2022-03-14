@@ -5,4 +5,5 @@ abstract class Language {
     return Localizations.of<Language>(context, Language)!;
   }
   String get appTitle;
+  String get golferInfo;
 }
