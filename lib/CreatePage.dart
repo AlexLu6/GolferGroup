@@ -331,7 +331,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
             oneRow['c3'] = golferName(e['uid']);
           else if (idx % 4  == 3) {
             oneRow['c4'] = golferName(e['uid']);  
-            rows.add(oneRow);
+            rows.add(oneRow);rows.add(oneRow);
           }          
           if (e['uid'] as int == uId)
             alreadyIn = true;
@@ -366,8 +366,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         ], 
                         rows: buildRows(),
                     )
-                  ),
-                  
+                  ),                 
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                     child: Text(alreadyIn ? 'Cancel' : 'Apply'),
