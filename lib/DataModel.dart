@@ -179,6 +179,11 @@ var golferActivities = {
         "appTime": "2022-03-03 14:20:00",
         "scores": []
       },
+      {
+        "uid": 202,
+        "appTime": "2022/3/3 14:30",
+        "scores": []
+      },
     ]
   },
 };

@@ -339,7 +339,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
           idx++; 
         }
         if ((idx % 4) != 0) rows.add(oneRow);
-print('itmes: $idx');
+
         return rows;
       }
       return Scaffold(
@@ -363,7 +363,7 @@ print('itmes: $idx');
                           {"title": "A", 'index': 2,'key': 'c1', 'editable': false},
                           {"title": "B", 'index': 3,'key': 'c2', 'editable': false},
                           {"title": "C", 'index': 4,'key': 'c3', 'editable': false},
-                          {"title": "D", 'index': 5,'key': 'c4', 'editable': true}
+                          {"title": "D", 'index': 5,'key': 'c4', 'editable': false}
                         ], 
                         rows: buildRows(),
                     )
