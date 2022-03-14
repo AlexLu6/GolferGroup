@@ -20,4 +20,7 @@ abstract class Language {
   String get register;
   String get modify;
   String get handicap;
+
+  String get apply;
+  String get cancel;
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:editable/editable.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'DataModel.dart';
+import 'locale/language.dart';
 
 _NewGroupPage newGroupPage(int golferID) {
   return _NewGroupPage(golferID);
@@ -370,7 +371,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   ),                 
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                    child: Text(alreadyIn ? 'Cancel' : 'Apply'),
+                    child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () {
                       setState(() {
                         if (alreadyIn) 

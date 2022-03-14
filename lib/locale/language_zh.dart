@@ -18,4 +18,7 @@ class LanguageZh extends Language {
   String get register => '註冊';
   String get modify => '修改';
   String get handicap => '差點';
+
+  String get apply => '報名';
+  String get cancel => '取消報名';
 }

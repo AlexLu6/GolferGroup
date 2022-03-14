@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
 import 'DataModel.dart';
 import 'CreatePage.dart';
-//import 'https://flutlab.io/root/app/lib/locale/app_localizations_delegate.dart';
 import 'locale/language.dart';
 import 'locale/app_localizations_delegate.dart';
 
