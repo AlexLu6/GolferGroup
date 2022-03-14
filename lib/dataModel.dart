@@ -94,7 +94,7 @@ var golfers = {
     "uid": 202
   },
   {
-    "name": "John Chu",
+    "name": "朱唯中",
     "phone": "0988173018",
     "sex": 1,
     "uid": 103
