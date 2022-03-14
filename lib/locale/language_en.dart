@@ -9,4 +9,5 @@ class LanguageEn extends Language {
   String get golfCourses => 'Golf Courses';
   String get myScores => 'My Scores';
   String get groupActivity => 'Group Activities';
+  String get logOut => 'Log Out';
 }

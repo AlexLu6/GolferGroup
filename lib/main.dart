@@ -143,35 +143,35 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
           ListTile(
-              title: Text("Groups"),
+              title: Text(Language.of(context).groups),
               leading: Icon(Icons.group),
               onTap: () {
                 setState(() => _currentPageIndex = 1);
                 Navigator.of(context).pop();
               }),
           ListTile(
-              title: Text("Activities"),
+              title: Text(Language.of(context).activities),
               leading: Icon(Icons.sports_golf),
               onTap: () {
                 setState(() => _currentPageIndex = 2);
                 Navigator.of(context).pop();
               }),
           ListTile(
-              title: Text("Golf Courses"),
+              title: Text(Language.of(context).golfCourses),
               leading: Icon(Icons.golf_course),
               onTap: () {
                 setState(() => _currentPageIndex = 3);
                 Navigator.of(context).pop();
               }),
           ListTile(
-              title: Text("My scores"),
+              title: Text(Language.of(context).myScores),
               leading: Icon(Icons.format_list_numbered),
               onTap: () {
                 setState(() => _currentPageIndex = 4);
                 Navigator.of(context).pop();
               }),
           ListTile(
-              title: Text("Log out"),
+              title: Text(Language.of(context).logOut),
               leading: Icon(Icons.exit_to_app),
               onTap: () {
                 setState(() {

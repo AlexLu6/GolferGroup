@@ -11,4 +11,5 @@ abstract class Language {
   String get golfCourses;
   String get myScores;
   String get groupActivity;
+  String get logOut;
 }
