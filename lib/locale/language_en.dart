@@ -13,4 +13,8 @@ class LanguageEn extends Language {
 
   String get name => 'Name:';
   String get mobile => 'Mobile:';
+  String get male => 'Male';
+  String get female => 'Female';
+  String get register => 'Register';
+  String get modify => 'Modify';
 }

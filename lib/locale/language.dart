@@ -15,4 +15,8 @@ abstract class Language {
 
   String get name;
   String get mobile;
+  String get male;
+  String get female;
+  String get register;
+  String get modify;
 }

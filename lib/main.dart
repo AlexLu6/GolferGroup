@@ -212,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final golferSex = Row(children: <Widget>[
       Flexible(
           child: RadioListTile<gendre>(
-              title: const Text('Male'),
+              title: Text(Language.of(context).male),
               value: gendre.Male,
               groupValue: _sex,
               onChanged: (gendre? value) => setState(() {
@@ -221,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   }))),
       Flexible(
           child: RadioListTile<gendre>(
-              title: const Text('Female'),
+              title: Text(Language.of(context).female),
               value: gendre.Female,
               groupValue: _sex,
               onChanged: (gendre? value) => setState(() {
@@ -240,7 +240,7 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 45.0,
             color: Colors.green,
             child: Text(
-              isUpdate ? 'Modify' : 'Register',
+              isUpdate ? Language.of(context).modify : Language.of(context).register,
               style: TextStyle(color: Colors.white, fontSize: 20.0),
             ),
             onPressed: () {

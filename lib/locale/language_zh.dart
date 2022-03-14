@@ -13,4 +13,8 @@ class LanguageZh extends Language {
 
   String get name => '姓名:';
   String get mobile => '手機:';
+  String get male => '男性';
+  String get female => '女性';
+  String get register => '註冊';
+  String get modify => '修改';
 }
