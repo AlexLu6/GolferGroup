@@ -378,7 +378,7 @@ class _MyHomePageState extends State<MyHomePage> {
       itemBuilder: (context, index) => ListTile(
         title: Text(courseName(groupActivities.elementAt(map[index])["cid"] as int)!, style: TextStyle(fontSize: 20)), 
         subtitle: Text("Tee off: " +groupActivities.elementAt(map[index])["tee off"].toString() + 
-            '\n' + Language.of(context).max + groupActivities.elementAt(map[index])["max"].toString() + '\tNow: ' + (groupActivities.elementAt(map[index])["golfers"] as List).length.toString() + "\t"+ Language.of(context).fee + groupActivities.elementAt(map[index])["fee"].toString()), 
+            '\n' + Language.of(context).max + groupActivities.elementAt(map[index])["max"].toString() + '\t' + Language.of(context).now + (groupActivities.elementAt(map[index])["golfers"] as List).length.toString() + "\t"+ Language.of(context).fee + groupActivities.elementAt(map[index])["fee"].toString()), 
         leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!), 
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
@@ -396,7 +396,7 @@ class _MyHomePageState extends State<MyHomePage> {
       itemBuilder: (context, index) => ListTile(
         title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)), 
         subtitle: Text("Tee off: " + golferActivities.elementAt(index)["tee off"].toString() + 
-            '\n' + Language.of(context).max + golferActivities.elementAt(index)["max"].toString() + '\tNow: ' + (golferActivities.elementAt(index)["golfers"] as List).length.toString() + "\t" + Language.of(context).fee + golferActivities.elementAt(index)["fee"].toString()), 
+            '\n' + Language.of(context).max + golferActivities.elementAt(index)["max"].toString() + '\t' + Language.of(context).now + (golferActivities.elementAt(index)["golfers"] as List).length.toString() + "\t" + Language.of(context).fee + golferActivities.elementAt(index)["fee"].toString()), 
         leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), 
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
