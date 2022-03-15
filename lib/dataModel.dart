@@ -152,7 +152,7 @@ var groupActivities = {
 
 var golferActivities = {
   {
-    "uid": 1,
+    "uid": 103,
     "cid": 102,
     "tee off": "2022-03-16 6:30",
     "fee": 2500,
