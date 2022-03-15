@@ -383,16 +383,11 @@ class _showActivityPage extends MaterialPageRoute<bool> {
 
             for (var e in activity['golfers']) {
               if (idx % 4 == 0) {
-                if (idx == activity['max'] as int)
-                  rows.add({
-                    'row': 'Backup',
-                    'c1': '',
-                    'c2': '',
-                    'c3': '',
-                    'c4': ''
-                  });
                 oneRow = Map();
-                oneRow['row'] = idx / 4 + 1;
+                if (idx >= (activity['max'] as int))
+                  oneRow['row'] = 'Wait:';
+                else
+                  oneRow['row'] = idx / 4 + 1;
                 oneRow['c1'] = golferName(e['uid']);
                 oneRow['c2'] = '';
                 oneRow['c3'] = '';
@@ -432,36 +427,11 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                     thAlignment: TextAlign.center,
                     columnRatio: 0.19,
                     columns: [
-                      {
-                        "title": Language.of(context).tableGroup,
-                        'index': 1,
-                        'key': 'row',
-                        'editable': false
-                      },
-                      {
-                        "title": "A",
-                        'index': 2,
-                        'key': 'c1',
-                        'editable': false
-                      },
-                      {
-                        "title": "B",
-                        'index': 3,
-                        'key': 'c2',
-                        'editable': false
-                      },
-                      {
-                        "title": "C",
-                        'index': 4,
-                        'key': 'c3',
-                        'editable': false
-                      },
-                      {
-                        "title": "D",
-                        'index': 5,
-                        'key': 'c4',
-                        'editable': false
-                      }
+                      {"title": Language.of(context).tableGroup, 'index': 1, 'key': 'row','editable': false},
+                      {"title": "A", 'index': 2, 'key': 'c1', 'editable': false},
+                      {"title": "B", 'index': 3, 'key': 'c2', 'editable': false},
+                      {"title": "C", 'index': 4, 'key': 'c3', 'editable': false},
+                      {"title": "D", 'index': 5, 'key': 'c4', 'editable': false}
                     ],
                     rows: buildRows(),
                   )),
