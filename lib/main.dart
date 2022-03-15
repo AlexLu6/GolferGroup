@@ -335,7 +335,7 @@ class _MyHomePageState extends State<MyHomePage> {
       itemCount: golferGroup.length,
       itemBuilder: (context, index) => ListTile(
         title: Text(golferGroup.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)),
-        subtitle: Text('Region: ' + golferGroup.elementAt(index)["region"].toString() + "\nManager: " + golferNames(golferGroup.elementAt(index)["managers"] as List<int>)! + "\nmembers: " + (golferGroup.elementAt(index)["members"] as List<int>).length.toString()),
+        subtitle: Text(Language.of(context).region + golferGroup.elementAt(index)["region"].toString() + "\n" + Language.of(context).manager + golferNames(golferGroup.elementAt(index)["managers"] as List<int>)! + "\n" + Language.of(context).members + (golferGroup.elementAt(index)["members"] as List<int>).length.toString()),
         leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"),
         /*Icon(Icons.group), */
         trailing: Icon(Icons.keyboard_arrow_right),

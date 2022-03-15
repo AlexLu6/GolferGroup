@@ -19,6 +19,9 @@ class LanguageEn extends Language {
   String get modify => 'Modify';
   String get handicap => 'Handicap';
 
+  String get region => 'Region: ';
+  String get manager => 'Manager: ';
+  String get members => 'Members: ';
   String get fee => 'Fee: ';
   String get tableGroup => 'Group';
   String get apply => 'Apply';
