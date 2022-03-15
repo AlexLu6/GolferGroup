@@ -5,7 +5,7 @@ var golferGroup = {
     "name": "麻吉 Fun Golf",
     "region": "北台灣",
     "managers": [100],
-    "members": [101,102],
+    "members": [100,101,102],
     "remarks": "Please use real name and phone number!",
     "gid": 1
   },
