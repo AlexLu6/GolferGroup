@@ -23,4 +23,5 @@ class LanguageEn extends Language {
   String get tableGroup => 'Group';
   String get apply => 'Apply';
   String get cancel => 'Cancel';
+  String get waiting => 'wait';
 }

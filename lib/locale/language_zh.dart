@@ -23,4 +23,5 @@ class LanguageZh extends Language {
   String get tableGroup => '組別';
   String get apply => '報名';
   String get cancel => '取消報名';
+  String get waiting => '候補';
 }

@@ -385,7 +385,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
               if (idx % 4 == 0) {
                 oneRow = Map();
                 if (idx >= (activity['max'] as int))
-                  oneRow['row'] = 'Wait:';
+                  oneRow['row'] = Language.of(context).waiting;
                 else
                   oneRow['row'] = idx / 4 + 1;
                 oneRow['c1'] = golferName(e['uid']);

@@ -25,4 +25,5 @@ abstract class Language {
   String get tableGroup;
   String get apply;
   String get cancel;
+  String get waiting;
 }
