@@ -400,7 +400,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), 
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          Navigator.push(context, showActivityPage(golferActivities.elementAt(index), _golferID, golferName(_golferID)!, _golferID == ));
+          Navigator.push(context, showActivityPage(golferActivities.elementAt(index), _golferID, golferName(_golferID)!, _golferID == golferActivities.elementAt(index)['uid'] as int));
         }
       ),
       separatorBuilder: (context, index) => Divider(),
