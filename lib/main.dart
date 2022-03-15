@@ -353,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage> {
           if (isMember(_gID, _golferID)) {
             setState(() => _currentPageIndex = 5);
           } else {
-            bool? apply = await showApplyDialog(isApplying(_gID, _golferID));
+            bool? apply = await showApplyDialog(isApplying(_gID, _golferID) == 1);
             if (apply!) {
               // fill the apply waiting queue
               applyQueue.add({
@@ -453,7 +453,7 @@ class _MyHomePageState extends State<MyHomePage> {
               bool? ans = await grantApplyDialog(golferName(e['uid'] as int)!);
               if (ans!) {
                 e['response'] = 'OK';
-                // add e['uid] to members
+                addMember(_gID, e['uid'] as int);
               } else 
                 e['response'] = 'No';
             }

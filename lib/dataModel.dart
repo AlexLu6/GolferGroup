@@ -35,6 +35,12 @@ bool isMember(int gid, int uid) {
   return false;
 }
 
+void addMember(int gid, int uid) {
+  for (var e in golferGroup) 
+    if (e["gid"] == gid) 
+      (e['members'] as List<int>).add(uid);
+}
+
 bool isManager(int gid, int uid) {
   for (var e in golferGroup) 
     if (e["gid"] == gid) 
@@ -42,6 +48,12 @@ bool isManager(int gid, int uid) {
         if (id == uid)
           return true;
   return false;
+}
+
+void addManager(int gid, int uid) {
+  for (var e in golferGroup) 
+    if (e["gid"] == gid) 
+      (e['managers'] as List<int>).add(uid);
 }
 
 var golfers = {
@@ -264,11 +276,15 @@ var applyQueue = {
   }
 };
 
-bool isApplying(int gid, int uid)
+int isApplying(int gid, int uid)
 {
   for (var ap in applyQueue) {
-    if (((ap["uid"] as int) == uid) && ((ap["gid"] as int) == gid))
-      return true;
+    if (((ap["uid"] as int) == uid) && ((ap["gid"] as int) == gid)) {
+      if (ap['response'] == 'waiting')
+        return 1;
+      else if (ap['response'] == 'No')
+        return -1;
+    }
   }
-  return false;
+  return 0;
 }
