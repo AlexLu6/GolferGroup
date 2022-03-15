@@ -96,18 +96,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0
-              ? RegisterBody()
-              : _currentPageIndex == 1
-                  ? GroupBody()
-                  : _currentPageIndex == 2
-                      ? ActivityBody()
-                      : _currentPageIndex == 3
-                          ? GolfCourseBody()
-                          : _currentPageIndex == 4
-                              ? MyScoreBody() 
-                              : _currentPageIndex == 5 ? groupActivityBody(_gID) 
-                              : null),
+          child: _currentPageIndex == 0 ? RegisterBody()
+              : _currentPageIndex == 1 ? GroupBody()
+              : _currentPageIndex == 2 ? ActivityBody()
+              : _currentPageIndex == 3 ? GolfCourseBody()
+              : _currentPageIndex == 4 ? MyScoreBody() 
+              : _currentPageIndex == 5 ? groupActivityBody(_gID)  : null
+          ),
       drawer: isRegistered ? golfDrawer() : null,
       floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4) || (_currentPageIndex == 5)
           ? FloatingActionButton(
@@ -358,13 +353,12 @@ class _MyHomePageState extends State<MyHomePage> {
           if (isMember(_gID, _golferID)) {
             setState(() => _currentPageIndex = 5);
           } else {
-            int gid = golferGroup.elementAt(index)["gid"] as int;
-            bool? apply = await showApplyDialog(isApplying(gid, _golferID));
+            bool? apply = await showApplyDialog(isApplying(_gID, _golferID));
             if (apply!) {
               // fill the apply waiting queue
               applyQueue.add({
                 "uid": _golferID,
-                "gid": gid,
+                "gid": _gID,
                 "response": "waiting"
               });
               print(applyQueue);
