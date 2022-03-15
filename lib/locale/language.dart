@@ -26,4 +26,6 @@ abstract class Language {
   String get apply;
   String get cancel;
   String get waiting;
+  String get create;
+  String get max;
 }

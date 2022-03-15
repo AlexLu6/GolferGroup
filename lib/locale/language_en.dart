@@ -24,4 +24,6 @@ class LanguageEn extends Language {
   String get apply => 'Apply';
   String get cancel => 'Cancel';
   String get waiting => 'wait';
+  String get create => 'Create';
+  String get max => 'Max:';
 }
