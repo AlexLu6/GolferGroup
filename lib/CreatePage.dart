@@ -412,11 +412,11 @@ class _showActivityPage extends MaterialPageRoute<bool> {
               appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Container(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 16.0),
                   Text(activity['tee off'] + '\t' + Language.of(context).fee + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
-                  Text(courseName(activity['cid'] as int)!, style: TextStyle(fontSize: 20)),
+                  Text(courseName(activity['cid'] as int)! + "\tMax: " + activity['max'], style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Flexible(
                       child: Editable(
