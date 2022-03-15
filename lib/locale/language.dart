@@ -28,4 +28,5 @@ abstract class Language {
   String get waiting;
   String get create;
   String get max;
+  String get now;
 }

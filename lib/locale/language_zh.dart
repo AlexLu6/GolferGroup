@@ -25,5 +25,6 @@ class LanguageZh extends Language {
   String get cancel => '取消報名';
   String get waiting => '候補';
   String get create => '建立';
-  String get max => '名額:';
+  String get max => '名額: ';
+  String get now => '已報名: ';
 }
