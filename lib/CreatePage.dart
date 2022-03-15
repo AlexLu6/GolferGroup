@@ -39,7 +39,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                   ),
                   const SizedBox(height: 24.0),
                   ElevatedButton(
-                      child: Text('Create'),
+                      child: Text(Language.of(context).create),
                       onPressed: () {
                         if (_groupName != '' && _region != '') {
                           golferGroup.add({
@@ -152,7 +152,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       showCursor: true,
                       onChanged: (String value) => setState(() => _max = value),
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(labelText: "Max:", icon: Icon(Icons.group), border: OutlineInputBorder()),
+                      decoration: InputDecoration(labelText: Language.of(context).max, icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
@@ -172,7 +172,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const Text('Include myself')
                   ])),
                   const SizedBox(height: 24.0),
-                  ElevatedButton(child: Text('Create'),
+                  ElevatedButton(child: Text(Language.of(context).create),
                       onPressed: () {
                         if (_courseName != '') {
                         activity.add({
@@ -275,7 +275,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   ),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                      child: Text('Create'),
+                      child: Text(Language.of(context).create),
                       onPressed: () {
                         golfCourses.add({
                           "cid": DateTime.now().millisecondsSinceEpoch,
@@ -342,7 +342,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 16.0),
                   Text(activity['tee off'] + '\t' + Language.of(context).fee + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
-                  Text(courseName(activity['cid'] as int)! + "\tMax: " + activity['max'].toString(), style: TextStyle(fontSize: 20)),
+                  Text(courseName(activity['cid'] as int)! + "\t" + Language.of(context).max + activity['max'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Flexible(child: Editable(
                     borderColor: Colors.black,
