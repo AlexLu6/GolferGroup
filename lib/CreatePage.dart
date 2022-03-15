@@ -393,7 +393,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                 onPressed: () {},
                 child: const Icon(Icons.edit),
               ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
+              floatingActionButtonLocation: FloatingActionButtonLocation.endTop
             );
         });
 }
