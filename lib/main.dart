@@ -354,9 +354,8 @@ class _MyHomePageState extends State<MyHomePage> {
         /*Icon(Icons.group), */
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () async {
-          if (isMember(golferGroup.elementAt(index)["gid"] as int, _golferID)) {
-            // show group activities
-            _gID = golferGroup.elementAt(index)["gid"] as int;
+          _gID = golferGroup.elementAt(index)["gid"] as int;
+          if (isMember(_gID, _golferID)) {
             setState(() => _currentPageIndex = 5);
           } else {
             int gid = golferGroup.elementAt(index)["gid"] as int;
