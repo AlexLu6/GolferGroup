@@ -24,6 +24,7 @@ abstract class Language {
   String get region;
   String get manager;
   String get members;
+  String get teeOff;
   String get fee;
   String get tableGroup;
   String get apply;

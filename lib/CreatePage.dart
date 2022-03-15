@@ -121,7 +121,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   ])),
                   const SizedBox(height: 24),
                   Flexible(child: Row(children: <Widget>[
-                    ElevatedButton(child: Text("Tee off:"),
+                    ElevatedButton(child: Text(Language.of(context).teeOff),
                         onPressed: () {
                           showMaterialDatePicker(
                             context: context,

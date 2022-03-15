@@ -22,6 +22,7 @@ class LanguageZh extends Language {
   String get region => '地區: ';
   String get manager => '總幹事: ';
   String get members => '會員: ';
+  String get teeOff => '開球:';
   String get fee => '球資: ';
   String get tableGroup => '組別';
   String get apply => '報名';
