@@ -258,7 +258,7 @@ String? coursePhoto(int cid) {
 
 var applyQueue = {
   {
-    "uid": 100,
+    "uid": 103,
     "gid": 1,
     "response": "No"
   }
