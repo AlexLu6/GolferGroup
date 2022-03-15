@@ -353,8 +353,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 16.0),
                   Text(courseName(activity['cid'] as int)! + "\tMax: " + activity['max'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
-                  Flexible(
-                      child: Editable(
+                  Flexible(child: Editable(
                     borderColor: Colors.black,
                     tdStyle: TextStyle(fontSize: 16),
                     trHeight: 16,
