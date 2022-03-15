@@ -329,6 +329,20 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         });
   }
+  Future<bool?> grantApplyDialog(String name) {
+    return showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text("Reply"),
+            content: Text(name + ' is applying this group!'),
+            actions: <Widget>[
+              FlatButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
+              FlatButton(child: Text("Reject"), onPressed: () => Navigator.of(context).pop(false))
+            ],
+          );
+        });
+  }
 
   ListView GroupBody() {
     var listView = ListView.separated(
@@ -391,9 +405,11 @@ class _MyHomePageState extends State<MyHomePage> {
       for (var e in applyQueue) {
         if (e['gid'] == gID && e['response'] == 'waiting') {
           // grant or refuse the apply of e['uid']
+          grantApplyDialog(golferName(e['uid'] as int)!);
         }
       }
     }
+
     return listView;
   }
 
