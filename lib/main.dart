@@ -387,6 +387,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       separatorBuilder: (context, index) => Divider(),
     );
+    if (isManager(gID, _golferID)) {
+      for (var e in applyQueue) {
+        if (e['gid'] == gID && e['response'] == 'waiting') {
+          // grant or refuse the apply of e['uid']
+        }
+      }
+    }
     return listView;
   }
 
