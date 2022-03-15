@@ -294,12 +294,12 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
         });
 }
 
-_showActivityPage showActivityPage(var activity, int uId, String title) {
-  return _showActivityPage(activity, uId, title);
+_showActivityPage showActivityPage(var activity, int uId, String title, bool editable) {
+  return _showActivityPage(activity, uId, title, editable);
 }
 
 class _showActivityPage extends MaterialPageRoute<bool> {
-  _showActivityPage(var activity, int uId, String title)
+  _showActivityPage(var activity, int uId, String title, bool editable)
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
 
@@ -380,10 +380,10 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 16.0),
                 ]));
               }),
-              floatingActionButton: FloatingActionButton(
+              floatingActionButton: editable ? FloatingActionButton(
                 onPressed: () {},
                 child: const Icon(Icons.edit),
-              ),
+              ) : null,
               floatingActionButtonLocation: FloatingActionButtonLocation.endTop
             );
         });

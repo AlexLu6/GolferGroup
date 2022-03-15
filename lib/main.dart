@@ -382,7 +382,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!), 
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          Navigator.push(context, showActivityPage(groupActivities.elementAt(index), _golferID, groupName(gID)!));
+          Navigator.push(context, showActivityPage(groupActivities.elementAt(index), _golferID, groupName(gID)!, isManager(gID, _golferID)));
         }
       ),
       separatorBuilder: (context, index) => Divider(),
@@ -400,7 +400,7 @@ class _MyHomePageState extends State<MyHomePage> {
         leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), 
         trailing: Icon(Icons.keyboard_arrow_right),
         onTap: () {
-          Navigator.push(context, showActivityPage(golferActivities.elementAt(index), _golferID, golferName(_golferID)!));
+          Navigator.push(context, showActivityPage(golferActivities.elementAt(index), _golferID, golferName(_golferID)!, _golferID == ));
         }
       ),
       separatorBuilder: (context, index) => Divider(),
