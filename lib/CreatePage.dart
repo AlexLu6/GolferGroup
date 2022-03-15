@@ -95,10 +95,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                 return Center(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 24.0),
-                  Flexible(
-                      child: Row(children: <Widget>[
-                    ElevatedButton(
-                        child: Text("Golf Course:"),
+                  Flexible(child: Row(children: <Widget>[
+                    ElevatedButton(child: Text("Golf Course:"),
                         onPressed: () {
                           showMaterialScrollPicker<NameID>(
                             context: context,
@@ -108,10 +106,10 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                             selectedItem: _selectedCourse,
                             onChanged: (value) => setState(() => print(_selectedCourse = value)),
                           );
-                        }),
+                        }
+                      ),
                     const SizedBox(width: 5),
-                    Flexible(
-                        child: TextFormField(
+                    Flexible(child: TextFormField(
                       initialValue:  _courseName,
                       key: Key(_selectedCourse.toString()),
                       showCursor: true,
@@ -122,10 +120,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const SizedBox(width: 5)
                   ])),
                   const SizedBox(height: 24),
-                  Flexible(
-                      child: Row(children: <Widget>[
-                    ElevatedButton(
-                        child: Text("Tee off:"),
+                  Flexible(child: Row(children: <Widget>[
+                    ElevatedButton(child: Text("Tee off:"),
                         onPressed: () {
                           showMaterialDatePicker(
                             context: context,
@@ -135,10 +131,10 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                             lastDate: DateTime.now().add(Duration(days: 180)),
                             //onChanged: (value) => setState(() => _selectedDate = value),
                           ).then((value) => setState(() => print(_selectedDate = value!)));
-                        }),
+                        }
+                    ),
                     const SizedBox(width: 5),
-                    Flexible(
-                        child: TextFormField(
+                    Flexible(child: TextFormField(
                       initialValue: _selectedDate.toString().substring(0, 16),
                       key: Key(_selectedDate.toString().substring(0, 16)),
                       showCursor: true,
@@ -149,41 +145,36 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const SizedBox(width: 5)
                   ])),
                   const SizedBox(height: 24),
-                  Flexible(
-                      child: Row(children: <Widget>[
+                  Flexible(child: Row(children: <Widget>[
                     const SizedBox(width: 5),
-                    Flexible(
-                        child: TextFormField(
-                      initialValue: _max.toString(),
+                    Flexible(child: TextFormField(
+                      initialValue: _max, 
                       showCursor: true,
                       onChanged: (String value) => setState(() => _max = value),
-                      //keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: "Max:", icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5),
-                    Flexible(
-                        child: TextFormField(
-                      initialValue: _fee.toString(),
+                    Flexible(child: TextFormField(
+                      initialValue: _fee,
                       showCursor: true,
                       onChanged: (String value) => setState(() => _fee = value),
-                      //keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: Language.of(context).fee, icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5)
                   ])),
                   const SizedBox(height: 24),
-                  Flexible(
-                      child: Row(children: <Widget>[
+                  Flexible(child: Row(children: <Widget>[
                     const SizedBox(width: 5),
                     Checkbox(value: _includeMe, onChanged: (bool? value) => setState(() => _includeMe = value!)),
                     const SizedBox(width: 5),
                     const Text('Include myself')
                   ])),
                   const SizedBox(height: 24.0),
-                  ElevatedButton(
-                      child: Text('Create'),
+                  ElevatedButton(child: Text('Create'),
                       onPressed: () {
-//                        if (_courseName != '') {
+                        if (_courseName != '') {
                         activity.add({
                           tag: golferID,
                           "cid": _selectedCourse.toID(),
@@ -202,7 +193,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         });
                         print(activity);
                         Navigator.of(context).pop(true);
-//                        }
+                        }
                       })
                 ]));
               }));
