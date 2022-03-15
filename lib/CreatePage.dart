@@ -299,11 +299,6 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       }),
                 ]));
               }),
-              floatingActionButton: FloatingActionButton(
-                onPressed: () {},
-                child: const Icon(Icons.edit),
-              ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
             );
         });
 }
@@ -393,7 +388,13 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                       }),
                   const SizedBox(height: 16.0),
                 ]));
-              }));
+              }),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {},
+                child: const Icon(Icons.edit),
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
+            );
         });
 }
 
