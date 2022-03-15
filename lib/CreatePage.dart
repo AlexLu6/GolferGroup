@@ -225,15 +225,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
             _courseZones.add({
               'name': row['zoName'],
               'holes': [
-                row['h1'],
-                row['h2'],
-                row['h3'],
-                row['h4'],
-                row['h5'],
-                row['h6'],
-                row['h7'],
-                row['h8'],
-                row['h9']
+                row['h1'], row['h2'], row['h3'], row['h4'], row['h5'], row['h6'], row['h7'], row['h8'], row['h9']
               ],
             });
           }
@@ -241,8 +233,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
           return Scaffold(
               appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-                return Center(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                return Center(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   TextFormField(
                     showCursor: true,
                     onChanged: (String value) => _courseName = value,
@@ -262,91 +253,35 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                     decoration: InputDecoration(labelText: "Photo URL:", icon: Icon(Icons.photo), border: UnderlineInputBorder()),
                   ),
                   SizedBox(height: 10),
-/*                  Row(children: <Widget> [
-                    Text('Zones: $zoneCnt'),
-                    SizedBox(width:10),
-                    ElevatedButton(child: Icon(Icons.add), onPressed: () => setState(()=> zoneCnt = (zoneCnt < 4) ? zoneCnt +1 : zoneCnt)),
-                    SizedBox(width:10),
-                    ElevatedButton(child: Icon(Icons.remove), onPressed: () => setState(()=> zoneCnt = (zoneCnt > 2) ? zoneCnt -1 : zoneCnt))
-                  ]),*/
                   Flexible(
-                      child: Editable(borderColor: Colors.black, tdStyle: TextStyle(fontSize: 16), trHeight: 16, tdAlignment: TextAlign.center, thAlignment: TextAlign.center, showSaveIcon: true, saveIcon: Icons.save, saveIconColor: Colors.blue, onRowSaved: (row) => saveZone(row), showCreateButton: true, createButtonLabel: Text('Add zone'), createButtonIcon: Icon(Icons.add), createButtonColor: Colors.blue, columns: [
-                    {
-                      "title": "Zone",
-                      'index': 1,
-                      'key': 'zoName',
-                    },
-                    {
-                      "title": "1",
-                      'index': 2,
-                      'key': 'h1'
-                    },
-                    {
-                      "title": "2",
-                      'index': 3,
-                      'key': 'h2'
-                    },
-                    {
-                      "title": "3",
-                      'index': 4,
-                      'key': 'h3'
-                    },
-                    {
-                      "title": "4",
-                      'index': 5,
-                      'key': 'h4'
-                    },
-                    {
-                      "title": "5",
-                      'index': 6,
-                      'key': 'h5'
-                    },
-                    {
-                      "title": "6",
-                      'index': 7,
-                      'key': 'h6'
-                    },
-                    {
-                      "title": "7",
-                      'index': 8,
-                      'key': 'h7'
-                    },
-                    {
-                      "title": "8",
-                      'index': 9,
-                      'key': 'h8'
-                    },
-                    {
-                      "title": "9",
-                      'index': 10,
-                      'key': 'h9'
-                    },
-                  ], rows: [
-                    {
-                      'zoName': 'Ou',
-                      'h1': '',
-                      'h2': '',
-                      'h3': '',
-                      'h4': '',
-                      'h5': '',
-                      'h6': '',
-                      'h7': '',
-                      'h8': '',
-                      'h9': ''
-                    },
-                    {
-                      'zoName': 'I',
-                      'h1': '',
-                      'h2': '',
-                      'h3': '',
-                      'h4': '',
-                      'h5': '',
-                      'h6': '',
-                      'h7': '',
-                      'h8': '',
-                      'h9': ''
-                    },
-                  ])),
+                    child: Editable(
+                      borderColor: Colors.black, 
+                      tdStyle: TextStyle(fontSize: 16), trHeight: 16, 
+                      tdAlignment: TextAlign.center, thAlignment: TextAlign.center, 
+                      showSaveIcon: true, saveIcon: Icons.save, saveIconColor: Colors.blue, 
+                      onRowSaved: (row) => saveZone(row), 
+                      showCreateButton: true, 
+                      createButtonLabel: Text('Add zone'), 
+                      createButtonIcon: Icon(Icons.add), 
+                      createButtonColor: Colors.blue, 
+                      columns: [
+                        {"title": "Zone", 'index': 1, 'key': 'zoName'},
+                        {"title": "1", 'index': 2, 'key': 'h1'},
+                        {"title": "2", 'index': 3, 'key': 'h2'},
+                        {"title": "3", 'index': 4, 'key': 'h3'},
+                        {"title": "4", 'index': 5, 'key': 'h4'},
+                        {"title": "5", 'index': 6, 'key': 'h5'},
+                        {"title": "6", 'index': 7, 'key': 'h6'},
+                        {"title": "7", 'index': 8, 'key': 'h7'},
+                        {"title": "8", 'index': 9, 'key': 'h8'},
+                        {"title": "9", 'index': 10,'key': 'h9'}
+                      ],
+                      rows: [
+                        {'zoName': 'Ou', 'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '','h9': ''},
+                        {'zoName': 'I',  'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '','h9': ''},
+                      ]
+                    )
+                  ),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                       child: Text('Create'),
