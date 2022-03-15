@@ -302,12 +302,12 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
         });
 }
 
-_showActivityPage showActivityPage(var activity, int uId) {
-  return _showActivityPage(activity, uId);
+_showActivityPage showActivityPage(var activity, int uId, String title) {
+  return _showActivityPage(activity, uId, title);
 }
 
 class _showActivityPage extends MaterialPageRoute<bool> {
-  _showActivityPage(var activity, int uId)
+  _showActivityPage(var activity, int uId, String title)
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
 
@@ -344,7 +344,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
           }
 
           return Scaffold(
-              appBar: AppBar(title: Text('Selected Activity'), elevation: 1.0),
+              appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Container(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[

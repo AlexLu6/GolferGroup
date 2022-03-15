@@ -4,33 +4,27 @@ var golferGroup = {
   {
     "name": "麻吉 Fun Golf",
     "region": "北台灣",
-    "managers": [
-      100,
-    ],
-    "members": [
-      101,
-      102
-    ],
+    "managers": [100],
+    "members": [101,102],
     "remarks": "Please use real name and phone number!",
     "gid": 1
   },
   {
     "name": "開心家族",
     "region": "北台灣",
-    "managers": [
-      200,
-      103
-    ],
-    "members": [
-      201,
-      202,
-      203,
-      104
-    ],
+    "managers": [200,103],
+    "members": [201,202,203,104],
     "remarks": "Happy golfing!",
     "gid": 2
   }
 };
+
+String? groupName(int gid) {
+    for (var e in golferGroup)
+      if (e["gid"] == gid) 
+        return e["name"] as String;
+    return null;
+}
 
 bool isMember(int gid, int uid) {
   for (var e in golferGroup) 
