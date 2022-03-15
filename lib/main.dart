@@ -394,14 +394,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       separatorBuilder: (context, index) => Divider(),
     );
-    if (isManager(gID, _golferID)) {
-      for (var e in applyQueue) {
-        if (e['gid'] == gID && e['response'] == 'waiting') {
-          // grant or refuse the apply of e['uid']
-          grantApplyDialog(golferName(e['uid'] as int)!);
-        }
-      }
-    }
 
     return listView;
   }
@@ -442,7 +434,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return ListView();
   }
 
-  void doBodyAdd(int index) {
+  void doBodyAdd(int index) async {
     switch (index) {
       case 1:
         Navigator.push(context, newGroupPage(_golferID)).then((ret) {if (ret?? false) setState(() => index = 1);});
@@ -454,6 +446,19 @@ class _MyHomePageState extends State<MyHomePage> {
         Navigator.push(context, newGolfCoursePage()).then((ret) {if (ret?? false) setState(() => index = 3);});
         break;
       case 5:
+        if (isManager(_gID, _golferID)) {
+          for (var e in applyQueue) {
+            if (e['gid'] == _gID && e['response'] == 'waiting') {
+              // grant or refuse the apply of e['uid']
+              bool? ans = await grantApplyDialog(golferName(e['uid'] as int)!);
+              if (ans!) {
+                e['response'] = 'OK';
+                // add e['uid] to members
+              } else 
+                e['response'] = 'No';
+            }
+          }
+        }
         Navigator.push(context, newActivityPage(true, _gID)).then((ret) {if (ret?? false) setState(() => index = 5);});
         break;
     }
