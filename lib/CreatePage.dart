@@ -298,7 +298,13 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                         Navigator.of(context).pop(true);
                       }),
                 ]));
-              }));
+              }),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {},
+                child: const Icon(Icons.edit),
+              ),
+              floatingActionButtonLocation: FloatingActionButtonLocation.endFloat
+            );
         });
 }
 
@@ -346,8 +352,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-                return Container(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 16.0),
                   Text(activity['tee off'] + '\t' + Language.of(context).fee + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
