@@ -210,7 +210,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
   _NewGolfCoursePage()
       : super(builder: (BuildContext context) {
           String _courseName = '', _region = '', _photoURL = '';
-          int zoneCnt = 0;
+//          int zoneCnt = 0;
           var _courseZones = [];
 
           saveZone(var row) {
@@ -302,6 +302,42 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
               }),
             );
         });
+}
+
+class _googleMapPage extends MaterialPageRoute<bool> {
+
+  _googleMapPage() : super(builder: (BuildContext context) {
+    LatLng _initialPosition = LatLng(20.5937, 78.9629);
+    GoogleMapController _controller;
+    Location _location = Location();
+
+      void _onMapCreated(GoogleMapController _cntrl) {
+        _controller = _cntrl;
+        _location.onLocationChanged.listen((l) { 
+          _controller.animateCamera(
+            CameraUpdate.newCameraPosition(
+              CameraPosition(target: LatLng(l.latitude!, l.longitude!),zoom: 15),
+            ),
+          );
+        });
+      }
+
+      return Scaffold(
+        appBar: AppBar(title: Text('Pick the course location'), elevation: 1.0),
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(children: [
+            GoogleMap(
+              initialCameraPosition: CameraPosition(target: _initialPosition),
+              mapType: MapType.hybrid,
+              onMapCreated: _onMapCreated,
+              myLocationEnabled: true,
+            )
+          ])
+        )
+      );
+    });
 }
 
 _showActivityPage showActivityPage(var activity, int uId, String title, bool editable) {
