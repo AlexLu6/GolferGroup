@@ -227,6 +227,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
             var result = await googlePlace.autocomplete.get(value);
             if (result != null && result.predictions != null) {
 //              setState(() {
+                print(value);
                 predictions = result.predictions;
                 print(predictions);
 //              });
@@ -239,10 +240,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   TextFormField(
                     showCursor: true,
                     onChanged: (String value) {
-                      if (value.isNotEmpty) {
-                        print(value);
+                      if (value.isNotEmpty)
                         autoCompleteSearch(value);
-                      }
                     },
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
