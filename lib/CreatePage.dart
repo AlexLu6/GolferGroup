@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:editable/editable.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
+import 'package:google_place/google_place.dart';
 import 'dataModel.dart';
 import 'locale/language.dart';
 
@@ -210,6 +211,8 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
           String _courseName = '', _region = '', _photoURL = '';
 //          int zoneCnt = 0;
           var _courseZones = [];
+          List<AutocompletePrediction>? predictions = [];
+          GooglePlace googlePlace = GooglePlace('AIzaSyD26EyAImrDoOMn3o6FgmSQjlttxjqmS7U');
 
           saveZone(var row) {
             print(row);
@@ -220,14 +223,25 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
               ],
             });
           }
-
+          void autoCompleteSearch(String value) async {
+            var result = await googlePlace.autocomplete.get(value);
+            if (result != null && result.predictions != null) {
+//              setState(() {
+                predictions = result.predictions;
+                print(predictions);
+//              });
+            }
+          }
           return Scaffold(
               appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Center(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   TextFormField(
                     showCursor: true,
-                    onChanged: (String value) => _courseName = value,
+                    onChanged: (String value) {
+                      if (value.isNotEmpty)
+                        autoCompleteSearch(value);
+                    },
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
                   ),
@@ -261,7 +275,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       createButtonLabel: Text('Add zone'), 
                       createButtonIcon: Icon(Icons.add), 
                       createButtonColor: Colors.blue, 
-                      columnRatio: 0.14,
+                      columnRatio: 0.15,
                       columns: [
                         {"title": "Zone", 'index': 1, 'key': 'zoName'},
                         {"title": "1", 'index': 2, 'key': 'h1'},
