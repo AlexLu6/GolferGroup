@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:image_picker/image_picker.dart';
+//import 'package:image_picker/image_picker.dart';
 import 'dataModel.dart';
 import 'CreatePage.dart';
 import 'locale/language.dart';
@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
   gendre _sex = gendre.Male;
   double _handicap = 18;
   bool isRegistered = false, isUpdate = false;
-  final ImagePicker _picker = ImagePicker();
+//  final ImagePicker _picker = ImagePicker();
 
   @override
   void initState() {
