@@ -261,7 +261,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       createButtonLabel: Text('Add zone'), 
                       createButtonIcon: Icon(Icons.add), 
                       createButtonColor: Colors.blue, 
-                      columnRatio: 0.13,
+                      columnRatio: 0.14,
                       columns: [
                         {"title": "Zone", 'index': 1, 'key': 'zoName'},
                         {"title": "1", 'index': 2, 'key': 'h1'},
