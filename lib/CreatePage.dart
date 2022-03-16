@@ -241,8 +241,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   TextFormField(
                     showCursor: true,
                     onTap: ()  {
-                      GoogleMapController _controller;
-                      Location _location = Location();
+                      Navigator.push(context, _googleMapPage());
                     },
                     decoration: InputDecoration(labelText: "Location:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
                   ),
