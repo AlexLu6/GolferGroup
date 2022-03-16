@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:editable/editable.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 import 'dataModel.dart';
 import 'locale/language.dart';
 
