@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:editable/editable.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'dataModel.dart';
 import 'locale/language.dart';
 
@@ -241,7 +239,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   TextFormField(
                     showCursor: true,
                     onTap: ()  {
-                      Navigator.push(context, _googleMapPage());
+//                      Navigator.push(context, _googleMapPage());
                     },
                     decoration: InputDecoration(labelText: "Location:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
                   ),
@@ -303,41 +301,6 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
         });
 }
 
-class _googleMapPage extends MaterialPageRoute<bool> {
-
-  _googleMapPage() : super(builder: (BuildContext context) {
-    LatLng _initialPosition = LatLng(24.8765588, 121.1091453);
-    GoogleMapController _controller;
-    Location _location = Location();
-
-      void _onMapCreated(GoogleMapController _cntrl) {
-        _controller = _cntrl;
-        _location.onLocationChanged.listen((l) { 
-          _controller.animateCamera(
-            CameraUpdate.newCameraPosition(
-              CameraPosition(target: LatLng(l.latitude!, l.longitude!),zoom: 15),
-            ),
-          );
-        });
-      }
-
-      return Scaffold(
-        appBar: AppBar(title: Text('Pick the course location'), elevation: 1.0),
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(children: [
-            GoogleMap(
-              initialCameraPosition: CameraPosition(target: _initialPosition),
-              mapType: MapType.normal,
-              onMapCreated: _onMapCreated,
-//              myLocationEnabled: true,
-            )
-          ])
-        )
-      );
-    });
-}
 
 _showActivityPage showActivityPage(var activity, int uId, String title, bool editable) {
   return _showActivityPage(activity, uId, title, editable);
@@ -433,10 +396,3 @@ class _showActivityPage extends MaterialPageRoute<bool> {
             );
         });
 }
-
-/* void showPlacePicker() async {
-    LocationResult result = await Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-      PlacePicker("AIzaSyD26EyAImrDoOMn3o6FgmSQjlttxjqmS7U")
-    ));
-    print(result);
-}*/
