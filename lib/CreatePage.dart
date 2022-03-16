@@ -239,8 +239,10 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   TextFormField(
                     showCursor: true,
                     onChanged: (String value) {
-                      if (value.isNotEmpty)
+                      if (value.isNotEmpty) {
+                        print(value);
                         autoCompleteSearch(value);
+                      }
                     },
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
