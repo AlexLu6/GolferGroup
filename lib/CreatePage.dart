@@ -225,9 +225,9 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
           }
           void autoCompleteSearch(String value) async {
             var result = await googlePlace.autocomplete.get(value);
+            print(value);
             if (result != null && result.predictions != null) {
 //              setState(() {
-                print(value);
                 predictions = result.predictions;
                 print(predictions);
 //              });
