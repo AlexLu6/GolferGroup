@@ -306,7 +306,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
 class _googleMapPage extends MaterialPageRoute<bool> {
 
   _googleMapPage() : super(builder: (BuildContext context) {
-    LatLng _initialPosition = LatLng(20.5937, 78.9629);
+    LatLng _initialPosition = LatLng(24.8765588, 121.1091453);
     GoogleMapController _controller;
     Location _location = Location();
 
