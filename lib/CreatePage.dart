@@ -329,7 +329,7 @@ class _googleMapPage extends MaterialPageRoute<bool> {
           child: Stack(children: [
             GoogleMap(
               initialCameraPosition: CameraPosition(target: _initialPosition),
-              mapType: MapType.hybrid,
+              mapType: MapType.normal,
               onMapCreated: _onMapCreated,
               myLocationEnabled: true,
             )
