@@ -331,7 +331,7 @@ class _googleMapPage extends MaterialPageRoute<bool> {
               initialCameraPosition: CameraPosition(target: _initialPosition),
               mapType: MapType.normal,
               onMapCreated: _onMapCreated,
-              myLocationEnabled: true,
+//              myLocationEnabled: true,
             )
           ])
         )
