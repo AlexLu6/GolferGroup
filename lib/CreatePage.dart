@@ -239,10 +239,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                 return Center(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   TextFormField(
                     showCursor: true,
-                    onChanged: (String value) {
-                      if (value.isNotEmpty)
-                        autoCompleteSearch(value);
-                    },
+                    onChanged: (String value) => _courseName = value,
                     //keyboardType: TextInputType.name,
                     decoration: InputDecoration(labelText: "Course Name:", icon: Icon(Icons.golf_course), border: UnderlineInputBorder()),
                   ),
