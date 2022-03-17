@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dataModel.dart';
 import 'CreatePage.dart';
 import 'locale/language.dart';
@@ -32,11 +34,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 //      title: 'Golfer Group',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
+          primarySwatch: Colors.blue,
+          primaryColor: Colors.blue,
 //        accentColor: Colors.white,
-        visualDensity: VisualDensity.adaptivePlatformDensity
-      ),
+          visualDensity: VisualDensity.adaptivePlatformDensity),
       home: MyHomePage(),
     );
   }
@@ -56,7 +57,7 @@ String? _golferAvatar;
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentPageIndex = 0;
-  int _golferID = 0, _gID=1;
+  int _golferID = 0, _gID = 1;
   String _name = '', _phone = '';
   gendre _sex = gendre.Male;
   double _handicap = 18;
@@ -84,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     List<String> appTitle = [
       Language.of(context).golferInfo,
-      Language.of(context).groups,//"Groups",
+      Language.of(context).groups, //"Groups",
       Language.of(context).activities, //"Activities",
       Language.of(context).golfCourses, //"Golf courses",
       Language.of(context).myScores, //"My Scores",
@@ -95,13 +96,19 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0 ? RegisterBody()
-              : _currentPageIndex == 1 ? GroupBody()
-              : _currentPageIndex == 2 ? ActivityBody()
-              : _currentPageIndex == 3 ? GolfCourseBody()
-              : _currentPageIndex == 4 ? MyScoreBody() 
-              : _currentPageIndex == 5 ? groupActivityBody(_gID)  : null
-          ),
+          child: _currentPageIndex == 0
+              ? RegisterBody()
+              : _currentPageIndex == 1
+                  ? GroupBody()
+                  : _currentPageIndex == 2
+                      ? ActivityBody()
+                      : _currentPageIndex == 3
+                          ? GolfCourseBody()
+                          : _currentPageIndex == 4
+                              ? MyScoreBody()
+                              : _currentPageIndex == 5
+                                  ? groupActivityBody(_gID)
+                                  : null),
       drawer: isRegistered ? golfDrawer() : null,
       floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4) || (_currentPageIndex == 5)
           ? FloatingActionButton(
@@ -323,6 +330,7 @@ class _MyHomePageState extends State<MyHomePage> {
           );
         });
   }
+
   Future<bool?> grantApplyDialog(String name) {
     return showDialog<bool>(
         context: context,
@@ -371,7 +379,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView groupActivityBody(int gID) {
-    int eidx=0;
+    int eidx = 0;
     List<int> map = [];
     for (var e in groupActivities) {
       if (e["gid"] as int == gID) {
@@ -382,15 +390,13 @@ class _MyHomePageState extends State<MyHomePage> {
     var listView = ListView.separated(
       itemCount: map.length,
       itemBuilder: (context, index) => ListTile(
-        title: Text(courseName(groupActivities.elementAt(map[index])["cid"] as int)!, style: TextStyle(fontSize: 20)), 
-        subtitle: Text(Language.of(context).teeOff +groupActivities.elementAt(map[index])["tee off"].toString() + 
-            '\n' + Language.of(context).max + groupActivities.elementAt(map[index])["max"].toString() + '\t' + Language.of(context).now + (groupActivities.elementAt(map[index])["golfers"] as List).length.toString() + "\t"+ Language.of(context).fee + groupActivities.elementAt(map[index])["fee"].toString()), 
-        leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!), 
-        trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {
-          Navigator.push(context, showActivityPage(groupActivities.elementAt(index), _golferID, groupName(gID)!, isManager(gID, _golferID)));
-        }
-      ),
+          title: Text(courseName(groupActivities.elementAt(map[index])["cid"] as int)!, style: TextStyle(fontSize: 20)),
+          subtitle: Text(Language.of(context).teeOff + groupActivities.elementAt(map[index])["tee off"].toString() + '\n' + Language.of(context).max + groupActivities.elementAt(map[index])["max"].toString() + '\t' + Language.of(context).now + (groupActivities.elementAt(map[index])["golfers"] as List).length.toString() + "\t" + Language.of(context).fee + groupActivities.elementAt(map[index])["fee"].toString()),
+          leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!),
+          trailing: Icon(Icons.keyboard_arrow_right),
+          onTap: () {
+            Navigator.push(context, showActivityPage(groupActivities.elementAt(index), _golferID, groupName(gID)!, isManager(gID, _golferID)));
+          }),
       separatorBuilder: (context, index) => Divider(),
     );
 
@@ -401,15 +407,13 @@ class _MyHomePageState extends State<MyHomePage> {
     var listView = ListView.separated(
       itemCount: golferActivities.length,
       itemBuilder: (context, index) => ListTile(
-        title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)), 
-        subtitle: Text(Language.of(context).teeOff + golferActivities.elementAt(index)["tee off"].toString() + 
-            '\n' + Language.of(context).max + golferActivities.elementAt(index)["max"].toString() + '\t' + Language.of(context).now + (golferActivities.elementAt(index)["golfers"] as List).length.toString() + "\t" + Language.of(context).fee + golferActivities.elementAt(index)["fee"].toString()), 
-        leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!), 
-        trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () {
-          Navigator.push(context, showActivityPage(golferActivities.elementAt(index), _golferID, golferName(golferActivities.elementAt(index)['uid'] as int)!, _golferID == golferActivities.elementAt(index)['uid'] as int));
-        }
-      ),
+          title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)),
+          subtitle: Text(Language.of(context).teeOff + golferActivities.elementAt(index)["tee off"].toString() + '\n' + Language.of(context).max + golferActivities.elementAt(index)["max"].toString() + '\t' + Language.of(context).now + (golferActivities.elementAt(index)["golfers"] as List).length.toString() + "\t" + Language.of(context).fee + golferActivities.elementAt(index)["fee"].toString()),
+          leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!),
+          trailing: Icon(Icons.keyboard_arrow_right),
+          onTap: () {
+            Navigator.push(context, showActivityPage(golferActivities.elementAt(index), _golferID, golferName(golferActivities.elementAt(index)['uid'] as int)!, _golferID == golferActivities.elementAt(index)['uid'] as int));
+          }),
       separatorBuilder: (context, index) => Divider(),
     );
     return listView;
@@ -418,12 +422,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ListView GolfCourseBody() {
     var listView = ListView.separated(
       itemCount: golfCourses.length,
-      itemBuilder: (context, index) => ListTile(
-        title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), 
-        style: TextStyle(fontSize: 20)), 
-        subtitle: Text(((golfCourses.elementAt(index)["zones"] as List).length * 9).toString() + ' Holes'), 
-          leading: Image.network(golfCourses.elementAt(index)["photo"] as String), 
-          trailing: Icon(Icons.keyboard_arrow_right)),
+      itemBuilder: (context, index) => ListTile(title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)), subtitle: Text(((golfCourses.elementAt(index)["zones"] as List).length * 9).toString() + ' Holes'), leading: Image.network(golfCourses.elementAt(index)["photo"] as String), trailing: Icon(Icons.keyboard_arrow_right)),
       separatorBuilder: (context, index) => Divider(),
     );
     return listView;
@@ -436,13 +435,19 @@ class _MyHomePageState extends State<MyHomePage> {
   void doBodyAdd(int index) async {
     switch (index) {
       case 1:
-        Navigator.push(context, newGroupPage(_golferID)).then((ret) {if (ret?? false) setState(() => index = 1);});
+        Navigator.push(context, newGroupPage(_golferID)).then((ret) {
+          if (ret ?? false) setState(() => index = 1);
+        });
         break;
       case 2:
-        Navigator.push(context, newActivityPage(false, _golferID)).then((ret) {if (ret?? false) setState(() => index = 2);});
+        Navigator.push(context, newActivityPage(false, _golferID)).then((ret) {
+          if (ret ?? false) setState(() => index = 2);
+        });
         break;
       case 3:
-        Navigator.push(context, newGolfCoursePage()).then((ret) {if (ret?? false) setState(() => index = 3);});
+        Navigator.push(context, newGolfCoursePage()).then((ret) {
+          if (ret ?? false) setState(() => index = 3);
+        });
         break;
       case 5:
         if (isManager(_gID, _golferID)) {
@@ -453,12 +458,14 @@ class _MyHomePageState extends State<MyHomePage> {
               if (ans!) {
                 e['response'] = 'OK';
                 addMember(_gID, e['uid'] as int);
-              } else 
+              } else
                 e['response'] = 'No';
             }
           }
         }
-        Navigator.push(context, newActivityPage(true, _gID)).then((ret) {if (ret?? false) setState(() => index = 5);});
+        Navigator.push(context, newActivityPage(true, _gID)).then((ret) {
+          if (ret ?? false) setState(() => index = 5);
+        });
         break;
     }
   }
