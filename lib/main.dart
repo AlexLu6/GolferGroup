@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dataModel.dart';
 import 'CreatePage.dart';
@@ -68,16 +67,18 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
     print(_golferID);
-    for (var e in golfers) {
-      if (e["uid"] == _golferID) {
-        _name = e["name"].toString();
-        _phone = e["phone"].toString();
-        _sex = e["sex"] == 1 ? gendre.Male : gendre.Female;
-        isRegistered = true;
-        _currentPageIndex = 1;
-        break;
-      }
-    }
+    FirebaseFirestore.instance.collection('Golfers')
+      .where('uid', isEqualTo: _golferID)
+      .get().then((value) {
+        value.docs.forEach((result) {
+          var items = result.data();
+          _name = items['name'];
+          _phone = items['phone'];
+          _sex = items['sex'] == 1 ? gendre.Male : gendre.Female;
+          isRegistered = true;
+          _currentPageIndex = 1;
+        });
+      });
     super.initState();
   }
 
@@ -246,38 +247,42 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(color: Colors.white, fontSize: 20.0),
             ),
             onPressed: () {
-              if (_name != '' && _phone != '') {
-                for (var e in golfers) {
-                  if (isUpdate) {
-                    if (e["uid"] == _golferID) {
-                      e["name"] = _name;
-                      e["phone"] = _phone;
-                      e["sex"] = _sex == gendre.Male ? 1 : 2;
-                      break;
-                    }
-                  } else if (e["name"].toString() == _name && e["phone"].toString() == _phone) {
-                    _golferID = e["uid"] as int;
-                    print(_name + " already registered");
-                    print(_golferID);
-                    break;
+              if (isUpdate) {
+                  if (_name != '' && _phone != '') {
+                    FirebaseFirestore.instance.collection('Golfers').doc().update({
+                      "name": _name,
+                      "phone": _phone,
+                      "sex": _sex == gendre.Male ? 1 : 2,
+                    });
+                  }
+                } else {
+                  if (_name != '' && _phone != '') {
+                    FirebaseFirestore.instance.collection('Golfers')
+                    .where('name', isEqualTo: _name)
+                    .where('phone', isEqualTo: _phone).get().then((value) {
+                      value.docs.forEach((result) {
+                        var items = result.data();
+                        _golferID = items['uid'];
+                        print(_name + '(' + _phone + ') already registered! ($_golferID)');
+                      });
+                    }).whenComplete(() {
+                      if (_golferID == 0) {
+                        _golferID = DateTime.now().millisecondsSinceEpoch;
+
+                        FirebaseFirestore.instance.collection('Golfers').add({
+                          "name": _name,
+                          "phone": _phone,
+                          "sex": _sex == gendre.Male ? 1 : 2,
+                          "uid": _golferID
+                        });
+                        print('Add new goler ' + _name);
+                        print(_golferID);
+                      }
+                      prefs!.setInt('golferID', _golferID);
+                      setState(() => isRegistered = true);
+                    });
                   }
                 }
-                if (_golferID == 0) {
-                  _golferID = DateTime.now().millisecondsSinceEpoch;
-
-                  golfers.add({
-                    "name": _name,
-                    "phone": _phone,
-                    "sex": _sex == gendre.Male ? 1 : 2,
-                    "uid": _golferID
-                  });
-                  print('Add new goler ' + _name);
-                  print(_golferID);
-                }
-                prefs!.setInt('golferID', _golferID);
-              }
-              setState(() => isRegistered = true);
-              _currentPageIndex = 1;
             }),
       ),
     );
