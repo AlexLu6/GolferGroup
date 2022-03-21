@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
           _name = items['name'];
           _phone = items['phone'];
           _sex = items['sex'] == 1 ? gendre.Male : gendre.Female;
-          isRegistered = true;
+          setState(() => isRegistered = true);
           _currentPageIndex = 1;
         });
       });
