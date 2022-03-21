@@ -279,6 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         print(_golferID);
                       }
                       prefs!.setInt('golferID', _golferID);
+                      _currentPageIndex = 1;
                       setState(() => isRegistered = true);
                     });
                   }
