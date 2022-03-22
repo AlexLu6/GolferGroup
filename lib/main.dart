@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   gendre _sex = gendre.Male;
   double _handicap = 18;
   bool isRegistered = false, isUpdate = false;
+  var _golferDoc;
 //  final ImagePicker _picker = ImagePicker();
 
   @override
@@ -71,6 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
       .where('uid', isEqualTo: _golferID)
       .get().then((value) {
         value.docs.forEach((result) {
+          _golferDoc = result.id;
+          print(_golferDoc);
           var items = result.data();
           _name = items['name'];
           _phone = items['phone'];
