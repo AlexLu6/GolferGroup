@@ -265,7 +265,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     .where('phone', isEqualTo: _phone).get().then((value) {
                       value.docs.forEach((result) {
                         var items = result.data();
+                        _golferDoc = result.id;
                         _golferID = items['uid'];
+                        _sex = items['sex'] == 1 ? gendre.Male : gendre.Female;
                         print(_name + '(' + _phone + ') already registered! ($_golferID)');
                       });
                     }).whenComplete(() {
@@ -278,8 +280,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           "sex": _sex == gendre.Male ? 1 : 2,
                           "uid": _golferID
                         });
-                        print('Add new goler ' + _name);
-                        print(_golferID);
                       }
                       prefs!.setInt('golferID', _golferID);
                       _currentPageIndex = 1;
