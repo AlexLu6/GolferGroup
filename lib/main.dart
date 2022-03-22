@@ -67,13 +67,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
-    print(_golferID);
     FirebaseFirestore.instance.collection('Golfers')
       .where('uid', isEqualTo: _golferID)
       .get().then((value) {
         value.docs.forEach((result) {
           _golferDoc = result.id;
-          print(_golferDoc);
           var items = result.data();
           _name = items['name'];
           _phone = items['phone'];
@@ -257,6 +255,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       "phone": _phone,
                       "sex": _sex == gendre.Male ? 1 : 2,
                     });
+                    _currentPageIndex = 1;
+                    setState(() => isUpdate = false);
                   }
                 } else {
                   if (_name != '' && _phone != '') {
