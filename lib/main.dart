@@ -252,15 +252,10 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               if (isUpdate) {
                   if (_name != '' && _phone != '') {
-                    FirebaseFirestore.instance.collection('Golfers')
-                    .where('uid', isEqualTo: _golferID).
-                    get().then((value) { 
-                      value.docs.forEach((result) {
-                        var items = result.data();
-                        items['name'] = _name;
-                        items['phone'] = _phone;
-                        items['sex'] = _sex == gendre.Male ? 1 : 2;
-                      });
+                    FirebaseFirestore.instance.collection('Golfers').doc(_golferDoc).update({
+                      "name": _name,
+                      "phone": _phone,
+                      "sex": _sex == gendre.Male ? 1 : 2,
                     });
                   }
                 } else {
