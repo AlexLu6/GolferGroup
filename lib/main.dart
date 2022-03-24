@@ -440,11 +440,11 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {         
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              print((doc.data()! as Map)["Zones"]);
+              print((doc.data()! as Map)["Zones"] as List<Map>);
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
 //                subtitle: Text((((doc.data()! as Map)["Zones"]).length * 9).toString() + ' Holes'), 
-                leading: Image.network((doc.data()! as Map)["Photo"]), 
+                leading: Image.network((doc.data()! as Map)["Photo"] as String), 
                 trailing: Icon(Icons.keyboard_arrow_right)
               ));
             }).toList()
