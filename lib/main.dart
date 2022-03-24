@@ -351,7 +351,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget? GroupBody() {
 
-    StreamBuilder<QuerySnapshot>(
+    return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
       builder: (context, snapshot) {
         print('group builder');
