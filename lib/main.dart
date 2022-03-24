@@ -437,12 +437,13 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
-        } else {
+        } else {         
           return ListView(
             children: snapshot.data!.docs.map((doc) {
+              print((doc.data()! as Map)["Zones"]);
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
-                subtitle: Text((((doc.data()! as Map)["Zones"]).length * 9).toString() + ' Holes'), 
+//                subtitle: Text((((doc.data()! as Map)["Zones"]).length * 9).toString() + ' Holes'), 
                 leading: Image.network((doc.data()! as Map)["photo"]), 
                 trailing: Icon(Icons.keyboard_arrow_right)
               ));
