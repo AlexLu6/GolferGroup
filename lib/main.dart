@@ -355,10 +355,12 @@ class _MyHomePageState extends State<MyHomePage> {
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
+          print('No Activity');
           return Center(child: Text('Empty'));
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
+              print((doc.data()! as Map)["Name"]);
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
