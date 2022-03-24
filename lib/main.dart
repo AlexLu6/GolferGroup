@@ -356,7 +356,7 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, snapshot) {
         print('group builder');
         if (!snapshot.hasData) {
-          return const LinearProgressIndicator();
+          return const CircularProgressIndicator();
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
