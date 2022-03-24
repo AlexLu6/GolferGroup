@@ -431,13 +431,26 @@ class _MyHomePageState extends State<MyHomePage> {
     return listView;
   }
 
-  ListView GolfCourseBody() {
-    var listView = ListView.separated(
-      itemCount: golfCourses.length,
-      itemBuilder: (context, index) => ListTile(title: Text(golfCourses.elementAt(index)["region"].toString() + ' ' + golfCourses.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)), subtitle: Text(((golfCourses.elementAt(index)["zones"] as List).length * 9).toString() + ' Holes'), leading: Image.network(golfCourses.elementAt(index)["photo"] as String), trailing: Icon(Icons.keyboard_arrow_right)),
-      separatorBuilder: (context, index) => Divider(),
+  Widget? GolfCourseBody() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('GolfCourses').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const CircularProgressIndicator();
+        } else {
+          return ListView(
+            children: snapshot.data!.docs.map((doc) {
+              return Card(child: ListTile(
+                title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
+                subtitle: Text((((doc.data()! as Map)["zones"] as List).length * 9).toString() + ' Holes'), 
+                leading: Image.network((doc.data()! as Map)["photo"] as String), 
+                trailing: Icon(Icons.keyboard_arrow_right)
+              ));
+            }).toList()
+          );
+        }
+      }
     );
-    return listView;
   }
 
   ListView MyScoreBody() {
