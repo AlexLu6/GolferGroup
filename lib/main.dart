@@ -473,10 +473,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 var e = result.data();
                 bool? ans = await grantApplyDialog(golferName(e['uid'] as int)!);
                 if (ans!) {
-                  e['response'] = 'OK';
+                  e.update('response', (value) => 'OK');
                   addMember(_gID, e['uid'] as int);
                 } else
-                  e['response'] = 'No';
+                  e.update('response', (value) => 'No');
               });
           });
         }
