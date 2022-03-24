@@ -355,8 +355,7 @@ class _MyHomePageState extends State<MyHomePage> {
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          print('No Activity');
-          return Center(child: Text('Empty'));
+          return const LinearProgressIndicator();
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
