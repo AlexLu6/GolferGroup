@@ -377,12 +377,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     bool? apply = await showApplyDialog(isApplying(_gID, _golferID) == 1);
                     if (apply!) {
                       // fill the apply waiting queue
-                      applyQueue.add({
+                      FirebaseFirestore.instance.collection('ApplyQueue').add({
                         "uid": _golferID,
                         "gid": _gID,
                         "response": "waiting"
                       });
-                      print(applyQueue);
                     }
                   }
                 },
