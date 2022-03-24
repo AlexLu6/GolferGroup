@@ -358,8 +358,8 @@ class _MyHomePageState extends State<MyHomePage> {
           return Center(child: Text('Empty'));
         } else {
           return ListView(
-            children: snapshot.data!.docs.map((doc) => 
-              Card(child: ListTile(
+            children: snapshot.data!.docs.map((doc) {
+              return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
                 Language.of(context).manager + golferNames((doc.data()! as Map)["managers"] as List<int>)! + "\n" + 
@@ -384,8 +384,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   }
                 },
-              ))
-            ).toList(),
+              ));
+            }).toList(),
           );
         }
       });
