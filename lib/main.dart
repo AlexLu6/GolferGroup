@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   gendre _sex = gendre.Male;
   double _handicap = 18;
   bool isRegistered = false, isUpdate = false;
-  var _golferDoc;
+  var _golferDoc, _groupDoc;
 //  final ImagePicker _picker = ImagePicker();
 
   @override
@@ -98,19 +98,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0
-              ? RegisterBody()
-              : _currentPageIndex == 1
-                  ? GroupBody()
-                  : _currentPageIndex == 2
-                      ? ActivityBody()
-                      : _currentPageIndex == 3
-                          ? GolfCourseBody()
-                          : _currentPageIndex == 4
-                              ? MyScoreBody()
-                              : _currentPageIndex == 5
-                                  ? groupActivityBody(_gID)
-                                  : null),
+          child: _currentPageIndex == 0 ? RegisterBody()
+               : _currentPageIndex == 1 ? GroupBody()
+               : _currentPageIndex == 2 ? ActivityBody()
+               : _currentPageIndex == 3 ? GolfCourseBody()
+               : _currentPageIndex == 4 ? MyScoreBody()
+               : _currentPageIndex == 5 ? groupActivityBody(_gID): null
+      ),
       drawer: isRegistered ? golfDrawer() : null,
       floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4) || (_currentPageIndex == 5)
           ? FloatingActionButton(
@@ -355,36 +349,46 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  ListView GroupBody() {
-    var listView = ListView.separated(
-      itemCount: golferGroup.length,
-      itemBuilder: (context, index) => ListTile(
-        title: Text(golferGroup.elementAt(index)["name"].toString(), style: TextStyle(fontSize: 20)),
-        subtitle: Text(Language.of(context).region + golferGroup.elementAt(index)["region"].toString() + "\n" + Language.of(context).manager + golferNames(golferGroup.elementAt(index)["managers"] as List<int>)! + "\n" + Language.of(context).members + (golferGroup.elementAt(index)["members"] as List<int>).length.toString()),
-        leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"),
-        /*Icon(Icons.group), */
-        trailing: Icon(Icons.keyboard_arrow_right),
-        onTap: () async {
-          _gID = golferGroup.elementAt(index)["gid"] as int;
-          if (isMember(_gID, _golferID)) {
-            setState(() => _currentPageIndex = 5);
-          } else {
-            bool? apply = await showApplyDialog(isApplying(_gID, _golferID) == 1);
-            if (apply!) {
-              // fill the apply waiting queue
-              applyQueue.add({
-                "uid": _golferID,
-                "gid": _gID,
-                "response": "waiting"
-              });
-              print(applyQueue);
-            }
-          }
-        },
-      ),
-      separatorBuilder: (context, index) => Divider(),
-    );
-    return listView;
+  Widget? GroupBody() {
+
+    StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(child: Text('Empty'));
+        } else {
+          return ListView(
+            children: snapshot.data!.docs.map((doc) => 
+              Card(child: ListTile(
+                title: Text((doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
+                subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
+                Language.of(context).manager + golferNames((doc.data()! as Map)["managers"] as List<int>)! + "\n" + 
+                Language.of(context).members + ((doc.data()! as Map)["members"] as List<int>).length.toString()),
+                leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () async {
+                  _gID = (doc.data()! as Map)["gid"] as int;
+                  _groupDoc = doc.id;
+                  if (isMember(_gID, _golferID)) {
+                    setState(() => _currentPageIndex = 5);
+                  } else {
+                    bool? apply = await showApplyDialog(isApplying(_gID, _golferID) == 1);
+                    if (apply!) {
+                      // fill the apply waiting queue
+                      applyQueue.add({
+                        "uid": _golferID,
+                        "gid": _gID,
+                        "response": "waiting"
+                      });
+                      print(applyQueue);
+                    }
+                  }
+                },
+              ))
+            ).toList(),
+          );
+        }
+      });
   }
 
   ListView groupActivityBody(int gID) {
@@ -449,7 +453,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
         break;
       case 2:
-        Navigator.push(context, newActivityPage(false, _golferID)).then((ret) {
+        Navigator.push(context, newActivityPage('golferActivities', _golferDoc, _golferDoc)).then((ret) {
           if (ret ?? false) setState(() => index = 2);
         });
         break;
@@ -472,7 +476,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }
           }
         }
-        Navigator.push(context, newActivityPage(true, _gID)).then((ret) {
+        Navigator.push(context, newActivityPage("groupActivities", _groupDoc, _golferDoc)).then((ret) {
           if (ret ?? false) setState(() => index = 5);
         });
         break;

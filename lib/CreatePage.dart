@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:editable/editable.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
-//import 'package:google_place/google_place.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dataModel.dart';
 import 'locale/language.dart';
 
@@ -72,12 +72,12 @@ class NameID {
   int toID() => ID;
 }
 
-_NewActivityPage newActivityPage(bool isGroup, int golferID) {
-  return _NewActivityPage(isGroup, golferID);
+_NewActivityPage newActivityPage(String collection, String owner, String golfer) {
+  return _NewActivityPage(collection, owner, golfer);
 }
 
 class _NewActivityPage extends MaterialPageRoute<bool> {
-  _NewActivityPage(bool isGroup, int golferID)
+  _NewActivityPage(String collection, String owner, String golfer)
       : super(builder: (BuildContext context) {
           String _courseName = '';
           List<NameID> coursesItems = [];
@@ -85,8 +85,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
           String _fee = '2500', _max = '4';
-          var activity = isGroup ? groupActivities : golferActivities;
-          var tag = isGroup ? 'gid' : 'uid';
+          var activity = FirebaseFirestore.instance.collection(collection);
+          var tag = (collection == "groupActivities") ? 'gid' : 'uid';
 
           for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
 
@@ -177,7 +177,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                       onPressed: () {
                         if (_courseName != '') {
                         activity.add({
-                          tag: golferID,
+                          tag: owner,
                           "cid": _selectedCourse.toID(),
                           "tee off": _selectedDate.toString().substring(0, 16),
                           "max": _max,
@@ -185,14 +185,14 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           "golfers": _includeMe
                               ? [
                                   {
-                                    "uid": golferID,
+                                    "uid": golfer,
                                     "appTime": DateTime.now().toString().substring(0, 19),
                                     "scores": []
                                   }
                                 ]
                               : []
                         });
-                        print(activity);
+//                        print(activity);
                         Navigator.of(context).pop(true);
                         }
                       })
@@ -386,7 +386,6 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                             });
                         });
                         Navigator.of(context).pop(true);
-                        ;
                       }),
                   const SizedBox(height: 16.0),
                 ]));
