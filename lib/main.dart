@@ -350,10 +350,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget? GroupBody() {
-    print('group Body');
+
     StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
       builder: (context, snapshot) {
+        print('group builder');
         if (!snapshot.hasData) {
           return const LinearProgressIndicator();
         } else {
