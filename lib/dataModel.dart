@@ -269,23 +269,19 @@ String? coursePhoto(int cid) {
   return result;
 }
 
-var applyQueue = {
-  {
-    "uid": 103,
-    "gid": 1,
-    "response": "No"
-  }
-};
-
 int isApplying(int gid, int uid)
 {
-  for (var ap in applyQueue) {
-    if (((ap["uid"] as int) == uid) && ((ap["gid"] as int) == gid)) {
-      if (ap['response'] == 'waiting')
-        return 1;
-      else if (ap['response'] == 'No')
-        return -1;
-    }
-  }
-  return 0;
+  int res = 0;
+  FirebaseFirestore.instance.collection('ApplyQueue')
+    .where('gid', isEqualTo: gid)
+    .where('uid', isEqualTo: uid).get().then((value) {
+      value.docs.forEach((result) {
+        var items = result.data();
+        if (items['response']  == 'waiting')
+          res = 1;
+        else if (items['response'] == 'No')
+          res = -1;
+      });
+    });
+  return res;
 }

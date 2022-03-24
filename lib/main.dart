@@ -464,18 +464,21 @@ class _MyHomePageState extends State<MyHomePage> {
         });
         break;
       case 5:
-        if (isManager(_gID, _golferID)) {
-          for (var e in applyQueue) {
-            if (e['gid'] == _gID && e['response'] == 'waiting') {
-              // grant or refuse the apply of e['uid']
-              bool? ans = await grantApplyDialog(golferName(e['uid'] as int)!);
-              if (ans!) {
-                e['response'] = 'OK';
-                addMember(_gID, e['uid'] as int);
-              } else
-                e['response'] = 'No';
-            }
-          }
+        if (isManager(_gID, _golferID))  {
+          FirebaseFirestore.instance.collection('ApplyQueue')
+            .where('gid', isEqualTo: _gID)
+            .where('response', isEqualTo: 'waiting').get().then((value) {
+              value.docs.forEach((result) async {
+                // grant or refuse the apply of e['uid']
+                var e = result.data();
+                bool? ans = await grantApplyDialog(golferName(e['uid'] as int)!);
+                if (ans!) {
+                  e['response'] = 'OK';
+                  addMember(_gID, e['uid'] as int);
+                } else
+                  e['response'] = 'No';
+              });
+          });
         }
         Navigator.push(context, newActivityPage("groupActivities", _groupDoc, _golferDoc)).then((ret) {
           if (ret ?? false) setState(() => index = 5);
