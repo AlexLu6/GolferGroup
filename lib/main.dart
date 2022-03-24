@@ -360,7 +360,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListView(
             children: snapshot.data!.docs.map((doc) => 
               Card(child: ListTile(
-                title: Text((doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
+                title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
                 Language.of(context).manager + golferNames((doc.data()! as Map)["managers"] as List<int>)! + "\n" + 
                 Language.of(context).members + ((doc.data()! as Map)["members"] as List<int>).length.toString()),
