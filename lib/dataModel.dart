@@ -21,40 +21,66 @@ var golferGroup = {
 };
 
 String? groupName(int gid) {
-    for (var e in golferGroup)
-      if (e["gid"] == gid) 
-        return e["name"] as String;
-    return null;
+  FirebaseFirestore.instance.collection('GolferClubs')
+    .where('gid', isEqualTo: gid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          return items['Name'];
+      });
+    });
 }
 
 bool isMember(int gid, int uid) {
-  for (var e in golferGroup) 
-    if (e["gid"] == gid) 
-      for (var id in e["members"] as List<int>)
-        if (id == uid)
-          return true;
-  return false;
+  bool res = false;
+  FirebaseFirestore.instance.collection('GolferClubs')
+    .where('gid', isEqualTo: gid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          for (var id in items['members'] as List<int>)
+            if (id == uid)
+              res = true;
+      });
+    });
+  return res;
 }
 
 void addMember(int gid, int uid) {
-  for (var e in golferGroup) 
-    if (e["gid"] == gid) 
-      (e['members'] as List<int>).add(uid);
+  FirebaseFirestore.instance.collection('GolferClubs')
+    .where('gid', isEqualTo: gid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          (items['members'] as List<int>).add(uid);
+      });
+    });
 }
 
 bool isManager(int gid, int uid) {
-  for (var e in golferGroup) 
-    if (e["gid"] == gid) 
-      for (var id in e["managers"] as List<int>)
-        if (id == uid)
-          return true;
-  return false;
+  bool res = false;
+  FirebaseFirestore.instance.collection('GolferClubs')
+    .where('gid', isEqualTo: gid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          for (var id in items['managers'] as List<int>)
+            if (id == uid)
+              res = true;
+      });
+    });
+  return res;
 }
 
 void addManager(int gid, int uid) {
-  for (var e in golferGroup) 
-    if (e["gid"] == gid) 
-      (e['managers'] as List<int>).add(uid);
+  FirebaseFirestore.instance.collection('GolferClubs')
+    .where('gid', isEqualTo: gid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          (items['managers'] as List<int>).add(uid);
+      });
+    });
 }
 
 var golfers = {
@@ -109,9 +135,14 @@ var golfers = {
 };
 
 String? golferName(int uid) {
-    for (var e in golfers)
-      if (e["uid"] == uid) 
-        return e["name"] as String;
+  FirebaseFirestore.instance.collection('Golfers')
+    .where('uid', isEqualTo: uid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          return items['Name'];
+      });
+    });
     return null;
 }
 
