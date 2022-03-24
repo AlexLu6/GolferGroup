@@ -354,13 +354,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
       builder: (context, snapshot) {
-        print('group builder');
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              print((doc.data()! as Map)["Name"]);
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
@@ -454,7 +452,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
         break;
       case 2:
-        Navigator.push(context, newActivityPage('golferActivities', _golferDoc, _golferDoc)).then((ret) {
+        Navigator.push(context, newActivityPage(false, _golferDoc, _golferDoc)).then((ret) {
           if (ret ?? false) setState(() => index = 2);
         });
         break;
@@ -480,7 +478,7 @@ class _MyHomePageState extends State<MyHomePage> {
               });
           });
         }
-        Navigator.push(context, newActivityPage("groupActivities", _groupDoc, _golferDoc)).then((ret) {
+        Navigator.push(context, newActivityPage(true, _groupDoc, _golferDoc)).then((ret) {
           if (ret ?? false) setState(() => index = 5);
         });
         break;

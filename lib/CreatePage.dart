@@ -72,12 +72,12 @@ class NameID {
   int toID() => ID;
 }
 
-_NewActivityPage newActivityPage(String collection, String owner, String golfer) {
-  return _NewActivityPage(collection, owner, golfer);
+_NewActivityPage newActivityPage(bool isGroup, String owner, String golfer) {
+  return _NewActivityPage(isGroup, owner, golfer);
 }
 
 class _NewActivityPage extends MaterialPageRoute<bool> {
-  _NewActivityPage(String collection, String owner, String golfer)
+  _NewActivityPage(bool isGroup, String owner, String golfer)
       : super(builder: (BuildContext context) {
           String _courseName = '';
           List<NameID> coursesItems = [];
@@ -85,8 +85,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
           String _fee = '2500', _max = '4';
-          var activity = FirebaseFirestore.instance.collection(collection);
-          var tag = (collection == "groupActivities") ? 'gid' : 'uid';
+          var activity = FirebaseFirestore.instance.collection(isGroup ? 'ClubActivities' : 'GolferActivities');
+          var tag = isGroup ? 'gid' : 'uid';
 
           for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
 
