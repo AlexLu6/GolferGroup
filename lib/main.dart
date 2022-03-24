@@ -310,7 +310,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SizedBox(
           height: 8.0,
         ),
-        Text(isRegistered ? Language.of(context).handicap + ": ${_handicap}" : '', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text(isRegistered ? Language.of(context).handicap + ": $_handicap" : '', style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(
           height: 10.0,
         ),
@@ -327,8 +327,8 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text("Hint"),
             content: Text(applying ? 'You have applied already, wait for it.' : 'You should apply the group first'),
             actions: <Widget>[
-              FlatButton(child: Text(applying ? "OK" : "Apply"), onPressed: () => Navigator.of(context).pop(!applying)),
-              FlatButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
+              TextButton(child: Text(applying ? "OK" : "Apply"), onPressed: () => Navigator.of(context).pop(!applying)),
+              TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
             ],
           );
         });
@@ -342,8 +342,8 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text("Reply"),
             content: Text(name + ' is applying this group!'),
             actions: <Widget>[
-              FlatButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
-              FlatButton(child: Text("Reject"), onPressed: () => Navigator.of(context).pop(false))
+              TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
+              TextButton(child: Text("Reject"), onPressed: () => Navigator.of(context).pop(false))
             ],
           );
         });
