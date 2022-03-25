@@ -298,7 +298,8 @@ String? courseName(int cid) {
           if ((items['cid'] as int) == cid)
             res = (items['region'] as String)+ ' ' + (items['name'] as String);
       });
-    }).whenComplete(() {return res;});
+    });
+    return res;
 }
 
 String? coursePhoto(int cid) {
