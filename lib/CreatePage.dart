@@ -89,6 +89,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   var items = result.data();
                   coursesItems.add(NameID(items['name'], items['cid'] as int));
               });
+              print(coursesItems);
             });
 
           return Scaffold(
@@ -181,7 +182,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         activity.add({
                           tag: owner,
                           "cid": _selectedCourse.toID(),
-                          "tee off": _selectedDate.toString().substring(0, 16),
+                          "teeOff": _selectedDate.toString().substring(0, 16),
                           "max": _max,
                           "fee": _fee,
                           "golfers": _includeMe
