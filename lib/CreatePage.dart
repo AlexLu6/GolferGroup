@@ -287,12 +287,13 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   ElevatedButton(
                       child: Text(Language.of(context).create),
                       onPressed: () {
-                        golfCourses.add({
+                        FirebaseFirestore.instance.collection('GolfCourses').add({
                           "cid": uuidTime(),
                           "name": _courseName,
                           "region": _region,
                           "photo": _photoURL,
                           "zones": _courseZones,
+                          "location": ''
                         });
                         //print(golfCourses);
                         //print((golfCourses.elementAt(3)["zones"] as List).length);
