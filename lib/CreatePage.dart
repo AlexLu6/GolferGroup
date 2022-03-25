@@ -177,7 +177,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 24.0),
                   ElevatedButton(child: Text(Language.of(context).create),
                       onPressed: () {
-                        print(_courseName);
+                        print(_selectedCourse.toString());
                         if (_courseName != '') {
                         activity.add({
                           tag: owner,
