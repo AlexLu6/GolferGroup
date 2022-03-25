@@ -461,7 +461,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text((((doc.data()! as Map)["zones"]).length * 9).toString() + ' Holes'), 
                 trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () async {print('course pressed');},
+                onTap: () async => print(doc.data()),
               ));
             }).toList()
           );
