@@ -90,7 +90,6 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   coursesItems.add(NameID(items['name'], items['cid'] as int));
               });
             });
-//          for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
 
           return Scaffold(
               appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
@@ -177,6 +176,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 24.0),
                   ElevatedButton(child: Text(Language.of(context).create),
                       onPressed: () {
+                        print(_courseName);
                         if (_courseName != '') {
                         activity.add({
                           tag: owner,
@@ -295,8 +295,6 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                           "zones": _courseZones,
                           "location": ''
                         });
-                        //print(golfCourses);
-                        //print((golfCourses.elementAt(3)["zones"] as List).length);
                         Navigator.of(context).pop(true);
                       }),
                 ]));
