@@ -43,7 +43,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                       child: Text(Language.of(context).create),
                       onPressed: () {
                         if (_groupName != '' && _region != '') {
-                          golferGroup.add({
+                          FirebaseFirestore.instance.collection('GolferClubs').add({
                             "name": _groupName,
                             "region": _region,
                             "remarks": _remarks,
