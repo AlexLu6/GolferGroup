@@ -431,7 +431,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + ((doc.data()! as Map)['teeOff']).toDate().toString() + '\n' +
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
-                  Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 
+                  Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString().substring(0, 16) + "\t" + 
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
