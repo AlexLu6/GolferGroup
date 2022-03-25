@@ -289,11 +289,13 @@ var golfCourses = {
 };
 
 String? courseName(int cid) {
+  print('course ID: $cid');
   FirebaseFirestore.instance.collection('GolfCourses')
     .where('cid', isEqualTo: cid)
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
+          print(items['name'] as String);
           return items['region'] + ' ' + items['name'];
       });
     });
