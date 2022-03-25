@@ -298,6 +298,7 @@ String? courseName(int cid) {
           res = items['region'] + ' ' + items['name'];
       });
     });
+  print(res);
   return res;
 }
 
