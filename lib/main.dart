@@ -390,9 +390,9 @@ class _MyHomePageState extends State<MyHomePage> {
       });
   }
 
-  ListView groupActivityBody(int gID) {
+  Widget? groupActivityBody(int gID) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gid).snapshots(),
+      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
@@ -400,21 +400,22 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
               return Card(child: ListTile(
-                title: Text(courseName((doc.data()! as Map)['cid'] as int), style: TextStyle(fontSize: 20)),
+                title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff'].toString() + '\n' +
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
-                leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!),
+                leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {  
                   Navigator.push(context, showActivityPage(doc.data()!, _golferID, groupName(gID)!, isManager(gID, _golferID)));
                 }
-              )),                
-
-            })
-        })
+              ));                
+            }).toList()
+          );
+        }
       }
+    );
   }
 
   ListView ActivityBody() {
