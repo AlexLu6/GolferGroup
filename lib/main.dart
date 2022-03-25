@@ -266,7 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     }).whenComplete(() {
                       if (_golferID == 0) {
-                        _golferID = DateTime.now().millisecondsSinceEpoch;
+                        _golferID = uuidTime();
 
                         FirebaseFirestore.instance.collection('Golfers').add({
                           "name": _name,
@@ -440,7 +440,7 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {         
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-//              print((doc.data()! as Map)["Zones"] as List<Map>);
+              print((doc.data()! as Map));
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
 //                subtitle: Text((((doc.data()! as Map)["Zones"]).length * 9).toString() + ' Holes'), 

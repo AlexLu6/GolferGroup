@@ -1,6 +1,10 @@
 //import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+int uuidTime() {
+  return DateTime.now().millisecondsSinceEpoch - 1647000000000;
+}
+
 var golferGroup = {
   {
     "name": "麻吉 Fun Golf",

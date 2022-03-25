@@ -53,7 +53,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                             "members": [
                               golferID
                             ],
-                            "gid": DateTime.now().millisecondsSinceEpoch
+                            "gid": uuidTime()
                           });
                           Navigator.of(context).pop(true);
                         }
@@ -288,7 +288,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       child: Text(Language.of(context).create),
                       onPressed: () {
                         golfCourses.add({
-                          "cid": DateTime.now().millisecondsSinceEpoch,
+                          "cid": uuidTime(),
                           "name": _courseName,
                           "region": _region,
                           "photo": _photoURL,
