@@ -47,12 +47,8 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                             "name": _groupName,
                             "region": _region,
                             "remarks": _remarks,
-                            "managers": [
-                              golferID
-                            ],
-                            "members": [
-                              golferID
-                            ],
+                            "managers": [golferID],
+                            "members": [golferID],
                             "gid": uuidTime()
                           });
                           Navigator.of(context).pop(true);
@@ -88,7 +84,13 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           var activity = FirebaseFirestore.instance.collection(isGroup ? 'ClubActivities' : 'GolferActivities');
           var tag = isGroup ? 'gid' : 'uid';
 
-          for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
+          FirebaseFirestore.instance.collection('GolfCourses').get().then((value) {
+              value.docs.forEach((result) {
+                  var items = result.data();
+                  coursesItems.add(NameID(items['name'], items['cid'] as int));
+              });
+            });
+//          for (var e in golfCourses) coursesItems.add(NameID(e["name"] as String, e["cid"] as int));
 
           return Scaffold(
               appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
@@ -183,13 +185,11 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           "max": _max,
                           "fee": _fee,
                           "golfers": _includeMe
-                              ? [
-                                  {
+                              ? [{
                                     "uid": golfer,
                                     "appTime": DateTime.now().toString().substring(0, 19),
                                     "scores": []
-                                  }
-                                ]
+                                }]
                               : []
                         });
 //                        print(activity);
