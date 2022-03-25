@@ -391,28 +391,30 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView groupActivityBody(int gID) {
-    int eidx = 0;
-    List<int> map = [];
-    for (var e in groupActivities) {
-      if (e["gid"] as int == gID) {
-        map.add(eidx);
-      }
-      eidx++;
-    }
-    var listView = ListView.separated(
-      itemCount: map.length,
-      itemBuilder: (context, index) => ListTile(
-          title: Text(courseName(groupActivities.elementAt(map[index])["cid"] as int)!, style: TextStyle(fontSize: 20)),
-          subtitle: Text(Language.of(context).teeOff + groupActivities.elementAt(map[index])["tee off"].toString() + '\n' + Language.of(context).max + groupActivities.elementAt(map[index])["max"].toString() + '\t' + Language.of(context).now + (groupActivities.elementAt(map[index])["golfers"] as List).length.toString() + "\t" + Language.of(context).fee + groupActivities.elementAt(map[index])["fee"].toString()),
-          leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!),
-          trailing: Icon(Icons.keyboard_arrow_right),
-          onTap: () {
-            Navigator.push(context, showActivityPage(groupActivities.elementAt(index), _golferID, groupName(gID)!, isManager(gID, _golferID)));
-          }),
-      separatorBuilder: (context, index) => Divider(),
-    );
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gid).snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const CircularProgressIndicator();
+        } else {         
+          return ListView(
+            children: snapshot.data!.docs.map((doc) {
+              return Card(child: ListTile(
+                title: Text(courseName((doc.data()! as Map)['cid'] as int), style: TextStyle(fontSize: 20)),
+                subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff'].toString() + '\n' +
+                  Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
+                  Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 
+                  Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
+                leading: Image.network(coursePhoto(groupActivities.elementAt(map[index])["cid"] as int)!),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {  
+                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, groupName(gID)!, isManager(gID, _golferID)));
+                }
+              )),                
 
-    return listView;
+            })
+        })
+      }
   }
 
   ListView ActivityBody() {
