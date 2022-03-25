@@ -114,9 +114,9 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
                       initialValue:  _courseName,
-                      key: Key(_selectedCourse),
+                      key: Key(_selectedCourse.toString()),
                       showCursor: true,
-                      onChanged: (String value) => setState(() => _courseName = value),
+                      onChanged: (String value) => setState(() => print(_courseName = value)),
                       //keyboardType: TextInputType.name,
                       decoration: InputDecoration(labelText: "Course Name:", border: OutlineInputBorder()),
                     )),
