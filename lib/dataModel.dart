@@ -295,7 +295,7 @@ String? courseName(int cid) {
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          res = items['region'] + ' ' + items['name'];
+          res = (items['region'] as String)+ ' ' + (items['name'] as String);
       });
     });
   print(res);
