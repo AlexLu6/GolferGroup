@@ -418,20 +418,33 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  ListView ActivityBody() {
-    var listView = ListView.separated(
-      itemCount: golferActivities.length,
-      itemBuilder: (context, index) => ListTile(
-          title: Text(courseName(golferActivities.elementAt(index)["cid"] as int)!, style: TextStyle(fontSize: 20)),
-          subtitle: Text(Language.of(context).teeOff + golferActivities.elementAt(index)["tee off"].toString() + '\n' + Language.of(context).max + golferActivities.elementAt(index)["max"].toString() + '\t' + Language.of(context).now + (golferActivities.elementAt(index)["golfers"] as List).length.toString() + "\t" + Language.of(context).fee + golferActivities.elementAt(index)["fee"].toString()),
-          leading: Image.network(coursePhoto(golferActivities.elementAt(index)["cid"] as int)!),
-          trailing: Icon(Icons.keyboard_arrow_right),
-          onTap: () {
-            Navigator.push(context, showActivityPage(golferActivities.elementAt(index), _golferID, golferName(golferActivities.elementAt(index)['uid'] as int)!, _golferID == golferActivities.elementAt(index)['uid'] as int));
-          }),
-      separatorBuilder: (context, index) => Divider(),
+  Widget? ActivityBody() {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('GolferActivities').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const CircularProgressIndicator();
+        } else {         
+          return ListView(
+            children: snapshot.data!.docs.map((doc) {
+              return Card(child: ListTile(
+                title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
+                subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff'].toString() + '\n' +
+                  Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
+                  Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 
+                  Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
+                leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {  
+                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int));
+                }
+              ));                
+            }).toList()
+          );
+        }
+      }
     );
-    return listView;
+
   }
 
   Widget? GolfCourseBody() {
