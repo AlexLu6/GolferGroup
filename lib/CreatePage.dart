@@ -87,7 +87,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           FirebaseFirestore.instance.collection('GolfCourses').get().then((value) {
               value.docs.forEach((result) {
                   var items = result.data();
-                  coursesItems.add(NameID(items['name'], items['cid'] as int));
+                  coursesItems.add(NameID(items['name'] as String, items['cid'] as int));
               });
               print(coursesItems);
             });
