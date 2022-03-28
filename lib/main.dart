@@ -456,7 +456,7 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {         
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              return Card(child: ListTile(
+              return Card(child: !doc.exists ? null : ListTile(
                 leading: Image.network((doc.data()! as Map)["photo"]),
                 title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text((((doc.data()! as Map)["zones"]).length * 9).toString() + ' Holes'), 
