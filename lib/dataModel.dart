@@ -1,4 +1,4 @@
-//import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 int uuidTime() {
@@ -294,12 +294,16 @@ String? courseName(int cid) {
     .where('cid', isEqualTo: cid)
     .get().then((value) {
       value.docs.forEach((result) {
+          if (!result.exists)
+            LinearProgressIndicator();
+          else {
           var items = result.data();
           if ((items['cid'] as int) == cid)
             res = (items['region'] as String)+ ' ' + (items['name'] as String);
+          }
       });
-    }).whenComplete(() => res);
-
+    });
+    return res;
 }
 
 String? coursePhoto(int cid) {
