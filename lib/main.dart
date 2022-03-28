@@ -427,7 +427,7 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {         
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              if ((doc.data()! as Map)["photo"] == null) {
+              if ((doc.data()! as Map)["cid"] == null) {
                 return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
