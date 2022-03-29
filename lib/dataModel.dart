@@ -232,7 +232,7 @@ var golferActivities = {
 
 var golfCourses = {
   {
-    "cid": 100,
+    "cid": 1170992729,
     "name": "再興高爾夫",
     "region": "湖口",
     "location": "",
@@ -249,7 +249,7 @@ var golfCourses = {
     ]
   },
   {
-    "cid": 101,
+    "cid": 1170659463,
     "name": "新豐高爾夫",
     "region": "新豐",
     "location": "",
@@ -270,7 +270,7 @@ var golfCourses = {
     ]
   },
   {
-    "cid": 102,
+    "cid": 1171137337,
     "name": "東方之星高爾夫",
     "region": "頭份",
     "location": "",
