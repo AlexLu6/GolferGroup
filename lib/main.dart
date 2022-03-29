@@ -359,6 +359,9 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
+            if (!snapshot.hasData) {
+              return const CircularProgressIndicator();
+            } else {         
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
@@ -384,6 +387,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
                 },
               ));
+            }
             }).toList(),
           );
         }
