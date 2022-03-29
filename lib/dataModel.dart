@@ -289,33 +289,18 @@ var golfCourses = {
 };
 
 String? courseName(int cid) {
-  String res = '';
-  FirebaseFirestore.instance.collection('GolfCourses')
-    .where('cid', isEqualTo: cid)
-    .get().then((value) {
-      value.docs.forEach((result) {
-        if (!result.exists)
-          LinearProgressIndicator();
-        else {
-          var items = result.data();
-          if ((items['cid'] as int) == cid)
-            res = (items['region'] as String)+ ' ' + (items['name'] as String);
-        }
-      });
-    }).whenComplete(() {return res;});
-//    return res;
+  var result = '';
+  for (var e in golfCourses) 
+    if (e["cid"] == cid) 
+      return (e["region"] as String) + ' ' + (e["name"] as String);
+  return result;
 }
 
 String? coursePhoto(int cid) {
   var result = 'https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80';
-  FirebaseFirestore.instance.collection('GolfCourses')
-    .where('cid', isEqualTo: cid)
-    .get().then((value) {
-      value.docs.forEach((result) {
-          var items = result.data();
-          return items['Photo'];
-      });
-    });
+  for (var e in golfCourses) 
+    if (e["cid"] == cid) 
+      return (e["photo"] as String);
   return result;
 }
 
