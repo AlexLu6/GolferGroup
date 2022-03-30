@@ -152,7 +152,7 @@ String? golferName(int uid) {
     return null;
 }
 
-String? golferNames(List<int> uids) {
+String? golferNames(List<dynamic> uids) {
   var result = '';
   FirebaseFirestore.instance.collection('Golfers')
     .where('uid', whereIn: uids)
