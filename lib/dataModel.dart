@@ -74,7 +74,7 @@ Future<bool> isManager(int gid, int uid) {
               res = true;
       });
     });
-  return res as Future<bool>;
+  return Future.value(res);
 }
 
 void addManager(int gid, int uid) {
