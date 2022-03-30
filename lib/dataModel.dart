@@ -140,7 +140,7 @@ var golfers = {
   },
 };
 
-Future <String> golferName(int uid) {
+Future <String>? golferName(int uid) {
   FirebaseFirestore.instance.collection('Golfers')
     .where('uid', isEqualTo: uid)
     .get().then((value) {
@@ -152,19 +152,19 @@ Future <String> golferName(int uid) {
 }
 
 String? golferNames(List<dynamic> uids) {
-  var result = '';
-  print(uids);
+  var result;
   FirebaseFirestore.instance.collection('Golfers')
     .where('uid', arrayContainsAny: uids)
     .get().then((value) {
       value.docs.forEach((e) {
           var items = e.data();
-          result += items['Name'];
-          result += ', ';
+          if (result == null)
+            result = items['Name'];
+          else
+            result += ', ' + items['Name'];
       });
-    }).whenComplete(() => print(result));
-
-  return result.substring(0, result.length > 2 ? result.length - 2 : result.length);
+    });
+  return result;
 }
 
 var groupActivities = {
