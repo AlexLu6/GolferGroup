@@ -62,7 +62,7 @@ void addMember(int gid, int uid) {
     });
 }
 
-Future<bool> isManager(int gid, int uid) {
+bool isManager(int gid, int uid) {
   bool res = false;
   FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
@@ -74,7 +74,7 @@ Future<bool> isManager(int gid, int uid) {
               res = true;
       });
     });
-  return Future.value(res);
+  return res;
 }
 
 void addManager(int gid, int uid) {

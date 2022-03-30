@@ -412,7 +412,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
-                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, groupName(gID)!, await isManager(gID, _golferID)));
+                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, groupName(gID)!, isManager(gID, _golferID)));
                 }
               ));                
             }).toList()
@@ -502,7 +502,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
         break;
       case 5:
-        if (await isManager(_gID, _golferID))  {
+        if (isManager(_gID, _golferID))  {
           FirebaseFirestore.instance.collection('ApplyQueue')
             .where('gid', isEqualTo: _gID)
             .where('response', isEqualTo: 'waiting').get().then((value) {
