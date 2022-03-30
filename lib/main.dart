@@ -359,7 +359,7 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-            if (!snapshot.hasData) {
+            if ((doc.data()! as Map)["Name"] == null) {
               return const CircularProgressIndicator();
             } else {         
               return Card(child: ListTile(
