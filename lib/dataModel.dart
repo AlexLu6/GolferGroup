@@ -154,15 +154,13 @@ Future <String>? golferName(int uid) {
 String? golferNames(List<dynamic> uids) {
   var result;
   uids.forEach((element) async {
-    print(element);
     if (result == null)
       result = await golferName(element as int);
     else 
       result += ', ' + await golferName(element as int)!;
-    print(result);
   });
   
-  return result;
+  return result?? 'NoBody';
 }
 
 var groupActivities = {
