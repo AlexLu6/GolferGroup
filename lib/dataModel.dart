@@ -155,7 +155,7 @@ String? golferName(int uid) {
 String? golferNames(List<dynamic> uids) {
   var result = '';
   FirebaseFirestore.instance.collection('Golfers')
-    .where('uid', arrayContainsAny: uids)
+    .where('uid', arrayContains: uids)
     .get().then((value) {
       value.docs.forEach((e) {
           var items = e.data();
