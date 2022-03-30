@@ -310,7 +310,7 @@ Future <int> isApplying(int gid, int uid) {
   Future <int> res = 0 as Future <int>;
   FirebaseFirestore.instance.collection('ApplyQueue')
     .where('gid', isEqualTo: gid)
-    .where('uid', isEqualTo: uid)
+//    .where('uid', isEqualTo: uid)
     .get().then((value) {
       value.docs.forEach((result) {
         var items = result.data();
