@@ -372,7 +372,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () async {
                   _gID = (doc.data()! as Map)["gid"] as int;
                   _groupDoc = doc.id;
-                  if (isMember(_gID, _golferID)) {
+                  if (await isMember(_gID, _golferID)) {
                     setState(() => _currentPageIndex = 5);
                   } else {
                     bool? apply = await showApplyDialog((await isApplying(_gID, _golferID)) == 1);

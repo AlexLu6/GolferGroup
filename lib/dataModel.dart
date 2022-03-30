@@ -35,7 +35,7 @@ String? groupName(int gid) {
     });
 }
 
-bool isMember(int gid, int uid) {
+Future <bool> isMember(int gid, int uid) {
   bool res = false;
   FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
@@ -47,7 +47,7 @@ bool isMember(int gid, int uid) {
               res = true;
       });
     });
-  return res;
+  return res as Future<bool>;
 }
 
 void addMember(int gid, int uid) {
