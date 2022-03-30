@@ -319,6 +319,7 @@ int isApplying(int gid, int uid)
     .where('uid', isEqualTo: uid).get().then((value) {
       value.docs.forEach((result) {
         var items = result.data();
+        print(items);
         if (items['response']  == 'waiting')
           res = 1;
         else if (items['response'] == 'No')
