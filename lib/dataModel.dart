@@ -160,7 +160,7 @@ String? golferNames(List<dynamic> uids) {
     .get().then((value) {
       value.docs.forEach((e) {
           var items = e.data();
-          result += items['Name'] as String;
+          result += items['Name'];
           result += ', ';
       });
     }).whenComplete(() => print(result));
