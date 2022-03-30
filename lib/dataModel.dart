@@ -308,7 +308,7 @@ String? coursePhoto(int cid) {
 
 Future <int>? isApplying(int gid, int uid)
 {
-  int res = 0;
+  Future <int>? res = 0 as Future <int>;
   FirebaseFirestore.instance.collection('ApplyQueue')
     .where('gid', isEqualTo: gid)
     .where('uid', isEqualTo: uid).get().then((value) {
@@ -316,10 +316,10 @@ Future <int>? isApplying(int gid, int uid)
         var items = result.data();
         print(items);
         if (items['response']  == 'waiting')
-          res = 1;
+          res = 1 as Future <int>;
         else if (items['response'] == 'No')
-          res = -1;
+          res = -1 as Future <int>;
       });
     });
-  return res as Future <int>;
+  return res;
 }
