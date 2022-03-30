@@ -509,7 +509,7 @@ class _MyHomePageState extends State<MyHomePage> {
               value.docs.forEach((result) async {
                 // grant or refuse the apply of e['uid']
                 var e = result.data();
-                bool? ans = await grantApplyDialog(golferName(e['uid'] as int)!);
+                bool? ans = await grantApplyDialog(await golferName(e['uid'] as int)!);
                 if (ans!) {
                   e.update('response', (value) => 'OK');
                   addMember(_gID, e['uid'] as int);
