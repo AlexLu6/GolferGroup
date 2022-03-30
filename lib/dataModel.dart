@@ -162,9 +162,9 @@ String? golferNames(List<dynamic> uids) {
           result += items['Name'] as String;
           result += ', ';
       });
-    });
+    }).whenComplete(() => result.substring(0, result.length > 2 ? result.length - 2 : result.length));
 
-  return result.substring(0, result.length > 2 ? result.length - 2 : result.length);
+//  return result.substring(0, result.length > 2 ? result.length - 2 : result.length);
 }
 
 var groupActivities = {
