@@ -159,7 +159,7 @@ String? golferNames(List<dynamic> uids) {
     else 
       result += ', ' + await golferName(element as int)!;
   });
-
+  print(result);
   return result;
 }
 
