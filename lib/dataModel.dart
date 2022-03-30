@@ -320,6 +320,6 @@ Future <int> isApplying(int gid, int uid) {
         else if (items['response'] == 'No')
           res = -1 as Future <int>;
       });
-    });
+    }).whenComplete(() => print(res));
   return res;
 }
