@@ -153,17 +153,13 @@ Future <String>? golferName(int uid) {
 
 String? golferNames(List<dynamic> uids) {
   var result;
-  FirebaseFirestore.instance.collection('Golfers')
-    .where('uid', arrayContainsAny: uids)
-    .get().then((value) {
-      value.docs.forEach((e) {
-          var items = e.data();
-          if (result == null)
-            result = items['Name'];
-          else
-            result += ', ' + items['Name'];
-      });
-    });
+  uids.forEach((element) async {
+    if (result == null)
+      result = await golferName(element as int);
+    else 
+      result += ', ' + await golferName(element as int)!;
+  });
+
   return result;
 }
 
