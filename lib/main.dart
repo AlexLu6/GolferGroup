@@ -375,7 +375,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (isMember(_gID, _golferID)) {
                     setState(() => _currentPageIndex = 5);
                   } else {
-                    bool? apply = await showApplyDialog(isApplying(_gID, _golferID) == 1);
+                    bool? apply = await showApplyDialog(await isApplying(_gID, _golferID) == 1);
                     if (apply!) {
                       // fill the apply waiting queue
                       FirebaseFirestore.instance.collection('ApplyQueue').add({
