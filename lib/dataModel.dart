@@ -55,8 +55,9 @@ void addMember(int gid, int uid) {
     .where('gid', isEqualTo: gid)
     .get().then((value) {
       value.docs.forEach((result) {
-          var items = result.data();
-          (items['members'] as List<int>).add(uid);
+//          var items = result.data();
+//          (items['members'] as List<int>).add(uid);
+          result.data().update('members', (value) => (value as List<int>).add(uid));
       });
     });
 }
@@ -81,8 +82,9 @@ void addManager(int gid, int uid) {
     .where('gid', isEqualTo: gid)
     .get().then((value) {
       value.docs.forEach((result) {
-          var items = result.data();
-          (items['managers'] as List<int>).add(uid);
+//          var items = result.data();
+//          (items['managers'] as List<int>).add(uid);
+          result.data().update('managers', (value) => (value as List<int>).add(uid));
       });
     });
 }
@@ -152,12 +154,16 @@ String? golferName(int uid) {
 
 String? golferNames(List<int> uids) {
   var result = '';
-  for (var uid in uids)
-    for (var e in golfers)
-      if (e["uid"] == uid) {
-        result += e["name"] as String;
-        result += ', ';
-      }
+  FirebaseFirestore.instance.collection('Golfers')
+    .where('uid', whereIn: uids)
+    .get().then((value) {
+      value.docs.forEach((e) {
+          var items = e.data();
+          result += items['Name'] as String;
+          result += ', ';
+      });
+    });
+
   return result.substring(0, result.length > 2 ? result.length - 2 : result.length);
 }
 
