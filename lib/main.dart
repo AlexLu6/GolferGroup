@@ -442,8 +442,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {  
-                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int));
+                onTap: () async {  
+                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, await golferName((doc.data()! as Map)['uid'] as int), _golferID == (doc.data()! as Map)['uid'] as int));
                 }
               )); }               
             }).toList()
@@ -509,7 +509,7 @@ class _MyHomePageState extends State<MyHomePage> {
               value.docs.forEach((result) async {
                 // grant or refuse the apply of e['uid']
                 var e = result.data();
-                bool? ans = await grantApplyDialog(golferName(e['uid'] as int)!);
+                bool? ans = await grantApplyDialog(await golferName(e['uid'] as int));
                 if (ans!) {
                   e.update('response', (value) => 'OK');
                   addMember(_gID, e['uid'] as int);

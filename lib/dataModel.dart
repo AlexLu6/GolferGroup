@@ -140,16 +140,15 @@ var golfers = {
   },
 };
 
-String? golferName(int uid) {
+Future <String> golferName(int uid) {
   FirebaseFirestore.instance.collection('Golfers')
     .where('uid', isEqualTo: uid)
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          return items['Name'];
+          return  items['Name'];
       });
     });
-    return null;
 }
 
 String? golferNames(List<dynamic> uids) {
