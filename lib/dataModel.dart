@@ -306,7 +306,7 @@ String? coursePhoto(int cid) {
   return result;
 }
 
-int isApplying(int gid, int uid)
+Future <int>? isApplying(int gid, int uid)
 {
   int res = 0;
   FirebaseFirestore.instance.collection('ApplyQueue')
@@ -321,5 +321,5 @@ int isApplying(int gid, int uid)
           res = -1;
       });
     });
-  return res;
+  return res as Future <int>;
 }
