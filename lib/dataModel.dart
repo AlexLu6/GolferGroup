@@ -159,7 +159,7 @@ String? golferNames(List<dynamic> uids) {
       await golferName(element as int)!.then((value) => result = value);
     else 
       await golferName(element as int)!.then((value) => result += ', ' + value);
-    print(result);
+//    print(result);
   });
   
   return result?? 'NoBody';
