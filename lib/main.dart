@@ -353,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
-      builder: (context, snapshot) {
+      builder: (context, snapshot)  {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
         } else {
@@ -361,7 +361,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: snapshot.data!.docs.map((doc) {
             if ((doc.data()! as Map)["Name"] == null) {
               return const LinearProgressIndicator();
-            } else {         
+            } else  {         
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
