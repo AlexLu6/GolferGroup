@@ -146,7 +146,7 @@ Future <String>? golferName(int uid) {
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-//          print(result.data());
+          print(items['name']);
           return  items['name'];
       });
     });
