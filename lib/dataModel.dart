@@ -156,9 +156,9 @@ String? golferNames(List<dynamic> uids) {
   var result;
   uids.forEach((element) async {
     if (result == null)
-      result = await golferName(element as int);
+      await golferName(element as int)!.then((value) => result = value);
     else 
-      result += ', ' + await golferName(element as int)!;
+      await golferName(element as int)!.then((value) => result += ', ' + value);
     print(result);
   });
   
