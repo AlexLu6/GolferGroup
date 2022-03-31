@@ -155,10 +155,7 @@ Future <String>? golferName(int uid) {
 String? golferNames(List<dynamic> uids) {
   var result;
   uids.forEach((element) async {
-    if (result == null)
-      await golferName(element as int)!.then((value) => result = value);
-    else 
-      await golferName(element as int)!.then((value) => result += ', ' + value);
+      await golferName(element as int)!.then((value) => result = result == null ? value : result + ', ' + value);
 //    print(result);
   });
   
