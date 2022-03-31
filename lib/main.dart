@@ -434,6 +434,8 @@ class _MyHomePageState extends State<MyHomePage> {
             children: snapshot.data!.docs.map((doc) {
               if ((doc.data()! as Map)["teeOff"] == null) {
                 return LinearProgressIndicator();
+              } else if (courseName((doc.data()! as Map)['cid'] as int) == null) {
+                return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
                 title: Text(courseName((doc.data()! as Map)['cid'] as int)! as String, style: TextStyle(fontSize: 20)),
