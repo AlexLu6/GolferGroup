@@ -405,7 +405,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
               return Card(child: ListTile(
-                title: Text(courseName((doc.data()! as Map)['cid'] as int)! as String, style: TextStyle(fontSize: 20)),
+                title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff'].toString() + '\n' +
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 
@@ -434,11 +434,9 @@ class _MyHomePageState extends State<MyHomePage> {
             children: snapshot.data!.docs.map((doc) {
               if ((doc.data()! as Map)["teeOff"] == null) {
                 return LinearProgressIndicator();
-              } else if (courseName((doc.data()! as Map)['cid'] as int) == null) {
-                return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
-                title: Text(courseName((doc.data()! as Map)['cid'] as int)! as String, style: TextStyle(fontSize: 20)),
+                title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + ((doc.data()! as Map)['teeOff']).toDate().toString().substring(0, 16) + '\n' +
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 

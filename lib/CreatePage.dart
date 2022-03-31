@@ -353,7 +353,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 16.0),
                   Text(Language.of(context).teeOff + activity['tee off'] + '\t' + Language.of(context).fee + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
-                  Text((courseName(activity['cid'] as int)! as String) + "\t" + Language.of(context).max + activity['max'].toString(), style: TextStyle(fontSize: 20)),
+                  Text(courseName(activity['cid'] as int)! + "\t" + Language.of(context).max + activity['max'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Flexible(child: Editable(
                     borderColor: Colors.black,
