@@ -362,7 +362,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if ((doc.data()! as Map)["Name"] == null) {
               return const LinearProgressIndicator();
             } else {
-              String managers = golferNames((doc.data()! as Map)["managers"] as List<dynamic>)! as String;
+              String managers = golferNames((doc.data()! as Map)["managers"] as List<dynamic>)!;
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
