@@ -155,7 +155,7 @@ String? golferNames(List<dynamic> uids) {
   var result, value;
   uids.forEach((element) async {
       value = await golferName(element as int)!.whenComplete(() => result = (result == null ? value : result + ', ' + value));
-//    print(result);
+      print(value);
   });
   
   return result?? 'NoBody';
