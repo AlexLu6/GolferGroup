@@ -361,11 +361,12 @@ class _MyHomePageState extends State<MyHomePage> {
             children: snapshot.data!.docs.map((doc) {
             if ((doc.data()! as Map)["Name"] == null) {
               return const LinearProgressIndicator();
-            } else  {         
+            } else {
+              var managers = golferNames((doc.data()! as Map)["managers"] as List<dynamic>)!;
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
-                Language.of(context).manager + golferNames((doc.data()! as Map)["managers"] as List<dynamic>)! + "\n" + 
+                Language.of(context).manager + (managers as String) + "\n" + 
                 Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString()),
                 leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
                 trailing: Icon(Icons.keyboard_arrow_right),
