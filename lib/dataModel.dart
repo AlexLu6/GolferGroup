@@ -288,13 +288,25 @@ var golfCourses = {
     ]
   },
 };
-
+/*
 String? courseName(int cid) {
   var result = '';
   for (var e in golfCourses) 
     if (e["cid"] == cid) 
       return (e["region"] as String) + ' ' + (e["name"] as String);
   return result;
+}
+*/
+
+Future <String>? courseName(int cid) {
+  FirebaseFirestore.instance.collection('GolfCourses')
+    .where('cid', isEqualTo: cid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          return  items['name'];
+      });
+    });
 }
 
 String? coursePhoto(int cid) {
