@@ -145,8 +145,8 @@ Future <String>? golferName(int uid) {
     .where('uid', isEqualTo: uid)
     .get().then((value) {
       value.docs.forEach((result) {
-          print(result.id);
           var items = result.data();
+          print(items['Name']);
           return  items['Name'];
       });
     });
