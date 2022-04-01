@@ -327,16 +327,16 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   oneRow['row'] = Language.of(context).waiting;
                 else
                   oneRow['row'] = idx / 4 + 1;
-                oneRow['c1'] = golferName(e['uid']);
+                oneRow['c1'] = e['name'];
                 oneRow['c2'] = '';
                 oneRow['c3'] = '';
                 oneRow['c4'] = '';
               } else if (idx % 4 == 1)
-                oneRow['c2'] = golferName(e['uid']);
+                oneRow['c2'] = e['name'];
               else if (idx % 4 == 2)
-                oneRow['c3'] = golferName(e['uid']);
+                oneRow['c3'] = e['name'];
               else if (idx % 4 == 3) {
-                oneRow['c4'] = golferName(e['uid']);
+                oneRow['c4'] = e['name'];
                 rows.add(oneRow);
               }
               if (e['uid'] as int == uId) alreadyIn = true;
@@ -376,12 +376,13 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   ElevatedButton(
                       child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                       onPressed: () {
-                        setState(() {
+                        setState(() async {
                           if (alreadyIn)
                             activity['golfers'].removeWhere((item) => item['uid'] == uId);
                           else
                             activity['golfers'].add({
                               'uid': uId,
+                              'name': await golferName(uId),
                               'appTime': DateTime.now().toString().substring(0, 19),
                               'scores': []
                             });
