@@ -308,7 +308,7 @@ String? coursePhoto(int cid) {
 
 Future <int> isApplying(int gid, int uid) {
   int res = 0;
-  FirebaseFirestore.instance.collection('ApplyQueue')
+  return FirebaseFirestore.instance.collection('ApplyQueue')
     .where('gid', isEqualTo: gid)
     .where('uid', isEqualTo: uid)
     .get().then((value) {
