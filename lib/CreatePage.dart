@@ -314,7 +314,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
 
-          List buildRows() {
+          Future<List> buildRows() async {
             var rows = [];
             var oneRow = {};
             int idx = 0;
@@ -326,16 +326,16 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   oneRow['row'] = Language.of(context).waiting;
                 else
                   oneRow['row'] = idx / 4 + 1;
-                oneRow['c1'] = golferName(e['uid']);
+                oneRow['c1'] = await golferName(e['uid']);
                 oneRow['c2'] = '';
                 oneRow['c3'] = '';
                 oneRow['c4'] = '';
               } else if (idx % 4 == 1)
-                oneRow['c2'] = golferName(e['uid']);
+                oneRow['c2'] = await golferName(e['uid']);
               else if (idx % 4 == 2)
-                oneRow['c3'] = golferName(e['uid']);
+                oneRow['c3'] = await golferName(e['uid']);
               else if (idx % 4 == 3) {
-                oneRow['c4'] = golferName(e['uid']);
+                oneRow['c4'] = await golferName(e['uid']);
                 rows.add(oneRow);
               }
               if (e['uid'] as int == uId) alreadyIn = true;
@@ -369,7 +369,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                       {"title": "C", 'index': 4, 'key': 'c3', 'editable': false},
                       {"title": "D", 'index': 5, 'key': 'c4', 'editable': false}
                     ],
-                    rows: buildRows(),
+                    rows: buildRows() as List<dynamic>,
                   )),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
