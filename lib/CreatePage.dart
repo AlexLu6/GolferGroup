@@ -320,10 +320,10 @@ class _showActivityPage extends MaterialPageRoute<bool> {
             var oneRow = {};
             int idx = 0;
 
-            for (var e in activity['golfers']) {
+            for (var e in activity.data()!['golfers']) {
               if (idx % 4 == 0) {
                 oneRow = Map();
-                if (idx >= (activity['max'] as int))
+                if (idx >= (activity.data()!['max'] as int))
                   oneRow['row'] = Language.of(context).waiting;
                 else
                   oneRow['row'] = idx / 4 + 1;
@@ -352,9 +352,9 @@ class _showActivityPage extends MaterialPageRoute<bool> {
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 16.0),
-                  Text(Language.of(context).teeOff + activity['teeOff'].toDate().toString().substring(0, 16) + '\t' + Language.of(context).fee + activity['fee'].toString(), style: TextStyle(fontSize: 20)),
+                  Text(Language.of(context).teeOff + activity.data()!['teeOff'].toDate().toString().substring(0, 16) + '\t' + Language.of(context).fee + activity.data()!['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
-                  Text(courseName(activity['cid'] as int)! + "\t" + Language.of(context).max + activity['max'].toString(), style: TextStyle(fontSize: 20)),
+                  Text(courseName(activity.data()!['cid'] as int)! + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Flexible(child: Editable(
                     borderColor: Colors.black,
@@ -379,16 +379,15 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                         var name = await golferName(uId);
                         setState(() {
                           if (alreadyIn)
-                            activity['golfers'].removeWhere((item) => item['uid'] == uId);
+                            activity.data()!['golfers'].removeWhere((item) => item['uid'] == uId);
                           else
-                            activity['golfers'].add({
+                            activity.data()!['golfers'].add({
                               'uid': uId,
                               'name': name,
                               'appTime': Timestamp.fromDate(DateTime.now()),
                               'scores': []
                             });
                         });
-                        print(activity['golfers']);
                         Navigator.of(context).pop(true);
                       }),
                   const SizedBox(height: 16.0),
