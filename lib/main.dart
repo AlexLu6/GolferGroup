@@ -444,19 +444,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
-                  Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
-                  .then((value) {
-                    if ((value?? 0) == 1) 
-                      (FirebaseFirestore.instance.collection('GolferActivities').doc(doc.id)as Map)['golfers'].add({
-                        'uid': _golferID,
-                        'name': golferName(_golferID),
-                        'appTime': Timestamp.fromDate(DateTime.now()),
-                        'scores': []
-                      });
-                    else if ((value?? 0) == -1)
-                      (FirebaseFirestore.instance.collection('GolferActivities').doc(doc.id)as Map)['golfers']
-                      .removeWhere((item) => item['uid'] == _golferID);
-                  });
+                  Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int));
                 }
               )); }               
             }).toList()
