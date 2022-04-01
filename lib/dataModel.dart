@@ -37,7 +37,7 @@ String? groupName(int gid) {
 
 Future<bool> isMember(int gid, int uid) {
   bool res = false;
-  FirebaseFirestore.instance.collection('GolferClubs')
+  return FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
     .get().then((value) {
       value.docs.forEach((result) {
@@ -46,8 +46,8 @@ Future<bool> isMember(int gid, int uid) {
             if (id == uid)
               res = true;
       });
+      return res;
     });
-  return res as Future<bool>;
 }
 
 void addMember(int gid, int uid) {
@@ -141,7 +141,7 @@ var golfers = {
 };
 
 Future <String>? golferName(int uid) {
-  FirebaseFirestore.instance.collection('Golfers')
+  return FirebaseFirestore.instance.collection('Golfers')
     .where('uid', isEqualTo: uid)
     .get().then((value) {
       value.docs.forEach((result) {
