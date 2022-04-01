@@ -42,6 +42,7 @@ Future<bool> isMember(int gid, int uid) {
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
+          print(items['members'] as List<int>);
           for (var id in items['members'] as List<int>)
             if (id == uid)
               res = true;
