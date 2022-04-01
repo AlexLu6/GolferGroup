@@ -389,7 +389,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                             });
                         });
                         print(activity.data()!);
-                        Navigator.of(context).pop(true);
+                        Navigator.of(context).pop(alreadyIn ? -1 : 1);
                       }),
                   const SizedBox(height: 16.0),
                 ]));

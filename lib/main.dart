@@ -446,9 +446,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () async {  
                   Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
                   .then((value) {
-                    print(doc.id);
-                    if (value?? false) 
-                      print(doc.data());
+                    if ((value?? false) == 1) 
+                      (FirebaseFirestore.instance.collection('GolferActivities').doc(doc.id)as Map)['golfers'].add({
+                        'uid': _golferID,
+                        'name': golferName(_golferID),
+                        'appTime': Timestamp.fromDate(DateTime.now()),
+                        'scores': []
+                      });
+                    else if ((value?? false) == -1)
+                      (FirebaseFirestore.instance.collection('GolferActivities').doc(doc.id)as Map)['golfers']
+                      .removeWhere((item) => item['uid'] == _golferID);
                   });
                 }
               )); }               
