@@ -309,7 +309,7 @@ _showActivityPage showActivityPage(var activity, int uId, String title, bool edi
   return _showActivityPage(activity, uId, title, editable);
 }
 
-class _showActivityPage extends MaterialPageRoute<bool> {
+class _showActivityPage extends MaterialPageRoute<int> {
 
   _showActivityPage(var activity, int uId, String title, bool editable)
       : super(builder: (BuildContext context) {
