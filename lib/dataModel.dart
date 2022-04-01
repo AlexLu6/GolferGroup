@@ -168,11 +168,11 @@ Future <String>? golferNames(List<dynamic> uids) {
 */
 
 String? golferNames(List<dynamic> uids) {
-  var result, value;
+  var result, name;
   uids.forEach((element) async {
-      value = await golferName(element as int)!; 
-      result = result == null ? value : result + ', ' + value;
-      print(value);
+      name = await golferName(element as int)!; 
+      result = result == null ? name : result + ', ' + name;
+      print(result);
   });
   
   return result?? 'NoBody';

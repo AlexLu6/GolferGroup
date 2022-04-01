@@ -372,10 +372,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
                   _gID = (doc.data()! as Map)["gid"] as int;
-                  _groupDoc = doc.id;
+//                  _groupDoc = doc.id;
+                  print('call isMember');
                   if (await isMember(_gID, _golferID)) {
                     setState(() => _currentPageIndex = 5);
                   } else {
+                    print('call isApplying');
                     bool? apply = await showApplyDialog((await isApplying(_gID, _golferID)) == 1);
                     if (apply!) {
                       // fill the apply waiting queue
