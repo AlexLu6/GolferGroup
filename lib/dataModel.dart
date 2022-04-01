@@ -175,7 +175,6 @@ String? golferNames(List<dynamic> uids) {
       result = result == null ? name : result + ', ' + name;
       print(result);
   });
-//  print('now: '+ result?? 'NoBody');
   return result?? 'NoBody';
 }
 
