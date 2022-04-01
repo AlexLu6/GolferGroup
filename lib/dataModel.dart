@@ -153,6 +153,20 @@ Future <String>? golferName(int uid) {
     });
 }
 
+Future <String>? golferNames(List<dynamic> uids) {
+  var res;
+  return FirebaseFirestore.instance.collection('Golfers')
+    .where('uid', isEqualTo: uids)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          res = res == null ? items['name'] : res + ', ' + items['name'];
+      });
+      return res;
+    });
+}
+
+/*
 String? golferNames(List<dynamic> uids) {
   var result, value;
   uids.forEach((element) async {
@@ -163,7 +177,7 @@ String? golferNames(List<dynamic> uids) {
   
   return result?? 'NoBody';
 }
-
+*/
 var groupActivities = {
   {
     "gid": 2,
