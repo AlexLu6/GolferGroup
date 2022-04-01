@@ -42,7 +42,6 @@ Future<bool> isMember(int gid, int uid) {
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          print(items['members']);
           for (var id in items['members'] as List)
             if (id == uid)
               res = true;
@@ -170,6 +169,7 @@ Future <String>? golferNames(List<dynamic> uids) {
 
 String? golferNames(List<dynamic> uids) {
   var result, name;
+  print(uids);
   uids.forEach((element) async {
       name = await golferName(element as int)!; 
       result = result == null ? name : result + ', ' + name;
