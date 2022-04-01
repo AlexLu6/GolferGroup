@@ -319,7 +319,8 @@ Future <int> isApplying(int gid, int uid) {
           res = 1;
         else if (items['response'] == 'No')
           res = -1;
-      });
-    });
-  return res as Future <int> ;
+      }
+    );
+    return res;
+  });
 }
