@@ -375,14 +375,15 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 16.0),
                   ElevatedButton(
                       child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
-                      onPressed: () {
-                        setState(() async {
+                      onPressed: () async {
+                        var name = await golferName(uId);
+                        setState(() {
                           if (alreadyIn)
                             activity['golfers'].removeWhere((item) => item['uid'] == uId);
                           else
                             activity['golfers'].add({
                               'uid': uId,
-                              'name': await golferName(uId),
+                              'name': name,
                               'appTime': DateTime.now().toString().substring(0, 19),
                               'scores': []
                             });
