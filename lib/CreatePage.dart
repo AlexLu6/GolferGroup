@@ -388,6 +388,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                               'scores': []
                             });
                         });
+                        print(activity.data()!);
                         Navigator.of(context).pop(true);
                       }),
                   const SizedBox(height: 16.0),
