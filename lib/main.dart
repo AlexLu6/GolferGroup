@@ -444,8 +444,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
-                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int));
-                  print(doc);
+                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
+                  .then((value) { if (value!) print(doc);});
                 }
               )); }               
             }).toList()
