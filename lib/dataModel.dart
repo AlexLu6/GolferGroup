@@ -152,7 +152,7 @@ Future <String>? golferName(int uid) {
       return res;
     });
 }
-
+/*
 Future <String>? golferNames(List<dynamic> uids) {
   var res;
   return FirebaseFirestore.instance.collection('Golfers')
@@ -165,8 +165,8 @@ Future <String>? golferNames(List<dynamic> uids) {
       return res;
     });
 }
+*/
 
-/*
 String? golferNames(List<dynamic> uids) {
   var result, value;
   uids.forEach((element) async {
@@ -177,7 +177,7 @@ String? golferNames(List<dynamic> uids) {
   
   return result?? 'NoBody';
 }
-*/
+
 var groupActivities = {
   {
     "gid": 2,
