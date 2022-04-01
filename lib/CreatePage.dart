@@ -384,7 +384,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                             activity['golfers'].add({
                               'uid': uId,
                               'name': name,
-                              'appTime': DateTime.now().toString().substring(0, 19),
+                              'appTime': Timestamp.fromDate(DateTime.now()),
                               'scores': []
                             });
                         });
