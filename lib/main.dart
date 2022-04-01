@@ -445,7 +445,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
                   Navigator.push(context, showActivityPage(doc.data()!, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
-                  .then((value) { if (value!) print(doc);});
+                  .then((value) { if (value!) print(doc.data());});
                 }
               )); }               
             }).toList()
