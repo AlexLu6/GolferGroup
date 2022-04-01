@@ -141,13 +141,15 @@ var golfers = {
 };
 
 Future <String>? golferName(int uid) {
+  var res;
   return FirebaseFirestore.instance.collection('Golfers')
     .where('uid', isEqualTo: uid)
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          return  items['name'];
+          res = items['name'];
       });
+      return res;
     });
 }
 
