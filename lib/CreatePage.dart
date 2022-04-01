@@ -313,9 +313,9 @@ class _showActivityPage extends MaterialPageRoute<bool> {
   _showActivityPage(var activity, int uId, String title, bool editable)
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
+          var rows = [];
 
-          Future<List> buildRows() async {
-            var rows = [];
+          Future<List> buildRows() async {      
             var oneRow = {};
             int idx = 0;
 
@@ -345,7 +345,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
 
             return rows;
           }
-
+          buildRows();
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -369,7 +369,7 @@ class _showActivityPage extends MaterialPageRoute<bool> {
                       {"title": "C", 'index': 4, 'key': 'c3', 'editable': false},
                       {"title": "D", 'index': 5, 'key': 'c4', 'editable': false}
                     ],
-                    rows: buildRows() as List<dynamic>,
+                    rows: rows,
                   )),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
