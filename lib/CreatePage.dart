@@ -381,13 +381,14 @@ class _showActivityPage extends MaterialPageRoute<int> {
                           if (alreadyIn)
                             activity.data()!['golfers'].removeWhere((item) => item['uid'] == uId);
                           else {
+                            print(activity.data()!['golfers']);
                             activity.data()!['golfers'].add({
                               'uid': uId,
                               'name': name,
                               'appTime': Timestamp.fromDate(DateTime.now()),
                               'scores': []
                             });
-                            print(activity.data()!);
+                            print(activity.data()!['golfers']);
                           }
                         });
                         Navigator.of(context).pop(alreadyIn ? -1 : 1);
