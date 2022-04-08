@@ -445,12 +445,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
                   Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
-                  .then((value) {
+                  .then((value) async {
+                    var glist = doc.data()! as List<Map>;
+                    var name = await golferName(_golferID);
                     if (value == 1) {
-print('add one $_golferID');
+                      glist.add({
+                        'uid': _golferID,
+                        'name': name,
+                        'appTime': Timestamp.fromDate(DateTime.now()),
+                        'scores': []
+                      });
                     } else if (value == -1) {
-print('remove one $_golferID');
+                      glist.removeWhere((item) => item['uid'] == _golferID);
                     }
+                    print(glist);
                   });
                 }
               )); }               
