@@ -380,15 +380,16 @@ class _showActivityPage extends MaterialPageRoute<int> {
                         setState(() {
                           if (alreadyIn)
                             activity.data()!['golfers'].removeWhere((item) => item['uid'] == uId);
-                          else
+                          else {
                             activity.data()!['golfers'].add({
                               'uid': uId,
                               'name': name,
                               'appTime': Timestamp.fromDate(DateTime.now()),
                               'scores': []
                             });
+                            print(activity.data()!);
+                          }
                         });
-                        print(activity.data()!);
                         Navigator.of(context).pop(alreadyIn ? -1 : 1);
                       }),
                   const SizedBox(height: 16.0),
