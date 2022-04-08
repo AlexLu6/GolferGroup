@@ -381,7 +381,6 @@ class _showActivityPage extends MaterialPageRoute<int> {
                           if (alreadyIn)
                             activity.data()!['golfers'].removeWhere((item) => item['uid'] == uId);
                           else {
-                            print(activity.data()!['golfers']);
                             activity.data()!['golfers'].add({
                               'uid': uId,
                               'name': name,
