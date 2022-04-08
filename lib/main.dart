@@ -447,9 +447,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
                   .then((value) {
                     if (value == 1) {
-print('add one');
+print('add one $_golferID');
                     } else if (value == -1) {
-print('remove one');
+print('remove one $_golferID');
                     }
                   });
                 }
