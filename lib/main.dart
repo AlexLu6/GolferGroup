@@ -446,7 +446,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () async {  
                   Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
                   .then((value) async {
-                    var glist = doc.data()! as List<Map>;
+                    var glist = doc.data()! as List;
                     var name = await golferName(_golferID);
                     if (value == 1) {
                       glist.add({
