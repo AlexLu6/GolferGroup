@@ -458,7 +458,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     } else if (value == -1) {
                       glist.removeWhere((item) => item['uid'] == _golferID);
                     }
-                    print(glist);
+                    FirebaseFirestore.instance.collection('GolferActivities').doc(doc.id).update({'golfers': glist});
+//                    print(glist);
                   });
                 }
               )); }               
