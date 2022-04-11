@@ -413,7 +413,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
-                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, groupName(gID)!, isManager(gID, _golferID)));
+                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, groupName(gID)!, isManager(gID, _golferID)))
+                  .then((value) async {
+                    var glist = doc.get('golfers');
+                    var name = await golferName(_golferID);
+                    if (value == 1) {
+                      glist.add({
+                        'uid': _golferID,
+                        'name': name,
+                        'appTime': Timestamp.fromDate(DateTime.now()),
+                        'scores': []
+                      });
+                      FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
+                    } else if (value == -1) {
+                      glist.removeWhere((item) => item['uid'] == _golferID);
+                      FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
+                    }                    
+                  });
                 }
               ));                
             }).toList()

@@ -374,24 +374,9 @@ class _showActivityPage extends MaterialPageRoute<int> {
                   )),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                      child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
-                      onPressed: () async {
-                        var name = await golferName(uId);
-                        setState(() {
-                          if (alreadyIn)
-                            activity.data()!['golfers'].removeWhere((item) => item['uid'] == uId);
-                          else {
-                            activity.data()!['golfers'].add({
-                              'uid': uId,
-                              'name': name,
-                              'appTime': Timestamp.fromDate(DateTime.now()),
-                              'scores': []
-                            });
-                            print(activity.data()!['golfers']);
-                          }
-                        });
-                        Navigator.of(context).pop(alreadyIn ? -1 : 1);
-                      }),
+                    child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
+                    onPressed: () => Navigator.of(context).pop(alreadyIn ? -1 : 1)
+                  ),
                   const SizedBox(height: 16.0),
                 ]));
               }),
