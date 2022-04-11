@@ -458,6 +458,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     } else if (value == -1) {
                       glist.removeWhere((item) => item['uid'] == _golferID);
                     }
+                    print(doc.get('golfers'));
                     print(glist);
                   });
                 }
