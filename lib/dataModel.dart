@@ -74,6 +74,7 @@ bool isManager(int gid, int uid) {
               res = true;
       });
     });
+  print('$gid $uid $res');
   return res;
 }
 
