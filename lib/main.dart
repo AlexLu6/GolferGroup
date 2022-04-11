@@ -446,20 +446,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () async {  
                   Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
                   .then((value) async {
-                    var glist = (doc.data()! as Map)['golfers'] as List;
+                    //var glist = (doc.data()! as Map)['golfers'] as List;
                     var name = await golferName(_golferID);
                     if (value == 1) {
-                      glist.add({
+                      doc.get('golfers').add({
                         'uid': _golferID,
                         'name': name,
                         'appTime': Timestamp.fromDate(DateTime.now()),
                         'scores': []
                       });
                     } else if (value == -1) {
-                      glist.removeWhere((item) => item['uid'] == _golferID);
+                      doc.get('golfers')t.removeWhere((item) => item['uid'] == _golferID);
                     }
                     print(doc.get('golfers'));
-                    print(glist);
                   });
                 }
               )); }               
