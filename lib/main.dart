@@ -456,7 +456,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         'scores': []
                       });
                     } else if (value == -1) {
-                      doc.get('golfers')t.removeWhere((item) => item['uid'] == _golferID);
+                      doc.get('golfers').removeWhere((item) => item['uid'] == _golferID);
                     }
                     print(doc.get('golfers'));
                   });
