@@ -552,6 +552,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   addMember(_gID, e['uid'] as int);
                 } else
                   e.update('response', (value) => 'No');
+                print(e);
               });
           });
         }
