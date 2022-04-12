@@ -71,7 +71,7 @@ Future<bool> isManager(int gid, int uid) {
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          for (var id in items['managers'] as List<int>)
+          for (var id in items['managers'] as List)
             if (id == uid)
               res = true;
       });
