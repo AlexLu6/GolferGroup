@@ -24,7 +24,7 @@ var golferGroup = {
   }
 };
 
-String? groupName(int gid) {
+Future <String>? groupName(int gid) {
   FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
     .get().then((value) {
@@ -73,7 +73,7 @@ Future<bool> isManager(int gid, int uid) {
             if (id == uid)
               res = true;
       });
-      print('$gid $uid $res');
+      print('isManager: $gid $uid $res');
       return res;
     });
 
