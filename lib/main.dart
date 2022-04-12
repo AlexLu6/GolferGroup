@@ -416,8 +416,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
-                  print('call showActivityPage $gID');
-                  Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID)))
+                  var gName = await groupName(gID)!;
+                  print('call showActivityPage $gName');
+                  Navigator.push(context, showActivityPage(doc, _golferID, gName, await isManager(gID, _golferID)))
                   .then((value) async {
                     var glist = doc.get('golfers');
                     var name = await golferName(_golferID);
