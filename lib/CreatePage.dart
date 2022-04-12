@@ -190,7 +190,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                         activity.add({
                           tag: owner,
                           "cid": _selectedCourse.toID(),
-                          "teeOff": _selectedDate.toString().substring(0, 16),
+                          "teeOff": Timestamp.fromDate(_selectedDate),
                           "max": _max,
                           "fee": _fee,
                           "golfers": _includeMe
