@@ -548,10 +548,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 var e = result.data();
                 bool? ans = await grantApplyDialog(await golferName(e['uid'] as int)!);
                 if (ans!) {
-                  e.update('response', (value) => 'OK');
+                  result.data().update('response', (value) => 'OK');
                   addMember(_gID, e['uid'] as int);
                 } else
-                  e.update('response', (value) => 'No');
+                  result.data().update('response', (value) => 'No');
                 print(e);
               });
           });
