@@ -417,8 +417,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
                   var gName = await groupName(gID)!;
-                  print('call showActivityPage $gName');
-                  Navigator.push(context, showActivityPage(doc, _golferID, gName, await isManager(gID, _golferID)))
+                  bool editable = await isManager(gID, _golferID);
+                  print('call showActivityPage $gName $editable');
+                  Navigator.push(context, showActivityPage(doc, _golferID, gName, editable))
                   .then((value) async {
                     var glist = doc.get('golfers');
                     var name = await golferName(_golferID);
