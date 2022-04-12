@@ -548,10 +548,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 var e = result.data();
                 bool? ans = await grantApplyDialog(await golferName(e['uid'] as int)!);
                 if (ans!) {
-                  result.data().update('response', (value) => 'OK');
+//                  result.data().update('response', (value) => 'OK');
+                  FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'OK'});
                   addMember(_gID, e['uid'] as int);
                 } else
-                  result.data().update('response', (value) => 'No');
+//                  result.data().update('response', (value) => 'No');
+                  FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'No'});
                 print(e);
               });
           });

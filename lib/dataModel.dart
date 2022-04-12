@@ -57,9 +57,10 @@ void addMember(int gid, int uid) {
     .where('gid', isEqualTo: gid)
     .get().then((value) {
       value.docs.forEach((result) {
-//          var items = result.data();
-//          (items['members'] as List<int>).add(uid);
-          result.data().update('members', (value) => (value as List).add(uid));
+          var members = result.data()['members'] as List;
+          members.add(uid);
+//          result.data().update('members', (value) => (value as List).add(uid));
+          FirebaseFirestore.instance.collection('GolferClubs').doc(result.id).update({'members': members});
       });
     });
 }
