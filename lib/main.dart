@@ -406,7 +406,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: snapshot.data!.docs.map((doc) {
               return Card(child: ListTile(
                 title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
-                subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff'].toDate().toString().substring(0, 16) + '\n' +
+                subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff']!.toDate().toString().substring(0, 16) + '\n' +
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List<dynamic>).length.toString() + "\t" + 
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
