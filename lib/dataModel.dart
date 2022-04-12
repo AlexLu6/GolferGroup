@@ -75,7 +75,6 @@ Future<bool> isManager(int gid, int uid) {
             if (id == uid)
               res = true;
       });
-      print('isManager: $gid $uid $res');
       return res;
     });
 

@@ -416,10 +416,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
-                  var gName = await groupName(gID)!;
-                  bool editable = await isManager(gID, _golferID);
-                  print('call showActivityPage $gName $editable');
-                  Navigator.push(context, showActivityPage(doc, _golferID, gName, editable))
+                  Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID)))
                   .then((value) async {
                     var glist = doc.get('golfers');
                     var name = await golferName(_golferID);
