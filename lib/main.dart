@@ -452,7 +452,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
               if (((doc.data()! as Map)["teeOff"] == null) || 
-                  ((doc.data()! as Map)["teeOff"] > Timestamp.now())) {
+                  ((doc.data()! as Map)["teeOff"].compareTo(Timestamp.now()) > 0)) {
                 return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
