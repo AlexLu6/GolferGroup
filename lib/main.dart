@@ -401,9 +401,12 @@ class _MyHomePageState extends State<MyHomePage> {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
-        } else {         
+        } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
+              if ((doc.data()! as Map)["teeOff"] == null) {
+                return LinearProgressIndicator();
+              } else {
               return Card(child: ListTile(
                 title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff']!.toDate().toString().substring(0, 16) + '\n' +
@@ -431,7 +434,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     }                    
                   });
                 }
-              ));                
+              ));}                
             }).toList()
           );
         }
