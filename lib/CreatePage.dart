@@ -134,6 +134,11 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                             lastDate: DateTime.now().add(Duration(days: 180)),
                             //onChanged: (value) => setState(() => _selectedDate = value),
                           ).then((value) => setState(() => print(_selectedDate = value!)));
+                          showMaterialTimePicker(
+                            context: context,
+                            title: 'Pick a time',
+                            selectedTime: TimeOfDay.now()
+                          ).then((value) => setState(() => print(_selectedDate = DateTime(_selectedDate.year, _selectedDate.month, _selectedDate.day, value!.hour, value.minute))));
                         }
                     ),
                     const SizedBox(width: 5),
