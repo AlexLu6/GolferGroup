@@ -107,8 +107,8 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                             items: coursesItems,
                             showDivider: false,
                             selectedItem: _selectedCourse,
-                            onChanged: (value) => setState(() => _selectedCourse = value),
-                          );
+//                            onChanged: (value) => setState(() => _selectedCourse = value),
+                          ).then((value) => setState(() => _selectedCourse = value));
                         }
                       ),
                     const SizedBox(width: 5),
