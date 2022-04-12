@@ -337,7 +337,7 @@ class _showActivityPage extends MaterialPageRoute<int> {
                   oneRow['row'] = Language.of(context).waiting;
                 else
                   oneRow['row'] = idx / 4 + 1;
-                oneRow['c1'] = e['name'];
+                oneRow['c1'] = e['name']?? 'Nobody';
                 oneRow['c2'] = '';
                 oneRow['c3'] = '';
                 oneRow['c4'] = '';
