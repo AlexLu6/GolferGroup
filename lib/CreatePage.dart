@@ -329,7 +329,7 @@ class _showActivityPage extends MaterialPageRoute<int> {
           List buildRows() {      
             var oneRow = {};
             int idx = 0;
-print('buildRows');
+
             for (var e in activity.data()!['golfers']) {
               if (idx % 4 == 0) {
                 oneRow = Map();
@@ -356,7 +356,7 @@ print('buildRows');
 
             return rows;
           }
-
+print('_showActivities');
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
