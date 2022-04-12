@@ -80,7 +80,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           var _selectedCourse;
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
-          String _fee = '2500', _max = '4';
+          int _fee = 2500, _max = 4;
           var activity = FirebaseFirestore.instance.collection(isGroup ? 'ClubActivities' : 'GolferActivities');
           var tag = isGroup ? 'gid' : 'uid';
 
@@ -139,7 +139,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                               context: context,
                               title: 'Pick a time',
                               selectedTime: TimeOfDay.now()
-                            ).then((time) => setState(() => print(_selectedDate = DateTime(date!.year, date.month, date.day, time!.hour, time.minute))));
+                            ).then((time) => setState(() => print(_selectedDate = DateTime(date.year, date.month, date.day, time!.hour, time.minute))));
                           });
 
                         }
@@ -159,17 +159,17 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   Flexible(child: Row(children: <Widget>[
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
-                      initialValue: _max, 
+                      initialValue: _max.toString(), 
                       showCursor: true,
-                      onChanged: (String value) => setState(() => _max = value),
+                      onChanged: (String value) => setState(() => _max = int.parse(value)),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: Language.of(context).max, icon: Icon(Icons.group), border: OutlineInputBorder()),
                     )),
                     const SizedBox(width: 5),
                     Flexible(child: TextFormField(
-                      initialValue: _fee,
+                      initialValue: _fee.toString(),
                       showCursor: true,
-                      onChanged: (String value) => setState(() => _fee = value),
+                      onChanged: (String value) => setState(() => _fee = int.parse(value)),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(labelText: Language.of(context).fee, icon: Icon(Icons.money), border: OutlineInputBorder()),
                     )),
