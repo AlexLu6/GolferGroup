@@ -356,7 +356,6 @@ class _showActivityPage extends MaterialPageRoute<int> {
 
             return rows;
           }
-print('_showActivities');
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {

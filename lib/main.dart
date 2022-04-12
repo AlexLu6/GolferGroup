@@ -442,7 +442,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget? ActivityBody() {
+  Widget ActivityBody() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferActivities').snapshots(),
       builder: (context, snapshot) {
@@ -451,7 +451,8 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {         
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              if ((doc.data()! as Map)["teeOff"] == null) {
+              if (((doc.data()! as Map)["teeOff"] == null) || 
+                  ((doc.data()! as Map)["teeOff"] > Timestamp.now())) {
                 return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
@@ -481,7 +482,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   });
                 }
-              )); }               
+              )); 
+              }               
             }).toList()
           );
         }
