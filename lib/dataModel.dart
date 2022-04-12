@@ -170,13 +170,13 @@ Future <String>? golferNames(List<dynamic> uids) {
 }
 */
 
-String? golferNames(List<dynamic> uids) {
+String? golferNames(List uids) {
   var result, name;
   print(uids);
   uids.forEach((element) async {
       name = await golferName(element as int)!; 
       result = result == null ? name : result + ', ' + name;
-      print(result);
+//      print(result);
   });
   return result?? 'NoBody';
 }
