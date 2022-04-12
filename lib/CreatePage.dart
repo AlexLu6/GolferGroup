@@ -355,7 +355,7 @@ class _showActivityPage extends MaterialPageRoute<int> {
 
             return rows;
           }
-          var cname = courseName(activity.data()!['cid'] as int)! as String;
+            
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -364,7 +364,7 @@ class _showActivityPage extends MaterialPageRoute<int> {
                   Text(Language.of(context).teeOff + activity.data()!['teeOff'].toDate().toString().substring(0, 16) + '\t' + 
                        Language.of(context).fee + activity.data()!['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
-                  Text(cname + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20)),
+                  Text(courseName(activity.data()!['cid'] as int)! + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Flexible(child: Editable(
                     borderColor: Colors.black,
