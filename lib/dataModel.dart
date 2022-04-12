@@ -59,7 +59,7 @@ void addMember(int gid, int uid) {
       value.docs.forEach((result) {
 //          var items = result.data();
 //          (items['members'] as List<int>).add(uid);
-          result.data().update('members', (value) => (value as List<int>).add(uid));
+          result.data().update('members', (value) => (value as List).add(uid));
       });
     });
 }
@@ -87,7 +87,7 @@ void addManager(int gid, int uid) {
       value.docs.forEach((result) {
 //          var items = result.data();
 //          (items['managers'] as List<int>).add(uid);
-          result.data().update('managers', (value) => (value as List<int>).add(uid));
+          result.data().update('managers', (value) => (value as List).add(uid));
       });
     });
 }
