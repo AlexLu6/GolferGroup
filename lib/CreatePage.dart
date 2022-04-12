@@ -68,12 +68,12 @@ class NameID {
   int toID() => ID;
 }
 
-_NewActivityPage newActivityPage(bool isGroup, String owner, String golfer) {
+_NewActivityPage newActivityPage(bool isGroup, int owner, int golfer) {
   return _NewActivityPage(isGroup, owner, golfer);
 }
 
 class _NewActivityPage extends MaterialPageRoute<bool> {
-  _NewActivityPage(bool isGroup, String owner, String golfer)
+  _NewActivityPage(bool isGroup, int owner, int golfer)
       : super(builder: (BuildContext context) {
           String _courseName = '';
           List<NameID> coursesItems = [];
