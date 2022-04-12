@@ -424,7 +424,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       glist.add({
                         'uid': _golferID,
                         'name': name,
-                        'appTime': Timestamp.fromDate(DateTime.now()),
+                        'appTime': Timestamp.now(),
                         'scores': []
                       });
                       FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
@@ -451,8 +451,7 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {         
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              if (((doc.data()! as Map)["teeOff"] == null) || 
-                  ((doc.data()! as Map)["teeOff"].compareTo(Timestamp.now()) > 0)) {
+              if ((doc.data()! as Map)["teeOff"] == null) {
                 return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
@@ -472,7 +471,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       glist.add({
                         'uid': _golferID,
                         'name': name,
-                        'appTime': Timestamp.fromDate(DateTime.now()),
+                        'appTime': Timestamp.now(),
                         'scores': []
                       });
                       FirebaseFirestore.instance.collection('GolferActivities').doc(doc.id).update({'golfers': glist});
