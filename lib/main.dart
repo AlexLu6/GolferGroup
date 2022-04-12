@@ -416,7 +416,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
-                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, await groupName(gID)!, isManager(gID, _golferID)))
+                  Navigator.push(context, showActivityPage(doc.data()!, _golferID, await groupName(gID)!, await isManager(gID, _golferID)))
                   .then((value) async {
                     var glist = doc.get('golfers');
                     var name = await golferName(_golferID);
@@ -538,7 +538,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
         break;
       case 5:
-        if (isManager(_gID, _golferID))  {
+        if (await isManager(_gID, _golferID))  {
           FirebaseFirestore.instance.collection('ApplyQueue')
             .where('gid', isEqualTo: _gID)
             .where('response', isEqualTo: 'waiting').get().then((value) {

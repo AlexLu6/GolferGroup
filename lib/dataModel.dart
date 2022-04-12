@@ -62,9 +62,9 @@ void addMember(int gid, int uid) {
     });
 }
 
-bool isManager(int gid, int uid) {
+Future<bool> isManager(int gid, int uid) {
   bool res = false;
-  FirebaseFirestore.instance.collection('GolferClubs')
+  return FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
     .get().then((value) {
       value.docs.forEach((result) {
@@ -73,9 +73,10 @@ bool isManager(int gid, int uid) {
             if (id == uid)
               res = true;
       });
+      print('$gid $uid $res');
+      return res;
     });
-  print('$gid $uid $res');
-  return res;
+
 }
 
 void addManager(int gid, int uid) {
