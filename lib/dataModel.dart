@@ -26,7 +26,7 @@ var golferGroup = {
 
 Future <String>? groupName(int gid) {
   var res;
-  FirebaseFirestore.instance.collection('GolferClubs')
+  return FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
     .get().then((value) {
       value.docs.forEach((result) {
