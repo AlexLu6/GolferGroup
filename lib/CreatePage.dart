@@ -184,23 +184,25 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   ])),
                   const SizedBox(height: 24.0),
                   ElevatedButton(child: Text(Language.of(context).create),
-                      onPressed: () {
-                        print(_selectedCourse.toString());
+                      onPressed: () async {
+//                        print(_selectedCourse.toString());
+                        var name = await golferName(golfer);
                         if (_courseName != '') {
-                        activity.add({
-                          tag: owner,
-                          "cid": _selectedCourse.toID(),
-                          "teeOff": Timestamp.fromDate(_selectedDate),
-                          "max": _max,
-                          "fee": _fee,
-                          "golfers": _includeMe
+                          activity.add({
+                            tag: owner,
+                            "cid": _selectedCourse.toID(),
+                            "teeOff": Timestamp.fromDate(_selectedDate),
+                            "max": _max,
+                            "fee": _fee,
+                            "golfers": _includeMe
                               ? [{
                                     "uid": golfer,
+                                    "name": name,
                                     "appTime": DateTime.now().toString().substring(0, 19),
                                     "scores": []
                                 }]
                               : []
-                        });
+                          });
 //                        print(activity);
                         Navigator.of(context).pop(true);
                         }
