@@ -353,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
-      builder: (context, snapshot)  {
+      builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
         } else {
@@ -362,11 +362,11 @@ class _MyHomePageState extends State<MyHomePage> {
             if ((doc.data()! as Map)["Name"] == null) {
               return const LinearProgressIndicator();
             } else {
-              String managers = golferNames((doc.data()! as Map)["managers"] as List)!;
+//              String managers = golferNames((doc.data()! as Map)["managers"] as List)!;
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
-                Language.of(context).manager + managers + "\n" + 
+//                Language.of(context).manager + managers + "\n" + 
                 Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString()),
                 leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
                 trailing: Icon(Icons.keyboard_arrow_right),

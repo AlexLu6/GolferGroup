@@ -155,8 +155,8 @@ Future <String>? golferName(int uid) {
       return res;
     });
 }
-/*
-Future <String>? golferNames(List<dynamic> uids) {
+
+Future <String>? golferNames(List uids) {
   var res;
   return FirebaseFirestore.instance.collection('Golfers')
     .where('uid', arrayContainsAny: uids)
@@ -168,8 +168,8 @@ Future <String>? golferNames(List<dynamic> uids) {
       return res;
     });
 }
-*/
 
+/*
 String? golferNames(List uids) {
   var result, name;
   print(uids);
@@ -180,7 +180,7 @@ String? golferNames(List uids) {
   });
   return result?? 'NoBody';
 }
-
+*/
 var groupActivities = {
   {
     "gid": 2,
