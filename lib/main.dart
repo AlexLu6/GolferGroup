@@ -407,8 +407,9 @@ class _MyHomePageState extends State<MyHomePage> {
               if ((doc.data()! as Map)["teeOff"] == null) {
                 return LinearProgressIndicator();
               } else {
+                var cname = courseName((doc.data()! as Map)['cid'] as int)! as String;
               return Card(child: ListTile(
-                title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
+                title: Text(cname, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff']!.toDate().toString().substring(0, 16) + '\n' +
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List<dynamic>).length.toString() + "\t" + 
@@ -454,8 +455,9 @@ class _MyHomePageState extends State<MyHomePage> {
               if ((doc.data()! as Map)["teeOff"] == null) {
                 return LinearProgressIndicator();
               } else {
+                var cname = courseName((doc.data()! as Map)['cid'] as int)! as String;
               return Card(child: ListTile(
-                title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
+                title: Text(cname, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + ((doc.data()! as Map)['teeOff']).toDate().toString().substring(0, 16) + '\n' +
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 
@@ -548,11 +550,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 var e = result.data();
                 bool? ans = await grantApplyDialog(await golferName(e['uid'] as int)!);
                 if (ans!) {
-//                  result.data().update('response', (value) => 'OK');
                   FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'OK'});
                   addMember(_gID, e['uid'] as int);
                 } else
-//                  result.data().update('response', (value) => 'No');
                   FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'No'});
                 print(e);
               });

@@ -59,7 +59,6 @@ void addMember(int gid, int uid) {
       value.docs.forEach((result) {
           var members = result.data()['members'] as List;
           members.add(uid);
-//          result.data().update('members', (value) => (value as List).add(uid));
           FirebaseFirestore.instance.collection('GolferClubs').doc(result.id).update({'members': members});
       });
     });
@@ -309,6 +308,7 @@ var golfCourses = {
   },
 };
 
+/*
 String? courseName(int cid) {
   var result = '';
   for (var e in golfCourses) 
@@ -316,7 +316,19 @@ String? courseName(int cid) {
       return (e["region"] as String) + ' ' + (e["name"] as String);
   return result;
 }
-
+*/
+Future <String>? courseName(int cid) {
+  var res;
+  return FirebaseFirestore.instance.collection('GolfCourses')
+    .where('cid', isEqualTo: cid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          res = items['region'] + ' ' + items['name'];
+      });
+      return res;
+    });
+}
 
 String? coursePhoto(int cid) {
   var result = 'https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80';
