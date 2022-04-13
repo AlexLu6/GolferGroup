@@ -374,6 +374,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   _gID = (doc.data()! as Map)["gid"] as int;
 //                  _groupDoc = doc.id;
                   if (await isMember(_gID, _golferID)) {
+                    FirebaseFirestore.instance.collection('ApplyQueue')
+                      .where('uid', isEqualTo: _golferID)
+                      .where('gid', isEqualTo: _gID).get().then((value) {
+                        value.docs.forEach((result) =>
+                          FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).delete()
+                        );
+                      });  
                     setState(() => _currentPageIndex = 5);
                   } else {
                     bool? apply = await showApplyDialog((await isApplying(_gID, _golferID)) == 1);
