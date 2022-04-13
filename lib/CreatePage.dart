@@ -60,8 +60,8 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
 }
 
 class NameID {
-  const NameID(this.name, this.ID);
-  final String name;
+  const NameID(this.name, this.ID, this.region, this.photo);
+  final String name, region, photo;
   final int ID;
   @override
   String toString() => name;
@@ -87,7 +87,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           FirebaseFirestore.instance.collection('GolfCourses').get().then((value) {
               value.docs.forEach((result) {
                   var items = result.data();
-                  coursesItems.add(NameID(items['name'] as String, items['cid'] as int));
+                  coursesItems.add(NameID(items['name'] as String, items['cid'] as int, items['region'] as String, items['photo'] as String));
               });
             });
 
@@ -190,6 +190,9 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                           activity.add({
                             tag: owner,
                             "cid": _selectedCourse.toID(),
+                            'cname': _selectedCourse.name,
+                            'region': _selectedCourse.region,
+                            'photo': _selectedCourse.photo,
                             "teeOff": Timestamp.fromDate(_selectedDate),
                             "max": _max,
                             "fee": _fee,
