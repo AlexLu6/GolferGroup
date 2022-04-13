@@ -406,7 +406,7 @@ class _MyHomePageState extends State<MyHomePage> {
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              if ((doc.data()! as Map)["teeOff"] == null || (doc.data()! as Map)["teeOff"] > deadline) {
+              if ((doc.data()! as Map)["teeOff"] == null || (doc.data()! as Map)["teeOff"].compareTo(deadline) > 0 ) {
                 return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
