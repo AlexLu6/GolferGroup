@@ -158,7 +158,7 @@ Future <String>? golferName(int uid) {
 
 Future <String>? golferNames(List uids) async {
   var res;
-  return FirebaseFirestore.instance.collection('Golfers')
+  return await FirebaseFirestore.instance.collection('Golfers')
     .where('uid', whereIn: uids)
     .get().then((value) {
       value.docs.forEach((result) {
