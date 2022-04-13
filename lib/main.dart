@@ -397,7 +397,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget? groupActivityBody(int gID) {
     DateTime today = DateTime.now();
-    Timestamp deadline = Timestamp.fromDate(DateTime(today.year, today.month, today.day, 23));
+    Timestamp deadline = Timestamp.fromDate(DateTime(today.year, today.month, today.day));
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).snapshots(),
       builder: (context, snapshot) {
@@ -445,7 +445,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget ActivityBody() {
-    Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 23));
+    Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferActivities').where('teeOff', isGreaterThan: deadline).snapshots(),
       builder: (context, snapshot) {
