@@ -396,16 +396,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget? groupActivityBody(int gID) {
-    Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 23));
+    DateTime today = DateTime.now();
+    Timestamp deadline = Timestamp.fromDate(DateTime(today.year, today.month, today.day, 23));
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).where('teeOff', isGreaterThan: deadline).snapshots(),
+      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              if ((doc.data()! as Map)["teeOff"] == null) {
+              if ((doc.data()! as Map)["teeOff"] == null || (doc.data()! as Map)["teeOff"] > deadline) {
                 return LinearProgressIndicator();
               } else {
               return Card(child: ListTile(
