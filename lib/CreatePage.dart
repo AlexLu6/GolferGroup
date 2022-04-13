@@ -356,10 +356,14 @@ class _showActivityPage extends MaterialPageRoute<int> {
               idx++;
             }
             if ((idx % 4) != 0) rows.add(oneRow);
+            else if (idx == 0) {
+              oneRow['c1'] = oneRow['c2'] = oneRow['c3'] = oneRow['c4'] = '';
+              rows.add(oneRow);
+            }
 
             return rows;
           }
-            
+          bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -388,7 +392,7 @@ class _showActivityPage extends MaterialPageRoute<int> {
                   )),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                    child: Text(alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
+                    child: Text(teeOffPass ? Language.of(context).play : alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () => Navigator.of(context).pop(alreadyIn ? -1 : 1)
                   ),
                   const SizedBox(height: 16.0),

@@ -29,6 +29,7 @@ abstract class Language {
   String get tableGroup;
   String get apply;
   String get cancel;
+  String get play;
   String get waiting;
   String get create;
   String get max;

@@ -27,6 +27,7 @@ class LanguageEn extends Language {
   String get tableGroup => 'Group';
   String get apply => 'Apply';
   String get cancel => 'Cancel';
+  String get play => 'Play';
   String get waiting => 'wait';
   String get create => 'Create';
   String get max => 'Max: ';
