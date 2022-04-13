@@ -156,7 +156,7 @@ Future <String>? golferName(int uid) {
     });
 }
 
-Future <String>? golferNames(List uids) {
+Future <String>? golferNames(List uids) async {
   var res;
   return FirebaseFirestore.instance.collection('Golfers')
     .where('uid', arrayContainsAny: uids)

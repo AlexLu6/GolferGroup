@@ -396,8 +396,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget? groupActivityBody(int gID) {
+    Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 24));
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).snapshots(),
+      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).where('teeOff', isGreaterThan: deadline).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
@@ -443,8 +444,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget ActivityBody() {
+    Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 24));
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('GolferActivities').snapshots(),
+      stream: FirebaseFirestore.instance.collection('GolferActivities').where('teeOff', isGreaterThan: deadline).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
