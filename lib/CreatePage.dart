@@ -67,6 +67,7 @@ class NameID {
   String toString() => name;
   int toID() => ID;
 }
+List<NameID> coursesItems = [];
 
 _NewActivityPage newActivityPage(bool isGroup, int owner, int golfer) {
   return _NewActivityPage(isGroup, owner, golfer);
@@ -75,8 +76,7 @@ _NewActivityPage newActivityPage(bool isGroup, int owner, int golfer) {
 class _NewActivityPage extends MaterialPageRoute<bool> {
   _NewActivityPage(bool isGroup, int owner, int golfer)
       : super(builder: (BuildContext context) {
-          String _courseName = '';
-          List<NameID> coursesItems = [];
+          String _courseName = '';          
           var _selectedCourse;
           DateTime _selectedDate = DateTime.now();
           bool _includeMe = true;
@@ -84,6 +84,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
           var activity = FirebaseFirestore.instance.collection(isGroup ? 'ClubActivities' : 'GolferActivities');
           var tag = isGroup ? 'gid' : 'uid';
 
+        if (coursesItems.isEmpty)
           FirebaseFirestore.instance.collection('GolfCourses').get().then((value) {
               value.docs.forEach((result) {
                   var items = result.data();
