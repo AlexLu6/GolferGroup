@@ -165,6 +165,7 @@ Future <String>? golferNames(List uids) async {
           var items = result.data();
           res = res == null ? items['name'] : res + ', ' + items['name'];
       });
+      print(res);
       return res;
     });
 }
