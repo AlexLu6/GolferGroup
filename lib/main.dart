@@ -398,7 +398,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget? groupActivityBody(int gID) {
     Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 23));
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).where('teeOff', isGreaterThan: deadline).snapshots(),
+      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
