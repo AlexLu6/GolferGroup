@@ -409,6 +409,7 @@ class _MyHomePageState extends State<MyHomePage> {
               if ((doc.data()! as Map)["teeOff"] == null || (doc.data()! as Map)["teeOff"].compareTo(deadline) < 0 ) {
                 return LinearProgressIndicator();
               } else {
+                print((doc.data()! as Map)["teeOff"].compareTo(deadline);
               return Card(child: ListTile(
                 title: Text(courseName((doc.data()! as Map)['cid'] as int)!, style: TextStyle(fontSize: 20)),
                 subtitle: Text(Language.of(context).teeOff + (doc.data()! as Map)['teeOff']!.toDate().toString().substring(0, 16) + '\n' +
