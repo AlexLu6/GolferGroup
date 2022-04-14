@@ -391,8 +391,9 @@ class _showActivityPage extends MaterialPageRoute<int> {
                     rows: buildRows(),
                   )),
                   const SizedBox(height: 16.0),
+                  teeOffPass && !alreadyIn ? const SizedBox(height: 10.0) :
                   ElevatedButton(
-                    child: Text(teeOffPass ? Language.of(context).play : alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
+                    child: Text(teeOffPass && alreadyIn ? Language.of(context).play : alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () => Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1)
                   ),
                   const SizedBox(height: 16.0),
