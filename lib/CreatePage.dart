@@ -431,20 +431,23 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             thAlignment: TextAlign.center,
             columnRatio: 0.2,
             columns: [
-              {"title": 'Hole', 'index': 0, 'key': 'hole','editable': false},
-              {"title": "Par", 'index': 1, 'key': 'par','editable': false},
-              {"title": "Score", 'index': 2, 'key': 'score'}
+              {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
+              {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
+              {"title": "Score", 'index': 2, 'key': 'score1'},
+              {"title": 'In', 'index': 0, 'key': 'zone2','editable': false},
+              {"title": "Par", 'index': 1, 'key': 'par2','editable': false},
+              {"title": "Score", 'index': 2, 'key': 'score2'}
             ],
             rows: [
-              {'hole': '1', 'par': '4', 'score': ''},
-              {'hole': '2', 'par': '4', 'score': ''},
-              {'hole': '3', 'par': '4', 'score': ''},
-              {'hole': '4', 'par': '4', 'score': ''},
-              {'hole': '5', 'par': '4', 'score': ''},
-              {'hole': '6', 'par': '4', 'score': ''},
-              {'hole': '7', 'par': '4', 'score': ''},
-              {'hole': '8', 'par': '4', 'score': ''},
-              {'hole': '9', 'par': '4', 'score': ''}
+              {'zone1': '1', 'par1': '4', 'score1': ''},
+              {'zone1': '2', 'par1': '4', 'score1': ''},
+              {'zone1': '3', 'par1': '4', 'score1': ''},
+              {'zone1': '4', 'par1': '4', 'score1': ''},
+              {'zone1': '5', 'par1': '4', 'score1': ''},
+              {'zone1': '6', 'par1': '4', 'score1': ''},
+              {'zone1': '7', 'par1': '4', 'score1': ''},
+              {'zone1': '8', 'par1': '4', 'score1': ''},
+              {'zone1': '9', 'par1': '4', 'score1': ''}
             ],
           ))
         ]));
