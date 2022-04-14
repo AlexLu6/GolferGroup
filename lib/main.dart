@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   gendre _sex = gendre.Male;
   double _handicap = 18;
   bool isRegistered = false, isUpdate = false;
-  var _golferDoc, _groupDoc;
+  var _golferDoc;
 //  final ImagePicker _picker = ImagePicker();
 
   @override
@@ -517,7 +517,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
                 subtitle: Text((((doc.data()! as Map)["zones"]).length * 9).toString() + ' Holes'), 
                 trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () async => print(doc.data()),
+                onTap: () {
+                  Navigator.push(context, newScorePage(doc, _name));
+                },
               ));}
             }).toList()
           );

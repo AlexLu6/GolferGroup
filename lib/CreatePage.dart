@@ -407,3 +407,21 @@ class _showActivityPage extends MaterialPageRoute<int> {
             );
         });
 }
+
+_NewScorePage newScorePage(var course, String golfer) {
+  return _NewScorePage(course, golfer);
+}
+
+class _NewScorePage extends MaterialPageRoute<bool> {
+  _NewScorePage(var course, String golfer) : super(builder: (BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Enter Score'), elevation: 1.0),
+      body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+        return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+          const SizedBox(height: 16.0),
+          Text('Name: ' + golfer)
+        ]));
+      })
+    );
+  });
+}
