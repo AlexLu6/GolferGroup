@@ -431,7 +431,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             thAlignment: TextAlign.center,
             columnRatio: 0.16,
             columns: [
-              {"title": 'Out', 'index': 0, 'key': 'zone','editable': false},
+              {"title": 'Hole', 'index': 0, 'key': 'zone','editable': false},
               {"title": "1", 'index': 1, 'key': 'h1'},
               {"title": "2", 'index': 2, 'key': 'h2'},
               {"title": "3", 'index': 3, 'key': 'h3'},
@@ -445,7 +445,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             rows: [
               {'zone': 'Par', 'h1': '4', 'h2': '4', 'h3': '4', 'h4': '4', 'h5': '4', 'h6': '4', 'h7': '4', 'h8': '4', 'h9': '4'},
               {'zone': 'Score', 'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '', 'h9': ''},
-              {'zone': 'In', 'h1': '10', 'h2': '11', 'h3': '12', 'h4': '13', 'h5': '14', 'h6': '15', 'h7': '16', 'h8': '17', 'h9': '18'},
+              {'zone': 'Hole', 'h1': '10', 'h2': '11', 'h3': '12', 'h4': '13', 'h5': '14', 'h6': '15', 'h7': '16', 'h8': '17', 'h9': '18'},
               {'zone': 'Par', 'h1': '4', 'h2': '4', 'h3': '4', 'h4': '4', 'h5': '4', 'h6': '4', 'h7': '4', 'h8': '4', 'h9': '4'},
               {'zone': 'Score', 'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '', 'h9': ''}
             ],
