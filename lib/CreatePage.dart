@@ -433,10 +433,10 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columns: [
               {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
               {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
-              {"title": "Score", 'index': 2, 'key': 'score1'},
+              {"title": " ", 'index': 2, 'key': 'score1'},
               {"title": 'In', 'index': 0, 'key': 'zone2','editable': false},
               {"title": "Par", 'index': 1, 'key': 'par2','editable': false},
-              {"title": "Score", 'index': 2, 'key': 'score2'}
+              {"title": " ", 'index': 2, 'key': 'score2'}
             ],
             rows: [
               {'zone1': '1', 'par1': '4', 'score1': '', 'zone2': '10', 'par2': '4', 'score2': ''},
