@@ -429,7 +429,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             trHeight: 16,
             tdAlignment: TextAlign.center,
             thAlignment: TextAlign.center,
-            columnRatio: 0.13,
+            columnRatio: 0.15,
             columns: [
               {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
               {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
