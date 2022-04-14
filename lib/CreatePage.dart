@@ -419,9 +419,31 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
         return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           const SizedBox(height: 16.0),
-          Text('Name: ' + golfer),
+          Text('Name: ' + golfer, style: TextStyle(fontSize: 20)),
           const SizedBox(height: 16.0),
-          Text('Course: ' + (course.data()! as Map)['region'] + ' ' + (course.data()! as Map)['name'])
+          Text('Course: ' + (course.data()! as Map)['region'] + ' ' + (course.data()! as Map)['name'], style: TextStyle(fontSize: 20)),
+          const SizedBox(height: 16.0),
+          Flexible(child: Editable(
+            borderColor: Colors.black,
+            tdStyle: TextStyle(fontSize: 16),
+            trHeight: 16,
+            tdAlignment: TextAlign.center,
+            thAlignment: TextAlign.center,
+            columnRatio: 0.09,
+            columns: [
+              {"title": 'Out', 'index': 0, 'key': 'row','editable': false},
+              {"title": "1", 'index': 1, 'key': 'h1'},
+              {"title": "2", 'index': 2, 'key': 'h2'},
+              {"title": "3", 'index': 3, 'key': 'h3'},
+              {"title": "4", 'index': 4, 'key': 'h4'},
+              {"title": "5", 'index': 5, 'key': 'h5'},
+              {"title": "6", 'index': 6, 'key': 'h6'},
+              {"title": "7", 'index': 7, 'key': 'h7'},
+              {"title": "8", 'index': 8, 'key': 'h8'},
+              {"title": "9", 'index': 9, 'key': 'h9'},
+            ],
+//            rows: buildRows(),
+          ))
         ]));
       })
     );
