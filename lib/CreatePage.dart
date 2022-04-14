@@ -429,25 +429,22 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             trHeight: 16,
             tdAlignment: TextAlign.center,
             thAlignment: TextAlign.center,
-            columnRatio: 0.16,
+            columnRatio: 0.2,
             columns: [
-              {"title": 'Hole', 'index': 0, 'key': 'zone','editable': false},
-              {"title": "1", 'index': 1, 'key': 'h1'},
-              {"title": "2", 'index': 2, 'key': 'h2'},
-              {"title": "3", 'index': 3, 'key': 'h3'},
-              {"title": "4", 'index': 4, 'key': 'h4'},
-              {"title": "5", 'index': 5, 'key': 'h5'},
-              {"title": "6", 'index': 6, 'key': 'h6'},
-              {"title": "7", 'index': 7, 'key': 'h7'},
-              {"title": "8", 'index': 8, 'key': 'h8'},
-              {"title": "9", 'index': 9, 'key': 'h9'},
+              {"title": 'Hole', 'index': 0, 'key': 'hole','editable': false},
+              {"title": "Par", 'index': 1, 'key': 'par','editable': false},
+              {"title": "Score", 'index': 2, 'key': 'score'}
             ],
             rows: [
-              {'zone': 'Par', 'h1': '4', 'h2': '4', 'h3': '4', 'h4': '4', 'h5': '4', 'h6': '4', 'h7': '4', 'h8': '4', 'h9': '4'},
-              {'zone': 'Score', 'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '', 'h9': ''},
-              {'zone': 'Hole', 'h1': '10', 'h2': '11', 'h3': '12', 'h4': '13', 'h5': '14', 'h6': '15', 'h7': '16', 'h8': '17', 'h9': '18'},
-              {'zone': 'Par', 'h1': '4', 'h2': '4', 'h3': '4', 'h4': '4', 'h5': '4', 'h6': '4', 'h7': '4', 'h8': '4', 'h9': '4'},
-              {'zone': 'Score', 'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '', 'h9': ''}
+              {'hole': '1', 'par': '4', 'score': ''},
+              {'hole': '2', 'par': '4', 'score': ''},
+              {'hole': '3', 'par': '4', 'score': ''},
+              {'hole': '4', 'par': '4', 'score': ''},
+              {'hole': '5', 'par': '4', 'score': ''},
+              {'hole': '6', 'par': '4', 'score': ''},
+              {'hole': '7', 'par': '4', 'score': ''},
+              {'hole': '8', 'par': '4', 'score': ''},
+              {'hole': '9', 'par': '4', 'score': ''}
             ],
           ))
         ]));
