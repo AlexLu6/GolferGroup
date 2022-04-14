@@ -419,7 +419,9 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
         return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
           const SizedBox(height: 16.0),
-          Text('Name: ' + golfer)
+          Text('Name: ' + golfer),
+          const SizedBox(height: 16.0),
+          Text('Course: ' + (course.data()! as Map)['region'] + ' ' + (course.data()! as Map)['name'])
         ]));
       })
     );
