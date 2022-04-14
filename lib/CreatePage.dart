@@ -429,7 +429,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             trHeight: 16,
             tdAlignment: TextAlign.center,
             thAlignment: TextAlign.center,
-            columnRatio: 0.2,
+            columnRatio: 0.13,
             columns: [
               {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
               {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
@@ -439,15 +439,15 @@ class _NewScorePage extends MaterialPageRoute<bool> {
               {"title": "Score", 'index': 2, 'key': 'score2'}
             ],
             rows: [
-              {'zone1': '1', 'par1': '4', 'score1': ''},
-              {'zone1': '2', 'par1': '4', 'score1': ''},
-              {'zone1': '3', 'par1': '4', 'score1': ''},
-              {'zone1': '4', 'par1': '4', 'score1': ''},
-              {'zone1': '5', 'par1': '4', 'score1': ''},
-              {'zone1': '6', 'par1': '4', 'score1': ''},
-              {'zone1': '7', 'par1': '4', 'score1': ''},
-              {'zone1': '8', 'par1': '4', 'score1': ''},
-              {'zone1': '9', 'par1': '4', 'score1': ''}
+              {'zone1': '1', 'par1': '4', 'score1': '', 'zone2': '10', 'par2': '4', 'score2': ''},
+              {'zone1': '2', 'par1': '4', 'score1': '', 'zone2': '11', 'par2': '4', 'score2': ''},
+              {'zone1': '3', 'par1': '4', 'score1': '', 'zone2': '12', 'par2': '4', 'score2': ''},
+              {'zone1': '4', 'par1': '4', 'score1': '', 'zone2': '13', 'par2': '4', 'score2': ''},
+              {'zone1': '5', 'par1': '4', 'score1': '', 'zone2': '14', 'par2': '4', 'score2': ''},
+              {'zone1': '6', 'par1': '4', 'score1': '', 'zone2': '15', 'par2': '4', 'score2': ''},
+              {'zone1': '7', 'par1': '4', 'score1': '', 'zone2': '16', 'par2': '4', 'score2': ''},
+              {'zone1': '8', 'par1': '4', 'score1': '', 'zone2': '17', 'par2': '4', 'score2': ''},
+              {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''}
             ],
           ))
         ]));
