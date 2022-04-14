@@ -431,7 +431,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             thAlignment: TextAlign.center,
             columnRatio: 0.16,
             columns: [
-              {"title": 'Out', 'index': 0, 'key': 'row','editable': false},
+              {"title": 'Out', 'index': 0, 'key': 'zone','editable': false},
               {"title": "1", 'index': 1, 'key': 'h1'},
               {"title": "2", 'index': 2, 'key': 'h2'},
               {"title": "3", 'index': 3, 'key': 'h3'},
@@ -442,7 +442,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
               {"title": "8", 'index': 8, 'key': 'h8'},
               {"title": "9", 'index': 9, 'key': 'h9'},
             ],
-//            rows: buildRows(),
+            rows: [{'zone': 'Par'}, {'h1': '4'}, {'h2': '4'}, {'h3': '4'}, {'h4': '4'}, {'h5': '4'}, {'h6': '4'}, {'h7': '4'}, {'h8': '4'}, {'h9': '4'}],
           ))
         ]));
       })
