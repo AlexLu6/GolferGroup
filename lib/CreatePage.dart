@@ -60,12 +60,12 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
 }
 
 class NameID {
-  const NameID(this.name, this.ID, this.region, this.photo);
+  const NameID(this.name, this.id, this.region, this.photo);
   final String name, region, photo;
-  final int ID;
+  final int id;
   @override
   String toString() => name;
-  int toID() => ID;
+  int toID() => id;
 }
 List<NameID> coursesItems = [];
 
@@ -318,13 +318,13 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
 }
 
 
-_showActivityPage showActivityPage(var activity, int uId, String title, bool editable) {
-  return _showActivityPage(activity, uId, title, editable);
+ShowActivityPage showActivityPage(var activity, int uId, String title, bool editable) {
+  return ShowActivityPage(activity, uId, title, editable);
 }
 
-class _showActivityPage extends MaterialPageRoute<int> {
+class ShowActivityPage extends MaterialPageRoute<int> {
 
-  _showActivityPage(var activity, int uId, String title, bool editable)
+  ShowActivityPage(var activity, int uId, String title, bool editable)
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
           var rows = [];

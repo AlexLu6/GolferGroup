@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 
-class _googleMapPage extends MaterialPageRoute<bool> {
+class GoogleMapPage extends MaterialPageRoute<bool> {
 
-  _googleMapPage() : super(builder: (BuildContext context) {
+  GoogleMapPage() : super(builder: (BuildContext context) {
     LatLng _initialPosition = LatLng(24.8765588, 121.1091453);
     GoogleMapController _controller;
     Location _location = Location();

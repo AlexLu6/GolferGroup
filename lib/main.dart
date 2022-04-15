@@ -98,11 +98,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0 ? RegisterBody()
-               : _currentPageIndex == 1 ? GroupBody()
-               : _currentPageIndex == 2 ? ActivityBody()
-               : _currentPageIndex == 3 ? GolfCourseBody()
-               : _currentPageIndex == 4 ? MyScoreBody()
+          child: _currentPageIndex == 0 ? registerBody()
+               : _currentPageIndex == 1 ? groupBody()
+               : _currentPageIndex == 2 ? activityBody()
+               : _currentPageIndex == 3 ? golfCourseBody()
+               : _currentPageIndex == 4 ? myScoreBody()
                : _currentPageIndex == 5 ? groupActivityBody(_gID): null
       ),
       drawer: isRegistered ? golfDrawer() : null,
@@ -184,7 +184,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  ListView RegisterBody() {
+  ListView registerBody() {
     final logo = Hero(
       tag: 'golfer',
       child: CircleAvatar(backgroundImage: NetworkImage(_golferAvatar ?? maleGolfer), radius: 140),
@@ -349,7 +349,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  Widget? GroupBody() {
+  Widget? groupBody() {
 
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
@@ -450,7 +450,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget ActivityBody() {
+  Widget activityBody() {
     Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolferActivities').where('teeOff', isGreaterThan: deadline).snapshots(),
@@ -500,7 +500,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   }
 
-  Widget? GolfCourseBody() {
+  Widget? golfCourseBody() {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('GolfCourses').snapshots(),
       builder: (context, snapshot) {
@@ -528,7 +528,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  ListView MyScoreBody() {
+  ListView myScoreBody() {
     return ListView();
   }
 
