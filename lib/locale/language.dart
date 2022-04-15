@@ -34,4 +34,5 @@ abstract class Language {
   String get create;
   String get max;
   String get now;
+  String get store;
 }

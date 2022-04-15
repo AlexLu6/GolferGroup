@@ -491,7 +491,11 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             }
           )),
           const SizedBox(height: 6.0),
-          Text('Total: $sum1 + $sum2 = ' + (sum1+sum2).toString(), style: TextStyle(fontSize: 20))
+          Text('Total: $sum1 + $sum2 = ' + (sum1+sum2).toString(), style: TextStyle(fontSize: 20)),
+          ElevatedButton(
+            child: Text(Language.of(context).store),
+            onPressed: () => Navigator.of(context).pop(true)
+          )
         ]));
       })
     );

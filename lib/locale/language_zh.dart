@@ -32,4 +32,5 @@ class LanguageZh extends Language {
   String get create => '建立';
   String get max => '名額: ';
   String get now => '已報名: ';
+  String get store => '儲存';
 }
