@@ -478,7 +478,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columnRatio: 0.16,
             columns: buildColumns(),
             rows: buildRows(),
-            onSubmitted: (value) => print(_editableKey.currentState.rows)
+            onSubmitted: (value) {print(value);}
           ))
         ]));
       })
