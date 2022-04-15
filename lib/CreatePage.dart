@@ -431,7 +431,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       {'zone1': '6', 'par1': '4', 'score1': '', 'zone2': '15', 'par2': '4', 'score2': ''},
       {'zone1': '7', 'par1': '4', 'score1': '', 'zone2': '16', 'par2': '4', 'score2': ''},
       {'zone1': '8', 'par1': '4', 'score1': '', 'zone2': '17', 'par2': '4', 'score2': ''},
-      {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''}
+      {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''},
+      {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
     ];
     List buildColumns() {
       columns[0]['title'] = (course.data()! as Map)['zones'][0]['name'];
@@ -439,15 +440,21 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       return columns;
     }
     List buildRows() {
-      int idx = 0;
+      int idx = 0; num sum = 0;
       
       ((course.data()! as Map)['zones'][0]['holes']).forEach((par) {
-        rows[idx]['par1'] = par.toString(); idx++;
+        rows[idx]['par1'] = par.toString(); 
+        sum += par;
+        idx++;
        });
-      idx = 0;
+      rows[idx]['par1'] = sum.toString();
+      idx = sum = 0;
       ((course.data()! as Map)['zones'][1]['holes']).forEach((par) {
-        rows[idx]['par2'] = par.toString(); idx++;
+        rows[idx]['par2'] = par.toString();
+        sum += par;
+        idx++;
        });
+       rows[idx]['par2'] = sum.toString();
        
       return rows;
     }
