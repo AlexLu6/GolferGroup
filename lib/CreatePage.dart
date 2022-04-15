@@ -459,7 +459,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
        
       return rows;
     }
-    
+    int sum1 = 0, sum2 = 0;
     return Scaffold(
       appBar: AppBar(title: Text('Enter Score'), elevation: 1.0),
       body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -480,33 +480,17 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columns: buildColumns(),
             rows: buildRows(),
             onSubmitted: (value) {
-              int sum1 = 0, sum2 = 0;
-              bool noSum = true;
               _editableKey.currentState!.editedRows.forEach((element) {
                 if (element['row'] != 9) {
                   sum1 += int.parse(element['score1']?? '0');
                   sum2 += int.parse(element['score2']?? '0');
-                } else
-                  noSum = false;
+                } 
               });
-              if (noSum) {
-                _editableKey.currentState!.editedRows.add({
-                  'row': 9,
-                  'score1': sum1,
-                  'score2': sum2
-                });
-              } else {
-                _editableKey.currentState!.editedRows.forEach((element) {
-                  if (element['row'] == 9) {
-                    element['score1'] = sum1;
-                    element['score2'] = sum2;
-                    print(element);
-                  }
-                });
-              }
               setState(() {});
             }
-          ))
+          )),
+          const SizedBox(height: 16.0),
+          Text('Total: ' + (sum1+sum2).toString(), style: TextStyle(fontSize: 20))
         ]));
       })
     );
