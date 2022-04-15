@@ -482,7 +482,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             onSubmitted: (value) {
               int sum1 = 0, sum2 = 0;
               _editableKey.currentState!.editedRows.forEach((element) {
-                if (element['row'] != '9') {
+                if (element['row'] != 9) {
                   sum1 += int.parse(element['score1']?? '0');
                   sum2 += int.parse(element['score2']?? '0');
                 }
