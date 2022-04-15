@@ -414,6 +414,41 @@ _NewScorePage newScorePage(var course, String golfer) {
 
 class _NewScorePage extends MaterialPageRoute<bool> {
   _NewScorePage(var course, String golfer) : super(builder: (BuildContext context) {
+    var columns = [
+      {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
+      {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
+      {"title": " ", 'index': 2, 'key': 'score1'},
+      {"title": 'In', 'index': 0, 'key': 'zone2','editable': false},
+      {"title": "Par", 'index': 1, 'key': 'par2','editable': false},
+      {"title": " ", 'index': 2, 'key': 'score2'}
+    ];
+    var rows = [
+      {'zone1': '1', 'par1': '4', 'score1': '', 'zone2': '10', 'par2': '4', 'score2': ''},
+      {'zone1': '2', 'par1': '4', 'score1': '', 'zone2': '11', 'par2': '4', 'score2': ''},
+      {'zone1': '3', 'par1': '4', 'score1': '', 'zone2': '12', 'par2': '4', 'score2': ''},
+      {'zone1': '4', 'par1': '4', 'score1': '', 'zone2': '13', 'par2': '4', 'score2': ''},
+      {'zone1': '5', 'par1': '4', 'score1': '', 'zone2': '14', 'par2': '4', 'score2': ''},
+      {'zone1': '6', 'par1': '4', 'score1': '', 'zone2': '15', 'par2': '4', 'score2': ''},
+      {'zone1': '7', 'par1': '4', 'score1': '', 'zone2': '16', 'par2': '4', 'score2': ''},
+      {'zone1': '8', 'par1': '4', 'score1': '', 'zone2': '17', 'par2': '4', 'score2': ''},
+      {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''}
+    ];
+    List buildColumns() {
+      columns[0]['zone1'] = (course.data()! as Map)['zones'][0]['name'];
+      columns[3]['zone2'] = (course.data()! as Map)['zones'][1]['name'];
+      return columns;
+    }
+    List buildRows() {
+      int idx = 0;
+      ((course.data()! as Map)['zones'][0]['holes'] as List<int>).forEach((par) {
+        rows[idx]['par1'] = par.toString(); idx++;
+       });
+      idx = 0;
+      ((course.data()! as Map)['zones'][1]['holes'] as List<int>).forEach((par) {
+        rows[idx]['par2'] = par.toString(); idx++;
+       });
+      return rows;
+    }
     return Scaffold(
       appBar: AppBar(title: Text('Enter Score'), elevation: 1.0),
       body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -430,25 +465,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             tdAlignment: TextAlign.center,
             thAlignment: TextAlign.center,
             columnRatio: 0.15,
-            columns: [
-              {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
-              {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
-              {"title": " ", 'index': 2, 'key': 'score1'},
-              {"title": 'In', 'index': 0, 'key': 'zone2','editable': false},
-              {"title": "Par", 'index': 1, 'key': 'par2','editable': false},
-              {"title": " ", 'index': 2, 'key': 'score2'}
-            ],
-            rows: [
-              {'zone1': '1', 'par1': '4', 'score1': '', 'zone2': '10', 'par2': '4', 'score2': ''},
-              {'zone1': '2', 'par1': '4', 'score1': '', 'zone2': '11', 'par2': '4', 'score2': ''},
-              {'zone1': '3', 'par1': '4', 'score1': '', 'zone2': '12', 'par2': '4', 'score2': ''},
-              {'zone1': '4', 'par1': '4', 'score1': '', 'zone2': '13', 'par2': '4', 'score2': ''},
-              {'zone1': '5', 'par1': '4', 'score1': '', 'zone2': '14', 'par2': '4', 'score2': ''},
-              {'zone1': '6', 'par1': '4', 'score1': '', 'zone2': '15', 'par2': '4', 'score2': ''},
-              {'zone1': '7', 'par1': '4', 'score1': '', 'zone2': '16', 'par2': '4', 'score2': ''},
-              {'zone1': '8', 'par1': '4', 'score1': '', 'zone2': '17', 'par2': '4', 'score2': ''},
-              {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''}
-            ],
+            columns: buildColumns(),
+            rows: buildRows(),
           ))
         ]));
       })
