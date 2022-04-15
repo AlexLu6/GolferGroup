@@ -440,18 +440,18 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       return columns;
     }
     List buildRows() {
-      int idx = 0; num sum = 0;
+      int idx = 0, sum = 0;
       
       ((course.data()! as Map)['zones'][0]['holes']).forEach((par) {
         rows[idx]['par1'] = par.toString(); 
-        sum += par;
+        sum += par.toInt();
         idx++;
        });
       rows[idx]['par1'] = sum.toString();
       idx = sum = 0;
       ((course.data()! as Map)['zones'][1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
-        sum += par;
+        sum += par.toInt();
         idx++;
        });
        rows[idx]['par2'] = sum.toString();
