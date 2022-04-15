@@ -294,7 +294,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                       rows: [
                         {'zoName': 'Ou', 'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '','h9': ''},
                         {'zoName': 'I',  'h1': '', 'h2': '', 'h3': '', 'h4': '', 'h5': '', 'h6': '', 'h7': '', 'h8': '','h9': ''},
-                      ]
+                      ],
                     )
                   ),
                   const SizedBox(height: 16.0),
@@ -476,6 +476,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columnRatio: 0.16,
             columns: buildColumns(),
             rows: buildRows(),
+            onSubmitted: (value) => print(value)
           ))
         ]));
       })
