@@ -434,8 +434,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''}
     ];
     List buildColumns() {
-      columns[0]['zone1'] = (course.data()! as Map)['zones'][0]['name'];
-      columns[3]['zone2'] = (course.data()! as Map)['zones'][1]['name'];
+      columns[0]['title'] = (course.data()! as Map)['zones'][0]['name'];
+      columns[3]['title'] = (course.data()! as Map)['zones'][1]['name'];
       return columns;
     }
     List buildRows() {
