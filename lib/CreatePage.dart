@@ -444,14 +444,14 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       
       ((course.data()! as Map)['zones'][0]['holes']).forEach((par) {
         rows[idx]['par1'] = par.toString(); 
-        sum += par.toInt();
+        sum += int.parse(par);
         idx++;
        });
       rows[idx]['par1'] = sum.toString();
       idx = sum = 0;
       ((course.data()! as Map)['zones'][1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
-        sum += par.toInt();
+        sum += int.parse(par);
         idx++;
        });
        rows[idx]['par2'] = sum.toString();
