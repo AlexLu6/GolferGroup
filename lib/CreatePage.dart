@@ -481,6 +481,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             rows: buildRows(),
             onSubmitted: (value) {
               _editableKey.currentState!.editedRows.forEach((element) {
+                sum1 = sum2 = 0;
                 if (element['row'] != 9) {
                   sum1 += int.parse(element['score1']?? '0');
                   sum2 += int.parse(element['score2']?? '0');
@@ -490,7 +491,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             }
           )),
           const SizedBox(height: 16.0),
-          Text('Total: ' + (sum1+sum2).toString(), style: TextStyle(fontSize: 20))
+          Text('Total: $sum1 + $sum2 = ' + (sum1+sum2).toString(), style: TextStyle(fontSize: 20))
         ]));
       })
     );
