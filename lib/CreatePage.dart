@@ -466,7 +466,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             trHeight: 16,
             tdAlignment: TextAlign.center,
             thAlignment: TextAlign.center,
-            columnRatio: 0.15,
+            columnRatio: 0.18,
             columns: buildColumns(),
             rows: buildRows(),
           ))
