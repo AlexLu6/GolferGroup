@@ -476,7 +476,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columnRatio: 0.16,
             columns: buildColumns(),
             rows: buildRows(),
-            onSubmitted: (value) => print('$Key $value')
+            onSubmitted: (value) => print(rows)
           ))
         ]));
       })
