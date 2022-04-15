@@ -481,14 +481,29 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             rows: buildRows(),
             onSubmitted: (value) {
               int sum1 = 0, sum2 = 0;
+              bool noSum = true;
               _editableKey.currentState!.editedRows.forEach((element) {
                 if (element['row'] != 9) {
                   sum1 += int.parse(element['score1']?? '0');
                   sum2 += int.parse(element['score2']?? '0');
-                }
-                print(element);
+                } else
+                  noSum = false;
               });
-              print('$sum1 $sum2');
+              if (noSum) {
+                _editableKey.currentState!.editedRows.add({
+                  'row': 9,
+                  'score1': sum1,
+                  'score2': sum2
+                });
+              } else {
+                _editableKey.currentState!.editedRows.forEach((element) {
+                  if (element['row'] == 9) {
+                    element['score1'] = sum1;
+                    element['score2'] = sum2;
+                  }
+                });
+              }
+              setState(() {});
             }
           ))
         ]));
