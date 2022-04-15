@@ -500,6 +500,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                   if (element['row'] == 9) {
                     element['score1'] = sum1;
                     element['score2'] = sum2;
+                    print(element);
                   }
                 });
               }
