@@ -414,6 +414,7 @@ _NewScorePage newScorePage(var course, String golfer) {
 
 class _NewScorePage extends MaterialPageRoute<bool> {
   _NewScorePage(var course, String golfer) : super(builder: (BuildContext context) {
+    final _editableKey = GlobalKey<EditableState>();
     var columns = [
       {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
       {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
@@ -468,6 +469,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           Text('Course: ' + (course.data()! as Map)['region'] + ' ' + (course.data()! as Map)['name'], style: TextStyle(fontSize: 20)),
           const SizedBox(height: 16.0),
           Flexible(child: Editable(
+            key: _editableKey,
             borderColor: Colors.black,
             tdStyle: TextStyle(fontSize: 16),
             trHeight: 16,
@@ -476,7 +478,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columnRatio: 0.16,
             columns: buildColumns(),
             rows: buildRows(),
-            onSubmitted: (value) => print(rows)
+            onSubmitted: (value) => print(_editableKey.currentState)
           ))
         ]));
       })
