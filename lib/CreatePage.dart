@@ -459,6 +459,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
        
       return rows;
     }
+    int hidx = 0, sum1 = 0, sum2 = 0;
     return Scaffold(
       appBar: AppBar(title: Text('Enter Score'), elevation: 1.0),
       body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -478,7 +479,20 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columnRatio: 0.16,
             columns: buildColumns(),
             rows: buildRows(),
-            onSubmitted: (value) {print(value);}
+            onSubmitted: (value) {
+              if (hidx < 9) {
+                rows[hidx]['score1'] = value;
+                sum1 += int.parse(value);
+                hidx ++;
+                if (hidx == 9) {rows[hidx]['score1'] = sum1.toString(); sum2 = 0;}
+              } else {
+                rows[hidx-9]['score2'] = value;
+                sum2 += int.parse(value);
+                hidx ++;
+                if (hidx == 18) {rows[hidx-9]['score2'] = sum2.toString(); sum1 = hidx = 0;}
+              }
+              setState(() {});
+            }
           ))
         ]));
       })
