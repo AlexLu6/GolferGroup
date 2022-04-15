@@ -33,4 +33,5 @@ class LanguageZh extends Language {
   String get max => '名額: ';
   String get now => '已報名: ';
   String get store => '儲存';
+  String get total => '總桿: ';
 }

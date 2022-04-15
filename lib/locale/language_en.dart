@@ -33,4 +33,5 @@ class LanguageEn extends Language {
   String get max => 'Max: ';
   String get now => 'Now: ';
   String get store => 'Store';
+  String get total => 'Total: ';
 }

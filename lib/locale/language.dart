@@ -35,4 +35,5 @@ abstract class Language {
   String get max;
   String get now;
   String get store;
+  String get total;
 }
