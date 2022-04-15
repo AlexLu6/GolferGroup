@@ -491,7 +491,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                 hidx ++;
                 if (hidx == 18) {rows[9]['score2'] = sum2.toString(); sum1 = hidx = 0; print(sum2);}
               }
-              setState(() {rows;});
+              print(_editableKey.currentState!.editedRows);;
+//              setState(() => rows);
             }
           ))
         ]));
