@@ -484,14 +484,14 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                 rows[hidx]['score1'] = value;
                 sum1 += int.parse(value);
                 hidx ++;
-                if (hidx == 9) {rows[hidx]['score1'] = sum1.toString(); sum2 = 0; print(sum1);}
+                if (hidx == 9) {rows[9]['score1'] = sum1.toString(); sum2 = 0; print(sum1);}
               } else {
                 rows[hidx-9]['score2'] = value;
                 sum2 += int.parse(value);
                 hidx ++;
-                if (hidx == 18) {rows[hidx-9]['score2'] = sum2.toString(); sum1 = hidx = 0; print(sum2);}
+                if (hidx == 18) {rows[9]['score2'] = sum2.toString(); sum1 = hidx = 0; print(sum2);}
               }
-              setState(() {});
+              setState(() {rows;});
             }
           ))
         ]));
