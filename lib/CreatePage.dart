@@ -418,9 +418,9 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
       {"title": "Par", 'index': 1, 'key': 'par1','editable': false},
       {"title": " ", 'index': 2, 'key': 'score1'},
-      {"title": 'In', 'index': 0, 'key': 'zone2','editable': false},
-      {"title": "Par", 'index': 1, 'key': 'par2','editable': false},
-      {"title": " ", 'index': 2, 'key': 'score2'}
+      {"title": 'In', 'index': 3, 'key': 'zone2','editable': false},
+      {"title": "Par", 'index': 4, 'key': 'par2','editable': false},
+      {"title": " ", 'index': 5, 'key': 'score2'}
     ];
     var rows = [
       {'zone1': '1', 'par1': '4', 'score1': '', 'zone2': '10', 'par2': '4', 'score2': ''},
@@ -476,7 +476,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             columnRatio: 0.16,
             columns: buildColumns(),
             rows: buildRows(),
-            onSubmitted: (value) => print(value)
+            onSubmitted: (value) => print('$Key $value')
           ))
         ]));
       })
