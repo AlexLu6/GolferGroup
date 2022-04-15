@@ -440,6 +440,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
     }
     List buildRows() {
       int idx = 0;
+      print((course.data()! as Map)['zones'][0]['holes']);
+      /*
       ((course.data()! as Map)['zones'][0]['holes'] as List<int>).forEach((par) {
         rows[idx]['par1'] = par.toString(); idx++;
        });
@@ -447,6 +449,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       ((course.data()! as Map)['zones'][1]['holes'] as List<int>).forEach((par) {
         rows[idx]['par2'] = par.toString(); idx++;
        });
+       */
       return rows;
     }
     return Scaffold(
