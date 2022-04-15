@@ -487,10 +487,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                 if (element['score2'] != null)
                   sum2 += int.parse(element['score2']);
               });
-              setState(() {
-                _editableKey.currentState!.editedRows[9]['score1'] = sum1.toString();
-                _editableKey.currentState!.editedRows[9]['score2'] = sum2.toString();
-              });
+              print('$sum1 $sum2');
             }
           ))
         ]));
