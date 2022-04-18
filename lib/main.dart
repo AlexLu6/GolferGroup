@@ -545,7 +545,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (value) Navigator.push(context, newScorePage(doc, _name));
                     });
                   }
-                  
+                  else
+                    Navigator.push(context, newScorePage(doc, _name));
                 },
               ));}
             }).toList()
