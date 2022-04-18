@@ -520,28 +520,21 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () {
                   bool? _zone0 = true, _zone1 = true, _zone2 = false, _zone3 = false;
                   if (((doc.data()! as Map)["zones"]).length > 2) {
-                    showDialog(context: context, builder: (BuildContext context) => SimpleDialog(
-                      title: const Text('Select 2 courses'),
-                      children: [
-                        Row(children: [
-                          Checkbox(value: _zone0, onChanged: (bool? value) {setState(() => _zone0 = value);}),
-                          Text((doc.data()! as Map)["zones"][0]['name'])
-                        ]),
-                        Row(children: [
-                          Checkbox(value: _zone1, onChanged: (bool? value) {setState(() => _zone1 = value);}),
-                          Text((doc.data()! as Map)["zones"][1]['name'])
-                        ]),
-                        Row(children: [
-                          Checkbox(value: _zone2, onChanged: (bool? value) {setState(() => _zone2 = value);}),
-                          Text((doc.data()! as Map)["zones"][2]['name'])
-                        ]),
-                        ((doc.data()! as Map)["zones"]).length == 3 ? SizedBox(height: 6) :
-                        Row(children: [
-                          Checkbox(value: _zone3, onChanged: (bool? value) {setState(() => _zone3 = value);}),
-                          Text((doc.data()! as Map)["zones"][3]['name'])
-                        ]),
-                      ],
-                    )).then((value) {
+                    showDialog(context: context, builder: (context) {return  StatefulBuilder(
+                      builder: (context, setState) {
+                        return AlertDialog(
+                          title: const Text('Select 2 courses'),
+                          actions: [
+                            CheckboxListTile(value: _zone0, title: (doc.data()! as Map)["zones"][0]['name'], onChanged: (bool? value) {setState(() => _zone0 = value);}),
+                            CheckboxListTile(value: _zone1, title: (doc.data()! as Map)["zones"][1]['name'], onChanged: (bool? value) {setState(() => _zone1 = value);}),
+                            CheckboxListTile(value: _zone2, title: (doc.data()! as Map)["zones"][2]['name'], onChanged: (bool? value) {setState(() => _zone2 = value);}),
+                            ((doc.data()! as Map)["zones"]).length == 3 ? SizedBox(height: 6) :
+                            CheckboxListTile(value: _zone3, title: (doc.data()! as Map)["zones"][3]['name'], onChanged: (bool? value) {setState(() => _zone3 = value);}),
+                          ],
+                        );
+                      }
+                    );}
+                    ).then((value) {
                       if (value) Navigator.push(context, newScorePage(doc, _name));
                     });
                   }
