@@ -535,11 +535,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           Checkbox(value: _zone2, onChanged: (bool? value) {setState(() => _zone2 = value);}),
                           Text((doc.data()! as Map)["zones"][2]['name'])
                         ]),
-                        ((doc.data()! as Map)["zones"]).length == 4 ? SizedBox(height: 6) :
+/*                        ((doc.data()! as Map)["zones"]).length == 4 ? SizedBox(height: 6) :
                         Row(children: [
                           Checkbox(value: _zone3, onChanged: (bool? value) {setState(() => _zone3 = value);}),
                           Text((doc.data()! as Map)["zones"][3]['name'])
-                        ]),
+                        ]),*/
                       ],
                     ));
                   }
