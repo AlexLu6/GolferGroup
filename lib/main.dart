@@ -525,9 +525,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         return AlertDialog(
                           title: const Text('Select 2 courses'),
                           actions: [
-                            CheckboxListTile(value: _zone0, title: (doc.data()! as Map)["zones"][0]['name'], onChanged: (bool? value) {setState(() => _zone0 = value);}),
-                            CheckboxListTile(value: _zone1, title: (doc.data()! as Map)["zones"][1]['name'], onChanged: (bool? value) {setState(() => _zone1 = value);}),
-                            CheckboxListTile(value: _zone2, title: (doc.data()! as Map)["zones"][2]['name'], onChanged: (bool? value) {setState(() => _zone2 = value);}),
+                            CheckboxListTile(value: _zone0, title: Text((doc.data()! as Map)["zones"][0]['name']), onChanged: (bool? value) {setState(() => _zone0 = value);}),
+                            CheckboxListTile(value: _zone1, title: Text((doc.data()! as Map)["zones"][1]['name']), onChanged: (bool? value) {setState(() => _zone1 = value);}),
+                            CheckboxListTile(value: _zone2, title: Text((doc.data()! as Map)["zones"][2]['name']), onChanged: (bool? value) {setState(() => _zone2 = value);}),
                             ((doc.data()! as Map)["zones"]).length == 3 ? SizedBox(height: 6) :
                             CheckboxListTile(value: _zone3, title: (doc.data()! as Map)["zones"][3]['name'], onChanged: (bool? value) {setState(() => _zone3 = value);}),
                           ],
