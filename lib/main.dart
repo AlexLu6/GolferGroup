@@ -518,6 +518,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 subtitle: Text((((doc.data()! as Map)["zones"]).length * 9).toString() + ' Holes'), 
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
+                  bool? _zone0 = true, _zone1 = true, _zone2 = false, _zone3 = false;
+                  if (((doc.data()! as Map)["zones"]).length > 2) {
+                    showDialog(context: context, builder: (BuildContext context) => SimpleDialog(
+                      title: const Text('Select 2 courses'),
+                      children: [
+                        Row(children: [
+                          Checkbox(value: _zone0, onChanged: (bool? value) {setState(() => _zone0 = value);}),
+                          Text((doc.data()! as Map)["zones"][0]['name'])
+                        ]),
+                        Row(children: [
+                          Checkbox(value: _zone1, onChanged: (bool? value) {setState(() => _zone1 = value);}),
+                          Text((doc.data()! as Map)["zones"][1]['name'])
+                        ]),
+                        Row(children: [
+                          Checkbox(value: _zone2, onChanged: (bool? value) {setState(() => _zone2 = value);}),
+                          Text((doc.data()! as Map)["zones"][2]['name'])
+                        ]),
+                        ((doc.data()! as Map)["zones"]).length == 4 ? SizedBox(height: 6) :
+                        Row(children: [
+                          Checkbox(value: _zone3, onChanged: (bool? value) {setState(() => _zone3 = value);}),
+                          Text((doc.data()! as Map)["zones"][3]['name'])
+                        ]),
+                      ],
+                    ));
+                  }
                   Navigator.push(context, newScorePage(doc, _name));
                 },
               ));}
