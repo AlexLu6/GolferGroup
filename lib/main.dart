@@ -541,9 +541,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           Text((doc.data()! as Map)["zones"][3]['name'])
                         ]),*/
                       ],
-                    ));
+                    )).then((value) {
+                      if (value) Navigator.push(context, newScorePage(doc, _name));
+                    });
                   }
-                  Navigator.push(context, newScorePage(doc, _name));
+                  
                 },
               ));}
             }).toList()
