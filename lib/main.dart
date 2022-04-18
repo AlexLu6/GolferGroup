@@ -529,7 +529,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             CheckboxListTile(value: _zone1, title: Text((doc.data()! as Map)["zones"][1]['name']), onChanged: (bool? value) {setState(() => _zone1 = value);}),
                             CheckboxListTile(value: _zone2, title: Text((doc.data()! as Map)["zones"][2]['name']), onChanged: (bool? value) {setState(() => _zone2 = value);}),
                             ((doc.data()! as Map)["zones"]).length == 3 ? SizedBox(height: 6) :
-                            CheckboxListTile(value: _zone3, title: (doc.data()! as Map)["zones"][3]['name'], onChanged: (bool? value) {setState(() => _zone3 = value);}),
+                            CheckboxListTile(value: _zone3, title: Text((doc.data()! as Map)["zones"][3]['name']), onChanged: (bool? value) {setState(() => _zone3 = value);}),
+                            TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
+                              TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
                           ],
                         );
                       }
