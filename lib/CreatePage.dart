@@ -496,7 +496,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           const SizedBox(height: 16.0),
           Center(child:
           ElevatedButton(
-            child: Text(Language.of(context).store, style: TextStyle(fontSize: 20)),
+            child: Text(Language.of(context).store, style: TextStyle(fontSize: 24)),
             onPressed: () => Navigator.of(context).pop(true)
           )),
           const SizedBox(height: 6.0)
