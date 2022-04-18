@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -530,8 +531,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             CheckboxListTile(value: _zone2, title: Text((doc.data()! as Map)["zones"][2]['name']), onChanged: (bool? value) {setState(() => _zone2 = value);}),
                             ((doc.data()! as Map)["zones"]).length == 3 ? SizedBox(height: 6) :
                             CheckboxListTile(value: _zone3, title: Text((doc.data()! as Map)["zones"][3]['name']), onChanged: (bool? value) {setState(() => _zone3 = value);}),
+                            Row(children: [
                             TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
-                              TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
+                            TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))])
                           ],
                         );
                       }
