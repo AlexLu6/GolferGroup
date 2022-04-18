@@ -491,6 +491,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             }
           )),
           const SizedBox(height: 6.0),
+          (sum1+sum2) == 0 ? const SizedBox(height: 6.0) :
           Text(Language.of(context).total + '$sum1 + $sum2 = ' + (sum1+sum2).toString(), style: TextStyle(fontSize: 20)),
           const SizedBox(height: 16.0),
           Center(child:
