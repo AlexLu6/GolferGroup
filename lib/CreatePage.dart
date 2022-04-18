@@ -408,12 +408,12 @@ class ShowActivityPage extends MaterialPageRoute<int> {
         });
 }
 
-_NewScorePage newScorePage(var course, String golfer) {
-  return _NewScorePage(course, golfer);
+_NewScorePage newScorePage(var course, String golfer, {int zone0=0, int zone1=1}) {
+  return _NewScorePage(course, golfer, zone0, zone1);
 }
 
 class _NewScorePage extends MaterialPageRoute<bool> {
-  _NewScorePage(var course, String golfer) : super(builder: (BuildContext context) {
+  _NewScorePage(var course, String golfer, int zone0, int zone1) : super(builder: (BuildContext context) {
     final _editableKey = GlobalKey<EditableState>();
     var columns = [
       {"title": 'Out', 'index': 0, 'key': 'zone1','editable': false},
@@ -436,21 +436,21 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
     ];
     List buildColumns() {
-      columns[0]['title'] = (course.data()! as Map)['zones'][0]['name'];
-      columns[3]['title'] = (course.data()! as Map)['zones'][1]['name'];
+      columns[0]['title'] = (course.data()! as Map)['zones'][zone0]['name'];
+      columns[3]['title'] = (course.data()! as Map)['zones'][zone1]['name'];
       return columns;
     }
     List buildRows() {
       int idx = 0, sum = 0;
       
-      ((course.data()! as Map)['zones'][0]['holes']).forEach((par) {
+      ((course.data()! as Map)['zones'][zone0]['holes']).forEach((par) {
         rows[idx]['par1'] = par.toString(); 
         sum += int.parse(par);
         idx++;
        });
       rows[idx]['par1'] = sum.toString();
       idx = sum = 0;
-      ((course.data()! as Map)['zones'][1]['holes']).forEach((par) {
+      ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
         sum += int.parse(par);
         idx++;

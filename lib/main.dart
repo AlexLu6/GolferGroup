@@ -539,7 +539,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       }
                     );}
                     ).then((value) {
-                      if (value) Navigator.push(context, newScorePage(doc, _name));
+                      int zone0, zone1;
+                      zone0 = _zone0! ? 0 : _zone1! ? 1 : 2;
+                      zone1 = _zone3! ? 3 : _zone2! ? 2 : 1;
+                      if (value) Navigator.push(context, newScorePage(doc, _name, zone0: zone0, zone1: zone1));
                     });
                   }
                   else
