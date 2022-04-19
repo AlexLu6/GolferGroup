@@ -326,17 +326,29 @@ Future <String>? courseName(int cid) {
           var items = result.data();
           res = items['region'] + ' ' + items['name'];
       });
-      print(res);
       return res;
     });
 }
-
+/*
 String? coursePhoto(int cid) {
   var result = 'https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80';
   for (var e in golfCourses) 
     if (e["cid"] == cid) 
       return (e["photo"] as String);
   return result;
+}
+*/
+Future <String>? coursePhoto(int cid) {
+  var res;
+  return FirebaseFirestore.instance.collection('GolfCourses')
+    .where('cid', isEqualTo: cid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          var items = result.data();
+          res = items['photo'];
+      });
+      return res;
+    });
 }
 
 Future <int> isApplying(int gid, int uid) {

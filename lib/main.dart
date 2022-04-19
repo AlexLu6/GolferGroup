@@ -429,7 +429,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List<dynamic>).length.toString() + "\t" + 
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
-                leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
+                leading: FutureBuilder(
+                  future: coursePhoto((doc.data()! as Map)['cid'] as int),
+                  builder: (context, snapshot2) {
+                    if (!snapshot2.hasData)
+                      return const LinearProgressIndicator();
+                    else
+                      return Image.network(snapshot2.data!.toString());
+                  }),                
+/*                Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
                   Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID)))
@@ -484,7 +492,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + 
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
-                leading: Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),
+                leading: FutureBuilder(
+                  future: coursePhoto((doc.data()! as Map)['cid'] as int),
+                  builder: (context, snapshot2) {
+                    if (!snapshot2.hasData)
+                      return const LinearProgressIndicator();
+                    else
+                      return Image.network(snapshot2.data!.toString());
+                  }),
+                /*Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {  
                   Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int))
