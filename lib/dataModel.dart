@@ -308,15 +308,15 @@ var golfCourses = {
   },
 };
 
-
-String? courseName1(int cid) {
+/*
+String? courseName(int cid) {
   var result = '';
   for (var e in golfCourses) 
     if (e["cid"] == cid) 
       return (e["region"] as String) + ' ' + (e["name"] as String);
   return result;
 }
-
+*/
 Future <String>? courseName(int cid) {
   var res;
   return FirebaseFirestore.instance.collection('GolfCourses')
