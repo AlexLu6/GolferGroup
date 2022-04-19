@@ -588,6 +588,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ListView myScoreBody() {
     loadMyActivities();
+    if (myActivities != null)
     (myActivities as List).forEach((element) {
       
     });
