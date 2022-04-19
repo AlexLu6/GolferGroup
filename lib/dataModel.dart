@@ -1,8 +1,40 @@
-//import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 int uuidTime() {
   return DateTime.now().millisecondsSinceEpoch - 1647000000000;
+}
+
+var myGroups;
+void storeMyGroup() async {
+  final directory = await path_provider.getApplicationDocumentsDirectory();
+  var path = directory.path;
+  var ffile = File("$path/myGroup.json");
+  await ffile.writeAsString(jsonEncode(myGroups));
+}
+
+void  loadMyGroup() async {
+  final directory = await path_provider.getApplicationDocumentsDirectory();
+  var path = directory.path;
+  var ffile = File("$path/myGroup.json");
+  myGroups = jsonDecode(await ffile.readAsString());
+}
+
+var myActivities;
+void storeMyActivities() async {
+  final directory = await path_provider.getApplicationDocumentsDirectory();
+  var path = directory.path;
+  var ffile = File("$path/myActivities.json");
+  await ffile.writeAsString(jsonEncode(myActivities));
+}
+
+void loadMyActivities() async {
+  final directory = await path_provider.getApplicationDocumentsDirectory();
+  var path = directory.path;
+  var ffile = File("$path/myActivities.json");
+  myActivities = jsonDecode(await ffile.readAsString());
 }
 
 var golferGroup = {

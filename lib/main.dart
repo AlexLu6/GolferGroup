@@ -587,6 +587,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView myScoreBody() {
+    loadMyActivities();
+    (myActivities as List).forEach((element) {
+      
+    });
     return ListView();
   }
 
