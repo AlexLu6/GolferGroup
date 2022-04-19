@@ -40,7 +40,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                   ),
                   const SizedBox(height: 24.0),
                   ElevatedButton(
-                      child: Text(Language.of(context).create),
+                      child: Text(Language.of(context).create, style: TextStyle(fontSize: 24)),
                       onPressed: () {
                         if (_groupName != '' && _region != '') {
                           FirebaseFirestore.instance.collection('GolferClubs').add({
@@ -96,7 +96,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
               appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Center(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 24.0),
                   Flexible(child: Row(children: <Widget>[
                     ElevatedButton(child: Text("Golf Course:"),
@@ -183,7 +183,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                     const Text('Include myself')
                   ])),
                   const SizedBox(height: 24.0),
-                  ElevatedButton(child: Text(Language.of(context).create),
+                  ElevatedButton(child: Text(Language.of(context).create, style: TextStyle(fontSize: 24)),
                       onPressed: () async {
 //                        print(_selectedCourse.toString());
                         var name = await golferName(golfer);
@@ -296,7 +296,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
                   ),
                   const SizedBox(height: 16.0),
                   ElevatedButton(
-                      child: Text(Language.of(context).create),
+                      child: Text(Language.of(context).create, style: TextStyle(fontSize: 24)),
                       onPressed: () {
                         FirebaseFirestore.instance.collection('GolfCourses').add({
                           "cid": uuidTime(),
