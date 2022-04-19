@@ -326,6 +326,7 @@ Future <String>? courseName(int cid) {
           var items = result.data();
           res = items['region'] + ' ' + items['name'];
       });
+      print(res);
       return res;
     });
 }
