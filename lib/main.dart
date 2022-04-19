@@ -435,7 +435,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (!snapshot3.hasData)
                       return const LinearProgressIndicator();
                     else
-                      return Image.network(snapshot3.data!.toString(), fit: BoxFit.contain);
+                      return Image.network(snapshot3.data!.toString(), fit: BoxFit.fitHeight);
                   }),                
 /*                Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                 trailing: Icon(Icons.keyboard_arrow_right),
@@ -498,7 +498,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (!snapshot3.hasData)
                       return const LinearProgressIndicator();
                     else
-                      return Image.network(snapshot3.data!.toString(), fit: BoxFit.contain);
+                      return Image.network(snapshot3.data!.toString(), fit: BoxFit.fitHeight);
                   }),
                 /*Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                 trailing: Icon(Icons.keyboard_arrow_right),
