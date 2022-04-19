@@ -429,14 +429,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + 
                   Language.of(context).now + ((doc.data()! as Map)['golfers'] as List<dynamic>).length.toString() + "\t" + 
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
-                leading: Container(child: FutureBuilder(
+                leading: FutureBuilder(
                   future: coursePhoto((doc.data()! as Map)['cid'] as int),
                   builder: (context, snapshot3) {
                     if (!snapshot3.hasData)
                       return const LinearProgressIndicator();
                     else
-                      return Image.network(snapshot3.data!.toString(), fit: BoxFit.fitHeight);
-                  })),                
+                      return Image.network(snapshot3.data!.toString(), width: 40);
+                  }),                
 /*                Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
