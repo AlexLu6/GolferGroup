@@ -31,8 +31,8 @@ void storeMyActivities() async {
 }
 
 void loadMyActivities() async {
-  final directory = await path_provider.getApplicationSupportDirectory();
-  var path = directory.path;
+  final directory = await path_provider.getApplicationDocumentsDirectory();
+  var path = "d:/workspace";//directory.path;
   var ffile = File("$path/myActivities.json");
   myActivities = jsonDecode(await ffile.readAsString());
 }
