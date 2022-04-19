@@ -309,14 +309,14 @@ var golfCourses = {
 };
 
 
-String? courseName(int cid) {
+String? courseName1(int cid) {
   var result = '';
   for (var e in golfCourses) 
     if (e["cid"] == cid) 
       return (e["region"] as String) + ' ' + (e["name"] as String);
   return result;
 }
-/*
+
 Future <String>? courseName(int cid) {
   var res;
   return FirebaseFirestore.instance.collection('GolfCourses')
@@ -329,7 +329,7 @@ Future <String>? courseName(int cid) {
       return res;
     });
 }
-*/
+
 String? coursePhoto(int cid) {
   var result = 'https://images.unsplash.com/photo-1623567341691-1f47b5cf949e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80';
   for (var e in golfCourses) 
