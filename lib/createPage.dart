@@ -96,7 +96,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
               appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Center(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
                   const SizedBox(height: 24.0),
                   Flexible(child: Row(children: <Widget>[
                     ElevatedButton(child: Text("Golf Course:"),
