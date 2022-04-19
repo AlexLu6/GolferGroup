@@ -431,11 +431,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
                 leading: FutureBuilder(
                   future: coursePhoto((doc.data()! as Map)['cid'] as int),
-                  builder: (context, snapshot2) {
-                    if (!snapshot2.hasData)
+                  builder: (context, snapshot3) {
+                    if (!snapshot3.hasData)
                       return const LinearProgressIndicator();
                     else
-                      return Image.network(snapshot2.data!.toString());
+                      return Image.network(snapshot3.data!.toString());
                   }),                
 /*                Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                 trailing: Icon(Icons.keyboard_arrow_right),
@@ -494,11 +494,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
                 leading: FutureBuilder(
                   future: coursePhoto((doc.data()! as Map)['cid'] as int),
-                  builder: (context, snapshot2) {
-                    if (!snapshot2.hasData)
+                  builder: (context, snapshot3) {
+                    if (!snapshot3.hasData)
                       return const LinearProgressIndicator();
                     else
-                      return Image.network(snapshot2.data!.toString());
+                      return Image.network(snapshot3.data!.toString());
                   }),
                 /*Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                 trailing: Icon(Icons.keyboard_arrow_right),
