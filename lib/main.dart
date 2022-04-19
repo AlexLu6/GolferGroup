@@ -433,8 +433,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   future: coursePhoto((doc.data()! as Map)['cid'] as int),
                   builder: (context, snapshot3) {
                     if (snapshot3.hasData)
-//                      return const LinearProgressIndicator();
-//                    else
+                      return Container(child: LinearProgressIndicator());
+                    else
                       return Image.network(snapshot3.data!.toString());
                   }),                
 /*                Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
