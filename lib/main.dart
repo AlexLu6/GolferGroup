@@ -587,7 +587,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView myScoreBody() {
-    var myActivities;
+    var myActivities = [];
     FirebaseFirestore.instance.collection('GolferActivities').where('teeOff', isLessThan: Timestamp.now()).get()
     .then((value) => value.docs.forEach((result){
       var items = result.data();
@@ -595,7 +595,7 @@ class _MyHomePageState extends State<MyHomePage> {
         myActivities.add(result.id);
     }));
     return ListView.builder(
-      itemCount: (myActivities as List).length,
+      itemCount: myActivities.length,
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (BuildContext context, int i) {
         return ListTile(leading: CircleAvatar(child: Text('$i')));
