@@ -587,7 +587,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView myScoreBody() {
-    var myActivities = [];
+    List<String> myActivities = [];
     FirebaseFirestore.instance.collection('GolferActivities').where('teeOff', isLessThan: Timestamp.now()).get()
     .then((value) => value.docs.forEach((result){
       var items = result.data();
