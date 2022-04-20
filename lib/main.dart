@@ -591,9 +591,10 @@ class _MyHomePageState extends State<MyHomePage> {
     FirebaseFirestore.instance.collection('GolferActivities').where('teeOff', isLessThan: Timestamp.now()).get()
     .then((value) => value.docs.forEach((result){
       var items = result.data();
-      if ((items['golfers'] as List<int>).indexOf(_golferID) >= 0)
+      if ((items['golfers'] as List<int>).indexOf(_golferID) >= 0) {
         myActivities.add(result.id);
-      print(result);
+        print(myActivities);
+      }
     }));
     return ListView.builder(
       itemCount: myActivities.length,
