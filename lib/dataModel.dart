@@ -78,9 +78,7 @@ Future<bool> isMember(int gid, int uid) {
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          for (var id in items['members'] as List)
-            if (id == uid)
-              res = true;
+          res = (items['members'] as List<int>).indexOf(uid) >= 0 ? true : false;
       });
       return res;
     });
@@ -105,9 +103,7 @@ Future<bool> isManager(int gid, int uid) {
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          for (var id in items['managers'] as List)
-            if (id == uid)
-              res = true;
+          res = (items['managers'] as List<int>).indexOf(uid) >= 0 ? true : false;
       });
       return res;
     });

@@ -416,7 +416,7 @@ class _MyHomePageState extends State<MyHomePage> {
               if ((doc.data()! as Map)["teeOff"] == null || (doc.data()! as Map)["teeOff"].compareTo(deadline) < 0 ) {
                 return LinearProgressIndicator();
               } else {
-              return Card(child: ListTile(
+                return Card(child: ListTile(
                 title: FutureBuilder(
                   future: courseName((doc.data()! as Map)['cid'] as int),
                   builder: (context, snapshot2) {
