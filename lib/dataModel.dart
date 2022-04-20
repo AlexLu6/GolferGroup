@@ -34,6 +34,8 @@ void loadMyActivities() async {
   final directory = await path_provider.getApplicationDocumentsDirectory();
   var path = directory.path;
   var ffile = File("$path/myActivities.json");
+//  var _localPath = (await _findLocalPath()) + Platform.pathSeparator + 'myActivities.json';
+//  var ffile = File(_localPath);
   myActivities = jsonDecode(await ffile.readAsString());
 }
 
