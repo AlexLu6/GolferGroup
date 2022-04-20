@@ -593,6 +593,7 @@ class _MyHomePageState extends State<MyHomePage> {
       var items = result.data();
       if ((items['golfers'] as List<int>).indexOf(_golferID) >= 0)
         myActivities.add(result.id);
+      print(result);
     }));
     return ListView.builder(
       itemCount: myActivities.length,
