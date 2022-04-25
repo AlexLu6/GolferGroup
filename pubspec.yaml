@@ -32,6 +32,10 @@ dependencies:
   google_place: ^0.4.7
   cloud_firestore: ^3.1.9
   localstorage: ^4.0.0
+  path_provider_fde:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding/
+      path: pulgins/flutter_plugins/path_provider_fde
 dependency_overrides: 
   cloud_firestore_platform_interface: 5.4.13
 #  cloud_firestore_web: 2.6.5
