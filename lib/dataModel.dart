@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -37,6 +38,19 @@ void loadMyActivities() async {
 //  var _localPath = (await _findLocalPath()) + Platform.pathSeparator + 'myActivities.json';
 //  var ffile = File(_localPath);
   myActivities = jsonDecode(await ffile.readAsString());
+}
+
+var myScores;
+void storeMyScores()
+{
+  final scores = LocalStorage('myScores.json');
+  scores.setItem('myScores', myScores.toJSONEncodable());
+}
+
+void loadMyScores()
+{
+  final scores = LocalStorage('myScores.json');
+  myScores.fromJSONEncodable(scores.getItem('myScores.json'));
 }
 
 var golferGroup = {
