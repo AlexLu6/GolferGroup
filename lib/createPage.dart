@@ -512,7 +512,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           ElevatedButton(
             child: Text(Language.of(context).store, style: TextStyle(fontSize: 24)),
             onPressed: () {
-              (myScores as List<Map>).add({
+              myScores.add({
                 'date': DateTime.now().toString().substring(0, 16),
                 'course': (course.data()! as Map)['name'],
                 'pars': pars,
@@ -520,6 +520,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                 'total': sum1+sum2,
                 'handicap': ((sum1+sum2) - tpars > 0 ? (sum1+sum2) - tpars : 0)
               });
+              storeMyScores();
               Navigator.of(context).pop(true);
             }
           )),
