@@ -44,13 +44,13 @@ var myScores;
 void storeMyScores()
 {
   final scores = LocalStorage('myScores.json');
-  scores.setItem('myScores', myScores.toJSONEncodable());
+  scores.setItem('myScores', jsonEncode(myScores));
 }
 
 void loadMyScores()
 {
   final scores = LocalStorage('myScores.json');
-  myScores.fromJSONEncodable(scores.getItem('myScores.json'));
+  myScores = jsonDecode(scores.getItem('myScores.json'));
 }
 
 var golferGroup = {

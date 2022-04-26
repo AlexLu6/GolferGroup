@@ -448,8 +448,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       return columns;
     }
     List buildRows() {
-      int idx = 0, sum = 0, tpars=0;
-      
+      int idx = 0, sum = 0;
+      tpars=0;
       ((course.data()! as Map)['zones'][zone0]['holes']).forEach((par) {
         rows[idx]['par1'] = par.toString(); 
         sum += int.parse(par);
@@ -457,7 +457,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         tpars += pars[idx];
         idx++;
        });
-      rows[idx]['par1'] = sum.toString();
+      rows[idx]['score1'] = sum.toString();
       idx = sum = 0;
       ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
@@ -466,7 +466,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         tpars += pars[idx];
         idx++;
        });
-       rows[idx]['par2'] = sum.toString();
+       rows[idx]['score2'] = sum.toString();
       return rows;
     }
     int sum1 = 0, sum2 = 0;
@@ -511,7 +511,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           ElevatedButton(
             child: Text(Language.of(context).store, style: TextStyle(fontSize: 24)),
             onPressed: () {
-              myScores.add({
+              (myScores as List<Map>).add({
                 'date': DateTime.now().toString().substring(0, 16),
                 'course': (course.data()! as Map)['name'],
                 'pars': pars,
