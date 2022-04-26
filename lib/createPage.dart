@@ -448,7 +448,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       return columns;
     }
     List buildRows() {
-      int idx = 0, sum = 0;
+      int idx = 0, sum = 0, tpars=0;
       
       ((course.data()! as Map)['zones'][zone0]['holes']).forEach((par) {
         rows[idx]['par1'] = par.toString(); 
@@ -467,7 +467,6 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         idx++;
        });
        rows[idx]['par2'] = sum.toString();
-       print(pars); print(tpars);
       return rows;
     }
     int sum1 = 0, sum2 = 0;
@@ -500,7 +499,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                   scores[element['row']+9] = int.parse(element['score2']?? '0');
                 } 
               });
-              print(scores);
+              print(scores); print(sum1+sum2);
               setState(() {});
             }
           )),
