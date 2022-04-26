@@ -440,6 +440,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''},
       {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
     ];
+    List<int> pars=[], scores=[];
+    int tpars = 0;
     List buildColumns() {
       columns[0]['title'] = (course.data()! as Map)['zones'][zone0]['name'];
       columns[3]['title'] = (course.data()! as Map)['zones'][zone1]['name'];
@@ -451,6 +453,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       ((course.data()! as Map)['zones'][zone0]['holes']).forEach((par) {
         rows[idx]['par1'] = par.toString(); 
         sum += int.parse(par);
+        pars[idx] = int.parse(par);
+        tpars += pars[idx];
         idx++;
        });
       rows[idx]['par1'] = sum.toString();
@@ -458,6 +462,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
         sum += int.parse(par);
+        pars[idx+9] = par;
+        tpars += pars[idx];
         idx++;
        });
        rows[idx]['par2'] = sum.toString();
@@ -490,6 +496,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                 if (element['row'] != 9) {
                   sum1 += int.parse(element['score1']?? '0');
                   sum2 += int.parse(element['score2']?? '0');
+                  pars[element['row']] = int.parse(element['score1']?? '0');
+                  pars[element['row']+9] = int.parse(element['score2']?? '0');
                 } 
               });
               setState(() {});
@@ -502,7 +510,16 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           Center(child:
           ElevatedButton(
             child: Text(Language.of(context).store, style: TextStyle(fontSize: 24)),
-            onPressed: () => Navigator.of(context).pop(true)
+            onPressed: () {
+              myScores.add({
+                'date': DateTime.now().toString().substring(0, 16),
+                'course': (course.data()! as Map)['name'],
+                'pars': pars,
+                'scores': scores,
+                'handicap': ((sum1+sum2) - tpars > 0 ? (sum1+sum2) - tpars : 0)
+              });
+              Navigator.of(context).pop(true);
+            }
           )),
           const SizedBox(height: 6.0)
         ]));
