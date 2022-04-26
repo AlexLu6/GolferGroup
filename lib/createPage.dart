@@ -459,7 +459,6 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         idx++;
        });
       rows[idx]['par1'] = sum.toString();
-      if (sum1 > 0) print(sum1);
       idx = sum = 0;
       ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
@@ -499,7 +498,10 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                   sum2 += int.parse(element['score2']?? '0');
                   scores[element['row']] = int.parse(element['score1']?? '0');
                   scores[element['row']+9] = int.parse(element['score2']?? '0');
-                } 
+                } else {
+                  element['score1'] = sum1.toString();
+                  element['score2'] = sum2.toString();
+                }
               });
               setState(() {});
             }
