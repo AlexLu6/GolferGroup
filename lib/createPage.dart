@@ -440,7 +440,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''},
       {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
     ];
-    List<int> pars=[], scores=[];
+    List<int> pars = List.filled(18, 0), scores = List.filled(18, 0);
     int tpars = 0;
     List buildColumns() {
       columns[0]['title'] = (course.data()! as Map)['zones'][zone0]['name'];
@@ -516,6 +516,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                 'course': (course.data()! as Map)['name'],
                 'pars': pars,
                 'scores': scores,
+                'total': sum1+sum2,
                 'handicap': ((sum1+sum2) - tpars > 0 ? (sum1+sum2) - tpars : 0)
               });
               Navigator.of(context).pop(true);
