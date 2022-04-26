@@ -587,7 +587,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView myScoreBody() {
-
     print(myScores);
     return ListView.builder(
       itemCount: (myScores as List).length,
