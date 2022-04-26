@@ -467,7 +467,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         idx++;
        });
        rows[idx]['par2'] = sum.toString();
-       
+       print(pars); print(tpars);
       return rows;
     }
     int sum1 = 0, sum2 = 0;
@@ -496,10 +496,11 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                 if (element['row'] != 9) {
                   sum1 += int.parse(element['score1']?? '0');
                   sum2 += int.parse(element['score2']?? '0');
-                  pars[element['row']] = int.parse(element['score1']?? '0');
-                  pars[element['row']+9] = int.parse(element['score2']?? '0');
+                  scores[element['row']] = int.parse(element['score1']?? '0');
+                  scores[element['row']+9] = int.parse(element['score2']?? '0');
                 } 
               });
+              print(scores);
               setState(() {});
             }
           )),
