@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/rendering.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -43,14 +44,13 @@ void loadMyActivities() async {
 var myScores = [];
 void storeMyScores()
 {
-  final scores = LocalStorage('myScores.json');
-  scores.setItem('myScores', myScores);
+  final scores = File('myScores.json');
+  scores.writeAsString(jsonEncode(myScores));
 }
 
-void loadMyScores()
-{
-  final scores = LocalStorage('myScores.json');
-  myScores = scores.getItem('myScores.json');
+void loadMyScores() async {
+  final scores = File('myScores.json');
+  myScores = jsonDecode(await scores.readAsString());
 }
 
 var golferGroup = {

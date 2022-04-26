@@ -498,9 +498,6 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                   sum2 += int.parse(element['score2']?? '0');
                   scores[element['row']] = int.parse(element['score1']?? '0');
                   scores[element['row']+9] = int.parse(element['score2']?? '0');
-                } else {
-                  element['score1'] = sum1.toString();
-                  element['score2'] = sum2.toString();
                 }
               });
               setState(() {});
