@@ -462,7 +462,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
         sum += int.parse(par);
-        pars[idx+9] = par;
+        pars[idx+9] = int.parse(par);
         tpars += pars[idx];
         idx++;
        });
