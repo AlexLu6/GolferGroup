@@ -441,6 +441,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
     ];
     List<int> pars = List.filled(18, 0), scores = List.filled(18, 0);
+    int sum1 = 0, sum2 = 0;
     int tpars = 0;
     List buildColumns() {
       columns[0]['title'] = (course.data()! as Map)['zones'][zone0]['name'];
@@ -457,7 +458,8 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         tpars += pars[idx];
         idx++;
        });
-      rows[idx]['score1'] = sum.toString();
+      rows[idx]['par1'] = sum.toString();
+      rows[idx]['score1'] = sum1.toString();
       idx = sum = 0;
       ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
@@ -466,10 +468,11 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         tpars += pars[idx];
         idx++;
        });
-       rows[idx]['score2'] = sum.toString();
+       rows[idx]['par2'] = sum.toString();
+       rows[idx]['score2'] = sum2.toString();
       return rows;
     }
-    int sum1 = 0, sum2 = 0;
+
     return Scaffold(
       appBar: AppBar(title: Text('Enter Score'), elevation: 1.0),
       body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -505,12 +508,13 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           )),
           const SizedBox(height: 6.0),
           (sum1+sum2) == 0 ? const SizedBox(height: 6.0) :
-          Text(Language.of(context).total + '$sum1 + $sum2 = ' + (sum1+sum2).toString(), style: TextStyle(fontSize: 20)),
+          Text(Language.of(context).total + (sum1+sum2).toString(), style: TextStyle(fontSize: 20)),
           const SizedBox(height: 16.0),
           Center(child:
           ElevatedButton(
             child: Text(Language.of(context).store, style: TextStyle(fontSize: 24)),
             onPressed: () {
+              print(myScores);
               (myScores as List<Map>).add({
                 'date': DateTime.now().toString().substring(0, 16),
                 'course': (course.data()! as Map)['name'],
