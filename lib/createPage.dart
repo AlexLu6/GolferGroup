@@ -500,7 +500,6 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                   scores[element['row']+9] = int.parse(element['score2']?? '0');
                 } 
               });
-              print(scores); print(sum1+sum2);
               setState(() {});
             }
           )),

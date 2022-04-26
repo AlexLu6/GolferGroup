@@ -592,7 +592,7 @@ class _MyHomePageState extends State<MyHomePage> {
       itemCount: (myScores as List).length,
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (BuildContext context, int i) {
-        return ListTile(leading: CircleAvatar(child: Text('$i')));
+        return ListTile(leading: CircleAvatar(child: Text(myScores[i]['total'].toString())));
       },
     );
   }
