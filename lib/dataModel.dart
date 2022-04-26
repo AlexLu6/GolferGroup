@@ -40,7 +40,7 @@ void loadMyActivities() async {
   myActivities = jsonDecode(await ffile.readAsString());
 }
 
-var myScores;
+var myScores = [];
 void storeMyScores()
 {
   final scores = LocalStorage('myScores.json');

@@ -459,7 +459,6 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         idx++;
        });
       rows[idx]['par1'] = sum.toString();
-      rows[idx]['score1'] = sum1.toString();
       idx = sum = 0;
       ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
         rows[idx]['par2'] = par.toString();
@@ -469,7 +468,6 @@ class _NewScorePage extends MaterialPageRoute<bool> {
         idx++;
        });
        rows[idx]['par2'] = sum.toString();
-       rows[idx]['score2'] = sum2.toString();
       return rows;
     }
 
@@ -514,7 +512,6 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           ElevatedButton(
             child: Text(Language.of(context).store, style: TextStyle(fontSize: 24)),
             onPressed: () {
-              print(myScores);
               (myScores as List<Map>).add({
                 'date': DateTime.now().toString().substring(0, 16),
                 'course': (course.data()! as Map)['name'],
