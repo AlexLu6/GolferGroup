@@ -588,7 +588,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ListView myScoreBody() {
     return ListView.builder(
-      itemCount: myScores.length,
+      itemCount: (myScores as List).length,
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (BuildContext context, int i) {
         return ListTile(leading: CircleAvatar(child: Text('$i')));
