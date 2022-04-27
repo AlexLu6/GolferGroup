@@ -42,8 +42,8 @@ void loadMyActivities() async {
 var myScores = [];
 void storeMyScores()
 {
-  final scores = File('myScores.json');
-  scores.writeAsString(jsonEncode(myScores));
+//  final scores = File('myScores.json');
+  print(jsonEncode(myScores));
 }
 
 void loadMyScores() async {
