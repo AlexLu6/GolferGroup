@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
     _handicap = prefs!.getDouble('handicap') ?? 18.3;
+    loadMyGroup();
     loadMyScores();
     FirebaseFirestore.instance.collection('Golfers')
       .where('uid', isEqualTo: _golferID)
@@ -374,6 +375,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 onTap: () async {
                   _gID = (doc.data()! as Map)["gid"] as int;
                   if (await isMember(_gID, _golferID)) {
+                    if (myGroups.indexOf(_gID) <  0) {
+                      myGroups.add(_gID);
+                      storeMyGroup();
+                    }
                     FirebaseFirestore.instance.collection('ApplyQueue')
                       .where('uid', isEqualTo: _golferID)
                       .where('gid', isEqualTo: _gID).get().then((value) {
