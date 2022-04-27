@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:path_provider/path_provider.dart' as path_provider;
+//import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 SharedPreferences? prefs;
@@ -9,36 +8,25 @@ int uuidTime() {
   return DateTime.now().millisecondsSinceEpoch - 1647000000000;
 }
 
-var myGroups;
-void storeMyGroup() async {
-  final directory = await path_provider.getApplicationDocumentsDirectory();
-  var path = directory.path;
-  var ffile = File("$path/myGroup.json");
-  await ffile.writeAsString(jsonEncode(myGroups));
+var myGroups = [];
+void storeMyGroup() 
+{
+  prefs!.setString('golfGroups', jsonEncode(myGroups));
 }
 
-void  loadMyGroup() async {
-  final directory = await path_provider.getApplicationDocumentsDirectory();
-  var path = directory.path;
-  var ffile = File("$path/myGroup.json");
-  myGroups = jsonDecode(await ffile.readAsString());
+void  loadMyGroup() 
+{
+  myGroups = jsonDecode(prefs!.getString('golfGroups')?? '[]');
 }
 
-var myActivities;
-void storeMyActivities() async {
-  final directory = await path_provider.getApplicationDocumentsDirectory();
-  var path = directory.path;
-  var ffile = File("$path/myActivities.json");
-  await ffile.writeAsString(jsonEncode(myActivities));
+var myActivities =[];
+void storeMyActivities() {
+  prefs!.setString('golfActivities', jsonEncode(myActivities));
 }
 
-void loadMyActivities() async {
-  final directory = await path_provider.getApplicationDocumentsDirectory();
-  var path = directory.path;
-  var ffile = File("$path/myActivities.json");
-//  var _localPath = (await _findLocalPath()) + Platform.pathSeparator + 'myActivities.json';
-//  var ffile = File(_localPath);
-  myActivities = jsonDecode(await ffile.readAsString());
+void loadMyActivities() 
+{
+  myActivities = jsonDecode(prefs!.getString('golfActivities')?? '[]');
 }
 
 var myScores = [];
