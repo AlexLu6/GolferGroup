@@ -8,8 +8,6 @@ import 'createPage.dart';
 import 'locale/language.dart';
 import 'locale/app_localizations_delegate.dart';
 
-SharedPreferences? prefs;
-
 Future<void> main() async {
   prefs = await SharedPreferences.getInstance();
 
@@ -590,6 +588,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ListView myScoreBody() {
     int cnt = myScores.length > 10 ? 10 : myScores.length;
     _handicap = 0;
+    loadMyScores();
     return ListView.builder(
       itemCount: myScores.length,
       padding: const EdgeInsets.all(16.0),

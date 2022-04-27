@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+SharedPreferences? prefs;
 
 int uuidTime() {
   return DateTime.now().millisecondsSinceEpoch - 1647000000000;
@@ -42,13 +44,12 @@ void loadMyActivities() async {
 var myScores = [];
 void storeMyScores()
 {
-//  final scores = File('myScores.json');
-  print(jsonEncode(myScores));
+  prefs!.setString('golfScores', jsonEncode(myScores));
 }
 
-void loadMyScores() async {
-  final scores = File('myScores.json');
-  myScores = jsonDecode(await scores.readAsString());
+void loadMyScores() 
+{
+  myScores = jsonDecode(prefs!.getString('golfScores')!);
 }
 
 var golferGroup = {
