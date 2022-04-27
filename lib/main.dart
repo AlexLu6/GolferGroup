@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
-    _handicap = prefs!.getDouble('handicap') ?? 18;
+    _handicap = prefs!.getDouble('handicap') ?? 18.3;
     FirebaseFirestore.instance.collection('Golfers')
       .where('uid', isEqualTo: _golferID)
       .get().then((value) {
