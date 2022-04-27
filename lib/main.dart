@@ -374,6 +374,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
                   _gID = (doc.data()! as Map)["gid"] as int;
+                  print(_gID);
                   if (await isMember(_gID, _golferID)) {
                     if (myGroups.indexOf(_gID) <  0) {
                       myGroups.add(_gID);
