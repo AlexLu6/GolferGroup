@@ -74,6 +74,7 @@ Future <String>? groupName(int gid) {
 
 Future<bool> isMember(int gid, int uid) {
   bool res = false;
+  print('isMember');
   return FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
     .get().then((value) {
