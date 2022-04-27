@@ -366,7 +366,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-                return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+                return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 16.0),
                   Text(Language.of(context).teeOff + activity.data()!['teeOff'].toDate().toString().substring(0, 16) + '\t' + 
                        Language.of(context).fee + activity.data()!['fee'].toString(), style: TextStyle(fontSize: 20)),
@@ -379,7 +379,6 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                     else
                       return Text(snapshot2.data!.toString() + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20));
                   }),
-/*                  Text(courseName1(activity.data()!['cid'] as int)! + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20)),*/
                   const SizedBox(height: 16.0),
                   Flexible(child: Editable(
                     borderColor: Colors.black,
@@ -401,7 +400,12 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                   teeOffPass && !alreadyIn ? const SizedBox(height: 10.0) :
                   ElevatedButton(
                     child: Text(teeOffPass && alreadyIn ? Language.of(context).play : alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
-                    onPressed: () => Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1)
+                    onPressed: () {
+                      if (teeOffPass && alreadyIn) {
+
+                      }
+                      Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
+                    }
                   ),
                   const SizedBox(height: 16.0),
                 ]));
