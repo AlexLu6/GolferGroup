@@ -386,6 +386,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       });
                     }
+                    print('afte isMember');
                     setState(() => _currentPageIndex = 5);
                   } else {
                     bool? apply = await showApplyDialog((await isApplying(_gID, _golferID)) == 1);
