@@ -411,16 +411,14 @@ class _MyHomePageState extends State<MyHomePage> {
     DateTime today = DateTime.now();
     Timestamp deadline = Timestamp.fromDate(DateTime(today.year, today.month, today.day));
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('ClubActivities')
-              .where('gid', isEqualTo: gID)
-              .where('teeOff', isLessThan: deadline).snapshots(),
+      stream: FirebaseFirestore.instance.collection('ClubActivities').where('gid', isEqualTo: gID).snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const CircularProgressIndicator();
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              if ((doc.data()! as Map)["teeOff"] == null) {
+              if ((doc.data()! as Map)["teeOff"] == null || (doc.data()! as Map)["teeOff"].compareTo(deadline) < 0 ) {
                 return LinearProgressIndicator();
               } else {
                 return Card(child: ListTile(
