@@ -81,7 +81,6 @@ Future<bool> isMember(int gid, int uid) {
           var items = result.data();
           res = (items['members'] as List).indexOf(uid) >= 0 ? true : false;
       });
-      print(res);
       return res;
     });
 }
