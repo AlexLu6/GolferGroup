@@ -378,14 +378,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     if (myGroups.indexOf(_gID) <  0) {
                       myGroups.add(_gID);
                       storeMyGroup();
-                    }
-                    FirebaseFirestore.instance.collection('ApplyQueue')
+                      FirebaseFirestore.instance.collection('ApplyQueue')
                       .where('uid', isEqualTo: _golferID)
                       .where('gid', isEqualTo: _gID).get().then((value) {
                         value.docs.forEach((result) =>
                           FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).delete()
                         );
-                      });  
+                      });
+                    }
                     setState(() => _currentPageIndex = 5);
                   } else {
                     bool? apply = await showApplyDialog((await isApplying(_gID, _golferID)) == 1);
