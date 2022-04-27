@@ -49,7 +49,7 @@ void storeMyScores()
 
 void loadMyScores() 
 {
-  myScores = jsonDecode(prefs!.getString('golfScores')!);
+  myScores = jsonDecode(prefs!.getString('golfScores')?? '[]');
 }
 
 var golferGroup = {
