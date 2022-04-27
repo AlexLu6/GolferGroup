@@ -594,15 +594,16 @@ class _MyHomePageState extends State<MyHomePage> {
       itemCount: myScores.length,
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (BuildContext context, int i) {
-        if (i+cnt >= myScores.length)
+        if (i < cnt)
           _handicap += myScores[i]['handicap'];
-        if ((i+1) == myScores.length) {
+        if ((i+1) == cnt) {
           _handicap = (_handicap / cnt) * 0.9;
           prefs!.setDouble('handicap', _handicap);
         }
         return ListTile(
           leading: CircleAvatar(child: Text(myScores[i]['total'].toString())),
           title: Text(myScores[i]['date'] + ' ' + myScores[i]['course']),
+          subtitle: Text(myScores[i]['scores'].toString())
         );
       },
     );

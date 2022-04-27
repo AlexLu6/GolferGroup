@@ -511,7 +511,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           ElevatedButton(
             child: Text(Language.of(context).store, style: TextStyle(fontSize: 24)),
             onPressed: () {
-              myScores.add({
+              myScores.insert(0, {
                 'date': DateTime.now().toString().substring(0, 16),
                 'course': (course.data()! as Map)['name'],
                 'pars': pars,
