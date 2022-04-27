@@ -68,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
+    _handicap = prefs!.getDouble('handicap') ?? 18;
     FirebaseFirestore.instance.collection('Golfers')
       .where('uid', isEqualTo: _golferID)
       .get().then((value) {
@@ -587,12 +588,21 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   ListView myScoreBody() {
+    _handicap = 0;
     print(myScores);
     return ListView.builder(
-      itemCount: (myScores as List).length,
+      itemCount: myScores.length,
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (BuildContext context, int i) {
-        return ListTile(leading: CircleAvatar(child: Text(myScores[i]['total'].toString())));
+        _handicap += myScores[i]['handicap'];
+        if ((i+1) == myScores.length) {
+          _handicap = (_handicap / myScores.length) * 0.9;
+          prefs!.setDouble('handicap', _handicap);
+        }
+        return ListTile(
+          leading: CircleAvatar(child: Text(myScores[i]['total'].toString())),
+          title: Text(myScores[i]['date'] + ' ' + myScores[i]['course']),
+        );
       },
     );
   }
