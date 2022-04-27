@@ -453,7 +453,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       glist.add({
                         'uid': _golferID,
                         'name': name,
-                        'appTime': Timestamp.now(),
+//                        'appTime': Timestamp.now(),
                         'scores': []
                       });
                       FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
