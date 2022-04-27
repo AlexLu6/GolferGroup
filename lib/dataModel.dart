@@ -74,13 +74,12 @@ Future <String>? groupName(int gid) {
 
 Future<bool> isMember(int gid, int uid) {
   bool res = false;
-  print('isMember');
   return FirebaseFirestore.instance.collection('GolferClubs')
     .where('gid', isEqualTo: gid)
     .get().then((value) {
       value.docs.forEach((result) {
           var items = result.data();
-          res = (items['members'] as List<int>).indexOf(uid) >= 0 ? true : false;
+          res = (items['members'] as List).indexOf(uid) >= 0 ? true : false;
       });
       print(res);
       return res;
