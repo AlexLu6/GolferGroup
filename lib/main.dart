@@ -67,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
     _handicap = prefs!.getDouble('handicap') ?? 18.3;
+    loadMyScores();
     FirebaseFirestore.instance.collection('Golfers')
       .where('uid', isEqualTo: _golferID)
       .get().then((value) {
@@ -588,7 +589,7 @@ class _MyHomePageState extends State<MyHomePage> {
   ListView myScoreBody() {
     int cnt = myScores.length > 10 ? 10 : myScores.length;
     _handicap = 0;
-    loadMyScores();
+
     return ListView.builder(
       itemCount: myScores.length,
       padding: const EdgeInsets.all(16.0),
