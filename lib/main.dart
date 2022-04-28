@@ -365,6 +365,19 @@ class _MyHomePageState extends State<MyHomePage> {
               return const LinearProgressIndicator();
             } else {
               _gID = (doc.data()! as Map)["gid"] as int;
+              if (((doc.data()! as Map)["members"] as List).indexOf(_golferID) >= 0) {              
+                if (myGroups.indexOf(_gID) <  0) {
+                  myGroups.add(_gID);
+                  storeMyGroup();
+                  FirebaseFirestore.instance.collection('ApplyQueue')
+                  .where('uid', isEqualTo: _golferID)
+                  .where('gid', isEqualTo: _gID).get().then((value) {
+                    value.docs.forEach((result) =>
+                      FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).delete()
+                    );
+                  });
+                }
+              }
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle:
@@ -381,18 +394,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
                 trailing: myGroups.indexOf(_gID) >=0 ? Icon(Icons.keyboard_arrow_right) : Icon(Icons.no_accounts),
                 onTap: () async {
-                  if (((doc.data()! as Map)["members"] as List).indexOf(_golferID) >= 0) {
-                    if (myGroups.indexOf(_gID) <  0) {
-                      myGroups.add(_gID);
-                      storeMyGroup();
-                      FirebaseFirestore.instance.collection('ApplyQueue')
-                      .where('uid', isEqualTo: _golferID)
-                      .where('gid', isEqualTo: _gID).get().then((value) {
-                        value.docs.forEach((result) =>
-                          FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).delete()
-                        );
-                      });
-                    }
+                  if (myGroups.indexOf(_gID) >=0) {
                     setState(() => _currentPageIndex = 5);
                   } else {
                     bool? apply = await showApplyDialog((await isApplying(_gID, _golferID)) == 1);
