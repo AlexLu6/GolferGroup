@@ -372,12 +372,12 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                        Language.of(context).fee + activity.data()!['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   FutureBuilder(
-                  future: courseBody(activity.data()!['cid'] as int),
+                  future: courseName(activity.data()!['cid'] as int),
                   builder: (context, snapshot2) {
                     if (!snapshot2.hasData)
                       return const LinearProgressIndicator();
                     else
-                      return Text((snapshot2.data! as Map)['name'] + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20));
+                      return Text(snapshot2.data!.toString() + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20));
                   }),
                   const SizedBox(height: 16.0),
                   Flexible(child: Editable(
