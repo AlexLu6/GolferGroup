@@ -127,6 +127,18 @@ Future <String>? golferNames(List uids) async {
     });
 }
 
+Future <Map>? courseBody(int cid) {
+  var res;
+  return FirebaseFirestore.instance.collection('GolfCourses')
+    .where('cid', isEqualTo: cid)
+    .get().then((value) {
+      value.docs.forEach((result) {
+          res = result.data();          
+      });
+      return res;
+    });
+}
+
 Future <String>? courseName(int cid) {
   var res;
   return FirebaseFirestore.instance.collection('GolfCourses')
