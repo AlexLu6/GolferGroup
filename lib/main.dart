@@ -398,6 +398,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
                 trailing: myGroups.indexOf(_gID) >=0 ? Icon(Icons.keyboard_arrow_right) : Icon(Icons.no_accounts),
                 onTap: () async {
+                  _gID = (doc.data()! as Map)["gid"] as int;
                   if (myGroups.indexOf(_gID) >=0) {
                     setState(() => _currentPageIndex = 5);
                   } else {
