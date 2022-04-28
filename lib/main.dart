@@ -518,7 +518,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         /*Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                         trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () async {
-                          Navigator.push(context, showActivityPage(doc, _golferID, await golferName((doc.data()! as Map)['uid'] as int)!, _golferID == (doc.data()! as Map)['uid'] as int)).then((value) async {
+                          Navigator.push(context, showActivityPage(doc, _golferID, await groupName((doc.data()! as Map)['gid'] as int)!, await isManager((doc.data()! as Map)['gid'] as int, _golferID))).then((value) async {
                             var glist = doc.get('golfers');
                             var name = await golferName(_golferID);
                             if (value == 1) {
