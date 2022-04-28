@@ -364,7 +364,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if ((doc.data()! as Map)["Name"] == null) {
               return const LinearProgressIndicator();
             } else {
-//              Future<String> managers = golferNames((doc.data()! as Map)["managers"] as List)!;
+              _gID = (doc.data()! as Map)["gid"] as int;
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                 subtitle:
@@ -379,9 +379,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString());
                   }),
                 leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
-                trailing: Icon(Icons.keyboard_arrow_right),
+                trailing: myGroups.indexOf(_gID) >=0 ? Icon(Icons.keyboard_arrow_right) : Icon(Icons.no_accounts),
                 onTap: () async {
-                  _gID = (doc.data()! as Map)["gid"] as int;
                   if (((doc.data()! as Map)["members"] as List).indexOf(_golferID) >= 0) {
                     if (myGroups.indexOf(_gID) <  0) {
                       myGroups.add(_gID);
@@ -461,14 +460,16 @@ class _MyHomePageState extends State<MyHomePage> {
                       glist.add({
                         'uid': _golferID,
                         'name': name,
-//                        'appTime': Timestamp.now(),
                         'scores': []
                       });
+                      myActivities.add(doc.id);
                       FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
                     } else if (value == -1) {
                       glist.removeWhere((item) => item['uid'] == _golferID);
+                      myActivities.remove(doc.id);
                       FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
-                    }                    
+                    }
+                    print(myActivities);
                   });
                 }
               ));}                
