@@ -367,9 +367,17 @@ class _MyHomePageState extends State<MyHomePage> {
 //              Future<String> managers = golferNames((doc.data()! as Map)["managers"] as List)!;
               return Card(child: ListTile(
                 title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
-                subtitle: Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + 
-//                Language.of(context).manager + (managers as String) + "\n" + 
-                Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString()),
+                subtitle:
+                  FutureBuilder(
+                  future: golferNames((doc.data()! as Map)["managers"] as List),
+                  builder: (context, snapshot2) {
+                    if (!snapshot2.hasData)
+                      return const LinearProgressIndicator();
+                    else
+                      return Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" +
+                                  Language.of(context).manager + snapshot2.data!.toString() + "\n" +
+                                  Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString());
+                  }),
                 leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"), /*Icon(Icons.group), */
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
