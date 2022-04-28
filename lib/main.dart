@@ -520,22 +520,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () async {
                           Navigator.push(context, showActivityPage(doc, _golferID, await groupName((doc.data()! as Map)['gid'] as int)!, await isManager((doc.data()! as Map)['gid'] as int, _golferID))).then((value) async {
                             var glist = doc.get('golfers');
-                            var name = await golferName(_golferID);
-                            if (value == 1) {
-                              glist.add({
-                                'uid': _golferID,
-                                'name': name,
-//                        'appTime': Timestamp.now(),
-                                'scores': []
-                              });
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
-                                'golfers': glist
-                              });
-                            } else if (value == -1) {
+                            if (value == -1) {
+                              myActivities.remove(doc.id);
+                              storeMyActivities();
                               glist.removeWhere((item) => item['uid'] == _golferID);
                               FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
                                 'golfers': glist
                               });
+                              setState(() {});
                             }
                           });
                         }));
