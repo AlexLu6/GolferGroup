@@ -68,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _golferID = prefs!.getInt('golferID') ?? 0;
     _handicap = prefs!.getDouble('handicap') ?? 18.3;
     loadMyGroup();
+    loadMyActivities();
     loadMyScores();
     FirebaseFirestore.instance.collection('Golfers')
       .where('uid', isEqualTo: _golferID)
@@ -177,6 +178,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   _name = '';
                   _phone = '';
                   _golferID = 0;
+                  myGroups = [];
+                  myActivities = [];
+                  myScores = [];
                 });
                 _currentPageIndex = 0;
                 Navigator.of(context).pop();
@@ -465,10 +469,12 @@ class _MyHomePageState extends State<MyHomePage> {
                         'scores': []
                       });
                       myActivities.add(doc.id);
+                      storeMyActivities();
                       FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
                     } else if (value == -1) {
                       glist.removeWhere((item) => item['uid'] == _golferID);
                       myActivities.remove(doc.id);
+                      storeMyActivities();
                       FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
                     }
                     print(myActivities);
