@@ -554,8 +554,7 @@ class _MyHomePageState extends State<MyHomePage> {
               if ((doc.data()! as Map)["photo"] == null) {
                 return LinearProgressIndicator();
               } else {
-                return Card(
-                    child: ListTile(
+                return Card(child: ListTile(
                   leading: Image.network((doc.data()! as Map)["photo"]),
                   title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
                   subtitle: Text((((doc.data()! as Map)["zones"]).length * 9).toString() + ' Holes'),
@@ -604,19 +603,11 @@ class _MyHomePageState extends State<MyHomePage> {
                               );
                             });
                           }).then((value) {
-                        int zone0, zone1;
-                        zone0 = _zone0!
-                            ? 0
-                            : _zone1!
-                                ? 1
-                                : 2;
-                        zone1 = _zone3!
-                            ? 3
-                            : _zone2!
-                                ? 2
-                                : 1;
-                        if (value) Navigator.push(context, newScorePage(doc, _name, zone0: zone0, zone1: zone1));
-                      });
+                            int zone0, zone1;
+                            zone0 = _zone0! ? 0 : _zone1! ? 1 : 2;
+                            zone1 = _zone3! ? 3 : _zone2! ? 2 : 1;
+                            if (value) Navigator.push(context, newScorePage(doc, _name, zone0: zone0, zone1: zone1));
+                          });
                     } else
                       Navigator.push(context, newScorePage(doc, _name));
                   },

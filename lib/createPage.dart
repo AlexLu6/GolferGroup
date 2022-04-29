@@ -452,22 +452,20 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-                return Container(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
+                return Container(child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
                   const SizedBox(height: 16.0),
                   Text(Language.of(context).teeOff + activity.data()!['teeOff'].toDate().toString().substring(0, 16) + '\t' + Language.of(context).fee + activity.data()!['fee'].toString(), style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   FutureBuilder(
-                      future: courseName(activity.data()!['cid'] as int),
+                      future: courseBody(activity.data()!['cid'] as int),
                       builder: (context, snapshot2) {
                         if (!snapshot2.hasData)
                           return const LinearProgressIndicator();
                         else
-                          return Text(snapshot2.data!.toString() + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20));
+                          return Text((snapshot2.data!as Map)['name'] + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20));
                       }),
                   const SizedBox(height: 16.0),
-                  Flexible(
-                      child: Editable(
+                  Flexible(child: Editable(
                     borderColor: Colors.black,
                     tdStyle: TextStyle(fontSize: 16),
                     trHeight: 16,
@@ -516,122 +514,24 @@ class _NewScorePage extends MaterialPageRoute<bool> {
       : super(builder: (BuildContext context) {
           final _editableKey = GlobalKey<EditableState>();
           var columns = [
-            {
-              "title": 'Out',
-              'index': 0,
-              'key': 'zone1',
-              'editable': false
-            },
-            {
-              "title": "Par",
-              'index': 1,
-              'key': 'par1',
-              'editable': false
-            },
-            {
-              "title": " ",
-              'index': 2,
-              'key': 'score1'
-            },
-            {
-              "title": 'In',
-              'index': 3,
-              'key': 'zone2',
-              'editable': false
-            },
-            {
-              "title": "Par",
-              'index': 4,
-              'key': 'par2',
-              'editable': false
-            },
-            {
-              "title": " ",
-              'index': 5,
-              'key': 'score2'
-            }
+            {"title": 'Out', 'index': 0, 'key': 'zone1', 'editable': false},
+            {"title": "Par", 'index': 1, 'key': 'par1', 'editable': false},
+            {"title": " ", 'index': 2, 'key': 'score1'},
+            {"title": 'In', 'index': 3, 'key': 'zone2', 'editable': false},
+            {"title": "Par", 'index': 4, 'key': 'par2', 'editable': false},
+            {"title": " ", 'index': 5,'key': 'score2'}
           ];
           var rows = [
-            {
-              'zone1': '1',
-              'par1': '4',
-              'score1': '',
-              'zone2': '10',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '2',
-              'par1': '4',
-              'score1': '',
-              'zone2': '11',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '3',
-              'par1': '4',
-              'score1': '',
-              'zone2': '12',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '4',
-              'par1': '4',
-              'score1': '',
-              'zone2': '13',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '5',
-              'par1': '4',
-              'score1': '',
-              'zone2': '14',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '6',
-              'par1': '4',
-              'score1': '',
-              'zone2': '15',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '7',
-              'par1': '4',
-              'score1': '',
-              'zone2': '16',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '8',
-              'par1': '4',
-              'score1': '',
-              'zone2': '17',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': '9',
-              'par1': '4',
-              'score1': '',
-              'zone2': '18',
-              'par2': '4',
-              'score2': ''
-            },
-            {
-              'zone1': 'Sum',
-              'par1': '',
-              'score1': '',
-              'zone2': 'Sum',
-              'par2': '4',
-              'score2': ''
-            }
+            {'zone1': '1', 'par1': '4', 'score1': '', 'zone2': '10', 'par2': '4', 'score2': ''},
+            {'zone1': '2', 'par1': '4', 'score1': '', 'zone2': '11', 'par2': '4', 'score2': ''},
+            {'zone1': '3', 'par1': '4', 'score1': '', 'zone2': '12', 'par2': '4', 'score2': ''},
+            {'zone1': '4', 'par1': '4', 'score1': '', 'zone2': '13', 'par2': '4', 'score2': ''},
+            {'zone1': '5', 'par1': '4', 'score1': '', 'zone2': '14', 'par2': '4', 'score2': ''},
+            {'zone1': '6', 'par1': '4', 'score1': '', 'zone2': '15', 'par2': '4', 'score2': ''},
+            {'zone1': '7', 'par1': '4', 'score1': '', 'zone2': '16', 'par2': '4', 'score2': ''},
+            {'zone1': '8', 'par1': '4', 'score1': '', 'zone2': '17', 'par2': '4', 'score2': ''},
+            {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''},
+            {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
           ];
           List<int> pars = List.filled(18, 0), scores = List.filled(18, 0);
           int sum1 = 0, sum2 = 0;
