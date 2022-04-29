@@ -500,6 +500,8 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                                 myScores[0].scores.insert(0, myScores[0].total);
   //                              myScores[0].scores.add(myScores[0].total - _handicap);
                                 activity.data()!['golfers'][uIdx]['scores'] = myScores[0];
+                                print(activity.Id);
+                                print(activity.data()!['golfers']);
                               }
                             });
                         } else
