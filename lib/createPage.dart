@@ -490,10 +490,10 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                   ElevatedButton(
                     child: Text(teeOffPass && alreadyIn ? Language.of(context).play : 
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
-                    onPressed: () {
+                    onPressed: () async {
                       if (teeOffPass && alreadyIn) {
                         if ((course["zones"]).length > 2) {
-                          List zones = selectZones(context, course);
+                          List zones = await selectZones(context, course);
                           print(zones);
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1]));
@@ -515,9 +515,9 @@ class ShowActivityPage extends MaterialPageRoute<int> {
         });
 }
 
-List<int> selectZones(BuildContext context, Map course, {int zone0 = 0, int zone1 = 1}) {
+Future<List> selectZones(BuildContext context, Map course, {int zone0 = 0, int zone1 = 1}) {
     bool? _zone0 = true, _zone1 = true, _zone2 = false, _zone3 = false;
-      showDialog(
+    return showDialog(
           context: context,
           builder: (context) {
             return StatefulBuilder(builder: (context, setState) {
@@ -563,8 +563,8 @@ List<int> selectZones(BuildContext context, Map course, {int zone0 = 0, int zone
             zone1 = _zone3! ? 3 : _zone2! ? 2 : 1;
             if (value) 
               return [zone0, zone1];
+            return [];
           });
-    return [];
 }
 
 _NewScorePage newScorePage(Map course, String golfer, {int zone0 = 0, int zone1 = 1}) {
