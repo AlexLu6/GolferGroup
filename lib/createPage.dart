@@ -492,7 +492,12 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () {
                       if (teeOffPass && alreadyIn) {
-                        Navigator.push(context, newScorePage(course, uName));
+                        if ((course["zones"]).length > 2) {
+                          List zones = selectZones(context, course);
+                          if (zones.isNotEmpty)
+                            Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1]));
+                        } else
+                          Navigator.push(context, newScorePage(course, uName));
                       } else
                         Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
@@ -509,8 +514,60 @@ class ShowActivityPage extends MaterialPageRoute<int> {
         });
 }
 
+List<int> selectZones(BuildContext context, Map course, {int zone0 = 0, int zone1 = 1}) {
+    bool? _zone0 = true, _zone1 = true, _zone2 = false, _zone3 = false;
+      showDialog(
+          context: context,
+          builder: (context) {
+            return StatefulBuilder(builder: (context, setState) {
+              return AlertDialog(
+                title: const Text('Select 2 courses'),
+                actions: [
+                  CheckboxListTile(
+                      value: _zone0,
+                      title: Text(course["zones"][0]['name']),
+                      onChanged: (bool? value) {
+                        setState(() => _zone0 = value);
+                      }),
+                  CheckboxListTile(
+                      value: _zone1,
+                      title: Text(course["zones"][1]['name']),
+                      onChanged: (bool? value) {
+                        setState(() => _zone1 = value);
+                      }),
+                  CheckboxListTile(
+                      value: _zone2,
+                      title: Text(course["zones"][2]['name']),
+                      onChanged: (bool? value) {
+                        setState(() => _zone2 = value);
+                      }),
+                  (course["zones"]).length == 3
+                      ? SizedBox(height: 6)
+                      : CheckboxListTile(
+                          value: _zone3,
+                          title: Text(course["zones"][3]['name']),
+                          onChanged: (bool? value) {
+                            setState(() => _zone3 = value);
+                          }),
+                  Row(children: [
+                    TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
+                    TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
+                  ])
+                ],
+              );
+            });
+          }).then((value) {
+            int zone0, zone1;
+            zone0 = _zone0! ? 0 : _zone1! ? 1 : 2;
+            zone1 = _zone3! ? 3 : _zone2! ? 2 : 1;
+            if (value) 
+              return [zone0, zone1];
+          });
+    return [];
+}
+
 _NewScorePage newScorePage(Map course, String golfer, {int zone0 = 0, int zone1 = 1}) {
-  return _NewScorePage(course, golfer, zone0, zone1);
+    return _NewScorePage(course, golfer, zone0, zone1);
 }
 
 class _NewScorePage extends MaterialPageRoute<bool> {
