@@ -501,7 +501,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
 //                                mySC.insert(0, myScores[0]['total'] as int);
 //                                myScores[0]['scores'].add(myScores[0]['total'] - _handicap);
                                 activity.data()!['golfers'][uIdx]['scores'] = mySC;
-                                print(activity.Id);
+//                                print(activity.Id);
                                 print(activity.data()!['golfers']);
                               }
                             });
