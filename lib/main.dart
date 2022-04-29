@@ -327,15 +327,15 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Future<bool?> showApplyDialog(bool applying) {
+  Future<bool?> showApplyDialog(int applying) {
     return showDialog<bool>(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: Text("Hint"),
-            content: Text(applying ? 'You have applied already, wait for it.' : 'You should apply the group first'),
+            content: Text(applying == 1 ? 'You have applied already, wait for it.' : applying == 0 ? 'You should apply the group first' : 'Your application is rejected'),
             actions: <Widget>[
-              TextButton(child: Text(applying ? "OK" : "Apply"), onPressed: () => Navigator.of(context).pop(!applying)),
+              TextButton(child: Text(applying != 0 ? "OK" : "Apply"), onPressed: () => Navigator.of(context).pop(applying==0)),
               TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
             ],
           );
@@ -398,7 +398,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       if (myGroups.indexOf(_gID) >= 0) {
                         setState(() => _currentPageIndex = 5);
                       } else {
-                        bool? apply = await showApplyDialog((await isApplying(_gID, _golferID)) == 1);
+                        bool? apply = await showApplyDialog(await isApplying(_gID, _golferID));
                         if (apply!) {
                           // fill the apply waiting queue
                           FirebaseFirestore.instance.collection('ApplyQueue').add({
