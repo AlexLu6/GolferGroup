@@ -456,7 +456,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           activity.data()!['golfers'][0]['temp'] = List.from(myScores[0]['scores']);
           print(myScores[0]['total']);
           activity.data()!['golfers'][0]['temp'].add(myScores[0]['total']);
-          print(activity.data()!['golfers'][0]['scores']);
+          print(activity.data()!['golfers'][0]['temp']);
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
