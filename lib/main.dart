@@ -450,7 +450,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               else
                                 return Image.network(snapshot3.data!.toString());
                             }),
-/*                Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                         trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () async {
                           Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID))).then((value) async {

@@ -475,56 +475,25 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                     thAlignment: TextAlign.center,
                     columnRatio: 0.19,
                     columns: [
-                      {
-                        "title": Language.of(context).tableGroup,
-                        'index': 1,
-                        'key': 'row',
-                        'editable': false
-                      },
-                      {
-                        "title": "A",
-                        'index': 2,
-                        'key': 'c1',
-                        'editable': false
-                      },
-                      {
-                        "title": "B",
-                        'index': 3,
-                        'key': 'c2',
-                        'editable': false
-                      },
-                      {
-                        "title": "C",
-                        'index': 4,
-                        'key': 'c3',
-                        'editable': false
-                      },
-                      {
-                        "title": "D",
-                        'index': 5,
-                        'key': 'c4',
-                        'editable': false
-                      }
+                      {"title": Language.of(context).tableGroup, 'index': 1, 'key': 'row','editable': false},
+                      {"title": "A", 'index': 2,'key': 'c1','editable': false},
+                      {"title": "B", 'index': 3,'key': 'c2','editable': false},
+                      {"title": "C", 'index': 4,'key': 'c3','editable': false},
+                      {"title": "D", 'index': 5,'key': 'c4','editable': false}
                     ],
                     rows: buildRows(),
                   )),
                   const SizedBox(height: 16.0),
-                  teeOffPass && !alreadyIn
-                      ? const SizedBox(height: 10.0)
-                      : ElevatedButton(
-                          child: Text(teeOffPass && alreadyIn
-                              ? Language.of(context).play
-                              : alreadyIn
-                                  ? Language.of(context).cancel
-                                  : Language.of(context).apply),
-                          onPressed: () {
-                            if (teeOffPass && alreadyIn) {}
-                            Navigator.of(context).pop(teeOffPass
-                                ? 0
-                                : alreadyIn
-                                    ? -1
-                                    : 1);
-                          }),
+                  teeOffPass && !alreadyIn ? const SizedBox(height: 10.0) : 
+                  ElevatedButton(
+                    child: Text(teeOffPass && alreadyIn ? Language.of(context).play : 
+                                alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
+                    onPressed: () {
+                      if (teeOffPass && alreadyIn) {
+
+                      }
+                      Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
+                    }),
                   const SizedBox(height: 16.0),
                 ]));
               }),
