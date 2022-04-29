@@ -498,7 +498,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
                               if (value!) {
                                 List mySC = myScores[0]['scores'];
-                                mySC.insert(0, myScores[0]['total'] as int);
+//                                mySC.insert(0, myScores[0]['total'] as int);
 //                                myScores[0]['scores'].add(myScores[0]['total'] - _handicap);
                                 activity.data()!['golfers'][uIdx]['scores'] = mySC;
                                 print(activity.Id);
