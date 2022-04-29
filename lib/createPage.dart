@@ -455,6 +455,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           print(myScores[0]['scores']);
           activity.data()!['golfers'][0]['temp'].add(myScores[0]['scores']);
           print(myScores[0]['total']);
+          print(activity.data()!['golfers'][0]['temp']);
           activity.data()!['golfers'][0]['temp'].add(myScores[0]['total']);
           print(activity.data()!['golfers'][0]['temp']);
           return Scaffold(
