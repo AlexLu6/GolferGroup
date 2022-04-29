@@ -491,7 +491,9 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () async{
                       if (teeOffPass && alreadyIn) {
+                        if (!course.isEmpty)
                         Navigator.push(context, newScorePage(course, await golferName(uId)!));
+                        else print('course is empty');
                       }
                       Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
