@@ -318,7 +318,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SizedBox(
           height: 8.0,
         ),
-        Text(isRegistered ? Language.of(context).handicap + ": " + _handicap.toString() : '', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text(isRegistered ? Language.of(context).handicap + ": " + _handicap.toString().substring(0,3) : '', style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(
           height: 10.0,
         ),
@@ -452,7 +452,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             }),
                         trailing: Icon(Icons.keyboard_arrow_right),
                         onTap: () async {
-                          Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID))).then((value) async {
+                          Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID), _handicap)).then((value) async {
                             var glist = doc.get('golfers');
                             //var name = await golferName(_golferID);
                             if (value == 1) {
@@ -523,7 +523,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             /*Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
                             trailing: Icon(Icons.keyboard_arrow_right),
                             onTap: () async {
-                              Navigator.push(context, showActivityPage(doc, _golferID, await groupName((doc.data()! as Map)['gid'] as int)!, await isManager((doc.data()! as Map)['gid'] as int, _golferID))).then((value) async {
+                              Navigator.push(context, showActivityPage(doc, _golferID, await groupName((doc.data()! as Map)['gid'] as int)!, await isManager((doc.data()! as Map)['gid'] as int, _golferID), _handicap)).then((value) async {
                                 var glist = doc.get('golfers');
                                 if (value == -1) {
                                   myActivities.remove(doc.id);
@@ -577,16 +577,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ListView myScoreBody() {
     int cnt = myScores.length > 10 ? 10 : myScores.length;
-    _handicap = 0;
+    double handicap = 0;
 
     return ListView.builder(
       itemCount: myScores.length,
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (BuildContext context, int i) {
-        if (i < cnt) _handicap += myScores[i]['handicap'];
+        if (i < cnt) handicap += myScores[i]['handicap'];
         if ((i + 1) == cnt) {
-          _handicap = (_handicap / cnt) * 0.9;
-          prefs!.setDouble('handicap', _handicap);
+          handicap = (handicap / cnt) * 0.9;
+          if (_handicap != handicap)
+            prefs!.setDouble('handicap', handicap);
+          _handicap = handicap;
         }
         return ListTile(leading: CircleAvatar(child: Text(myScores[i]['total'].toString())), title: Text(myScores[i]['date'] + ' ' + myScores[i]['course'], style: TextStyle(fontWeight: FontWeight.bold)), subtitle: Text(myScores[i]['pars'].toString() + '\n' + myScores[i]['scores'].toString()));
       },

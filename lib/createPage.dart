@@ -401,12 +401,12 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
         });
 }
 
-ShowActivityPage showActivityPage(var activity, int uId, String title, bool editable) {
-  return ShowActivityPage(activity, uId, title, editable);
+ShowActivityPage showActivityPage(var activity, int uId, String title, bool editable, double handicap) {
+  return ShowActivityPage(activity, uId, title, editable, handicap);
 }
 
 class ShowActivityPage extends MaterialPageRoute<int> {
-  ShowActivityPage(var activity, int uId, String title, bool editable)
+  ShowActivityPage(var activity, int uId, String title, bool editable, double handicap)
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
           String uName=''; int uIdx=0;
@@ -460,13 +460,6 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
           Map course = {};
 
-          var glist = activity.get('golfers');
-          print(myScores[0]['scores']);
-          myScores[0]['scores'].insert(0, myScores[0]['total']);
-          myScores[0]['scores'].add(myScores[0]['total'] - 18.3);
-          print(myScores[0]['scores']);
-          glist[uIdx]['scores'] = myScores[0]['scores'];
-          print(glist);
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -508,25 +501,25 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () async {
                       if (teeOffPass && alreadyIn) {
+                        var glist = activity.get('golfers');
                         if ((course["zones"]).length > 2) {
                           List zones = await selectZones(context, course);
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
-                              if (value!) {
-                                var glist = activity.get('golfers');
+                              if (value!) {                                
                                 myScores[0]['scores'].insert(0, myScores[0]['total']);
-                                myScores[0]['scores'].add(myScores[0]['total'] - /*_handicap*/18.3);
-                                glist[uIdx]['scores'] = myScores[0];
-                                print(activity.id);
-
+                                myScores[0]['scores'].add(myScores[0]['total'] - handicap);
+                                glist[uIdx]['scores'] = myScores[0]['scores'];
+                                FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
                               }
                             });
                         } else
                           Navigator.push(context, newScorePage(course, uName)).then((value) {
                             if (value!) {
-                              (myScores[0]['scores'] as List).insert(0, myScores[0]['total']);
-//                              myScores[0]['scores'].add(myScores[0]['total'] - _handicap);
-                              activity.data()!['golfers'][uIdx]['scores'] = myScores[0]['scores'];
+                              myScores[0]['scores'].insert(0, myScores[0]['total']);
+                              myScores[0]['scores'].add(myScores[0]['total'] - handicap);
+                              glist[uIdx]['scores'] = myScores[0]['scores'];
+                              FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
                             }
                           });
                       } else
