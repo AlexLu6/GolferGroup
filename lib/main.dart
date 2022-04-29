@@ -606,10 +606,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             int zone0, zone1;
                             zone0 = _zone0! ? 0 : _zone1! ? 1 : 2;
                             zone1 = _zone3! ? 3 : _zone2! ? 2 : 1;
-                            if (value) Navigator.push(context, newScorePage(doc.data as Map, _name, zone0: zone0, zone1: zone1));
+                            if (value) Navigator.push(context, newScorePage(doc.data()! as Map, _name, zone0: zone0, zone1: zone1));
                           });
                     } else
-                      Navigator.push(context, newScorePage(doc.data as Map, _name));
+                      Navigator.push(context, newScorePage(doc.data()! as Map, _name));
                   },
                 ));
               }
