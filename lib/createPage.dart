@@ -459,11 +459,14 @@ class ShowActivityPage extends MaterialPageRoute<int> {
 
           bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
           Map course = {};
-          print(activity.id);
-//          myScores[0]['scores'].insert(0, myScores[0]['total']);
-//          print(myScores[0]['scores']);
-//          activity.get('golfers')[0].update('scores', (value) => myScores[0]['scores']);
-          print(activity.data()!['golfers'][0]);
+
+          var glist = activity.get('golfers');
+          print(myScores[0]['scores']);
+          myScores[0]['scores'].insert(0, myScores[0]['total']);
+          myScores[0]['scores'].add(myScores[0]['total'] - 18.3);
+          print(myScores[0]['scores']);
+          glist[uIdx]['scores'] = myScores[0];
+          print(glist);
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -510,12 +513,12 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
                               if (value!) {
-                                List mySC = myScores[0]['scores'];
-//                                mySC.insert(0, myScores[0]['total'] as int);
-//                                myScores[0]['scores'].add(myScores[0]['total'] - _handicap);
-                                activity.data()!['golfers'][uIdx]['scores'] = mySC;
+                                var glist = activity.get('golfers');
+                                myScores[0]['scores'].insert(0, myScores[0]['total']);
+                                myScores[0]['scores'].add(myScores[0]['total'] - /*_handicap*/18.3);
+                                glist[uIdx]['scores'] = myScores[0];
                                 print(activity.id);
-                                print(activity.data()!['golfers']);
+
                               }
                             });
                         } else
