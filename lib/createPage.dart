@@ -435,7 +435,15 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                 oneRow['c4'] = e['name'];
                 rows.add(oneRow);
               }
-              if (e['uid'] as int == uId) {alreadyIn = true; uName = e['name']; uIdx = idx;}
+              if (e['uid'] as int == uId) {
+                alreadyIn = true; 
+                uName = e['name']; 
+                uIdx = idx;
+                if (myActivities.indexOf(activity.id) < 0) {
+                  myActivities.add(activity.id);
+                  storeMyActivities();
+                }
+              }
               idx++;
               if (idx == (activity.data()!['max'] as int)) while (idx % 4 != 0) idx++;
             }
