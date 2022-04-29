@@ -452,11 +452,9 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
           Map course = {};
           print(activity.id);
+          print(myScores[0]['scores'].insert(0, myScores[0]['scores']));
           print(myScores[0]['scores']);
           activity.data()!['golfers'][0]['temp'].add(myScores[0]['scores']);
-          print(myScores[0]['total']);
-          print(activity.data()!['golfers'][0]['temp']);
-          activity.data()!['golfers'][0]['temp'].add(myScores[0]['total']);
           print(activity.data()!['golfers'][0]['temp']);
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
