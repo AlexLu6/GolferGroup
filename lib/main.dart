@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   ? groupActivityBody(_gID)
                                   : null),
       drawer: isRegistered ? golfDrawer() : null,
-      floatingActionButton: (_currentPageIndex > 0 && _currentPageIndex < 4) || (_currentPageIndex == 5)
+      floatingActionButton: (_currentPageIndex == 1 || _currentPageIndex == 3) || (_currentPageIndex == 5)
           ? FloatingActionButton(
               //mini: false,
               onPressed: () => doBodyAdd(_currentPageIndex),
