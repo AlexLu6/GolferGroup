@@ -449,6 +449,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           }
 
           bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
+          Map course = {};
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -461,8 +462,10 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                       builder: (context, snapshot2) {
                         if (!snapshot2.hasData)
                           return const LinearProgressIndicator();
-                        else
-                          return Text((snapshot2.data!as Map)['name'] + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20));
+                        else {
+                          course = snapshot2.data!as Map;
+                          return Text(course['name'] + "\t" + Language.of(context).max + activity.data()!['max'].toString(), style: TextStyle(fontSize: 20));
+                        }
                       }),
                   const SizedBox(height: 16.0),
                   Flexible(child: Editable(
@@ -486,9 +489,9 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                   ElevatedButton(
                     child: Text(teeOffPass && alreadyIn ? Language.of(context).play : 
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
-                    onPressed: () {
+                    onPressed: () async{
                       if (teeOffPass && alreadyIn) {
-
+                        Navigator.push(context, newScorePage(course, await golferName(uId)!));
                       }
                       Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
