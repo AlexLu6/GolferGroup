@@ -409,6 +409,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
   ShowActivityPage(var activity, int uId, String title, bool editable)
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
+          String uName='';
           var rows = [];
 
           List buildRows() {
@@ -434,7 +435,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                 oneRow['c4'] = e['name'];
                 rows.add(oneRow);
               }
-              if (e['uid'] as int == uId) alreadyIn = true;
+              if (e['uid'] as int == uId) {alreadyIn = true; uName = e['name'];}
               idx++;
               if (idx == (activity.data()!['max'] as int)) while (idx % 4 != 0) idx++;
             }
@@ -489,11 +490,9 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                   ElevatedButton(
                     child: Text(teeOffPass && alreadyIn ? Language.of(context).play : 
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
-                    onPressed: () async{
+                    onPressed: () {
                       if (teeOffPass && alreadyIn) {
-                        if (!course.isEmpty)
-                        Navigator.push(context, newScorePage(course, await golferName(uId)!));
-                        else print('course is empty');
+                        Navigator.push(context, newScorePage(course, uName));
                       }
                       Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
