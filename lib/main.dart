@@ -559,55 +559,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
                   subtitle: Text((((doc.data()! as Map)["zones"]).length * 9).toString() + ' Holes'),
                   trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () {
-                    bool? _zone0 = true, _zone1 = true, _zone2 = false, _zone3 = false;
+                  onTap: () async {
                     if (((doc.data()! as Map)["zones"]).length > 2) {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return StatefulBuilder(builder: (context, setState) {
-                              return AlertDialog(
-                                title: const Text('Select 2 courses'),
-                                actions: [
-                                  CheckboxListTile(
-                                      value: _zone0,
-                                      title: Text((doc.data()! as Map)["zones"][0]['name']),
-                                      onChanged: (bool? value) {
-                                        setState(() => _zone0 = value);
-                                      }),
-                                  CheckboxListTile(
-                                      value: _zone1,
-                                      title: Text((doc.data()! as Map)["zones"][1]['name']),
-                                      onChanged: (bool? value) {
-                                        setState(() => _zone1 = value);
-                                      }),
-                                  CheckboxListTile(
-                                      value: _zone2,
-                                      title: Text((doc.data()! as Map)["zones"][2]['name']),
-                                      onChanged: (bool? value) {
-                                        setState(() => _zone2 = value);
-                                      }),
-                                  ((doc.data()! as Map)["zones"]).length == 3
-                                      ? SizedBox(height: 6)
-                                      : CheckboxListTile(
-                                          value: _zone3,
-                                          title: Text((doc.data()! as Map)["zones"][3]['name']),
-                                          onChanged: (bool? value) {
-                                            setState(() => _zone3 = value);
-                                          }),
-                                  Row(children: [
-                                    TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
-                                    TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
-                                  ])
-                                ],
-                              );
-                            });
-                          }).then((value) {
-                            int zone0, zone1;
-                            zone0 = _zone0! ? 0 : _zone1! ? 1 : 2;
-                            zone1 = _zone3! ? 3 : _zone2! ? 2 : 1;
-                            if (value) Navigator.push(context, newScorePage(doc.data()! as Map, _name, zone0: zone0, zone1: zone1));
-                          });
+                          List zones = await selectZones(context, doc.data()! as Map);
+                          if (zones.isNotEmpty)
+                            Navigator.push(context, newScorePage(doc.data()! as Map, _name, zone0: zones[0], zone1: zones[1]));
+                          
                     } else
                       Navigator.push(context, newScorePage(doc.data()! as Map, _name));
                   },
