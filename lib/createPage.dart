@@ -509,12 +509,12 @@ class ShowActivityPage extends MaterialPageRoute<int> {
         });
 }
 
-_NewScorePage newScorePage(var course, String golfer, {int zone0 = 0, int zone1 = 1}) {
+_NewScorePage newScorePage(Map course, String golfer, {int zone0 = 0, int zone1 = 1}) {
   return _NewScorePage(course, golfer, zone0, zone1);
 }
 
 class _NewScorePage extends MaterialPageRoute<bool> {
-  _NewScorePage(var course, String golfer, int zone0, int zone1)
+  _NewScorePage(Map course, String golfer, int zone0, int zone1)
       : super(builder: (BuildContext context) {
           final _editableKey = GlobalKey<EditableState>();
           var columns = [
@@ -541,15 +541,15 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           int sum1 = 0, sum2 = 0;
           int tpars = 0;
           List buildColumns() {
-            columns[0]['title'] = (course.data()! as Map)['zones'][zone0]['name'];
-            columns[3]['title'] = (course.data()! as Map)['zones'][zone1]['name'];
+            columns[0]['title'] = course['zones'][zone0]['name'];
+            columns[3]['title'] = course['zones'][zone1]['name'];
             return columns;
           }
 
           List buildRows() {
             int idx = 0, sum = 0;
             tpars = 0;
-            ((course.data()! as Map)['zones'][zone0]['holes']).forEach((par) {
+            (course['zones'][zone0]['holes']).forEach((par) {
               rows[idx]['par1'] = par.toString();
               sum += int.parse(par);
               pars[idx] = int.parse(par);
@@ -558,7 +558,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             });
             rows[idx]['par1'] = sum.toString();
             idx = sum = 0;
-            ((course.data()! as Map)['zones'][zone1]['holes']).forEach((par) {
+            (course['zones'][zone1]['holes']).forEach((par) {
               rows[idx]['par2'] = par.toString();
               sum += int.parse(par);
               pars[idx + 9] = int.parse(par);
@@ -577,7 +577,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                   const SizedBox(height: 16.0),
                   Text('Name: ' + golfer, style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
-                  Text('Course: ' + (course.data()! as Map)['region'] + ' ' + (course.data()! as Map)['name'], style: TextStyle(fontSize: 20)),
+                  Text('Course: ' + course['region'] + ' ' + course['name'], style: TextStyle(fontSize: 20)),
                   const SizedBox(height: 16.0),
                   Flexible(
                       child: Editable(
@@ -611,7 +611,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                           onPressed: () {
                             myScores.insert(0, {
                               'date': DateTime.now().toString().substring(0, 16),
-                              'course': (course.data()! as Map)['name'],
+                              'course': course['name'],
                               'pars': pars,
                               'scores': scores,
                               'total': sum1 + sum2,
