@@ -409,7 +409,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
   ShowActivityPage(var activity, int uId, String title, bool editable)
       : super(builder: (BuildContext context) {
           bool alreadyIn = false;
-          String uName='';
+          String uName=''; int uIdx=0;
           var rows = [];
 
           List buildRows() {
@@ -435,7 +435,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                 oneRow['c4'] = e['name'];
                 rows.add(oneRow);
               }
-              if (e['uid'] as int == uId) {alreadyIn = true; uName = e['name'];}
+              if (e['uid'] as int == uId) {alreadyIn = true; uName = e['name']; uIdx = idx;}
               idx++;
               if (idx == (activity.data()!['max'] as int)) while (idx % 4 != 0) idx++;
             }
@@ -495,9 +495,21 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                         if ((course["zones"]).length > 2) {
                           List zones = await selectZones(context, course);
                           if (zones.isNotEmpty)
-                            Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1]));
+                            Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
+                              if (value!) {
+                                myScores[0].scores.insert(0, myScores[0].total);
+  //                              myScores[0].scores.add(myScores[0].total - _handicap);
+                                activity.data()!['golfers'][uIdx]['scores'] = myScores[0];
+                              }
+                            });
                         } else
-                          Navigator.push(context, newScorePage(course, uName));
+                          Navigator.push(context, newScorePage(course, uName)).then((value) {
+                            if (value!) {
+                              myScores[0].scores.insert(0, myScores[0].total);
+//                              myScores[0].scores.add(myScores[0].total - _handicap);
+                              activity.data()!['golfers'][uIdx]['scores'] = myScores[0];
+                            }
+                          });
                       } else
                         Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
