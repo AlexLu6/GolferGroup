@@ -494,6 +494,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                       if (teeOffPass && alreadyIn) {
                         if ((course["zones"]).length > 2) {
                           List zones = selectZones(context, course);
+                          print(zones);
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1]));
                         } else
