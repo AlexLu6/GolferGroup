@@ -544,7 +544,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget? golfCourseBody() {
     return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('GolfCourses').snapshots(),
+        stream: FirebaseFirestore.instance.collection('GolfCourses').orderBy('region').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const CircularProgressIndicator();
