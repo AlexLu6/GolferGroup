@@ -485,60 +485,62 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget activityBody() {
     Timestamp deadline = Timestamp.fromDate(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('ClubActivities').where(FieldPath.documentId, whereIn: myActivities).snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const CircularProgressIndicator();
-          } else {
-            return ListView(
-                children: snapshot.data!.docs.map((doc) {
-              if ((doc.data()! as Map)["teeOff"] == null) {
-                return LinearProgressIndicator();
-              } else if ((doc.data()! as Map)["teeOff"].compareTo(deadline) < 0) {
-                myActivities.remove(doc.id);
-                storeMyActivities();
-                return LinearProgressIndicator();
+    return myActivities.isEmpty
+        ? ListView()
+        : StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection('ClubActivities').where(FieldPath.documentId, whereIn: myActivities).snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const CircularProgressIndicator();
               } else {
-                return Card(
-                    child: ListTile(
-                        title: FutureBuilder(
-                            future: courseName((doc.data()! as Map)['cid'] as int),
-                            builder: (context, snapshot2) {
-                              if (!snapshot2.hasData)
-                                return const LinearProgressIndicator();
-                              else
-                                return Text(snapshot2.data!.toString(), style: TextStyle(fontSize: 20));
-                            }),
-                        subtitle: Text(Language.of(context).teeOff + ((doc.data()! as Map)['teeOff']).toDate().toString().substring(0, 16) + '\n' + Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
-                        leading: FutureBuilder(
-                            future: coursePhoto((doc.data()! as Map)['cid'] as int),
-                            builder: (context, snapshot3) {
-                              if (!snapshot3.hasData)
-                                return const CircularProgressIndicator();
-                              else
-                                return Image.network(snapshot3.data!.toString(), fit: BoxFit.fitHeight);
-                            }),
-                        /*Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () async {
-                          Navigator.push(context, showActivityPage(doc, _golferID, await groupName((doc.data()! as Map)['gid'] as int)!, await isManager((doc.data()! as Map)['gid'] as int, _golferID))).then((value) async {
-                            var glist = doc.get('golfers');
-                            if (value == -1) {
-                              myActivities.remove(doc.id);
-                              storeMyActivities();
-                              glist.removeWhere((item) => item['uid'] == _golferID);
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
-                                'golfers': glist
+                return ListView(
+                    children: snapshot.data!.docs.map((doc) {
+                  if ((doc.data()! as Map)["teeOff"] == null) {
+                    return LinearProgressIndicator();
+                  } else if ((doc.data()! as Map)["teeOff"].compareTo(deadline) < 0) {
+                    myActivities.remove(doc.id);
+                    storeMyActivities();
+                    return LinearProgressIndicator();
+                  } else {
+                    return Card(
+                        child: ListTile(
+                            title: FutureBuilder(
+                                future: courseName((doc.data()! as Map)['cid'] as int),
+                                builder: (context, snapshot2) {
+                                  if (!snapshot2.hasData)
+                                    return const LinearProgressIndicator();
+                                  else
+                                    return Text(snapshot2.data!.toString(), style: TextStyle(fontSize: 20));
+                                }),
+                            subtitle: Text(Language.of(context).teeOff + ((doc.data()! as Map)['teeOff']).toDate().toString().substring(0, 16) + '\n' + Language.of(context).max + (doc.data()! as Map)['max'].toString() + '\t' + Language.of(context).now + ((doc.data()! as Map)['golfers'] as List).length.toString() + "\t" + Language.of(context).fee + (doc.data()! as Map)['fee'].toString()),
+                            leading: FutureBuilder(
+                                future: coursePhoto((doc.data()! as Map)['cid'] as int),
+                                builder: (context, snapshot3) {
+                                  if (!snapshot3.hasData)
+                                    return const CircularProgressIndicator();
+                                  else
+                                    return Image.network(snapshot3.data!.toString(), fit: BoxFit.fitHeight);
+                                }),
+                            /*Image.network(coursePhoto((doc.data()! as Map)["cid"] as int)!),*/
+                            trailing: Icon(Icons.keyboard_arrow_right),
+                            onTap: () async {
+                              Navigator.push(context, showActivityPage(doc, _golferID, await groupName((doc.data()! as Map)['gid'] as int)!, await isManager((doc.data()! as Map)['gid'] as int, _golferID))).then((value) async {
+                                var glist = doc.get('golfers');
+                                if (value == -1) {
+                                  myActivities.remove(doc.id);
+                                  storeMyActivities();
+                                  glist.removeWhere((item) => item['uid'] == _golferID);
+                                  FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
+                                    'golfers': glist
+                                  });
+                                  setState(() {});
+                                }
                               });
-                              setState(() {});
-                            }
-                          });
-                        }));
+                            }));
+                  }
+                }).toList());
               }
-            }).toList());
-          }
-        });
+            });
   }
 
   Widget? golfCourseBody() {
