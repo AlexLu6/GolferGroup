@@ -465,7 +465,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           myScores[0]['scores'].insert(0, myScores[0]['total']);
           myScores[0]['scores'].add(myScores[0]['total'] - 18.3);
           print(myScores[0]['scores']);
-          glist[uIdx]['scores'] = myScores[0];
+          glist[uIdx]['scores'] = myScores[0]['scores'];
           print(glist);
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
