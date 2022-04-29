@@ -452,8 +452,8 @@ class ShowActivityPage extends MaterialPageRoute<int> {
           bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
           Map course = {};
           print(activity.id);
-          myScores[0]['scores'].insert(0, myScores[0]['total']);
-          print(myScores[0]['scores']);
+//          myScores[0]['scores'].insert(0, myScores[0]['total']);
+//          print(myScores[0]['scores']);
 //          activity.get('golfers')[0].update('scores', (value) => myScores[0]['scores']);
           print(activity.data()!['golfers'][0]);
           return Scaffold(
