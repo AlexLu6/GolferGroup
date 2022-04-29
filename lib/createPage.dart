@@ -493,8 +493,8 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                     onPressed: () {
                       if (teeOffPass && alreadyIn) {
                         Navigator.push(context, newScorePage(course, uName));
-                      }
-                      Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
+                      } else
+                        Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
                   const SizedBox(height: 16.0),
                 ]));
