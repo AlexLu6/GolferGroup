@@ -454,7 +454,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () async {
                           Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID), _handicap)).then((value) async {
                             var glist = doc.get('golfers');
-                            //var name = await golferName(_golferID);
                             if (value == 1) {
                               glist.add({
                                 'uid': _golferID,
@@ -463,16 +462,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               });
                               myActivities.add(doc.id);
                               storeMyActivities();
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
-                                'golfers': glist
-                              });
+                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
                             } else if (value == -1) {
                               glist.removeWhere((item) => item['uid'] == _golferID);
                               myActivities.remove(doc.id);
                               storeMyActivities();
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
-                                'golfers': glist
-                              });
+                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist });
                             }
                           });
                         }));
@@ -529,9 +524,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   myActivities.remove(doc.id);
                                   storeMyActivities();
                                   glist.removeWhere((item) => item['uid'] == _golferID);
-                                  FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
-                                    'golfers': glist
-                                  });
+                                  FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
                                   setState(() {});
                                 }
                               });
@@ -620,14 +613,10 @@ class _MyHomePageState extends State<MyHomePage> {
               var e = result.data();
               bool? ans = await grantApplyDialog(await golferName(e['uid'] as int)!);
               if (ans!) {
-                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({
-                  'response': 'OK'
-                });
+                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'OK'});
                 addMember(_gID, e['uid'] as int);
               } else
-                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({
-                  'response': 'No'
-                });
+                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'No'});
               print(e);
             });
           });
