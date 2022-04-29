@@ -454,11 +454,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () async {
                           Navigator.push(context, showActivityPage(doc, _golferID, await groupName(gID)!, await isManager(gID, _golferID))).then((value) async {
                             var glist = doc.get('golfers');
-                            var name = await golferName(_golferID);
+                            //var name = await golferName(_golferID);
                             if (value == 1) {
                               glist.add({
                                 'uid': _golferID,
-                                'name': name,
+                                'name': _name,
                                 'scores': []
                               });
                               myActivities.add(doc.id);
