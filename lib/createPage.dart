@@ -507,21 +507,25 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
                               if (value!) {       
-//                                print(myScores[0]['scores']);
-//                                myScores[0]['scores'].insert(0, myScores[0]['total']);
-//                                myScores[0]['scores'].add(myScores[0]['total'] - handicap);
                                 glist[uIdx]['scores'] = myScores[0]['scores'];
-                                print(glist[uIdx]['scores']);
-                                FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
+                                FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({
+                                  'golfers': glist,
+                                  'total': myScores[0]['total'],
+                                  'net': myScores[0]['total'] - handicap
+                                  });
                               }
                             });
                         } else
                           Navigator.push(context, newScorePage(course, uName)).then((value) {
                             if (value!) {
-                              myScores[0]['scores'].insert(0, myScores[0]['total']);
-                              myScores[0]['scores'].add(myScores[0]['total'] - handicap);
+//                              myScores[0]['scores'].insert(0, myScores[0]['total']);
+//                              myScores[0]['scores'].add(myScores[0]['total'] - handicap);
                               glist[uIdx]['scores'] = myScores[0]['scores'];
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
+                              FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({
+                                'golfers': glist,
+                                'total': myScores[0]['total'],
+                                'net': myScores[0]['total'] - handicap
+                                });
                             }
                           });
                       } else
