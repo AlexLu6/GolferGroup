@@ -507,9 +507,9 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
                               if (value!) {       
-                                print(myScores[0]['scores']);
-                                myScores[0]['scores'].insert(0, myScores[0]['total']);
-                                myScores[0]['scores'].add(myScores[0]['total'] - handicap);
+//                                print(myScores[0]['scores']);
+//                                myScores[0]['scores'].insert(0, myScores[0]['total']);
+//                                myScores[0]['scores'].add(myScores[0]['total'] - handicap);
                                 glist[uIdx]['scores'] = myScores[0]['scores'];
                                 print(glist[uIdx]['scores']);
                                 FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
@@ -620,7 +620,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''},
             {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
           ];
-          List<int> pars = List.filled(18, 0), scores = List.filled(20, 0);
+          List<int> pars = List.filled(18, 0), scores = List.filled(19, 0);
           int sum1 = 0, sum2 = 0;
           int tpars = 0;
           List buildColumns() {
