@@ -459,10 +459,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
 
           bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
           Map course = {};
-          print(myScores[0]['scores']);
-          myScores[0]['scores'].insert(0, myScores[0]['total']);
-          myScores[0]['scores'].add(myScores[0]['total'] - handicap);
-          print(myScores[0]['scores']);
+
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -509,10 +506,12 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                           List zones = await selectZones(context, course);
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
-                              if (value!) {                                
+                              if (value!) {       
+                                print(myScores[0]['scores']);
                                 myScores[0]['scores'].insert(0, myScores[0]['total']);
                                 myScores[0]['scores'].add(myScores[0]['total'] - handicap);
                                 glist[uIdx]['scores'] = myScores[0]['scores'];
+                                print(glist[uIdx]['scores']);
                                 FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
                               }
                             });
