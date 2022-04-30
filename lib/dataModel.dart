@@ -31,6 +31,7 @@ void loadMyActivities()
 var myScores = [];
 void storeMyScores()
 {
+  while (myScores.length > 30) myScores.removeLast();
   prefs!.setString('golfScores', jsonEncode(myScores));
 }
 

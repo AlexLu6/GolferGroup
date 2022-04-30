@@ -570,18 +570,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ListView myScoreBody() {
     int cnt = myScores.length > 10 ? 10 : myScores.length;
-    double handicap = 0;
+    _handicap = 0;
 
     return ListView.builder(
       itemCount: myScores.length,
       padding: const EdgeInsets.all(16.0),
       itemBuilder: (BuildContext context, int i) {
-        if (i < cnt) handicap += myScores[i]['handicap'];
+        if (i < cnt) _handicap += myScores[i]['handicap'];
         if ((i + 1) == cnt) {
-          handicap = (handicap / cnt) * 0.9;
-          if (_handicap != handicap)
-            prefs!.setDouble('handicap', handicap);
-          _handicap = handicap;
+          _handicap = (_handicap / cnt) * 0.9;
+          prefs!.setDouble('handicap', _handicap);
         }
         return ListTile(leading: CircleAvatar(child: Text(myScores[i]['total'].toString())), title: Text(myScores[i]['date'] + ' ' + myScores[i]['course'], style: TextStyle(fontWeight: FontWeight.bold)), subtitle: Text(myScores[i]['pars'].toString() + '\n' + myScores[i]['scores'].toString()));
       },
