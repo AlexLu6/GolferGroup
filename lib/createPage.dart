@@ -48,12 +48,8 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                             "name": _groupName,
                             "region": _region,
                             "remarks": _remarks,
-                            "managers": [
-                              golferID
-                            ],
-                            "members": [
-                              golferID
-                            ],
+                            "managers": [golferID],
+                            "members": [golferID],
                             "gid": gID
                           });
                           myGroups.add(gID); 
@@ -205,18 +201,13 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                             "teeOff": Timestamp.fromDate(_selectedDate),
                             "max": _max,
                             "fee": _fee,
-                            "golfers": _includeMe
-                                ? [
-                                    {
+                            "golfers": _includeMe ? [{
                                       "uid": golfer,
                                       "name": name,
                                       "appTime": DateTime.now().toString().substring(0, 19),
                                       "scores": []
-                                    }
-                                  ]
-                                : []
+                                    }] : []
                           });
-//                        print(activity);
                           Navigator.of(context).pop(true);
                         }
                       })
