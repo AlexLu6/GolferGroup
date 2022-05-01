@@ -423,6 +423,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         }
                       }
                     },
+                    onLongPress:() async {
+                      showDialog<bool>(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text(Language.of(context).groupRemarks),
+                            content: Text((doc.data()! as Map)["Remarks"]),
+                            actions: <Widget>[
+                              TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
+                            ],
+                          );
+                        }
+                      );
+                    },
                   ));
                 }
               }).toList(),
