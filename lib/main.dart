@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _golferID = 0, _gID = 1;
   String _name = '', _phone = '';
   gendre _sex = gendre.Male;
-  double _handicap = 18;
+  double _handicap = 18.4;
   bool isRegistered = false, isUpdate = false;
   var _golferDoc;
 //  final ImagePicker _picker = ImagePicker();
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     _golferID = prefs!.getInt('golferID') ?? 0;
-    _handicap = prefs!.getDouble('handicap') ?? 18.3;
+    _handicap = prefs!.getDouble('handicap') ?? 18.35;
     loadMyGroup();
     loadMyActivities();
     loadMyScores();
@@ -100,13 +100,21 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0 ? registerBody()
-               : _currentPageIndex == 1 ? groupBody()
-               : _currentPageIndex == 2 ? myGroupBody()
-               : _currentPageIndex == 3 ? activityBody()
-               : _currentPageIndex == 4 ? golfCourseBody()
-               : _currentPageIndex == 5 ? myScoreBody()
-               : _currentPageIndex == 6 ? groupActivityBody(_gID) : null),
+          child: _currentPageIndex == 0
+              ? registerBody()
+              : _currentPageIndex == 1
+                  ? groupBody()
+                  : _currentPageIndex == 2
+                      ? myGroupBody()
+                      : _currentPageIndex == 3
+                          ? activityBody()
+                          : _currentPageIndex == 4
+                              ? golfCourseBody()
+                              : _currentPageIndex == 5
+                                  ? myScoreBody()
+                                  : _currentPageIndex == 6
+                                      ? groupActivityBody(_gID)
+                                      : null),
       drawer: isRegistered ? golfDrawer() : null,
       floatingActionButton: (_currentPageIndex == 1 || _currentPageIndex == 4 || _currentPageIndex == 6)
           ? FloatingActionButton(
@@ -320,7 +328,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SizedBox(
           height: 8.0,
         ),
-        Text(isRegistered ? Language.of(context).handicap + ": " + _handicap.toString() : '', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text(isRegistered ? Language.of(context).handicap + ": " + _handicap.toString().substring(0, 5) : '', style: TextStyle(fontWeight: FontWeight.bold)),
         SizedBox(
           height: 10.0,
         ),
@@ -335,9 +343,13 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) {
           return AlertDialog(
             title: Text("Hint"),
-            content: Text(applying == 1 ? 'You have applied already, wait for it.' : applying == 0 ? 'You should apply the group first' : 'Your application is rejected'),
+            content: Text(applying == 1
+                ? 'You have applied already, wait for it.'
+                : applying == 0
+                    ? 'You should apply the group first'
+                    : 'Your application is rejected'),
             actions: <Widget>[
-              TextButton(child: Text(applying == 0 ? "Apply" : "OK"), onPressed: () => Navigator.of(context).pop(applying==0)),
+              TextButton(child: Text(applying == 0 ? "Apply" : "OK"), onPressed: () => Navigator.of(context).pop(applying == 0)),
               TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
             ],
           );
@@ -382,7 +394,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   }
                   return Card(
-                    child: ListTile(
+                      child: ListTile(
                     title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                     subtitle: FutureBuilder(
                         future: golferNames((doc.data()! as Map)["managers"] as List),
@@ -424,40 +436,40 @@ class _MyHomePageState extends State<MyHomePage> {
         ? ListView()
         : StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance.collection('GolferClubs').where('gid', whereIn: myGroups).snapshots(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const CircularProgressIndicator();
-          } else {
-            return ListView(
-              children: snapshot.data!.docs.map((doc) {
-                if ((doc.data()! as Map)["Name"] == null) {
-                  return const LinearProgressIndicator();
-                } else {
-                  _gID = (doc.data()! as Map)["gid"] as int;
-                  return Card(
-                    child: ListTile(
-                    title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
-                    subtitle: FutureBuilder(
-                        future: golferNames((doc.data()! as Map)["managers"] as List),
-                        builder: (context, snapshot2) {
-                          if (!snapshot2.hasData)
-                            return const LinearProgressIndicator();
-                          else
-                            return Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + Language.of(context).manager + snapshot2.data!.toString() + "\n" + Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString());
-                        }),
-                    leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"),
-                    /*Icon(Icons.group), */
-                    trailing: Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const CircularProgressIndicator();
+              } else {
+                return ListView(
+                  children: snapshot.data!.docs.map((doc) {
+                    if ((doc.data()! as Map)["Name"] == null) {
+                      return const LinearProgressIndicator();
+                    } else {
                       _gID = (doc.data()! as Map)["gid"] as int;
-                      setState(() => _currentPageIndex = 6);
-                    },
-                  ));
-                }
-              }).toList(),
-            );
-          }
-        });
+                      return Card(
+                          child: ListTile(
+                        title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
+                        subtitle: FutureBuilder(
+                            future: golferNames((doc.data()! as Map)["managers"] as List),
+                            builder: (context, snapshot2) {
+                              if (!snapshot2.hasData)
+                                return const LinearProgressIndicator();
+                              else
+                                return Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + Language.of(context).manager + snapshot2.data!.toString() + "\n" + Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString());
+                            }),
+                        leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"),
+                        /*Icon(Icons.group), */
+                        trailing: Icon(Icons.keyboard_arrow_right),
+                        onTap: () {
+                          _gID = (doc.data()! as Map)["gid"] as int;
+                          setState(() => _currentPageIndex = 6);
+                        },
+                      ));
+                    }
+                  }).toList(),
+                );
+              }
+            });
   }
 
   Widget? groupActivityBody(int gID) {
@@ -505,12 +517,16 @@ class _MyHomePageState extends State<MyHomePage> {
                               });
                               myActivities.add(doc.id);
                               storeMyActivities();
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
+                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
+                                'golfers': glist
+                              });
                             } else if (value == -1) {
                               glist.removeWhere((item) => item['uid'] == _golferID);
                               myActivities.remove(doc.id);
                               storeMyActivities();
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist });
+                              FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
+                                'golfers': glist
+                              });
                             }
                           });
                         }));
@@ -567,7 +583,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                   myActivities.remove(doc.id);
                                   storeMyActivities();
                                   glist.removeWhere((item) => item['uid'] == _golferID);
-                                  FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({'golfers': glist});
+                                  FirebaseFirestore.instance.collection('ClubActivities').doc(doc.id).update({
+                                    'golfers': glist
+                                  });
                                   setState(() {});
                                 }
                               });
@@ -590,17 +608,16 @@ class _MyHomePageState extends State<MyHomePage> {
               if ((doc.data()! as Map)["photo"] == null) {
                 return LinearProgressIndicator();
               } else {
-                return Card(child: ListTile(
+                return Card(
+                    child: ListTile(
                   leading: Image.network((doc.data()! as Map)["photo"]),
                   title: Text((doc.data()! as Map)["region"] + ' ' + (doc.data()! as Map)["name"], style: TextStyle(fontSize: 20)),
                   subtitle: Text((((doc.data()! as Map)["zones"]).length * 9).toString() + ' Holes'),
                   trailing: Icon(Icons.keyboard_arrow_right),
                   onTap: () async {
                     if (((doc.data()! as Map)["zones"]).length > 2) {
-                          List zones = await selectZones(context, doc.data()! as Map);
-                          if (zones.isNotEmpty)
-                            Navigator.push(context, newScorePage(doc.data()! as Map, _name, zone0: zones[0], zone1: zones[1]));
-                          
+                      List zones = await selectZones(context, doc.data()! as Map);
+                      if (zones.isNotEmpty) Navigator.push(context, newScorePage(doc.data()! as Map, _name, zone0: zones[0], zone1: zones[1]));
                     } else
                       Navigator.push(context, newScorePage(doc.data()! as Map, _name));
                   },
@@ -654,10 +671,14 @@ class _MyHomePageState extends State<MyHomePage> {
               var e = result.data();
               bool? ans = await grantApplyDialog(await golferName(e['uid'] as int)!);
               if (ans!) {
-                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'OK'});
+                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({
+                  'response': 'OK'
+                });
                 addMember(_gID, e['uid'] as int);
               } else
-                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'No'});
+                FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({
+                  'response': 'No'
+                });
             });
           });
           Navigator.push(context, newActivityPage(true, _gID, _golferID)).then((ret) {
@@ -665,16 +686,16 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         } else {
           showDialog<bool>(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text('Notice'),
-                content: Text('Only group manager can add new activity!'),
-                actions: <Widget>[
-                  TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
-                ],
-              );
-          });
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text('Notice'),
+                  content: Text('Only group manager can add new activity!'),
+                  actions: <Widget>[
+                    TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
+                  ],
+                );
+              });
         }
         break;
     }
