@@ -459,7 +459,15 @@ class ShowActivityPage extends MaterialPageRoute<int> {
 
           bool teeOffPass = activity.data()!['teeOff'].compareTo(Timestamp.now()) < 0;
           Map course = {};
-
+          void updateScore() async {
+            FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).get().then((value) {
+              var glist = value.get('golfers');
+              glist[uIdx]['scores'] = myScores[0]['scores'];
+              glist[uIdx]['total'] = myScores[0]['total'];
+              glist[uIdx]['net'] = myScores[0]['total'] - handicap;
+              FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
+            });
+          }
           return Scaffold(
               appBar: AppBar(title: Text(title), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
@@ -501,27 +509,20 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () async {
                       if (teeOffPass && alreadyIn) {
-                        var glist = activity.get('golfers');
+                        
                         if ((course["zones"]).length > 2) {
                           List zones = await selectZones(context, course);
                           if (zones.isNotEmpty)
                             Navigator.push(context, newScorePage(course, uName, zone0: zones[0], zone1: zones[1])).then((value) {
-                              if (value!) {       
-                                glist[uIdx]['scores'] = myScores[0]['scores'];
-                                glist[uIdx]['total'] = myScores[0]['total'];
-                                glist[uIdx]['net'] = myScores[0]['total'] - handicap;
-                                FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
-                              }
+                              if (value!) 
+                                updateScore();
                             });
                         } else
                           Navigator.push(context, newScorePage(course, uName)).then((value) {
-                            if (value!) {
-                              glist[uIdx]['scores'] = myScores[0]['scores'];
-                              glist[uIdx]['total'] = myScores[0]['total'];
-                              glist[uIdx]['net'] = myScores[0]['total'] - handicap;
-                              FirebaseFirestore.instance.collection('ClubActivities').doc(activity.id).update({'golfers': glist});
-                            }
+                            if (value!) 
+                              updateScore();
                           });
+                          Navigator.of(context).pop(0);
                       } else
                         Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
