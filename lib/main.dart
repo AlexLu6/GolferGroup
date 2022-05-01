@@ -335,7 +335,7 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text("Hint"),
             content: Text(applying == 1 ? 'You have applied already, wait for it.' : applying == 0 ? 'You should apply the group first' : 'Your application is rejected'),
             actions: <Widget>[
-              TextButton(child: Text(applying != 0 ? "OK" : "Apply"), onPressed: () => Navigator.of(context).pop(applying==0)),
+              TextButton(child: Text(applying == 0 ? "Apply" : "OK"), onPressed: () => Navigator.of(context).pop(applying==0)),
               TextButton(child: Text("Cancel"), onPressed: () => Navigator.of(context).pop(false))
             ],
           );
