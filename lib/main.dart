@@ -423,7 +423,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return myGroups.isEmpty
         ? ListView()
         : StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('GolferClubs').where(FieldPath.documentId, whereIn: myGroups).snapshots(),
+            stream: FirebaseFirestore.instance.collection('GolferClubs').where('gid', whereIn: myGroups).snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const CircularProgressIndicator();

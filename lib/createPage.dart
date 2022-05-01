@@ -42,6 +42,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                   ElevatedButton(
                       child: Text(Language.of(context).create, style: TextStyle(fontSize: 24)),
                       onPressed: () {
+                        int gID = uuidTime();
                         if (_groupName != '' && _region != '') {
                           FirebaseFirestore.instance.collection('GolferClubs').add({
                             "name": _groupName,
@@ -53,8 +54,10 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                             "members": [
                               golferID
                             ],
-                            "gid": uuidTime()
-                          }).then((value) {myGroups.add(value.id); storeMyGroup();});
+                            "gid": gID
+                          });
+                          myGroups.add(gID); 
+                          storeMyGroup();
                           Navigator.of(context).pop(true);
                         }
                       })
