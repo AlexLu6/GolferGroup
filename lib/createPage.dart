@@ -22,13 +22,13 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                     showCursor: true,
                     onChanged: (String value) => setState(() => _groupName = value),
                     //keyboardType: TextInputType.name,
-                    decoration: InputDecoration(labelText: "Group Name:", icon: Icon(Icons.group), border: UnderlineInputBorder()),
+                    decoration: InputDecoration(labelText: Language.of(context).groupName, icon: Icon(Icons.group), border: UnderlineInputBorder()),
                   ),
                   TextFormField(
                     showCursor: true,
                     onChanged: (String value) => setState(() => _region = value),
                     //keyboardType: TextInputType.name,
-                    decoration: InputDecoration(labelText: "Activity Region:", icon: Icon(Icons.place), border: UnderlineInputBorder()),
+                    decoration: InputDecoration(labelText: Language.of(context).groupActRegion, icon: Icon(Icons.place), border: UnderlineInputBorder()),
                   ),
                   const SizedBox(height: 24.0),
                   TextFormField(

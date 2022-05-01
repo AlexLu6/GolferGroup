@@ -39,4 +39,6 @@ class LanguageEn extends Language {
   String get createNewActivity => 'Create New Activity';
   String get createNewCourse => 'Create New Course';
   String get createNewGolfGroup => 'Create New Golf Group';
+  String get groupName => 'Group Name:';
+  String get groupActRegion => 'Activity Region:';
 }

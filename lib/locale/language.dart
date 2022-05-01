@@ -41,4 +41,6 @@ abstract class Language {
   String get createNewActivity;
   String get createNewCourse;
   String get createNewGolfGroup;
+  String get groupName;
+  String get groupActRegion;
 }
