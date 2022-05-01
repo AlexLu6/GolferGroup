@@ -27,7 +27,7 @@ class LanguageZh extends Language {
   String get tableGroup => '組別';
   String get apply => '報名';
   String get cancel => '取消報名';
-  String get play => '開始球賽';
+  String get enterScore => '輸入成績';
   String get waiting => '候補';
   String get create => '建立';
   String get max => '名額: ';

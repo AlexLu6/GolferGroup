@@ -505,7 +505,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                   const SizedBox(height: 16.0),
                   teeOffPass && !alreadyIn ? const SizedBox(height: 10.0) : 
                   ElevatedButton(
-                    child: Text(teeOffPass && alreadyIn ? Language.of(context).play : 
+                    child: Text(teeOffPass && alreadyIn ? Language.of(context).enterScore : 
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () async {
                       if (teeOffPass && alreadyIn) {                        
@@ -651,7 +651,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
           }
 
           return Scaffold(
-              appBar: AppBar(title: Text('Enter Score'), elevation: 1.0),
+              appBar: AppBar(title: Text(Language.of(context).enterScore), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Container(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
