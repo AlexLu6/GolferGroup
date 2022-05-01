@@ -380,7 +380,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   }
                   return Card(
-                      child: ListTile(
+                    child: ListTile(
                     title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
                     subtitle: FutureBuilder(
                         future: golferNames((doc.data()! as Map)["managers"] as List),
@@ -615,13 +615,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 addMember(_gID, e['uid'] as int);
               } else
                 FirebaseFirestore.instance.collection('ApplyQueue').doc(result.id).update({'response': 'No'});
-              print(e);
             });
           });
+          Navigator.push(context, newActivityPage(true, _gID, _golferID)).then((ret) {
+            if (ret ?? false) setState(() => index = 5);
+          });
         }
-        Navigator.push(context, newActivityPage(true, _gID, _golferID)).then((ret) {
-          if (ret ?? false) setState(() => index = 5);
-        });
         break;
     }
   }
