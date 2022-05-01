@@ -89,6 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<String> appTitle = [
       Language.of(context).golferInfo,
       Language.of(context).groups, //"Groups",
+      Language.of(context).myGroup,
       Language.of(context).activities, //"Activities",
       Language.of(context).golfCourses, //"Golf courses",
       Language.of(context).myScores, //"My Scores",
@@ -99,21 +100,15 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(appTitle[_currentPageIndex]),
       ),
       body: Center(
-          child: _currentPageIndex == 0
-              ? registerBody()
-              : _currentPageIndex == 1
-                  ? groupBody()
-                  : _currentPageIndex == 2
-                      ? activityBody()
-                      : _currentPageIndex == 3
-                          ? golfCourseBody()
-                          : _currentPageIndex == 4
-                              ? myScoreBody()
-                              : _currentPageIndex == 5
-                                  ? groupActivityBody(_gID)
-                                  : null),
+          child: _currentPageIndex == 0 ? registerBody()
+               : _currentPageIndex == 1 ? groupBody()
+               : _currentPageIndex == 2 ? myGroupBody()
+               : _currentPageIndex == 3 ? activityBody()
+               : _currentPageIndex == 4 ? golfCourseBody()
+               : _currentPageIndex == 5 ? myScoreBody()
+               : _currentPageIndex == 6 ? groupActivityBody(_gID) : null),
       drawer: isRegistered ? golfDrawer() : null,
-      floatingActionButton: (_currentPageIndex == 1 || _currentPageIndex == 3 || _currentPageIndex == 5)
+      floatingActionButton: (_currentPageIndex == 1 || _currentPageIndex == 4 || _currentPageIndex == 6)
           ? FloatingActionButton(
               //mini: false,
               onPressed: () => doBodyAdd(_currentPageIndex),
@@ -153,24 +148,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).pop();
               }),
           ListTile(
+              title: Text(Language.of(context).myGroup),
+              leading: Icon(Icons.group),
+              onTap: () {
+                setState(() => _currentPageIndex = 2);
+                Navigator.of(context).pop();
+              }),
+          ListTile(
               title: Text(Language.of(context).activities),
               leading: Icon(Icons.sports_golf),
               onTap: () {
-                setState(() => _currentPageIndex = 2);
+                setState(() => _currentPageIndex = 3);
                 Navigator.of(context).pop();
               }),
           ListTile(
               title: Text(Language.of(context).golfCourses),
               leading: Icon(Icons.golf_course),
               onTap: () {
-                setState(() => _currentPageIndex = 3);
+                setState(() => _currentPageIndex = 4);
                 Navigator.of(context).pop();
               }),
           ListTile(
               title: Text(Language.of(context).myScores),
               leading: Icon(Icons.format_list_numbered),
               onTap: () {
-                setState(() => _currentPageIndex = 4);
+                setState(() => _currentPageIndex = 5);
                 Navigator.of(context).pop();
               }),
           ListTile(
@@ -396,7 +398,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () async {
                       _gID = (doc.data()! as Map)["gid"] as int;
                       if (myGroups.indexOf(_gID) >= 0) {
-                        setState(() => _currentPageIndex = 5);
+                        setState(() => _currentPageIndex = 6);
                       } else {
                         bool? apply = await showApplyDialog(await isApplying(_gID, _golferID));
                         if (apply!) {
@@ -408,6 +410,47 @@ class _MyHomePageState extends State<MyHomePage> {
                           });
                         }
                       }
+                    },
+                  ));
+                }
+              }).toList(),
+            );
+          }
+        });
+  }
+
+  Widget? myGroupBody() {
+    return myGroups.isEmpty
+        ? ListView()
+        : StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const CircularProgressIndicator();
+          } else {
+            return ListView(
+              children: snapshot.data!.docs.map((doc) {
+                if ((doc.data()! as Map)["Name"] == null) {
+                  return const LinearProgressIndicator();
+                } else {
+                  _gID = (doc.data()! as Map)["gid"] as int;
+                  return Card(
+                    child: ListTile(
+                    title: Text((doc.data()! as Map)["Name"], style: TextStyle(fontSize: 20)),
+                    subtitle: FutureBuilder(
+                        future: golferNames((doc.data()! as Map)["managers"] as List),
+                        builder: (context, snapshot2) {
+                          if (!snapshot2.hasData)
+                            return const LinearProgressIndicator();
+                          else
+                            return Text(Language.of(context).region + (doc.data()! as Map)["region"] + "\n" + Language.of(context).manager + snapshot2.data!.toString() + "\n" + Language.of(context).members + ((doc.data() as Map)["members"] as List<dynamic>).length.toString());
+                        }),
+                    leading: Image.network("https://www.csu-emba.com/img/port/22/10.jpg"),
+                    /*Icon(Icons.group), */
+                    trailing: Icon(Icons.keyboard_arrow_right),
+                    onTap: () {
+                      _gID = (doc.data()! as Map)["gid"] as int;
+                      setState(() => _currentPageIndex = 6);
                     },
                   ));
                 }
@@ -593,17 +636,17 @@ class _MyHomePageState extends State<MyHomePage> {
           if (ret ?? false) setState(() => index = 1);
         });
         break;
-      case 2:
+      case 3:
         Navigator.push(context, newActivityPage(false, _golferID, _golferID)).then((ret) {
           if (ret ?? false) setState(() => index = 2);
         });
         break;
-      case 3:
+      case 4:
         Navigator.push(context, newGolfCoursePage()).then((ret) {
           if (ret ?? false) setState(() => index = 3);
         });
         break;
-      case 5:
+      case 6:
         if (await isManager(_gID, _golferID)) {
           FirebaseFirestore.instance.collection('ApplyQueue').where('gid', isEqualTo: _gID).where('response', isEqualTo: 'waiting').get().then((value) {
             value.docs.forEach((result) async {

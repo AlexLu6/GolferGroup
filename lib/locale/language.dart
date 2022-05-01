@@ -7,6 +7,7 @@ abstract class Language {
   String get appTitle;
   String get golferInfo;
   String get groups;
+  String get myGroup;
   String get activities;
   String get golfCourses;
   String get myScores;
