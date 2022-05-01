@@ -6,7 +6,7 @@ class LanguageZh extends Language {
   String get golferInfo => '高球員資料';
   String get groups => '高球群組列表';
   String get myGroup => '我的群組';
-  String get activities => '高球員活動';
+  String get activities => '我的球員活動';
   String get golfCourses => '高球場';
   String get myScores => '個人成績';
   String get groupActivity => '高球群組活動';
