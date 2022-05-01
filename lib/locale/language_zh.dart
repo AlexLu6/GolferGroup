@@ -34,4 +34,8 @@ class LanguageZh extends Language {
   String get now => '已報名: ';
   String get store => '儲存';
   String get total => '總桿: ';
+
+  String get createNewActivity => '建立新活動';
+  String get createNewCourse => '建立新球場';
+  String get createNewGolfGroup => '建立新群組';
 }

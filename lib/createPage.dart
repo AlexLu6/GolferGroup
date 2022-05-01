@@ -14,7 +14,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
       : super(builder: (BuildContext context) {
           String _groupName = '', _region = '', _remarks = '';
           return Scaffold(
-              appBar: AppBar(title: Text('Create New Golf Group'), elevation: 1.0),
+              appBar: AppBar(title: Text(Language.of(context).createNewGolfGroup), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Center(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
@@ -98,7 +98,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
             });
 
           return Scaffold(
-              appBar: AppBar(title: Text('Create New Activity'), elevation: 1.0),
+              appBar: AppBar(title: Text(Language.of(context).createNewActivity), elevation: 1.0),
               body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
                 return Center(
                     child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[
@@ -254,7 +254,7 @@ class _NewGolfCoursePage extends MaterialPageRoute<bool> {
           }
 
           return Scaffold(
-            appBar: AppBar(title: Text('Create New Golf Course'), elevation: 1.0),
+            appBar: AppBar(title: Text(Language.of(context).createNewCourse), elevation: 1.0),
             body: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
               return Center(
                   child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: <Widget>[

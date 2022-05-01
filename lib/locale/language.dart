@@ -36,4 +36,8 @@ abstract class Language {
   String get now;
   String get store;
   String get total;
+
+  String get createNewActivity;
+  String get createNewCourse;
+  String get createNewGolfGroup;
 }
