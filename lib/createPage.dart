@@ -612,7 +612,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
             {'zone1': '9', 'par1': '4', 'score1': '', 'zone2': '18', 'par2': '4', 'score2': ''},
             {'zone1': 'Sum', 'par1': '', 'score1': '', 'zone2': 'Sum', 'par2': '4', 'score2': ''}
           ];
-          List<int> pars = List.filled(18, 0), scores = List.filled(19, 0);
+          List<int> pars = List.filled(18, 0), scores = List.filled(18, 0);
           int sum1 = 0, sum2 = 0;
           int tpars = 0;
           List buildColumns() {
