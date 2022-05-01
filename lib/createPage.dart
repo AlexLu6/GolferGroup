@@ -686,7 +686,7 @@ class _NewScorePage extends MaterialPageRoute<bool> {
                           onPressed: () {
                             myScores.insert(0, {
                               'date': DateTime.now().toString().substring(0, 16),
-                              'course': course['name'] + course['zones'].length > 2 ? '(${course['zones'][zone0]['name']} ${course['zones'][zone1]['name']})' : '',
+                              'course': course['name'] + course['zones'].length > 2 ? '(${course['zones'][zone0]['name']}, ${course['zones'][zone1]['name']})' : '',
                               'pars': pars,
                               'scores': scores,
                               'total': sum1 + sum2,
