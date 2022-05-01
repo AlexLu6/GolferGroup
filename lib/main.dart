@@ -184,9 +184,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   _name = '';
                   _phone = '';
                   _golferID = 0;
-                  myGroups = [];
-                  myActivities = [];
-                  myScores = [];
+                  myGroups.clear();
+                  myActivities.clear();
+                  myScores.clear();
                 });
                 _currentPageIndex = 0;
                 Navigator.of(context).pop();
@@ -423,7 +423,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return myGroups.isEmpty
         ? ListView()
         : StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('GolferClubs').snapshots(),
+            stream: FirebaseFirestore.instance.collection('GolferClubs').where(FieldPath.documentId, whereIn: myGroups).snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const CircularProgressIndicator();
