@@ -508,8 +508,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                     child: Text(teeOffPass && alreadyIn ? Language.of(context).play : 
                                 alreadyIn ? Language.of(context).cancel : Language.of(context).apply),
                     onPressed: () async {
-                      if (teeOffPass && alreadyIn) {
-                        
+                      if (teeOffPass && alreadyIn) {                        
                         if ((course["zones"]).length > 2) {
                           List zones = await selectZones(context, course);
                           if (zones.isNotEmpty)
@@ -522,7 +521,7 @@ class ShowActivityPage extends MaterialPageRoute<int> {
                             if (value!) 
                               updateScore();
                           });
-                          Navigator.of(context).pop(0);
+                        Navigator.of(context).pop(0);
                       } else
                         Navigator.of(context).pop(teeOffPass ? 0 : alreadyIn ? -1 : 1);
                     }),
