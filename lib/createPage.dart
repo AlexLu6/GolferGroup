@@ -36,7 +36,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                     onChanged: (String value) => setState(() => _remarks = value),
                     //keyboardType: TextInputType.name,
                     maxLines: 5,
-                    decoration: InputDecoration(labelText: "Remarks:", border: OutlineInputBorder()),
+                    decoration: InputDecoration(labelText: Language.of(context).groupRemarks, border: OutlineInputBorder()),
                   ),
                   const SizedBox(height: 24.0),
                   ElevatedButton(
