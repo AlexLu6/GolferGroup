@@ -620,6 +620,18 @@ class _MyHomePageState extends State<MyHomePage> {
           Navigator.push(context, newActivityPage(true, _gID, _golferID)).then((ret) {
             if (ret ?? false) setState(() => index = 5);
           });
+        } else {
+          showDialog<bool>(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: Text('Notice'),
+                content: Text('Only group manager can add new activity!'),
+                actions: <Widget>[
+                  TextButton(child: Text("OK"), onPressed: () => Navigator.of(context).pop(true)),
+                ],
+              );
+          });
         }
         break;
     }
