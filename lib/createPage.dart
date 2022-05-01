@@ -54,7 +54,7 @@ class _NewGroupPage extends MaterialPageRoute<bool> {
                               golferID
                             ],
                             "gid": uuidTime()
-                          });
+                          }).then((value) {myGroups.add(value.id); storeMyGroup();});
                           Navigator.of(context).pop(true);
                         }
                       })
