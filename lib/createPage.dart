@@ -106,7 +106,7 @@ class _NewActivityPage extends MaterialPageRoute<bool> {
                   Flexible(
                       child: Row(children: <Widget>[
                     ElevatedButton(
-                        child: Text("Golf Course:"),
+                        child: Text(Language.of(context).golfCourses),
                         onPressed: () {
                           showMaterialScrollPicker<NameID>(
                             context: context,
