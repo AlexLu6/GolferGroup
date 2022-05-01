@@ -44,4 +44,5 @@ abstract class Language {
   String get groupName;
   String get groupActRegion;
   String get groupRemarks;
+  String get select2Courses;
 }

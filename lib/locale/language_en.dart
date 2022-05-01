@@ -42,4 +42,5 @@ class LanguageEn extends Language {
   String get groupName => 'Group Name:';
   String get groupActRegion => 'Activity Region:';
   String get groupRemarks => 'Group Remarks:';
+  String get select2Courses => 'Select 2 zones';
 }

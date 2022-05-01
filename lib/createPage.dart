@@ -539,7 +539,7 @@ Future<List> selectZones(BuildContext context, Map course, {int zone0 = 0, int z
           builder: (context) {
             return StatefulBuilder(builder: (context, setState) {
               return AlertDialog(
-                title: const Text('Select 2 courses'),
+                title: Text(Language.of(context).select2Courses),
                 actions: [
                   CheckboxListTile(
                       value: _zone0,

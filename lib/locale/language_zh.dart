@@ -42,4 +42,5 @@ class LanguageZh extends Language {
   String get groupName => '群組名稱:';
   String get groupActRegion =>'活動地區';
   String get groupRemarks => '群組備註';
+  String get select2Courses => '選兩個球區';
 }
