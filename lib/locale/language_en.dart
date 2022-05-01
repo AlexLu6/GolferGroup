@@ -2,7 +2,7 @@ import 'language.dart';
 
 class LanguageEn extends Language {
 
-  String get appTitle => 'Golfer Group';
+  String get appTitle => 'Golfer Group List';
   String get golferInfo => 'Golfer Info';
   String get groups => 'Groups';
   String get myGroup => 'My Groups';
